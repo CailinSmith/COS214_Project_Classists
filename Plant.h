@@ -43,7 +43,7 @@ public:
 
 	bool getPruned();
 
-	void setPruned();
+	void setPruned(bool pruned);
 
 	string getCategory();
 

@@ -3,12 +3,13 @@
 
 #include "PruningStrategy.h"
 #include <string>
+#include <iostream>
 using namespace std;
 
 class NoPrune : public PruningStrategy {
 
 public:
-	void prune();
+	void prune(Plant* plant);
 
 	string print();
 };

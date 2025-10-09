@@ -8,9 +8,9 @@ using namespace std;
 class Thinning : public PruningStrategy {
 
 public:
-	void prune();
+	void prune(Plant* plant) ;
 
-	string print();
+	string print() ;
 };
 
 #endif

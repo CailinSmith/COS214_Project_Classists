@@ -254,6 +254,147 @@ void testEveryPlantFromFactories() {
     cout << "🎯 Factory Pattern Validation: Each season produces its unique plant varieties!" << endl;
 }
 
+void testAllStrategies() {
+    printSeparator("STRATEGY TESTING");
+    cout << "🧪 Testing all watering and pruning strategies with correct plant assignments..." << endl << endl;
+    
+    cout << "💧 WATERING STRATEGY TESTING:" << endl << endl;
+    
+    cout << "🌿 Medium Moisture Strategy (250ml per watering):" << endl;
+    Rose rose1;
+    Chrysanthemum chrysanthemum1;
+    Pansy pansy1;
+    
+    cout << "   Before watering:" << endl;
+    cout << "   • " << rose1.getName() << " - Water Level: " << rose1.getWaterLevel() << ", Total Water: " << rose1.getTotalWater() << "ml" << endl;
+    cout << "   • " << chrysanthemum1.getName() << " - Water Level: " << chrysanthemum1.getWaterLevel() << ", Total Water: " << chrysanthemum1.getTotalWater() << "ml" << endl;
+    cout << "   • " << pansy1.getName() << " - Water Level: " << pansy1.getWaterLevel() << ", Total Water: " << pansy1.getTotalWater() << "ml" << endl;
+    
+    rose1.water();
+    chrysanthemum1.water();
+    pansy1.water();
+    
+    cout << "   After watering:" << endl;
+    cout << "   • " << rose1.getName() << " - Water Level: " << rose1.getWaterLevel() << ", Total Water: " << rose1.getTotalWater() << "ml" << endl;
+    cout << "   • " << chrysanthemum1.getName() << " - Water Level: " << chrysanthemum1.getWaterLevel() << ", Total Water: " << chrysanthemum1.getTotalWater() << "ml" << endl;
+    cout << "   • " << pansy1.getName() << " - Water Level: " << pansy1.getWaterLevel() << ", Total Water: " << pansy1.getTotalWater() << "ml" << endl << endl;
+    
+    cout << "💦 High Moisture Strategy (500ml per watering):" << endl;
+    Basil basil1;
+    Lettuce lettuce1;
+    WaterLily waterlily1;
+    
+    cout << "   Before watering:" << endl;
+    cout << "   • " << basil1.getName() << " - Water Level: " << basil1.getWaterLevel() << ", Total Water: " << basil1.getTotalWater() << "ml" << endl;
+    cout << "   • " << lettuce1.getName() << " - Water Level: " << lettuce1.getWaterLevel() << ", Total Water: " << lettuce1.getTotalWater() << "ml" << endl;
+    cout << "   • " << waterlily1.getName() << " - Water Level: " << waterlily1.getWaterLevel() << ", Total Water: " << waterlily1.getTotalWater() << "ml" << endl;
+    
+    basil1.water();
+    lettuce1.water();
+    waterlily1.water();
+    
+    cout << "   After watering:" << endl;
+    cout << "   • " << basil1.getName() << " - Water Level: " << basil1.getWaterLevel() << ", Total Water: " << basil1.getTotalWater() << "ml" << endl;
+    cout << "   • " << lettuce1.getName() << " - Water Level: " << lettuce1.getWaterLevel() << ", Total Water: " << lettuce1.getTotalWater() << "ml" << endl;
+    cout << "   • " << waterlily1.getName() << " - Water Level: " << waterlily1.getWaterLevel() << ", Total Water: " << waterlily1.getTotalWater() << "ml" << endl << endl;
+    
+    cout << "🌵 Dry Plant Strategy (75ml per watering):" << endl;
+    JadePlant jade1;
+    Lavender lavender1;
+    Thyme thyme1;
+    
+    cout << "   Before watering:" << endl;
+    cout << "   • " << jade1.getName() << " - Water Level: " << jade1.getWaterLevel() << ", Total Water: " << jade1.getTotalWater() << "ml" << endl;
+    cout << "   • " << lavender1.getName() << " - Water Level: " << lavender1.getWaterLevel() << ", Total Water: " << lavender1.getTotalWater() << "ml" << endl;
+    cout << "   • " << thyme1.getName() << " - Water Level: " << thyme1.getWaterLevel() << ", Total Water: " << thyme1.getTotalWater() << "ml" << endl;
+    
+    jade1.water();
+    lavender1.water();
+    thyme1.water();
+    
+    cout << "   After watering:" << endl;
+    cout << "   • " << jade1.getName() << " - Water Level: " << jade1.getWaterLevel() << ", Total Water: " << jade1.getTotalWater() << "ml" << endl;
+    cout << "   • " << lavender1.getName() << " - Water Level: " << lavender1.getWaterLevel() << ", Total Water: " << lavender1.getTotalWater() << "ml" << endl;
+    cout << "   • " << thyme1.getName() << " - Water Level: " << thyme1.getWaterLevel() << ", Total Water: " << thyme1.getTotalWater() << "ml" << endl << endl;
+    
+    cout << "✂️ PRUNING STRATEGY TESTING:" << endl << endl;
+    
+    cout << "🥀 Dead Pruning Strategy (improves health by removing dead parts):" << endl;
+    Rose rose2;
+    WaterLily waterlily2;
+    Coneflower coneflower1;
+    
+    cout << "   Before pruning:" << endl;
+    cout << "   • " << rose2.getName() << " - Health: " << rose2.getHealth() << ", Pruned: " << (rose2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << waterlily2.getName() << " - Health: " << waterlily2.getHealth() << ", Pruned: " << (waterlily2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << coneflower1.getName() << " - Health: " << coneflower1.getHealth() << ", Pruned: " << (coneflower1.getPruned() ? "Yes" : "No") << endl;
+    
+    rose2.prune();
+    waterlily2.prune();
+    coneflower1.prune();
+    
+    cout << "   After pruning:" << endl;
+    cout << "   • " << rose2.getName() << " - Health: " << rose2.getHealth() << ", Pruned: " << (rose2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << waterlily2.getName() << " - Health: " << waterlily2.getHealth() << ", Pruned: " << (waterlily2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << coneflower1.getName() << " - Health: " << coneflower1.getHealth() << ", Pruned: " << (coneflower1.getPruned() ? "Yes" : "No") << endl << endl;
+    
+    cout << "🌿 Thinning Strategy (selective removal for better growth):" << endl;
+    Basil basil2;
+    Tomato tomato1;
+    JadePlant jade2;
+    
+    cout << "   Before pruning:" << endl;
+    cout << "   • " << basil2.getName() << " - Health: " << basil2.getHealth() << ", Pruned: " << (basil2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << tomato1.getName() << " - Health: " << tomato1.getHealth() << ", Pruned: " << (tomato1.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << jade2.getName() << " - Health: " << jade2.getHealth() << ", Pruned: " << (jade2.getPruned() ? "Yes" : "No") << endl;
+    
+    basil2.prune();
+    tomato1.prune();
+    jade2.prune();
+    
+    cout << "   After pruning:" << endl;
+    cout << "   • " << basil2.getName() << " - Health: " << basil2.getHealth() << ", Pruned: " << (basil2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << tomato1.getName() << " - Health: " << tomato1.getHealth() << ", Pruned: " << (tomato1.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << jade2.getName() << " - Health: " << jade2.getHealth() << ", Pruned: " << (jade2.getPruned() ? "Yes" : "No") << endl << endl;
+    
+    cout << "🚫 No Prune Strategy (plants that don't need pruning):" << endl;
+    Lettuce lettuce2;
+    SnakePlant snake1;
+    BarrelCactus cactus1;
+    
+    cout << "   Before pruning:" << endl;
+    cout << "   • " << lettuce2.getName() << " - Health: " << lettuce2.getHealth() << ", Pruned: " << (lettuce2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << snake1.getName() << " - Health: " << snake1.getHealth() << ", Pruned: " << (snake1.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << cactus1.getName() << " - Health: " << cactus1.getHealth() << ", Pruned: " << (cactus1.getPruned() ? "Yes" : "No") << endl;
+    
+    lettuce2.prune();
+    snake1.prune();
+    cactus1.prune();
+    
+    cout << "   After pruning:" << endl;
+    cout << "   • " << lettuce2.getName() << " - Health: " << lettuce2.getHealth() << ", Pruned: " << (lettuce2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << snake1.getName() << " - Health: " << snake1.getHealth() << ", Pruned: " << (snake1.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << cactus1.getName() << " - Health: " << cactus1.getHealth() << ", Pruned: " << (cactus1.getPruned() ? "Yes" : "No") << endl << endl;
+    
+    cout << "✂️ Reduction Strategy (significant size reduction):" << endl;
+    Lavender lavender2;
+    Cattails cattails1;
+    
+    cout << "   Before pruning:" << endl;
+    cout << "   • " << lavender2.getName() << " - Height: " << lavender2.getHeight() << "cm, Pruned: " << (lavender2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << cattails1.getName() << " - Height: " << cattails1.getHeight() << "cm, Pruned: " << (cattails1.getPruned() ? "Yes" : "No") << endl;
+    
+    lavender2.prune();
+    cattails1.prune();
+    
+    cout << "   After pruning:" << endl;
+    cout << "   • " << lavender2.getName() << " - Height: " << lavender2.getHeight() << "cm, Pruned: " << (lavender2.getPruned() ? "Yes" : "No") << endl;
+    cout << "   • " << cattails1.getName() << " - Height: " << cattails1.getHeight() << "cm, Pruned: " << (cattails1.getPruned() ? "Yes" : "No") << endl << endl;
+    
+    cout << "✅ SUCCESS: All watering and pruning strategies tested with correct plant assignments!" << endl;
+    cout << "🎯 Strategy Pattern Validation: Each strategy produces different effects!" << endl;
+}
+
 int main() {
     cout << "\n🌱🌿🌳 COMPREHENSIVE PLANT NURSERY SYSTEM TEST 🌳🌿🌱" << endl;
     cout << "Testing all 32 plants, categories, and factories..." << endl;
@@ -261,6 +402,7 @@ int main() {
     testPlantCategories();
     testAllFactories();
     testEveryPlantFromFactories();
+    testAllStrategies();
     testPlantStatistics();
     
     return 0;

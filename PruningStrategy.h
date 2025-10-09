@@ -4,12 +4,14 @@
 #include <string>
 using namespace std;
 
+class Plant;
+
 class PruningStrategy {
 
 public:
 	virtual ~PruningStrategy() {}
 	
-	virtual void prune() = 0;
+	virtual void prune(Plant* plant) = 0;
 
 	virtual string print() = 0;
 };
