@@ -4,9 +4,10 @@
 #include "Plant.h"
 
 class Fruit : public Plant {
-	
+
 public:
-	Fruit();
+	Fruit(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) : 
+	Plant("Fruit", maxHeight, wateringStrat, pruningStrat, name) {}
 };
 
 #endif

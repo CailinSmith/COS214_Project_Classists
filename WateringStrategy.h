@@ -7,6 +7,8 @@ using namespace std;
 class WateringStrategy {
 
 public:
+	virtual ~WateringStrategy() {}
+	
 	virtual void water() = 0;
 
 	virtual string print() = 0;

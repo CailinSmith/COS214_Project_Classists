@@ -6,7 +6,8 @@
 class Indoor : public Plant {
 
 public:
-	Indoor();
+	Indoor(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) : 
+	Plant("Indoor", maxHeight, wateringStrat, pruningStrat, name) {}
 };
 
 #endif

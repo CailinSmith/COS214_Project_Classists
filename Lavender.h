@@ -2,10 +2,12 @@
 #define LAVENDER_H
 
 #include "Herb.h"
+#include "DryPlant.h"
+#include "Reduction.h"
 
 class Lavender : public Herb {
 public:
-	Lavender();
+	Lavender() : Herb(90, new DryPlant(), new Reduction(), "Lavender") {}
 };
 
 #endif

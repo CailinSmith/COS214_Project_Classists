@@ -3,7 +3,7 @@
 
 #include "StaffCommand.h"
 
-class Plant; // Forward declaration
+class Plant;
 
 class WaterCommand : public StaffCommand {
 public:

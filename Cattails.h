@@ -2,11 +2,13 @@
 #define CATTAILS_H
 
 #include "Aquatic.h"
+#include "HighMoisture.h"
+#include "Reduction.h"
 
 class Cattails : public Aquatic {
-
+	
 public:
-	Cattails();
+	Cattails() : Aquatic(300, new HighMoisture(), new Reduction(), "Cattails") {}
 };
 
 #endif

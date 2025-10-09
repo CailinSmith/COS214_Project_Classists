@@ -2,11 +2,13 @@
 #define WATERLILY_H
 
 #include "Aquatic.h"
+#include "HighMoisture.h"
+#include "DeadPruning.h"
 
 class WaterLily : public Aquatic {
 
 public:
-	WaterLily();
+	WaterLily() : Aquatic(20, new HighMoisture(), new DeadPruning(), "Water Lily") {}
 };
 
 #endif

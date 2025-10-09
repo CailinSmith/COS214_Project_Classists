@@ -7,6 +7,8 @@ using namespace std;
 class PruningStrategy {
 
 public:
+	virtual ~PruningStrategy() {}
+	
 	virtual void prune() = 0;
 
 	virtual string print() = 0;

@@ -2,6 +2,14 @@
 #define SUMMERFACTORY_H
 
 #include "PlantFactory.h"
+#include "Chrysanthemum.h"
+#include "Lavender.h"
+#include "AppleTree.h"
+#include "Pumpkin.h"
+#include "BarrelCactus.h"
+#include "WaterHyacinth.h"
+#include "RubberTree.h"
+#include "Coneflower.h"
 
 class SummerFactory : public PlantFactory {
 

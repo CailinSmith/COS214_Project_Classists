@@ -1,41 +1,33 @@
 #include "AutumnFactory.h"
 
 Plant* AutumnFactory::createFlower() {
-	// TODO - implement AutumnFactory::createFlower
-	throw "Not yet implemented";
+	return new Pansy();
 }
 
 Plant* AutumnFactory::createHerb() {
-	// TODO - implement AutumnFactory::createHerb
-	throw "Not yet implemented";
+	return new Thyme();
 }
 
 Plant* AutumnFactory::createFruit() {
-	// TODO - implement AutumnFactory::createFruit
-	throw "Not yet implemented";
+	return new Strawberry();
 }
 
 Plant* AutumnFactory::createVegetable() {
-	// TODO - implement AutumnFactory::createVegetable
-	throw "Not yet implemented";
+	return new Kale();
 }
 
 Plant* AutumnFactory::createSucculent() {
-	// TODO - implement AutumnFactory::createSucculent
-	throw "Not yet implemented";
+	return new Echeveria();
 }
 
 Plant* AutumnFactory::createAquatic() {
-	// TODO - implement AutumnFactory::createAquatic
-	throw "Not yet implemented";
+	return new Cattails();
 }
 
 Plant* AutumnFactory::createIndoor() {
-	// TODO - implement AutumnFactory::createIndoor
-	throw "Not yet implemented";
+	return new PeaceLily();
 }
 
 Plant* AutumnFactory::createMedicinal() {
-	// TODO - implement AutumnFactory::createMedicinal
-	throw "Not yet implemented";
+	return new Chamomile();
 }
