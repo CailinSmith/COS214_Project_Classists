@@ -2,8 +2,7 @@
 #define WATERCOMMAND_H
 
 #include "StaffCommand.h"
-
-class Plant;
+#include "Plant.h"
 
 class WaterCommand : public StaffCommand {
 public:

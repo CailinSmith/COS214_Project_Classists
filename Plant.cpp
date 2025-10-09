@@ -9,7 +9,7 @@ Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, Pr
 	this->health = 0.0;
 	this->height = 0.0;
 	this->currentState = new SeedState();
-	this->pruned = true;
+	this->pruned = false; //made false for testing purposes, change to true once state is implemented
 	this->sold = false;
 	this->totalWater = 0;
 	this->name = name;
@@ -22,18 +22,27 @@ Plant::~Plant() {
 }
 
 void Plant::water() {
-	// TODO - implement Plant::water
-	throw "Not yet implemented";
+	this->wateringStrat->water(this);
 }
 
 void Plant::prune() {
-	// TODO - implement Plant::prune
-	throw "Not yet implemented";
+	this->pruningStrat->prune(this);
 }
 
 string Plant::summary() {
-	// TODO - implement Plant::summary
-	throw "Not yet implemented";
+	string out = "";
+	out += "Plant Name: " + this->name + "\n";
+	out += "Category: " + this->category + "\n";
+	out += "Height: " + to_string(this->getActualHeight()) + " cm\n";
+	out += "Health: " + to_string(this->health) + "\n";
+	out += "Water Level: " + to_string(this->waterLevel) + "\n";
+	out += "Pruned: " + string(this->pruned ? "Yes" : "No") + "\n";
+	out += "State: " + this->currentState->print() + "\n";
+	out += "Total Water Given: " + to_string(this->totalWater) + " ml\n";
+	out += "Max Height: " + to_string(this->maxHeight) + " cm\n";
+	out += "Watering Strategy: " + this->wateringStrat->print() + "\n";
+	out += "Pruning Strategy: " + this->pruningStrat->print() + "\n";
+	return out;
 }
 
 float Plant::getWaterLevel() {
@@ -48,9 +57,8 @@ bool Plant::getPruned() {
 	return this->pruned;
 }
 
-void Plant::setPruned() {
-	// TODO - implement Plant::setPruned
-	throw "Not yet implemented";
+void Plant::setPruned(bool pruned) {
+	this->pruned = pruned;
 }
 
 string Plant::getCategory() {
@@ -66,13 +74,11 @@ void Plant::setHeight(float height) {
 }
 
 float Plant::getActualHeight() {
-	// TODO - implement Plant::getActualHeight
-	throw "Not yet implemented";
+	return this->height * this->maxHeight;
 }
 
 string Plant::getState() {
-	// TODO - implement Plant::getState
-	throw "Not yet implemented";
+	return this->currentState->print();
 }
 
 void Plant::setState(PlantState* state) {

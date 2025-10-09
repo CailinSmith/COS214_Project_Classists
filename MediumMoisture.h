@@ -3,11 +3,12 @@
 
 #include "WateringStrategy.h"
 #include <string>
+#include <iostream>
 using namespace std;
 
 class MediumMoisture : public WateringStrategy {
 public:
-	void water();
+	void water(Plant* plant);
 	string print();
 };
 
