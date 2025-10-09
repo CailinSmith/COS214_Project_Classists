@@ -2,11 +2,13 @@
 #define PEACELILY_H
 
 #include "Indoor.h"
+#include "HighMoisture.h"
+#include "DeadPruning.h"
 
 class PeaceLily : public Indoor {
 
 public:
-	PeaceLily();
+	PeaceLily() : Indoor(120, new HighMoisture(), new DeadPruning(), "Peace Lily") {}
 };
 
 #endif

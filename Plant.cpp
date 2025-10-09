@@ -1,8 +1,24 @@
 #include "Plant.h"
 
-Plant::Plant() {
-	// TODO - implement Plant::Plant
-	throw "Not yet implemented";
+Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) {
+	this->category = category;
+	this->maxHeight = maxHeight;
+	this->wateringStrat = wateringStrat;
+	this->pruningStrat = pruningStrat;
+	this->waterLevel = 0.0;
+	this->health = 0.0;
+	this->height = 0.0;
+	this->currentState = new SeedState();
+	this->pruned = true;
+	this->sold = false;
+	this->totalWater = 0;
+	this->name = name;
+}
+
+Plant::~Plant() {
+	delete wateringStrat;
+	delete pruningStrat;
+	delete currentState;
 }
 
 void Plant::water() {
@@ -89,6 +105,11 @@ int Plant::getMaxHeight() {
 }
 
 string Plant::getStrategies() {
-	// TODO - implement Plant::getStrategies
-	throw "Not yet implemented";
+	string out = "";
+	out += this->wateringStrat->print() + ", " + this->pruningStrat->print();
+	return out;
+}
+
+string Plant::getName() {
+	return this->name;
 }

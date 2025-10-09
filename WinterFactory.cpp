@@ -1,41 +1,33 @@
 #include "WinterFactory.h"
 
 Plant* WinterFactory::createFlower() {
-	// TODO - implement WinterFactory::createFlower
-	throw "Not yet implemented";
+	return new Sunflower();
 }
 
 Plant* WinterFactory::createHerb() {
-	// TODO - implement WinterFactory::createHerb
-	throw "Not yet implemented";
+	return new Rosemary();
 }
 
 Plant* WinterFactory::createFruit() {
-	// TODO - implement WinterFactory::createFruit
-	throw "Not yet implemented";
+	return new OrangeTree();
 }
 
 Plant* WinterFactory::createVegetable() {
-	// TODO - implement WinterFactory::createVegetable
-	throw "Not yet implemented";
+	return new Cucumber();
 }
 
 Plant* WinterFactory::createSucculent() {
-	// TODO - implement WinterFactory::createSucculent
-	throw "Not yet implemented";
+	return new ChristmasCactus();
 }
 
 Plant* WinterFactory::createAquatic() {
-	// TODO - implement WinterFactory::createAquatic
-	throw "Not yet implemented";
+	return new WaterLettuce();
 }
 
 Plant* WinterFactory::createIndoor() {
-	// TODO - implement WinterFactory::createIndoor
-	throw "Not yet implemented";
+	return new Pothos();
 }
 
 Plant* WinterFactory::createMedicinal() {
-	// TODO - implement WinterFactory::createMedicinal
-	throw "Not yet implemented";
+	return new Ginger();
 }

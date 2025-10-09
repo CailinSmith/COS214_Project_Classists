@@ -1,41 +1,33 @@
 #include "SpringFactory.h"
 
 Plant* SpringFactory::createFlower() {
-	// TODO - implement SpringFactory::createFlower
-	throw "Not yet implemented";
+	return new Rose();
 }
 
 Plant* SpringFactory::createHerb() {
-	// TODO - implement SpringFactory::createHerb
-	throw "Not yet implemented";
+	return new Basil();
 }
 
 Plant* SpringFactory::createFruit() {
-	// TODO - implement SpringFactory::createFruit
-	throw "Not yet implemented";
+	return new Tomato();
 }
 
 Plant* SpringFactory::createVegetable() {
-	// TODO - implement SpringFactory::createVegetable
-	throw "Not yet implemented";
+	return new Lettuce();
 }
 
 Plant* SpringFactory::createSucculent() {
-	// TODO - implement SpringFactory::createSucculent
-	throw "Not yet implemented";
+	return new JadePlant();
 }
 
 Plant* SpringFactory::createAquatic() {
-	// TODO - implement SpringFactory::createAquatic
-	throw "Not yet implemented";
+	return new WaterLily();
 }
 
 Plant* SpringFactory::createIndoor() {
-	// TODO - implement SpringFactory::createIndoor
-	throw "Not yet implemented";
+	return new SnakePlant();
 }
 
 Plant* SpringFactory::createMedicinal() {
-	// TODO - implement SpringFactory::createMedicinal
-	throw "Not yet implemented";
+	return new AloeVera();
 }

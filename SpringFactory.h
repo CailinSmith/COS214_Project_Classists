@@ -2,7 +2,14 @@
 #define SPRINGFACTORY_H
 
 #include "PlantFactory.h"
-class Plant; // Forward declaration
+#include "Rose.h"
+#include "Basil.h"
+#include "Tomato.h"
+#include "Lettuce.h"
+#include "JadePlant.h"
+#include "WaterLily.h"
+#include "SnakePlant.h"
+#include "AloeVera.h"
 
 class SpringFactory : public PlantFactory {
 public:

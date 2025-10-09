@@ -2,10 +2,12 @@
 #define SNAKEPLANT_H
 
 #include "Indoor.h"
+#include "DryPlant.h"
+#include "NoPrune.h"
 
 class SnakePlant : public Indoor {
 public:
-	SnakePlant();
+	SnakePlant() : Indoor(120, new DryPlant(), new NoPrune(), "SnakePlant") {}
 };
 
 #endif

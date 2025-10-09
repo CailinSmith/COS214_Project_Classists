@@ -2,11 +2,13 @@
 #define PLANT_H
 
 #include "Product.h"
+#include "WateringStrategy.h"
+#include "PruningStrategy.h"
+#include "PlantState.h"
+#include "SeedState.h"
 #include <string>
 
-class WateringStrategy;  // Forward declarations
-class PruningStrategy;
-class PlantState;
+
 using namespace std;
 
 class Plant : public Product {
@@ -22,9 +24,12 @@ private:
 	bool sold;
 	string category;
 	int totalWater;
+	string name;
 
 public:
-	Plant();
+	Plant(string category, int maxHeight, WateringStrategy* waterStrat, PruningStrategy* pruneStrat, string name);
+	
+	virtual ~Plant();
 
 	void water();
 
@@ -65,6 +70,8 @@ public:
 	int getMaxHeight();
 
 	string getStrategies();
+
+	string getName();
 };
 
 #endif

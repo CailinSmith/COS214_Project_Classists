@@ -1,41 +1,33 @@
 #include "SummerFactory.h"
 
 Plant* SummerFactory::createFlower() {
-	// TODO - implement SummerFactory::createFlower
-	throw "Not yet implemented";
+	return new Chrysanthemum();
 }
 
 Plant* SummerFactory::createHerb() {
-	// TODO - implement SummerFactory::createHerb
-	throw "Not yet implemented";
+	return new Lavender();
 }
 
 Plant* SummerFactory::createFruit() {
-	// TODO - implement SummerFactory::createFruit
-	throw "Not yet implemented";
+	return new AppleTree();
 }
 
 Plant* SummerFactory::createVegetable() {
-	// TODO - implement SummerFactory::createVegetable
-	throw "Not yet implemented";
+	return new Pumpkin();
 }
 
 Plant* SummerFactory::createSucculent() {
-	// TODO - implement SummerFactory::createSucculent
-	throw "Not yet implemented";
+	return new BarrelCactus();
 }
 
 Plant* SummerFactory::createAquatic() {
-	// TODO - implement SummerFactory::createAquatic
-	throw "Not yet implemented";
+	return new WaterHyacinth();
 }
 
 Plant* SummerFactory::createIndoor() {
-	// TODO - implement SummerFactory::createIndoor
-	throw "Not yet implemented";
+	return new RubberTree();
 }
 
 Plant* SummerFactory::createMedicinal() {
-	// TODO - implement SummerFactory::createMedicinal
-	throw "Not yet implemented";
+	return new Coneflower();
 }

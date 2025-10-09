@@ -6,7 +6,8 @@
 class Aquatic : public Plant {
 
 public:
-	Aquatic();
+	Aquatic(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) : 
+	Plant("Aquatic", maxHeight, wateringStrat, pruningStrat, name) {}
 };
 
 #endif

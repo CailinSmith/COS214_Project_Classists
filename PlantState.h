@@ -6,6 +6,8 @@ using namespace std;
 class PlantState {
 
 public:
+	virtual ~PlantState() {}
+	
 	virtual void change() = 0;
 
 	virtual string print() = 0;

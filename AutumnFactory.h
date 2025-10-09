@@ -2,8 +2,15 @@
 #define AUTUMNFACTORY_H
 
 #include "PlantFactory.h"
-
-class Plant; // Forward declaration
+#include "Plant.h"
+#include "Pansy.h"
+#include "Thyme.h"
+#include "Strawberry.h"
+#include "Kale.h"
+#include "Echeveria.h"
+#include "Cattails.h"
+#include "PeaceLily.h"
+#include "Chamomile.h"
 
 class AutumnFactory : public PlantFactory {
 public:

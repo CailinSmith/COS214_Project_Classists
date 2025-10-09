@@ -2,6 +2,14 @@
 #define WINTERFACTORY_H
 
 #include "PlantFactory.h"
+#include "Sunflower.h"
+#include "Rosemary.h"
+#include "OrangeTree.h"
+#include "Cucumber.h"
+#include "ChristmasCactus.h"
+#include "WaterLettuce.h"
+#include "Pothos.h"
+#include "Ginger.h"
 
 class WinterFactory : public PlantFactory {
 
