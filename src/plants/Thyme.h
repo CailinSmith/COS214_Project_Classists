@@ -1,3 +1,9 @@
+/**
+ * @file Thyme.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef THYME_H
 #define THYME_H
 

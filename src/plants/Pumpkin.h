@@ -1,3 +1,9 @@
+/**
+ * @file Pumpkin.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef PUMPKIN_H
 #define PUMPKIN_H
 

@@ -1,3 +1,9 @@
+/**
+ * @file Ginger.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef GINGER_H
 #define GINGER_H
 

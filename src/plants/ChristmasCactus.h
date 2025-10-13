@@ -1,3 +1,9 @@
+/**
+ * @file ChristmasCactus.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef CHRISTMASCACTUS_H
 #define CHRISTMASCACTUS_H
 

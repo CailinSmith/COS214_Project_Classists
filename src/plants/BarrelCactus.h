@@ -1,3 +1,9 @@
+/**
+ * @file BarrelCactus.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef BARRELCACTUS_H
 #define BARRELCACTUS_H
 

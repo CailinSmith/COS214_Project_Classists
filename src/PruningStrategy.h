@@ -1,4 +1,10 @@
-#ifndef PRUNINGSTRATEGY_H
+/**
+ * @file PruningStrategy.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef PRUNINGSTRATEGY_H
 #define PRUNINGSTRATEGY_H
 
 #include <string>

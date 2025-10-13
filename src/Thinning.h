@@ -1,4 +1,10 @@
-#ifndef THINNING_H
+/**
+ * @file Thinning.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef THINNING_H
 #define THINNING_H
 
 #include "PruningStrategy.h"

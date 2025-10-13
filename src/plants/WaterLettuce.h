@@ -1,3 +1,9 @@
+/**
+ * @file WaterLettuce.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef WATERLETTUCE_H
 #define WATERLETTUCE_H
 

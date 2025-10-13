@@ -1,3 +1,9 @@
+/**
+ * @file Succulent.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef SUCCULENT_H
 #define SUCCULENT_H
 

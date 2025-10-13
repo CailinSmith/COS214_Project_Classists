@@ -1,4 +1,10 @@
-#ifndef PLANTFACTORY_H
+/**
+ * @file PlantFactory.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef PLANTFACTORY_H
 #define PLANTFACTORY_H
 
 #include "Plant.h"

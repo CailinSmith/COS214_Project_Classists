@@ -1,4 +1,10 @@
-#ifndef AQUATIC_H
+/**
+ * @file Aquatic.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef AQUATIC_H
 #define AQUATIC_H
 
 #include "Plant.h"

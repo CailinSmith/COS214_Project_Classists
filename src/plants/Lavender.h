@@ -1,3 +1,9 @@
+/**
+ * @file Lavender.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef LAVENDER_H
 #define LAVENDER_H
 

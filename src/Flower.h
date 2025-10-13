@@ -1,4 +1,10 @@
-#ifndef FLOWER_H
+/**
+ * @file Flower.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef FLOWER_H
 #define FLOWER_H
 
 #include "Plant.h"

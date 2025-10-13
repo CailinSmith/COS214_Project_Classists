@@ -1,3 +1,9 @@
+/**
+ * @file JadePlant.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef JADEPLANT_H
 #define JADEPLANT_H
 

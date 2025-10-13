@@ -1,4 +1,10 @@
-#ifndef NOPRUNE_H
+/**
+ * @file NoPrune.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef NOPRUNE_H
 #define NOPRUNE_H
 
 #include "PruningStrategy.h"

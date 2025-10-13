@@ -1,3 +1,9 @@
+/**
+ * @file WaterHyacinth.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef WATERHYACINTH_H
 #define WATERHYACINTH_H
 

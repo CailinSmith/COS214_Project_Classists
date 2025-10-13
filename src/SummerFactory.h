@@ -1,4 +1,10 @@
-#ifndef SUMMERFACTORY_H
+/**
+ * @file SummerFactory.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef SUMMERFACTORY_H
 #define SUMMERFACTORY_H
 
 #include "PlantFactory.h"

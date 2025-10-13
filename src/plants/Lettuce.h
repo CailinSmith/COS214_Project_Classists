@@ -1,3 +1,9 @@
+/**
+ * @file Lettuce.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef LETTUCE_H
 #define LETTUCE_H
 

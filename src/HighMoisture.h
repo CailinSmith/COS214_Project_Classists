@@ -1,4 +1,10 @@
-#ifndef HIGHMOISTURE_H
+/**
+ * @file HighMoisture.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef HIGHMOISTURE_H
 #define HIGHMOISTURE_H
 
 #include "WateringStrategy.h"

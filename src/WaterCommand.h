@@ -1,4 +1,10 @@
-#ifndef WATERCOMMAND_H
+/**
+ * @file WaterCommand.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef WATERCOMMAND_H
 #define WATERCOMMAND_H
 
 #include "StaffCommand.h"

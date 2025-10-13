@@ -1,4 +1,10 @@
-#ifndef FRUIT_H
+/**
+ * @file Fruit.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef FRUIT_H
 #define FRUIT_H
 
 #include "Plant.h"

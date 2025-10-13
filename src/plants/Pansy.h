@@ -1,3 +1,9 @@
+/**
+ * @file Pansy.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef PANSY_H
 #define PANSY_H
 

@@ -1,3 +1,9 @@
+/**
+ * @file Chamomile.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef CHAMOMILE_H
 #define CHAMOMILE_H
 

@@ -1,3 +1,9 @@
+/**
+ * @file Strawberry.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef STRAWBERRY_H
 #define STRAWBERRY_H
 

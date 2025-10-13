@@ -1,4 +1,10 @@
-#ifndef HERB_H
+/**
+ * @file Herb.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef HERB_H
 #define HERB_H
 
 #include "Plant.h"

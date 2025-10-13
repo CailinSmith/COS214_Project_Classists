@@ -1,3 +1,9 @@
+/**
+ * @file SnakePlant.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef SNAKEPLANT_H
 #define SNAKEPLANT_H
 

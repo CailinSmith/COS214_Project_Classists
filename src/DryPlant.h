@@ -1,4 +1,10 @@
-#ifndef DRYPLANT_H
+/**
+ * @file DryPlant.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef DRYPLANT_H
 #define DRYPLANT_H
 
 #include "WateringStrategy.h"

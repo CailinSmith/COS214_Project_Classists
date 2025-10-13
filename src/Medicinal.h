@@ -1,4 +1,10 @@
-#ifndef MEDICINAL_H
+/**
+ * @file Medicinal.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef MEDICINAL_H
 #define MEDICINAL_H
 
 #include "Plant.h"

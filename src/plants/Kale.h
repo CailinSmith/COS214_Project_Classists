@@ -1,3 +1,9 @@
+/**
+ * @file Kale.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef KALE_H
 #define KALE_H
 

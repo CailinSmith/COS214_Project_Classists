@@ -1,3 +1,9 @@
+/**
+ * @file Plant.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef PLANT_H
 #define PLANT_H
 

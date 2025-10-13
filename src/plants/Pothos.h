@@ -1,3 +1,9 @@
+/**
+ * @file Pothos.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef POTHOS_H
 #define POTHOS_H
 
