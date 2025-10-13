@@ -5,7 +5,7 @@ CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude
 BUILD_DIR := build
 SRC_DIR := src
-TEST_DIR := tests
+TEST_DIR := testing
 
 # =========================
 # Targets
@@ -15,6 +15,8 @@ TEST_TARGET := $(BUILD_DIR)/test_runner
 
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
+
+CORE_OBJS := $(filter-out $(BUILD_DIR)/main.o,$(OBJS))
 
 TEST_SRCS := $(wildcard $(TEST_DIR)/*.cpp)
 TEST_OBJS := $(TEST_SRCS:$(TEST_DIR)/%.cpp=$(BUILD_DIR)/%.test.o)
@@ -37,7 +39,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 # =========================
 # Unit Tests
 # =========================
-$(TEST_TARGET): $(OBJS) $(TEST_OBJS)
+$(TEST_TARGET): $(CORE_OBJS) $(TEST_OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 $(BUILD_DIR)/%.test.o: $(TEST_DIR)/%.cpp
@@ -48,10 +50,17 @@ test: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
 # =========================
+# Run main binary
+# =========================
+run: $(TARGET)
+	./$(TARGET)
+
+# =========================
 # Memory check with Valgrind
 # =========================
-memcheck: $(TEST_TARGET)
-	valgrind --leak-check=full ./$(TEST_TARGET)
+val: $(TARGET) $(TEST_TARGET)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_TARGET)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TARGET)
 
 # =========================
 # Setup / Clean
@@ -65,4 +74,6 @@ clean:
 # =========================
 # Phony targets
 # =========================
-.PHONY: all clean test memcheck setup
+.PHONY: all clean test setup val
+
+.PHONY: run
