@@ -1,0 +1,68 @@
+# =========================
+# Project Configuration
+# =========================
+CXX := g++
+CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude
+BUILD_DIR := build
+SRC_DIR := src
+TEST_DIR := tests
+
+# =========================
+# Targets
+# =========================
+TARGET := $(BUILD_DIR)/main
+TEST_TARGET := $(BUILD_DIR)/test_runner
+
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
+
+TEST_SRCS := $(wildcard $(TEST_DIR)/*.cpp)
+TEST_OBJS := $(TEST_SRCS:$(TEST_DIR)/%.cpp=$(BUILD_DIR)/%.test.o)
+
+# =========================
+# Default target
+# =========================
+all: setup $(TARGET)
+
+# =========================
+# Build main project
+# =========================
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# =========================
+# Unit Tests
+# =========================
+$(TEST_TARGET): $(OBJS) $(TEST_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(BUILD_DIR)/%.test.o: $(TEST_DIR)/%.cpp
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+test: $(TEST_TARGET)
+	./$(TEST_TARGET)
+
+# =========================
+# Memory check with Valgrind
+# =========================
+memcheck: $(TEST_TARGET)
+	valgrind --leak-check=full ./$(TEST_TARGET)
+
+# =========================
+# Setup / Clean
+# =========================
+setup:
+	mkdir -p $(BUILD_DIR)
+
+clean:
+	rm -rf $(BUILD_DIR)
+
+# =========================
+# Phony targets
+# =========================
+.PHONY: all clean test memcheck setup
