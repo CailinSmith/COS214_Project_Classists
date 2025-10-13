@@ -1,5 +1,5 @@
 /**
- * @file Vegatable.h
+ * @file Vegetable.h
  * @author Cailin Smith
  * @date 2025-10-09
  */
