@@ -62,7 +62,6 @@ void printSeparator(string title) {
     cout << "  " << title << endl;
     cout << string(50, '=') << endl;
 }
-
 void testPlantCategories() {
     printSeparator("PLANT CATEGORIES TEST");
     
@@ -87,7 +86,6 @@ void testPlantCategories() {
     cout << "   Max Height: " << tomato.getMaxHeight() << "cm" << endl;
     cout << "   Strategies: " << tomato.getStrategies() << endl << endl;
 }
-
 void testAllFactories() {
     printSeparator("ALL FACTORIES TEST");
     cout << "🏭 Testing all 4 seasonal factories..." << endl << endl;
@@ -125,7 +123,6 @@ void testAllFactories() {
     cout << "   Herb: " << winterHerb->getName() << " - " << winterHerb->getMaxHeight() << "cm" << endl;
     delete winterFlower; delete winterHerb;
 }
-
 void testPlantStatistics() {
     printSeparator("PLANT STATISTICS");
     cout << "📊 Analyzing all 32 plants by category..." << endl << endl;
@@ -152,7 +149,6 @@ void testPlantStatistics() {
     cout << "   ❄️ Winter: 8 plants" << endl;
     cout << "   📊 Total: 32 plants" << endl;
 }
-
 void testEveryPlantFromFactories() {
     printSeparator("COMPREHENSIVE FACTORY PLANT CREATION TEST");
     cout << "🏭 Creating ALL 32 plants using their respective seasonal factories..." << endl << endl;
@@ -253,7 +249,6 @@ void testEveryPlantFromFactories() {
     cout << "\n✅ SUCCESS: All 32 plants created successfully using their seasonal factories!" << endl;
     cout << "🎯 Factory Pattern Validation: Each season produces its unique plant varieties!" << endl;
 }
-
 void testAllStrategies() {
     printSeparator("STRATEGY TESTING");
     cout << "🧪 Testing all watering and pruning strategies with correct plant assignments..." << endl << endl;
@@ -394,8 +389,7 @@ void testAllStrategies() {
     cout << "✅ SUCCESS: All watering and pruning strategies tested with correct plant assignments!" << endl;
     cout << "🎯 Strategy Pattern Validation: Each strategy produces different effects!" << endl;
 }
-
-int main() {
+void CailinsTesting() {
     cout << "\n🌱🌿🌳 COMPREHENSIVE PLANT NURSERY SYSTEM TEST 🌳🌿🌱" << endl;
     cout << "Testing all 32 plants, categories, and factories..." << endl;
 
@@ -404,6 +398,12 @@ int main() {
     testEveryPlantFromFactories();
     testAllStrategies();
     testPlantStatistics();
+}
+
+
+int main() {
     
+    CailinsTesting();
+
     return 0;
 }

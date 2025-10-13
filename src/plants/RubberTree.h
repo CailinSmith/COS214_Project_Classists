@@ -1,3 +1,9 @@
+/**
+ * @file RubberTree.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef RUBBERTREE_H
 #define RUBBERTREE_H
 

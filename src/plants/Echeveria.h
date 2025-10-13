@@ -1,3 +1,9 @@
+/**
+ * @file Echeveria.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef ECHEVERIA_H
 #define ECHEVERIA_H
 

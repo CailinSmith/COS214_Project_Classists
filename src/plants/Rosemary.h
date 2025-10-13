@@ -1,3 +1,9 @@
+/**
+ * @file Rosemary.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef ROSEMARY_H
 #define ROSEMARY_H
 

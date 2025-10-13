@@ -1,3 +1,8 @@
+/**
+ * @file Vegetable.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
 #ifndef VEGETABLE_H
 #define VEGETABLE_H
 

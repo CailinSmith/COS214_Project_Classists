@@ -1,4 +1,10 @@
-#ifndef WATERINGSTRATEGY_H
+/**
+ * @file WateringStrategy.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef WATERINGSTRATEGY_H
 #define WATERINGSTRATEGY_H
 
 #include <string>

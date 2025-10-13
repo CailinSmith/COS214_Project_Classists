@@ -1,3 +1,9 @@
+/**
+ * @file WaterLily.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef WATERLILY_H
 #define WATERLILY_H
 

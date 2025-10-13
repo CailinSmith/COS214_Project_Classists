@@ -1,4 +1,10 @@
-#ifndef ALOEVERA_H
+/**
+ * @file AloeVera.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef ALOEVERA_H
 #define ALOEVERA_H
 
 #include "Medicinal.h"

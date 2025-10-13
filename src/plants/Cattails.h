@@ -1,3 +1,9 @@
+/**
+ * @file Cattails.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef CATTAILS_H
 #define CATTAILS_H
 

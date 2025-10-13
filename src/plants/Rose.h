@@ -1,3 +1,9 @@
+/**
+ * @file Rose.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef ROSE_H
 #define ROSE_H
 

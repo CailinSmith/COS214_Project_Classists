@@ -1,3 +1,9 @@
+/**
+ * @file DeadPruning.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef DEADPRUNING_H
 #define DEADPRUNING_H
 

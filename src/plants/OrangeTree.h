@@ -1,3 +1,9 @@
+/**
+ * @file OrangeTree.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef ORANGETREE_H
 #define ORANGETREE_H
 

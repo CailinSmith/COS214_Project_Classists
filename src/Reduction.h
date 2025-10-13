@@ -1,4 +1,10 @@
-#ifndef REDUCTION_H
+/**
+ * @file Reduction.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef REDUCTION_H
 #define REDUCTION_H
 
 #include "PruningStrategy.h"

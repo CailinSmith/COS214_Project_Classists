@@ -1,3 +1,9 @@
+/**
+ * @file Sunflower.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef SUNFLOWER_H
 #define SUNFLOWER_H
 

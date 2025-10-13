@@ -1,4 +1,10 @@
-#ifndef INDOOR_H
+/**
+ * @file Indoor.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef INDOOR_H
 #define INDOOR_H
 
 #include "Plant.h"

@@ -1,4 +1,10 @@
-#ifndef MEDIUMMOISTURE_H
+/**
+ * @file MediumMoisture.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef MEDIUMMOISTURE_H
 #define MEDIUMMOISTURE_H
 
 #include "WateringStrategy.h"

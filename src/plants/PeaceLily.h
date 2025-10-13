@@ -1,3 +1,9 @@
+/**
+ * @file PeaceLily.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef PEACELILY_H
 #define PEACELILY_H
 

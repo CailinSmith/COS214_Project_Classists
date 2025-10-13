@@ -1,4 +1,10 @@
-#ifndef WINTERFACTORY_H
+/**
+ * @file WinterFactory.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef WINTERFACTORY_H
 #define WINTERFACTORY_H
 
 #include "PlantFactory.h"

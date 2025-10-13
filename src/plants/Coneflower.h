@@ -1,3 +1,9 @@
+/**
+ * @file Coneflower.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef CONEFLOWER_H
 #define CONEFLOWER_H
 

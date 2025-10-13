@@ -1,3 +1,9 @@
+/**
+ * @file AppleTree.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef APPLETREE_H
 #define APPLETREE_H
 

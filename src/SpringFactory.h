@@ -1,4 +1,10 @@
-#ifndef SPRINGFACTORY_H
+/**
+ * @file SpringFactory.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+ #ifndef SPRINGFACTORY_H
 #define SPRINGFACTORY_H
 
 #include "PlantFactory.h"
