@@ -14,15 +14,14 @@ class InventoryManager : public Aggregate, public Subject {
 private:
 	vector<Plant*> forSale;
 	vector<Staff*> observerList;
+	vector<Plant*> inNursery;
 
 public:
-	// InventoryManager* getInstance();
 	
-	~InventoryManager() {
-		for (Plant* plant : forSale) {
-			delete plant;
-		}
+	virtual ~InventoryManager() {
+		// Don't delete plants, just clear vectors
 		forSale.clear();
+		inNursery.clear();
 	}
 
 	void addToSale(Plant* plant);
@@ -34,6 +33,13 @@ public:
 	void removeFromSale(Plant* plant);
 
 	void notifyStaff(string message);
+	
+
+	size_t getSaleCount() const;
+	size_t getNurseryCount() const;
+	bool isInSale(Plant* plant) const;
+	bool isInNursery(Plant* plant) const;
+	
 };
 
 #endif
