@@ -13,6 +13,8 @@ Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, Pr
 	this->sold = false;
 	this->totalWater = 0;
 	this->name = name;
+	this->cost = 0.0; //ook testing purposes
+	this->sellSeaon = "Summer"; //also testing purposes 
 }
 
 Plant::~Plant() {
@@ -131,4 +133,25 @@ string Plant::getName() {
 
 void Plant::changePlantState() {
     currentState->change(this);
+}
+
+string Plant::getSellSeason() {
+	return sellSeaon;
+}
+
+float Plant::seasonCost(string curSeason) {
+	return 0;
+}
+
+float Plant::calculateCost(string season) {
+	float ncost =cost+ baseCost();
+	if (getHealth() >0.9)
+		ncost += baseCost()*(getHealth()-0.85);
+	ncost += seasonCost(season);
+	cost=ncost;
+	return ncost;
+}
+
+float Plant::getCost() {
+	return cost;
 }
