@@ -2,7 +2,7 @@
 # Project Configuration
 # =========================
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude
+CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude -Isrc
 BUILD_DIR := build
 SRC_DIR := src
 TEST_DIR := testing

@@ -26,6 +26,12 @@ public:
 		currentSeason = new Spring();
 		currentFactory = new SpringFactory();
 	}
+
+	~Nursery() {
+		delete currentSeason;
+		delete currentFactory;
+	}
+	
 	void setSeason(SeasonState* season);
 
 	string getSeason();

@@ -11,6 +11,7 @@ public:
 	//I temporarily implemented this so that i can test command
 	void change() {}
 	string print() { return "Spring"; }
+	
 };
 
 #endif

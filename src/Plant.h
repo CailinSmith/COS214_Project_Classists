@@ -34,7 +34,7 @@ private:
 
 public:
 	Plant(string category, int maxHeight, WateringStrategy* waterStrat, PruningStrategy* pruneStrat, string name);
-	
+
 	virtual ~Plant();
 
 	void water();

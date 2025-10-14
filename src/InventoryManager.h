@@ -17,6 +17,13 @@ private:
 
 public:
 	// InventoryManager* getInstance();
+	
+	~InventoryManager() {
+		for (Plant* plant : forSale) {
+			delete plant;
+		}
+		forSale.clear();
+	}
 
 	void addToSale(Plant* plant);
 

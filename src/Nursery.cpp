@@ -25,12 +25,12 @@ void Nursery::stockNursery() {
 		std::cout << "currentFactory is null" << std::endl;
 		return;
 	}
-	inventoryManager->addToNursery(currentFactory->createFlower());
-	inventoryManager->addToNursery(currentFactory->createHerb());
-	inventoryManager->addToNursery(currentFactory->createVegetable());
-	inventoryManager->addToNursery(currentFactory->createFruit());
-	inventoryManager->addToNursery(currentFactory->createSucculent());
-	inventoryManager->addToNursery(currentFactory->createAquatic());
-	inventoryManager->addToNursery(currentFactory->createIndoor());
-	inventoryManager->addToNursery(currentFactory->createMedicinal());
+	// inventoryManager->addToNursery(currentFactory->createFlower());
+	// inventoryManager->addToNursery(currentFactory->createHerb());
+	// inventoryManager->addToNursery(currentFactory->createVegetable());
+	// inventoryManager->addToNursery(currentFactory->createFruit());
+	// inventoryManager->addToNursery(currentFactory->createSucculent());
+	// inventoryManager->addToNursery(currentFactory->createAquatic());
+	// inventoryManager->addToNursery(currentFactory->createIndoor());
+	// inventoryManager->addToNursery(currentFactory->createMedicinal());
 }
