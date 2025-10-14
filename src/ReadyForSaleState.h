@@ -2,6 +2,7 @@
 #define READYFORSALE_H
 
 #include "PlantState.h"
+#include "Plant.h"
 
 #include <string>
 
