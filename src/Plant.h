@@ -33,6 +33,8 @@ private:
 	string category;
 	int totalWater;
 	string name;
+	float cost;
+	string sellSeaon;
 
 public:
 	Plant(string category, int maxHeight, WateringStrategy* waterStrat, PruningStrategy* pruneStrat, string name);
@@ -84,6 +86,13 @@ public:
 	string getName();
 
     void changePlantState();
+
+	string getSellSeason();
+
+	float calculateCost(string season);
+	virtual float baseCost() = 0;
+	virtual float seasonCost(string curSeason);
+	float getCost();
 };
 
 #endif
