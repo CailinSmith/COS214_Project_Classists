@@ -1,13 +1,13 @@
-#ifndef DEADSTATE_H
-#define DEADSTATE_H
+#ifndef READYFORSALE_H
+#define READYFORSALE_H
 
 #include "PlantState.h"
-#include "Plant.h"
+
 #include <string>
 
 using namespace std;
 
-class DeadState : public PlantState {
+class ReadyForSaleState : public PlantState {
 public:
 	virtual void change(Plant* plant) override;
 	virtual string print() override;

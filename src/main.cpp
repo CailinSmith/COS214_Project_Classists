@@ -462,12 +462,234 @@ void CommandStaffTesting() {
     fertiliseBasil.execute();
 }
 
+void PlantStateTesting() {
+    printSeparator("PLANT STATE TESTING");
+    cout << "🌱 Testing Plant State Pattern - State transitions based on height and health" << endl << endl;
+    
+    cout << "📋 TEST 1: Complete Growth Cycle (Seed → Seedling → Growing → Mature → Ready for Sale)" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    Rose testPlant1;
+    cout << "Initial State: " << testPlant1.getState() << endl;
+    cout << "Height: " << testPlant1.getHeight() << " | Health: " << testPlant1.getHealth() << endl << endl;
+    
+    cout << "Setting height to 0.15 and health to 0.15..." << endl;
+    testPlant1.setHeight(0.15);
+    testPlant1.setHealth(0.15);
+    testPlant1.changePlantState();
+    cout << "State after change: " << testPlant1.getState() << endl;
+    cout << "Height: " << testPlant1.getHeight() << " | Health: " << testPlant1.getHealth() << endl << endl;
+    
+    cout << "Setting height to 0.25 and health to 0.25..." << endl;
+    testPlant1.setHeight(0.25);
+    testPlant1.setHealth(0.25);
+    testPlant1.changePlantState();
+    cout << "State after change: " << testPlant1.getState() << endl;
+    cout << "Height: " << testPlant1.getHeight() << " | Health: " << testPlant1.getHealth() << endl << endl;
+    
+    cout << "Setting height to 0.6 and health to 0.6..." << endl;
+    testPlant1.setHeight(0.6);
+    testPlant1.setHealth(0.6);
+    testPlant1.changePlantState();
+    cout << "State after change: " << testPlant1.getState() << endl;
+    cout << "Height: " << testPlant1.getHeight() << " | Health: " << testPlant1.getHealth() << endl << endl;
+    
+    cout << "Setting height to 0.95 and health to 0.95..." << endl;
+    testPlant1.setHeight(0.95);
+    testPlant1.setHealth(0.95);
+    testPlant1.changePlantState();
+    cout << "State after change: " << testPlant1.getState() << endl;
+    cout << "Height: " << testPlant1.getHeight() << " | Health: " << testPlant1.getHealth() << endl << endl;
+    
+    cout << "📋 TEST 2: Dying State - Plant Health Deterioration" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    Basil testPlant2;
+    cout << "Starting with a plant in Growing state..." << endl;
+    testPlant2.setHeight(0.4);
+    testPlant2.setHealth(0.4);
+    testPlant2.changePlantState();
+    cout << "Current State: " << testPlant2.getState() << endl;
+    cout << "Height: " << testPlant2.getHeight() << " | Health: " << testPlant2.getHealth() << endl << endl;
+    
+    cout << "Decreasing health below 0.2 to trigger Dying state..." << endl;
+    testPlant2.setHealth(0.15);
+    testPlant2.changePlantState();
+    cout << "State after health drop: " << testPlant2.getState() << endl;
+    cout << "Height: " << testPlant2.getHeight() << " | Health: " << testPlant2.getHealth() << endl << endl;
+    
+    cout << "📋 TEST 3: Dead State - Complete Health Loss" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    Tomato testPlant3;
+    testPlant3.setHeight(0.4);
+    testPlant3.setHealth(0.15);
+    testPlant3.changePlantState();
+    cout << "Starting in Dying state..." << endl;
+    cout << "Current State: " << testPlant3.getState() << endl;
+    cout << "Height: " << testPlant3.getHeight() << " | Health: " << testPlant3.getHealth() << endl << endl;
+    
+    cout << "Setting health to 0 to kill the plant..." << endl;
+    testPlant3.setHealth(0.0);
+    testPlant3.changePlantState();
+    cout << "State after health reaches 0: " << testPlant3.getState() << endl;
+    cout << "Height: " << testPlant3.getHeight() << " | Health: " << testPlant3.getHealth() << endl << endl;
+    
+    cout << "Attempting to change state of dead plant..." << endl;
+    testPlant3.changePlantState();
+    cout << "State remains: " << testPlant3.getState() << " (Dead state is terminal)" << endl << endl;
+    
+    cout << "📋 TEST 4: Plant Recovery - Dying → Growing/Mature" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    Lettuce testPlant4;
+    testPlant4.setHeight(0.3);
+    testPlant4.setHealth(0.15);
+    testPlant4.changePlantState();
+    cout << "Plant in Dying state..." << endl;
+    cout << "Current State: " << testPlant4.getState() << endl;
+    cout << "Height: " << testPlant4.getHeight() << " | Health: " << testPlant4.getHealth() << endl << endl;
+    
+    cout << "Improving health to 0.3 (recovery to Growing)..." << endl;
+    testPlant4.setHealth(0.3);
+    testPlant4.changePlantState();
+    cout << "State after recovery: " << testPlant4.getState() << endl;
+    cout << "Height: " << testPlant4.getHeight() << " | Health: " << testPlant4.getHealth() << endl << endl;
+    
+    JadePlant testPlant5;
+    testPlant5.setHeight(0.6);
+    testPlant5.setHealth(0.15);
+    testPlant5.changePlantState();
+    cout << "Another plant in Dying state with higher height..." << endl;
+    cout << "Current State: " << testPlant5.getState() << endl;
+    cout << "Height: " << testPlant5.getHeight() << " | Health: " << testPlant5.getHealth() << endl << endl;
+    
+    cout << "Improving health to 0.6 (recovery to Mature)..." << endl;
+    testPlant5.setHealth(0.6);
+    testPlant5.changePlantState();
+    cout << "State after recovery: " << testPlant5.getState() << endl;
+    cout << "Height: " << testPlant5.getHeight() << " | Health: " << testPlant5.getHealth() << endl << endl;
+    
+    cout << "📋 TEST 5: Ready for Sale Degradation" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    SnakePlant testPlant6;
+    testPlant6.setHeight(0.95);
+    testPlant6.setHealth(0.95);
+    testPlant6.changePlantState();
+    testPlant6.changePlantState();
+    testPlant6.changePlantState();
+    testPlant6.changePlantState();
+    cout << "Plant in Ready for Sale state..." << endl;
+    cout << "Current State: " << testPlant6.getState() << endl;
+    cout << "Height: " << testPlant6.getHeight() << " | Health: " << testPlant6.getHealth() << endl << endl;
+    
+    cout << "Decreasing health to 0.65 (degradation back to Mature)..." << endl;
+    testPlant6.setHealth(0.65);
+    testPlant6.changePlantState();
+    cout << "State after degradation: " << testPlant6.getState() << endl;
+    cout << "Height: " << testPlant6.getHeight() << " | Health: " << testPlant6.getHealth() << endl << endl;
+    
+    cout << "📋 TEST 6: Mature Plant Deterioration" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    AloeVera testPlant7;
+    testPlant7.setHeight(0.6);
+    testPlant7.setHealth(0.6);
+    testPlant7.changePlantState();
+    testPlant7.changePlantState();
+    testPlant7.changePlantState();
+    cout << "Mature plant..." << endl;
+    cout << "Current State: " << testPlant7.getState() << endl;
+    cout << "Height: " << testPlant7.getHeight() << " | Health: " << testPlant7.getHealth() << endl << endl;
+    
+    cout << "Health drops below 0.5 (Mature → Dying)..." << endl;
+    testPlant7.setHealth(0.4);
+    testPlant7.changePlantState();
+    cout << "State after health drop: " << testPlant7.getState() << endl;
+    cout << "Height: " << testPlant7.getHeight() << " | Health: " << testPlant7.getHealth() << endl << endl;
+    
+    cout << "📋 TEST 7: Boundary Condition Testing" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    WaterLily testPlant8;
+    cout << "Testing exact boundary values..." << endl << endl;
+    
+    cout << "Height = 0.1 (exact minimum), Health = 0.11..." << endl;
+    testPlant8.setHeight(0.1);
+    testPlant8.setHealth(0.11);
+    testPlant8.changePlantState();
+    cout << "State: " << testPlant8.getState() << " (should be Seedling State)" << endl << endl;
+    
+    RubberTree testPlant9;
+    cout << "Height = 0.09 (below threshold), Health = 0.15..." << endl;
+    testPlant9.setHeight(0.09);
+    testPlant9.setHealth(0.15);
+    testPlant9.changePlantState();
+    cout << "State: " << testPlant9.getState() << " (should remain Seed State)" << endl << endl;
+    
+    cout << "📋 TEST 8: State Changes Through Watering and Fertilizing" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    Sunflower testPlant10;
+    cout << "Starting with new Sunflower in Seed state..." << endl;
+    cout << "Initial State: " << testPlant10.getState() << endl;
+    cout << "Height: " << testPlant10.getHeight() << " | Health: " << testPlant10.getHealth() << endl << endl;
+    
+    cout << "Fertilizing to increase health..." << endl;
+    testPlant10.fertilise();
+    cout << "After fertilizing - Height: " << testPlant10.getHeight() << " | Health: " << testPlant10.getHealth() << endl;
+    cout << "Current State: " << testPlant10.getState() << endl << endl;
+    
+    cout << "Watering to increase height..." << endl;
+    testPlant10.water();
+    cout << "After watering - Height: " << testPlant10.getHeight() << " | Health: " << testPlant10.getHealth() << endl;
+    testPlant10.changePlantState();
+    cout << "State after checking: " << testPlant10.getState() << endl << endl;
+    
+    cout << "📋 TEST 9: Plant Summary for Different States" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    
+    Chrysanthemum testPlant11;
+    cout << "Seed State Plant:" << endl;
+    cout << testPlant11.summary() << endl;
+    
+    testPlant11.setHeight(0.6);
+    testPlant11.setHealth(0.6);
+    testPlant11.changePlantState();
+    testPlant11.changePlantState();
+    testPlant11.changePlantState();
+    cout << "Mature State Plant:" << endl;
+    cout << testPlant11.summary() << endl;
+    
+    testPlant11.setHeight(0.95);
+    testPlant11.setHealth(0.95);
+    testPlant11.changePlantState();
+    cout << "Ready for Sale State Plant:" << endl;
+    cout << testPlant11.summary() << endl;
+    
+    cout << "✅ All Plant State tests completed!" << endl;
+    cout << "\n📝 Summary of tested states:" << endl;
+    cout << "   • Seed State" << endl;
+    cout << "   • Seedling State" << endl;
+    cout << "   • Growing State" << endl;
+    cout << "   • Mature State" << endl;
+    cout << "   • Ready for Sale State" << endl;
+    cout << "   • Dying State" << endl;
+    cout << "   • Dead State" << endl;
+    cout << "\n📝 Tested transitions:" << endl;
+    cout << "   • Normal growth progression" << endl;
+    cout << "   • Health deterioration (Dying/Dead)" << endl;
+    cout << "   • Recovery from Dying state" << endl;
+    cout << "   • Ready for Sale degradation" << endl;
+    cout << "   • Boundary conditions" << endl;
+    cout << "   • Integration with plant methods (water/fertilise)" << endl;
+}
 
 int main() {
-    
     AbstractStrategyTesting();
     CommandStaffTesting();
+    PlantStateTesting();
     
-
     return 0;
 }

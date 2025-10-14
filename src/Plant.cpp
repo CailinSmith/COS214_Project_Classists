@@ -90,8 +90,9 @@ string Plant::getState() {
 }
 
 void Plant::setState(PlantState* state) {
-	// TODO - implement Plant::setState
-	throw "Not yet implemented";
+	if (currentState) 
+		delete currentState;
+	currentState = state;
 }
 
 void Plant::setHealth(float health) {
@@ -126,4 +127,8 @@ string Plant::getStrategies() {
 
 string Plant::getName() {
 	return this->name;
+}
+
+void Plant::changePlantState() {
+    currentState->change(this);
 }

@@ -2,15 +2,19 @@
 #define DYINGSTATE_H
 
 #include "PlantState.h"
+#include "Plant.h"
+#include "DeadState.h"
+#include "MatureState.h"
+#include "GrowingState.h"
+
 #include <string>
+
 using namespace std;
 
 class DyingState : public PlantState {
-
 public:
-	void change();
-
-	string print();
+	virtual void change(Plant* plant) override;
+	virtual string print() override;
 };
 
 #endif

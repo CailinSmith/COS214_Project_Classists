@@ -10,12 +10,14 @@
 #include "Product.h"
 #include "WateringStrategy.h"
 #include "PruningStrategy.h"
-#include "PlantState.h"
 #include "SeedState.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
+
+// Forward declaration to break circular include
+class PlantState;
 
 class Plant : public Product {
 private:
@@ -80,6 +82,8 @@ public:
 	string getStrategies();
 
 	string getName();
+
+    void changePlantState();
 };
 
 #endif
