@@ -21,6 +21,16 @@ void Nursery::changeSeason() {
 }
 
 void Nursery::stockNursery() {
-	// TODO - implement Nursery::stockNursery
-	throw "Not yet implemented";
+	if (!currentFactory) {
+		std::cout << "currentFactory is null" << std::endl;
+		return;
+	}
+	inventoryManager->addToNursery(currentFactory->createFlower());
+	inventoryManager->addToNursery(currentFactory->createHerb());
+	inventoryManager->addToNursery(currentFactory->createVegetable());
+	inventoryManager->addToNursery(currentFactory->createFruit());
+	inventoryManager->addToNursery(currentFactory->createSucculent());
+	inventoryManager->addToNursery(currentFactory->createAquatic());
+	inventoryManager->addToNursery(currentFactory->createIndoor());
+	inventoryManager->addToNursery(currentFactory->createMedicinal());
 }

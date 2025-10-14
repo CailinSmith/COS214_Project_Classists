@@ -55,6 +55,20 @@
 #include "Pothos.h"
 #include "Ginger.h"
 
+#include "StaffCommand.h"
+#include "StockCommand.h"
+#include "PlantCommand.h"
+#include "MakeSellableCommand.h"
+#include "SellCommand.h"
+#include "RemoveCommand.h"
+#include "RemoveSaleCommand.h"
+#include "WaterCommand.h"
+#include "PruneCommand.h"
+#include "FertiliseCommand.h"
+
+#include "InventoryManager.h"
+#include "Nursery.h"
+
 using namespace std;
 
 void printSeparator(string title) {
@@ -389,10 +403,10 @@ void testAllStrategies() {
     cout << "✅ SUCCESS: All watering and pruning strategies tested with correct plant assignments!" << endl;
     cout << "🎯 Strategy Pattern Validation: Each strategy produces different effects!" << endl;
 }
-void CailinsTesting() {
+//Abstract Factory and Strategy 
+void AbstractStrategyTesting() {
     cout << "\n🌱🌿🌳 COMPREHENSIVE PLANT NURSERY SYSTEM TEST 🌳🌿🌱" << endl;
     cout << "Testing all 32 plants, categories, and factories..." << endl;
-
     testPlantCategories();
     testAllFactories();
     testEveryPlantFromFactories();
@@ -400,10 +414,60 @@ void CailinsTesting() {
     testPlantStatistics();
 }
 
+void CommandStaffTesting() {
+    cout << "\n===== COMMAND PATTERN TESTING =====" << endl;
+
+    Rose rose;
+    Basil basil;
+    Tomato tomato;
+
+    //not a singleton 
+    InventoryManager* manager = new InventoryManager();
+    Nursery nursery = Nursery(manager);
+
+    manager->addToNursery(&rose);
+    manager->addToNursery(&basil);
+    manager->addToNursery(&tomato);
+
+    WaterCommand waterRose(&rose);
+    WaterCommand waterBasil(&basil);
+    StockCommand stockNursery(&nursery);
+    SellCommand sellTomato(&tomato, manager);
+    PlantCommand plantRose(&rose, manager);
+    MakeSellableCommand makeRoseSellable(&rose, manager);
+    RemoveCommand removeBasil(&basil, manager);
+    RemoveSaleCommand removeSaleTomato(&tomato, manager);
+    PruneCommand pruneRose(&rose);
+    FertiliseCommand fertiliseBasil(&basil);
+
+    cout << "\n\033[32mWatering Rose:\033[0m" << endl;
+    waterRose.execute();
+    cout << "\033[32mWatering Basil:\033[0m" << endl;
+    waterBasil.execute();
+    cout << "\033[32mStocking Nursery:\033[0m" << endl;
+    stockNursery.execute();
+    cout << "\033[32mSelling Tomato:\033[0m" << endl;
+    sellTomato.execute();
+    cout << "\033[32mPlanting Rose:\033[0m" << endl;
+    plantRose.execute();
+    cout << "\033[32mMaking Rose Sellable:\033[0m" << endl;
+    makeRoseSellable.execute();
+    cout << "\033[32mRemoving Basil from Nursery:\033[0m" << endl;
+    removeBasil.execute();
+    cout << "\033[32mRemoving Tomato from Sale:\033[0m" << endl;
+    removeSaleTomato.execute();
+    cout << "\033[32mPruning Rose:\033[0m" << endl;
+    pruneRose.execute();
+    cout << "\033[32mFertilising Basil:\033[0m" << endl;
+    fertiliseBasil.execute();
+}
+
 
 int main() {
     
-    CailinsTesting();
+    AbstractStrategyTesting();
+    CommandStaffTesting();
+    
 
     return 0;
 }

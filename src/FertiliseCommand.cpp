@@ -1,11 +1,7 @@
 #include "FertiliseCommand.h"
 
-void FertiliseCommand::execute() {
-	// TODO - implement FertiliseCommand::execute
-	throw "Not yet implemented";
-}
+FertiliseCommand::FertiliseCommand(Plant* plant) : StaffCommand(plant, nullptr, nullptr) {}
 
-FertiliseCommand::FertiliseCommand() {
-	// TODO - implement FertiliseCommand::FertiliseCommand
-	throw "Not yet implemented";
+void FertiliseCommand::execute() {
+	plant->fertilise();
 }

@@ -1,5 +1,5 @@
-#ifndef SEASON STATE_H
-#define SEASON STATE_H
+#ifndef SEASONSTATE_H
+#define SEASONSTATE_H
 
 #include <string>
 

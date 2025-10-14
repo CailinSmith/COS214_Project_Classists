@@ -13,7 +13,7 @@
 #include "PlantState.h"
 #include "SeedState.h"
 #include <string>
-
+#include <iostream>
 
 using namespace std;
 
@@ -40,6 +40,8 @@ public:
 	void water();
 
 	void prune();
+
+	void fertilise();
 
 	string summary();
 

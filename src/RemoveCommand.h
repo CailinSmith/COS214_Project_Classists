@@ -7,7 +7,7 @@
 class RemoveCommand : public StaffCommand {
 
 public:
-	RemoveCommand(Plant* plant);
+	RemoveCommand(Plant* plant, InventoryManager* im);
 
 	void execute();
 };

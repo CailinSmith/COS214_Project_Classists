@@ -7,7 +7,7 @@
 class SellCommand : StaffCommand {
 
 public:
-	SellCommand(Plant* plant);
+	SellCommand(Plant* plant, InventoryManager* im);
 
 	void execute();
 };

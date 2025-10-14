@@ -1,11 +1,8 @@
 #include "SellCommand.h"
 
-SellCommand::SellCommand(Plant* plant) {
-	// TODO - implement SellCommand::SellCommand
-	throw "Not yet implemented";
-}
+SellCommand::SellCommand(Plant* plant, InventoryManager* im) : StaffCommand(plant, im, nullptr) {}
 
 void SellCommand::execute() {
-	// TODO - implement SellCommand::execute
-	throw "Not yet implemented";
+	inventoryManager->removeFromSale(plant);
+	plant->setSold(true);
 }

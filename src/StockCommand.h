@@ -6,8 +6,7 @@
 class StockCommand : public StaffCommand {
 
 public:
-	StockCommand();
-
+	StockCommand(Nursery* n);
 	void execute();
 };
 
