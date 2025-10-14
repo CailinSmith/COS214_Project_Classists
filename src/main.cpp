@@ -460,6 +460,9 @@ void CommandStaffTesting() {
     pruneRose.execute();
     cout << "\033[32mFertilising Basil:\033[0m" << endl;
     fertiliseBasil.execute();
+
+    //Fixed memory leak
+    delete manager;
 }
 
 void PlantStateTesting() {
@@ -686,10 +689,63 @@ void PlantStateTesting() {
     cout << "   • Integration with plant methods (water/fertilise)" << endl;
 }
 
+void InventoryTesting() {
+    printSeparator("INVENTORY MANAGER TEST");
+    
+    cout << "Testing InventoryManager functionality..." << endl << endl;
+    
+    Rose rose;
+    Basil basil;
+    Tomato tomato;
+
+    InventoryManager* manager = new InventoryManager();
+    Nursery nursery = Nursery(manager);
+
+    std::cout << "Adding plants to nursery..." << std::endl;
+    manager->addToNursery(&rose);
+    manager->addToNursery(&basil);
+    manager->addToNursery(&tomato);
+
+    std::cout << "\nTesting adding null plant to nursery..." << std::endl;
+    manager->addToNursery(nullptr);
+
+    std::cout << "\nTesting removing a plants from nursery..." << std::endl;
+    manager->removeFromNursery(&rose);
+    manager->removeFromNursery(&basil);
+    manager->removeFromNursery(&tomato);
+
+    std::cout << "\nTesting removing the same plant from nursery..." << std::endl;
+    manager->removeFromNursery(&rose);
+
+    std::cout << "\nTesting removing null plant from nursery..." << std::endl;
+    manager->removeFromNursery(nullptr);
+
+    std::cout << "\nTesting adding plants to sale..." << std::endl;
+    manager->addToSale(&rose);
+    manager->addToSale(&basil);
+    manager->addToSale(&tomato);
+
+    std::cout << "\nTesting adding null plant to sale..." << std::endl;
+    manager->addToSale(nullptr);
+
+    std::cout << "\nTesting removing plants from sale..." << std::endl;
+    manager->removeFromSale(&rose);
+    manager->removeFromSale(&basil);
+    manager->removeFromSale(&tomato);
+
+    std::cout << "\nTesting removing the same plant from sale..." << std::endl;
+    manager->removeFromSale(&rose);
+
+    std::cout << "\nTesting removing null plant from sale..." << std::endl;
+    manager->removeFromSale(nullptr);
+    delete manager;
+}
+
 int main() {
     AbstractStrategyTesting();
     CommandStaffTesting();
     PlantStateTesting();
+    InventoryTesting();
     
     return 0;
 }
