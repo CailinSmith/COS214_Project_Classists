@@ -12,6 +12,8 @@ class PlantFactory {
 
 
 public:
+	virtual ~PlantFactory() {}
+
 	virtual Plant* createFlower() = 0;
 
 	virtual Plant* createHerb() = 0;

@@ -1,11 +1,7 @@
 #include "PruneCommand.h"
 
-PruneCommand::PruneCommand(Plant* plant) {
-	// TODO - implement PruneCommand::PruneCommand
-	throw "Not yet implemented";
-}
+PruneCommand::PruneCommand(Plant* plant) : StaffCommand(plant, nullptr, nullptr) {}
 
 void PruneCommand::execute() {
-	// TODO - implement PruneCommand::execute
-	throw "Not yet implemented";
+	plant->prune();
 }

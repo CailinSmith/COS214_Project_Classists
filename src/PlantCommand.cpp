@@ -1,11 +1,7 @@
 #include "PlantCommand.h"
+PlantCommand::PlantCommand(Plant *p, InventoryManager* im) : StaffCommand(p, im, nullptr) {}
 
-PlantCommand::PlantCommand() {
-	// TODO - implement PlantCommand::PlantCommand
-	throw "Not yet implemented";
-}
-
-void PlantCommand::execute() {
-	// TODO - implement PlantCommand::execute
-	throw "Not yet implemented";
+void PlantCommand::execute()
+{
+    inventoryManager->addToNursery(plant);
 }

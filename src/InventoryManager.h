@@ -1,20 +1,29 @@
-#ifndef INVENTORY_H
-#define INVENTORY_H
+#ifndef INVENTORYMANAGER_H
+#define INVENTORYMANAGER_H
 
 #include "Aggregate.h"
 #include "Subject.h"
 #include "Plant.h"
 #include "Staff.h"
 #include <vector>
+#include <string>
+#include <iostream>
 
-class Inventory : public Aggregate, public Subject {
+class InventoryManager : public Aggregate, public Subject {
 
 private:
 	vector<Plant*> forSale;
 	vector<Staff*> observerList;
 
 public:
-	Inventory* getInstance();
+	// InventoryManager* getInstance();
+	
+	~InventoryManager() {
+		for (Plant* plant : forSale) {
+			delete plant;
+		}
+		forSale.clear();
+	}
 
 	void addToSale(Plant* plant);
 

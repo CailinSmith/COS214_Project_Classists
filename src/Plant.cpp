@@ -29,6 +29,14 @@ void Plant::prune() {
 	this->pruningStrat->prune(this);
 }
 
+void Plant::fertilise() {
+	this->health += 0.3; 
+	if (this->health > 1) {
+		this->health = 1; 
+	}
+	std::cout << this->name << " has been fertilised. Health is now " << this->health << "." << std::endl;
+}
+
 string Plant::summary() {
 	string out = "";
 	out += "Plant Name: " + this->name + "\n";

@@ -1,11 +1,7 @@
 #include "StockCommand.h"
 
-StockCommand::StockCommand() {
-	// TODO - implement StockCommand::StockCommand
-	throw "Not yet implemented";
-}
+StockCommand::StockCommand(Nursery *n) : StaffCommand(nullptr, nullptr, n) {}
 
 void StockCommand::execute() {
-	// TODO - implement StockCommand::execute
-	throw "Not yet implemented";
+    if (nursery) nursery->stockNursery();
 }

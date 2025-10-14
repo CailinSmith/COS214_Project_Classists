@@ -5,7 +5,7 @@
 
 class PlantCommand : public StaffCommand {
 public:
-	PlantCommand();
+	PlantCommand(Plant* p, InventoryManager* im);
 	void execute();
 };
 

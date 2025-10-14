@@ -1,11 +1,9 @@
 #include "MakeSellableCommand.h"
 
-MakeSellableCommand::MakeSellableCommand(Plant* plant) {
-	// TODO - implement MakeSellableCommand::MakeSellableCommand
-	throw "Not yet implemented";
-}
+MakeSellableCommand::MakeSellableCommand(Plant* plant, InventoryManager* im) 
+		: StaffCommand(plant, im, nullptr) {}
 
 void MakeSellableCommand::execute() {
-	// TODO - implement MakeSellableCommand::execute
-	throw "Not yet implemented";
+	inventoryManager->removeFromNursery(plant);
+	inventoryManager->addToSale(plant);
 }

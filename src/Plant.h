@@ -13,7 +13,7 @@
 #include "PlantState.h"
 #include "SeedState.h"
 #include <string>
-
+#include <iostream>
 
 using namespace std;
 
@@ -34,12 +34,14 @@ private:
 
 public:
 	Plant(string category, int maxHeight, WateringStrategy* waterStrat, PruningStrategy* pruneStrat, string name);
-	
+
 	virtual ~Plant();
 
 	void water();
 
 	void prune();
+
+	void fertilise();
 
 	string summary();
 

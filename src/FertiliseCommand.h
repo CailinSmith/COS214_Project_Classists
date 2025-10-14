@@ -6,7 +6,7 @@
 class FertiliseCommand : public StaffCommand {
 	
 public:
-	FertiliseCommand();
+	FertiliseCommand(Plant* plant);
 	void execute();
 };
 

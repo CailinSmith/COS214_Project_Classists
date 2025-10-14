@@ -7,7 +7,7 @@
 class MakeSellableCommand : public StaffCommand {
 
 public:
-	MakeSellableCommand(Plant* plant);
+	MakeSellableCommand(Plant* plant, InventoryManager* im);
 
 	void execute();
 };

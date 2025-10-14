@@ -1,11 +1,7 @@
 #include "RemoveCommand.h"
 
-RemoveCommand::RemoveCommand(Plant* plant) {
-	// TODO - implement RemoveCommand::RemoveCommand
-	throw "Not yet implemented";
-}
+RemoveCommand::RemoveCommand(Plant* plant, InventoryManager* im) : StaffCommand(plant, im, nullptr) {}
 
 void RemoveCommand::execute() {
-	// TODO - implement RemoveCommand::execute
-	throw "Not yet implemented";
+	inventoryManager->removeFromNursery(plant);
 }
