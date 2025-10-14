@@ -739,6 +739,8 @@ void InventoryTesting() {
     std::cout << "\nTesting removing null plant from sale..." << std::endl;
     manager->removeFromSale(nullptr);
     delete manager;
+}
+
 void TemplateMethodTesting() {
     printSeparator("TEMPLATE METHOD PATTERN TESTING");
     
