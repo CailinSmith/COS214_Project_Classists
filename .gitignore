@@ -4,6 +4,9 @@
 *.lo
 *.slo
 
+# Builder folder
+build/
+
 # Precompiled headers
 *.gch
 *.pch

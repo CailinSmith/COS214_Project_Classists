@@ -739,6 +739,153 @@ void InventoryTesting() {
     std::cout << "\nTesting removing null plant from sale..." << std::endl;
     manager->removeFromSale(nullptr);
     delete manager;
+void TemplateMethodTesting() {
+    printSeparator("TEMPLATE METHOD PATTERN TESTING");
+    
+    cout << "TEST 1: ROSE" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Rose rose1;
+    rose1.setHealth(0.75);
+    cout << "\nRose with Health = 0.75" << endl;
+    cout << "Sell Season: " << rose1.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float roseCost1Summer = rose1.calculateCost("Summer");
+    cout << "Base : "<< rose1.baseCost() << " | Health Bonus: 0.0 | Season Bonus: 10.0 | TOTAL: " << roseCost1Summer << endl;
+    
+    cout << "\nTesting OUT-OF-SEASON (Winter):" << endl;
+    Rose rose1b;
+    rose1b.setHealth(0.75);
+    float roseCost1Winter = rose1b.calculateCost("Winter");
+    cout << "Base Cost: 100.0 | Health Bonus: 0.0 | Season Bonus: 0.0 | TOTAL: " << roseCost1Winter << endl;
+    
+    Rose rose2;
+    rose2.setHealth(0.95);
+    cout << "\nRose with Health = 0.95 (above 0.9 threshold - triggers bonus)" << endl;
+    cout << "Sell Season: " << rose2.getSellSeason() << endl;
+    cout << "\nTesting IN-SEASON (Summer):" << endl;
+    float roseCost2Summer = rose2.calculateCost("Summer");
+    cout << "Base Cost: 100.0 | Health Bonus: " << (100.0 * (0.95 - 0.85)) << " | Season Bonus: 10.0 | TOTAL: " << roseCost2Summer << endl;
+    
+    cout << "\n\nTEST 2: BASIL" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Basil basil1;
+    basil1.setHealth(0.8);
+    cout << "\nBasil with Health = 0.8" << endl;
+    cout << "Sell Season: " << basil1.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float basilCost1 = basil1.calculateCost("Summer");
+    cout << "Base : " << basil1.baseCost() << " | Health Bonus: 0.0 | Season Bonus: 0.0 | TOTAL: " << basilCost1 << endl;
+    
+    Basil basil2;
+    basil2.setHealth(1.0);
+    cout << "\nBasil with Health = 1.0" << endl;
+    cout << "Sell Season: " << basil2.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float basilCost2 = basil2.calculateCost("Summer");
+    cout << "Base : " << basil2.baseCost() << " | Health Bonus: " << (50.0 * (1.0 - 0.85)) << " | Season Bonus: 0.0 | TOTAL: " << basilCost2 << endl;
+    
+    cout << "\n\nTEST 3: TOMATO" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Tomato tomato1;
+    tomato1.setHealth(0.7);
+    cout << "\nTomato with Health = 0.7" << endl;
+    cout << "Sell Season: " << tomato1.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float tomatoCost1Summer = tomato1.calculateCost("Summer");
+    cout << "Base : " << tomato1.baseCost() << " | Health Bonus: 0.0 | Season Bonus: 30.0 | TOTAL: " << tomatoCost1Summer << endl;
+    
+    cout << "\nCurrent season: Spring" << endl;
+    Tomato tomato1b;
+    tomato1b.setHealth(0.7);
+    float tomatoCost1Spring = tomato1b.calculateCost("Spring");
+    cout << "Base : " << tomato1b.baseCost() << " | Health Bonus: 0.0 | Season Bonus: 0.0 | TOTAL: " << tomatoCost1Spring << endl;
+    
+    Tomato tomato2;
+    tomato2.setHealth(0.95);
+    cout << "\nTomato with Health = 0.95" << endl;
+    cout << "Sell Season: " << tomato2.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float tomatoCost2Summer = tomato2.calculateCost("Summer");
+    cout << "Base : " << tomato2.baseCost() << " | Health Bonus: " << (200.0 * (0.95 - 0.85)) << " | Season Bonus: 30.0 | TOTAL: " << tomatoCost2Summer << endl;
+    
+    cout << "\n\nTEST 4: LETTUCE" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Lettuce lettuce1;
+    lettuce1.setHealth(0.85);
+    cout << "\nLettuce with Health = 0.85" << endl;
+    cout << "Sell Season: " << lettuce1.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float lettuceCost1 = lettuce1.calculateCost("Summer");
+    cout << "Base : " << lettuce1.baseCost() << " | Health Bonus: 0.0 | Season Bonus: 12.0 | TOTAL: " << lettuceCost1 << endl;
+    
+    Lettuce lettuce2;
+    lettuce2.setHealth(0.92);
+    cout << "\nLettuce with Health = 0.92" << endl;
+    cout << "Sell Season: " << lettuce2.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float lettuceCost2 = lettuce2.calculateCost("Summer");
+    cout << "Base : " << lettuce2.baseCost() << " | Health Bonus: " << (80.0 * (0.92 - 0.85)) << " | Season Bonus: 12.0 | TOTAL: " << lettuceCost2 << endl;
+    
+    cout << "\n\nTEST 5: CATTAILS" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Cattails cattails1;
+    cattails1.setHealth(0.8);
+    cout << "\nCattails with Health = 0.8" << endl;
+    cout << "Sell Season: " << cattails1.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float cattailsCost1 = cattails1.calculateCost("Summer");
+    cout << "Base : " << cattails1.baseCost() << " | Health Bonus: 0.0 | Season Bonus: 0.0 | TOTAL: " << cattailsCost1 << endl;
+    
+    Cattails cattails2;
+    cattails2.setHealth(0.95);
+    cout << "\nCattails with Health = 0.95" << endl;
+    cout << "Sell Season: " << cattails2.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float cattailsCost2 = cattails2.calculateCost("Summer");
+    cout << "Base : " << cattails2.baseCost() << " | Health Bonus: " << (180.0 * (0.95 - 0.85)) << " | Season Bonus: 0.0 | TOTAL: " << cattailsCost2 << endl;
+    
+    cout << "\n\nTEST 6: SNAKE PLANT" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    SnakePlant snakePlant1;
+    snakePlant1.setHealth(0.75);
+    cout << "\nSnake Plant with Health = 0.75" << endl;
+    cout << "Sell Season: " << snakePlant1.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float snakeCost1 = snakePlant1.calculateCost("Summer");
+    cout << "Base : " << snakePlant1.baseCost() << " | Health Bonus: 0.0 | Season Bonus: 0.0 | TOTAL: " << snakeCost1 << endl;
+    
+    SnakePlant snakePlant2;
+    snakePlant2.setHealth(0.92);
+    cout << "\nSnake Plant with Health = 0.92" << endl;
+    cout << "Sell Season: " << snakePlant2.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float snakeCost2 = snakePlant2.calculateCost("Summer");
+    cout << "Base : " << snakePlant2.baseCost() << " | Health Bonus: " << (120.0 * (0.92 - 0.85)) << " | Season Bonus: 0.0 | TOTAL: " << snakeCost2 << endl;
+    
+    cout << "\n\nTEST 7: GINGER" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Ginger ginger1;
+    ginger1.setHealth(0.85);
+    cout << "\nGinger with Health = 0.85" << endl;
+    cout << "Sell Season: " << ginger1.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float gingerCost1 = ginger1.calculateCost("Summer");
+    cout << "Base : " << ginger1.baseCost() << " | Health Bonus: 0.0 | Season Bonus: 0.0 | TOTAL: " << gingerCost1 << endl;
+    
+    Ginger ginger2;
+    ginger2.setHealth(1.0);
+    cout << "\nGinger with Health = 1.0" << endl;
+    cout << "Sell Season: " << ginger2.getSellSeason() << endl;
+    cout << "\nCurrent season: Summer" << endl;
+    float gingerCost2 = ginger2.calculateCost("Summer");
+    cout << "Base : " << ginger2.baseCost() << " | Health Bonus: " << (60.0 * (1.0 - 0.85)) << " | Season Bonus: 0.0 | TOTAL: " << gingerCost2 << endl;
 }
 
 int main() {
@@ -746,6 +893,7 @@ int main() {
     CommandStaffTesting();
     PlantStateTesting();
     InventoryTesting();
+    TemplateMethodTesting();
     
     return 0;
 }
