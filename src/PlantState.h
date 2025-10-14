@@ -1,15 +1,16 @@
 #ifndef PLANTSTATE_H
 #define PLANTSTATE_H
 
+// Forward declaration to avoid circular dependency with Plant
+class Plant;
+
 #include <string>
 using namespace std;
-class PlantState {
 
+class PlantState {
 public:
 	virtual ~PlantState() {}
-	
-	virtual void change() = 0;
-
+	virtual void change(Plant* plant) = 0;
 	virtual string print() = 0;
 };
 

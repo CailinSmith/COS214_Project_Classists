@@ -1,7 +1,8 @@
 #include "SeedState.h"
 
-void SeedState::change() {
-    // Seed state change implementation
+void SeedState::change(Plant* plant) {
+    if (plant->getHeight() >= 0.1 && plant->getHealth() > 0.1) 
+        plant->setState(new SeedlingState());
 }
 
 string SeedState::print() {
