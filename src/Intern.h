@@ -7,7 +7,7 @@ using namespace std;
 
 class Intern : public Staff {
 public:
-	Intern::Intern(const string& str);
+	Intern(const string& str);
 	virtual ~Intern();
 	virtual void send(string message, Staff* from);
 	virtual void receive(string message);
