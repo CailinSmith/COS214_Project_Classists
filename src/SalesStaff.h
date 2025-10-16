@@ -8,11 +8,11 @@ using namespace std;
 class SalesStaff : public Staff {
 
 public:
-	void send(string message, Staff* from);
-
-	void receive(string message);
-
-	void handleRequest();
+	SalesStaff(const string& str);
+	virtual ~SalesStaff();
+	virtual void send(string message, Staff* from);
+	virtual void receive(string message);
+	virtual void handleRequest();
 };
 
 #endif
