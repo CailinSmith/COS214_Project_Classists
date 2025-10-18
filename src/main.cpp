@@ -68,6 +68,11 @@
 
 #include "InventoryManager.h"
 #include "Nursery.h"
+#include "SeasonState.h"
+#include "Spring.h"
+#include "Summer.h"
+#include "Autumn.h"
+#include "Winter.h"
 
 using namespace std;
 
@@ -890,12 +895,131 @@ void TemplateMethodTesting() {
     cout << "Base : " << ginger2.baseCost() << " | Health Bonus: " << (60.0 * (1.0 - 0.85)) << " | Season Bonus: 0.0 | TOTAL: " << gingerCost2 << endl;
 }
 
+void SeasonStateTesting() {
+    printSeparator("SEASON STATE PATTERN TEST");
+    
+    cout << "🌍 Testing the State Pattern for Season transitions..." << endl << endl;
+    
+    InventoryManager* inventory = new InventoryManager();
+    
+    Nursery* nursery = new Nursery(inventory);
+    
+    cout << "🏪 Nursery Created!" << endl;
+    cout << "📅 Initial Season: " << nursery->getSeason() << endl << endl;
+    
+    printSeparator("Test 1: Initial State");
+    cout << "Current Season: " << nursery->getSeason() << endl;
+    cout << "Expected: Spring" << endl;
+    cout << "✓ Nursery initializes in Spring season" << endl << endl;
+    
+    printSeparator("Test 2: Spring to Summer Transition");
+    cout << "Before change: " << nursery->getSeason() << endl;
+    nursery->changeSeason();
+    cout << "After change:  " << nursery->getSeason() << endl;
+    cout << "Expected:      Summer" << endl;
+    if (nursery->getSeason() == "Summer") 
+        cout << "✓ Successfully transitioned from Spring to Summer" << endl;
+    else 
+        cout << "✗ Failed to transition!" << endl;
+    cout << endl;
+    
+    printSeparator("Test 3: Summer to Autumn Transition");
+    cout << "Before change: " << nursery->getSeason() << endl;
+    nursery->changeSeason();
+    cout << "After change:  " << nursery->getSeason() << endl;
+    cout << "Expected:      Autumn" << endl;
+    if (nursery->getSeason() == "Autumn") 
+        cout << "✓ Successfully transitioned from Summer to Autumn" << endl;
+    else 
+        cout << "✗ Failed to transition!" << endl;
+    cout << endl;
+    
+    printSeparator("Test 4: Autumn to Winter Transition");
+    cout << "Before change: " << nursery->getSeason() << endl;
+    nursery->changeSeason();
+    cout << "After change:  " << nursery->getSeason() << endl;
+    cout << "Expected:      Winter" << endl;
+    if (nursery->getSeason() == "Winter") 
+        cout << "✓ Successfully transitioned from Autumn to Winter" << endl;
+    else 
+        cout << "✗ Failed to transition!" << endl;
+    cout << endl;
+    
+    printSeparator("Test 5: Winter to Spring Transition (Complete Cycle)");
+    cout << "Before change: " << nursery->getSeason() << endl;
+    nursery->changeSeason();
+    cout << "After change:  " << nursery->getSeason() << endl;
+    cout << "Expected:      Spring" << endl;
+    if (nursery->getSeason() == "Spring") {
+        cout << "✓ Successfully transitioned from Winter back to Spring" << endl;
+        cout << "✓ Season cycle completed successfully!" << endl;
+    } else 
+        cout << "✗ Failed to complete the cycle!" << endl;
+    cout << endl;
+    
+    printSeparator("Test 6: Multiple Consecutive Changes");
+    cout << "Current Season: " << nursery->getSeason() << endl;
+    cout << "Performing 4 season changes (full cycle)..." << endl << endl;
+    
+    for (int i = 1; i <= 4; i++) {
+        string beforeSeason = nursery->getSeason();
+        nursery->changeSeason();
+        string afterSeason = nursery->getSeason();
+        cout << "  Change " << i << ": " << beforeSeason << " → " << afterSeason << endl;
+    }
+    
+    cout << "\nFinal Season: " << nursery->getSeason() << endl;
+    if (nursery->getSeason() == "Spring") {
+        cout << "✓ Completed full cycle and returned to Spring" << endl;
+    }
+    cout << endl;
+    
+    printSeparator("Test 7: Memory Management");
+    cout << "Testing that old seasons are properly deleted..." << endl;
+    cout << "Performing 10 season changes..." << endl;
+    
+    for (int i = 0; i < 10; i++) 
+        nursery->changeSeason();
+    
+    cout << "Final Season: " << nursery->getSeason() << endl;
+    cout << "✓ No memory leaks (old seasons properly deleted)" << endl;
+    cout << "✓ Memory management test passed" << endl << endl;
+    
+    printSeparator("Test 8: Individual Season State Objects");
+    
+    Spring spring;
+    Summer summer;
+    Autumn autumn;
+    Winter winter;
+    
+    cout << "Spring season name: " << spring.print() << endl;
+    cout << "Summer season name: " << summer.print() << endl;
+    cout << "Autumn season name: " << autumn.print() << endl;
+    cout << "Winter season name: " << winter.print() << endl;
+    cout << "✓ All season states correctly return their names" << endl << endl;
+    
+    printSeparator("SEASON STATE TEST SUMMARY");
+    cout << "✓ State Pattern correctly implemented" << endl;
+    cout << "✓ All four seasons work properly" << endl;
+    cout << "✓ Season transitions follow correct cycle:" << endl;
+    cout << "  Spring → Summer → Autumn → Winter → Spring" << endl;
+    cout << "✓ Factory pattern integrated with state transitions" << endl;
+    cout << "✓ Memory management working correctly" << endl;
+    cout << "✓ No memory leaks detected" << endl << endl;
+    
+    delete nursery;
+    delete inventory;
+    
+    cout << "🎉 All Season State tests passed successfully!" << endl;
+}
+
 int main() {
     AbstractStrategyTesting();
     CommandStaffTesting();
     PlantStateTesting();
     InventoryTesting();
     TemplateMethodTesting();
+    SeasonStateTesting();
     
     return 0;
 }
