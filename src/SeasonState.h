@@ -3,13 +3,12 @@
 
 #include <string>
 
-class SeasonState {
+class Nursery; 
 
+class SeasonState {
 public:
 	virtual ~SeasonState() {}
-
-	virtual void change() = 0;
-
+	virtual void change(Nursery* nursery) = 0;
 	virtual std::string print() = 0;
 };
 
