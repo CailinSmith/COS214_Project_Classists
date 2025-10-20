@@ -1,5 +1,9 @@
 #include "Intern.h"
 
+Intern::Intern(const string& str) : Staff(str){}
+
+Intern::~Intern(){}
+
 void Intern::send(string message, Staff* from) {
 	// TODO - implement Intern::send
 	throw "Not yet implemented";
@@ -12,5 +16,7 @@ void Intern::receive(string message) {
 
 void Intern::handleRequest() {
 	// TODO - implement Intern::handleRequest
-	throw "Not yet implemented";
+	std::cout << "Intern: " << name << " handled request.\n";
+	if(next)
+		next->handleRequest();
 }
