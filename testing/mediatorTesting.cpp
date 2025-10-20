@@ -92,6 +92,7 @@ TEST_CASE("Mediator Pattern - StaffMediator basic functionality") {
         nurseryArea->registerColleague(staff3);
         
         staff1->setMessage("Need help with plants");
+        CHECK(staff1->getMessage() == "Need help with plants");
         staff1->send();
         
         delete staff1;
