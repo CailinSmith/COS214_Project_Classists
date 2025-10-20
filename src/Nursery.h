@@ -7,8 +7,9 @@
 #include <string>
 using namespace std;
 
-#include "SpringFactory.h"
-#include "Spring.h"
+// Forward declarations
+class Spring;
+class SpringFactory;
 
 class Nursery {
 
@@ -18,19 +19,9 @@ private:
 	PlantFactory* currentFactory;
 
 public:
-	/**
-	 * Changes currentSeason and currentFactory variable
-	 */
-	Nursery(InventoryManager* manager) : inventoryManager(manager) {
-		//temporary to test command
-		currentSeason = new Spring();
-		currentFactory = new SpringFactory();
-	}
+	Nursery(InventoryManager* manager);
 
-	~Nursery() {
-		delete currentSeason;
-		delete currentFactory;
-	}
+	~Nursery();
 	
 	void setSeason(SeasonState* season);
 

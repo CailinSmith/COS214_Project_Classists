@@ -1,5 +1,5 @@
-#ifndef READYFORSALE_H
-#define READYFORSALE_H
+#ifndef READYFORSALESTATE_H
+#define READYFORSALESTATE_H
 
 #include "PlantState.h"
 #include "Plant.h"
