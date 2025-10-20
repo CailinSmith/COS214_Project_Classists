@@ -2,17 +2,18 @@
 #define SALESSTAFF_H
 
 #include "Staff.h"
+#include "SalesArea.h"
+
 #include <string>
+
 using namespace std;
 
 class SalesStaff : public Staff {
-
 public:
-	void send(string message, Staff* from);
-
-	void receive(string message);
-
-	void handleRequest();
+	SalesStaff(string name);
+	virtual void receive(string message) override;
+	virtual void handleRequest() override;
+	virtual string getPosition() override;
 };
 
 #endif

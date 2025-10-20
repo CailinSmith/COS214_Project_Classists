@@ -1,8 +1,7 @@
 #include "SalesStaff.h"
 
-void SalesStaff::send(string message, Staff* from) {
-	// TODO - implement SalesStaff::send
-	throw "Not yet implemented";
+SalesStaff::SalesStaff(string name) : Staff(name) {
+    mediators.push_back(new SalesArea());
 }
 
 void SalesStaff::receive(string message) {
@@ -13,4 +12,8 @@ void SalesStaff::receive(string message) {
 void SalesStaff::handleRequest() {
 	// TODO - implement SalesStaff::handleRequest
 	throw "Not yet implemented";
+}
+
+string SalesStaff::getPosition() {
+	return "Sales staff";
 }

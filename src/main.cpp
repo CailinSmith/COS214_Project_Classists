@@ -69,6 +69,15 @@
 #include "InventoryManager.h"
 #include "Nursery.h"
 
+#include "StaffMediator.h"
+#include "Staff.h"
+#include "Manager.h"
+#include "SalesStaff.h"
+#include "NurseryStaff.h"
+#include "Intern.h"
+#include "SalesArea.h"
+#include "NurseryArea.h"
+
 using namespace std;
 
 void printSeparator(string title) {
@@ -76,6 +85,128 @@ void printSeparator(string title) {
     cout << "  " << title << endl;
     cout << string(50, '=') << endl;
 }
+
+void MediatorTesting() {
+    printSeparator("MEDIATOR PATTERN TEST");
+    
+    cout << "Testing StaffMediator (Mediator) with Staff (Colleague) classes..." << endl << endl;
+    
+    // Create mediators (concrete mediators)
+    cout << "1. Creating Mediators (SalesArea and NurseryArea):" << endl;
+    StaffMediator* salesArea = new SalesArea();
+    StaffMediator* nurseryArea = new NurseryArea();
+    cout << "   ✓ SalesArea mediator created" << endl;
+    cout << "   ✓ NurseryArea mediator created" << endl << endl;
+    
+    // Create colleagues (staff members)
+    cout << "2. Creating Staff Members (Colleagues):" << endl;
+    Staff* manager = new Manager("Alice");
+    Staff* salesStaff1 = new SalesStaff("Bob");
+    Staff* salesStaff2 = new SalesStaff("Carol");
+    Staff* nurseryStaff1 = new NurseryStaff("David");
+    Staff* nurseryStaff2 = new NurseryStaff("Emma");
+    Staff* intern = new Intern("Frank");
+    
+    cout << "   ✓ Manager: " << manager->getName() << " (" << manager->getPosition() << ")" << endl;
+    cout << "   ✓ Sales Staff: " << salesStaff1->getName() << " (" << salesStaff1->getPosition() << ")" << endl;
+    cout << "   ✓ Sales Staff: " << salesStaff2->getName() << " (" << salesStaff2->getPosition() << ")" << endl;
+    cout << "   ✓ Nursery Staff: " << nurseryStaff1->getName() << " (" << nurseryStaff1->getPosition() << ")" << endl;
+    cout << "   ✓ Nursery Staff: " << nurseryStaff2->getName() << " (" << nurseryStaff2->getPosition() << ")" << endl;
+    cout << "   ✓ Intern: " << intern->getName() << " (" << intern->getPosition() << ")" << endl << endl;
+    
+    // Register colleagues with their respective mediators
+    cout << "3. Registering Colleagues with Mediators:" << endl;
+    cout << "   Sales Area accepts: Manager, Sales Staff" << endl;
+    salesArea->registerColleague(manager);
+    salesArea->registerColleague(salesStaff1);
+    salesArea->registerColleague(salesStaff2);
+    salesArea->registerColleague(nurseryStaff1);  // Should not be registered
+    cout << "   ✓ Registered Manager and Sales Staff with SalesArea" << endl << endl;
+    
+    cout << "   Nursery Area accepts: Manager, Nursery Staff, Intern" << endl;
+    nurseryArea->registerColleague(manager);
+    nurseryArea->registerColleague(nurseryStaff1);
+    nurseryArea->registerColleague(nurseryStaff2);
+    nurseryArea->registerColleague(intern);
+    nurseryArea->registerColleague(salesStaff1);  // Should not be registered
+    cout << "   ✓ Registered Manager, Nursery Staff, and Intern with NurseryArea" << endl << endl;
+    
+    // Test communication through Sales Area mediator
+    cout << "4. Testing Communication through SalesArea Mediator:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   Scenario: Sales Staff Bob sends a message" << endl;
+    salesStaff1->setMessage("We need more roses in the sales area!");
+    cout << "   Message: \"" << salesStaff1->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting message to all colleagues in SalesArea..." << endl;
+    salesArea->notify(salesStaff1);
+    cout << endl;
+    
+    // Test communication through Nursery Area mediator
+    cout << "5. Testing Communication through NurseryArea Mediator:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   Scenario: Nursery Staff David sends a message" << endl;
+    nurseryStaff1->setMessage("Seedlings need watering urgently!");
+    cout << "   Message: \"" << nurseryStaff1->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
+    nurseryArea->notify(nurseryStaff1);
+    cout << endl;
+    
+    // Test Intern communication
+    cout << "6. Testing Intern Communication:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   Scenario: Intern Frank sends a message" << endl;
+    intern->setMessage("I've completed the pruning tasks!");
+    cout << "   Message: \"" << intern->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
+    nurseryArea->notify(intern);
+    cout << endl;
+    
+    // Test Manager communication (has access to multiple mediators)
+    cout << "7. Testing Manager Communication (Cross-Area):" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   Scenario: Manager Alice sends a message to SalesArea" << endl;
+    manager->setMessage("Great work team! Sales targets met this month!");
+    cout << "   Message: \"" << manager->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting to SalesArea..." << endl;
+    salesArea->notify(manager);
+    cout << endl;
+    
+    cout << "   Scenario: Manager Alice sends a different message to NurseryArea" << endl;
+    manager->setMessage("Please prepare 50 new plants for next week");
+    cout << "   Message: \"" << manager->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting to NurseryArea..." << endl;
+    nurseryArea->notify(manager);
+    cout << endl;
+    
+    // Demonstrate the mediator pattern benefits
+    cout << "8. Mediator Pattern Benefits Demonstrated:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   ✓ Loose Coupling: Staff members don't communicate directly" << endl;
+    cout << "   ✓ Centralized Control: Mediators handle all communication" << endl;
+    cout << "   ✓ Reduced Dependencies: Staff only knows about mediators" << endl;
+    cout << "   ✓ Easy to Add New Staff: Just register with mediator" << endl;
+    cout << "   ✓ Area-Specific Communication: Different mediators for different areas" << endl << endl;
+    
+    // Cleanup
+    cout << "9. Cleaning up resources..." << endl;
+    delete salesArea;
+    delete nurseryArea;
+    delete manager;
+    delete salesStaff1;
+    delete salesStaff2;
+    delete nurseryStaff1;
+    delete nurseryStaff2;
+    delete intern;
+    cout << "   ✓ All resources cleaned up" << endl << endl;
+    
+    cout << "Mediator Pattern Test Complete!" << endl;
+}
+
 void testPlantCategories() {
     printSeparator("PLANT CATEGORIES TEST");
     
@@ -891,6 +1022,7 @@ void TemplateMethodTesting() {
 }
 
 int main() {
+    MediatorTesting();
     AbstractStrategyTesting();
     CommandStaffTesting();
     PlantStateTesting();
