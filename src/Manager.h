@@ -2,8 +2,7 @@
 #define MANAGER_H
 
 #include "Staff.h"
-#include "SalesArea.h"
-#include "NurseryArea.h"
+#include "StaffMediator.h"
 
 #include <string>
 
@@ -12,8 +11,12 @@ using namespace std;
 class Manager : public Staff {
 public:
     Manager(string name);
+    virtual void send() override;
 	virtual void handleRequest() override;
 	virtual string getPosition() override;
+    void setReceiver(StaffMediator* mediator);
+private:
+    StaffMediator* receiver;
 };
 
 #endif

@@ -3,6 +3,7 @@
 #include "../src/Staff.h"
 #include "../src/SalesStaff.h"
 #include "../src/NurseryStaff.h"
+#include "../src/Manager.h"
 #include "../src/SalesArea.h"
 #include "../src/NurseryArea.h"
 
@@ -60,19 +61,19 @@ TEST_CASE("Mediator Pattern - StaffMediator basic functionality") {
         SalesArea* salesArea = new SalesArea();
         NurseryArea* nurseryArea = new NurseryArea();
         
-        SalesStaff* salesStaff = new SalesStaff("Frank");
-        NurseryStaff* nurseryStaff = new NurseryStaff("Grace");
+        Manager* salesManager = new Manager("Frank");
+        Manager* nurseryManager = new Manager("Grace");
         
-        salesStaff->registerMediator(salesArea);
-        nurseryStaff->registerMediator(nurseryArea);
-        salesArea->registerColleague(salesStaff);
-        nurseryArea->registerColleague(nurseryStaff);
+        salesManager->registerMediator(salesArea);
+        nurseryManager->registerMediator(nurseryArea);
         
-        CHECK(salesStaff->getPosition() == "Sales staff");
-        CHECK(nurseryStaff->getPosition() == "Nursery staff");
+        CHECK(salesManager->getName() == "Frank");
+        CHECK(nurseryManager->getName() == "Grace");
+        CHECK(salesManager->getPosition() == "Manager");
+        CHECK(nurseryManager->getPosition() == "Manager");
         
-        delete salesStaff;
-        delete nurseryStaff;
+        delete salesManager;
+        delete nurseryManager;
         delete salesArea;
         delete nurseryArea;
     }
@@ -98,6 +99,56 @@ TEST_CASE("Mediator Pattern - StaffMediator basic functionality") {
         delete staff1;
         delete staff2;
         delete staff3;
+        delete nurseryArea;
+    }
+    
+    SUBCASE("Staff can deregister from mediator") {
+        SalesArea* salesArea = new SalesArea();
+        Manager* manager = new Manager("Karen");
+        
+        manager->registerMediator(salesArea);
+        CHECK(manager->getName() == "Karen");
+        
+        manager->deregisterMediator(salesArea);
+        
+        CHECK(manager != nullptr);
+        
+        delete manager;
+        delete salesArea;
+    }
+    
+    SUBCASE("Manager can set specific receiver") {
+        SalesArea* salesArea = new SalesArea();
+        NurseryArea* nurseryArea = new NurseryArea();
+        Manager* manager = new Manager("Laura");
+        
+        manager->registerMediator(salesArea);
+        manager->registerMediator(nurseryArea);
+        
+        manager->setReceiver(salesArea);
+        
+        CHECK(manager->getPosition() == "Manager");
+        CHECK(manager->getName() == "Laura");
+        
+        delete manager;
+        delete salesArea;
+        delete nurseryArea;
+    }
+    
+    SUBCASE("Manager overridden send only sends to specific receiver") {
+        NurseryArea* nurseryArea = new NurseryArea();
+        Manager* manager = new Manager("Nancy");
+        
+        manager->registerMediator(nurseryArea);
+        
+        manager->setReceiver(nurseryArea);
+        manager->setMessage("Test message");
+        
+        CHECK(manager->getMessage() == "Test message");
+        
+        manager->send();
+        
+        delete manager;
         delete nurseryArea;
     }
 }

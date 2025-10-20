@@ -28,3 +28,7 @@ void Staff::registerMediator(StaffMediator* mediator) {
     if (mediator) 
         mediators.push_back(mediator);
 }
+
+void Staff::deregisterMediator(StaffMediator* mediator) {
+    mediators.erase(remove(mediators.begin(), mediators.end(), mediator), mediators.end());
+}

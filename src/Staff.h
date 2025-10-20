@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 class StaffMediator;
 
@@ -14,13 +15,14 @@ public:
     Staff(string name);
     virtual ~Staff() = default;
 	virtual void send();
-	virtual void receive(string message);
+	void receive(string message);
 	virtual void handleRequest() = 0;
 	virtual string getPosition() = 0;
     string getMessage();
     void setMessage(string message);
 	string getName();
     void registerMediator(StaffMediator* mediator);
+    void deregisterMediator(StaffMediator* mediator);
 protected:
     vector<StaffMediator*> mediators;
 private:

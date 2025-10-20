@@ -2,7 +2,6 @@
 #define SALESSTAFF_H
 
 #include "Staff.h"
-#include "SalesArea.h"
 
 #include <string>
 

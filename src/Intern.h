@@ -2,7 +2,6 @@
 #define INTERN_H
 
 #include "Staff.h"
-#include "NurseryArea.h"
 
 #include <string>
 
