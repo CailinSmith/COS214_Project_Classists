@@ -76,7 +76,7 @@
 
 #include "Decorator.h"
 #include "ClayPot.h"
-#include "ConcetePot.h"
+#include "ConcretePot.h"
 #include "CeramicPot.h"
 #include "ExtraFertilizer.h"
 #include "KraftWrapping.h"
@@ -1134,12 +1134,12 @@ void DecoratorTesting(){
 }
 
 int main() {
-    // AbstractStrategyTesting();
-    // CommandStaffTesting();
-    // PlantStateTesting();
-    // InventoryTesting();
-    // TemplateMethodTesting();
-    // SeasonStateTesting();
+    AbstractStrategyTesting();
+    CommandStaffTesting();
+    PlantStateTesting();
+    InventoryTesting();
+    TemplateMethodTesting();
+    SeasonStateTesting();
     DecoratorTesting();
 
     return 0;

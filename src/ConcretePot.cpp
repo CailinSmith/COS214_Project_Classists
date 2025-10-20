@@ -1,4 +1,4 @@
-#include "ConcetePot.h"
+#include "ConcretePot.h"
 
 ConcretePot::ConcretePot(Product* plant): Decorator(plant) {}
 
