@@ -1,23 +1,39 @@
 #include "Nursery.h"
+#include "Spring.h"
+#include "SpringFactory.h"
+#include <iostream>
+
+Nursery::Nursery(InventoryManager* manager) : inventoryManager(manager) {
+	currentSeason = new Spring();
+	currentFactory = new SpringFactory();
+}
+
+Nursery::~Nursery() {
+	delete currentSeason;
+	delete currentFactory;
+}
 
 void Nursery::setSeason(SeasonState* season) {
-	// TODO - implement Nursery::setSeason
-	throw "Not yet implemented";
+	if (currentSeason) 
+		delete currentSeason;
+	currentSeason = season;
 }
 
 string Nursery::getSeason() {
-	// TODO - implement Nursery::getSeason
-	throw "Not yet implemented";
+	if (currentSeason) 
+		return currentSeason->print();
+	return "No season set";
 }
 
 void Nursery::setFactory(PlantFactory* factory) {
-	// TODO - implement Nursery::setFactory
-	throw "Not yet implemented";
+	if (currentFactory) 
+		delete currentFactory;
+	currentFactory = factory;
 }
 
 void Nursery::changeSeason() {
-	// TODO - implement Nursery::changeSeason
-	throw "Not yet implemented";
+	if (currentSeason) 
+		currentSeason->change(this);
 }
 
 void Nursery::stockNursery() {

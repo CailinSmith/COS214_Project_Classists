@@ -11,7 +11,6 @@ using namespace std;
 class SalesStaff : public Staff {
 public:
 	SalesStaff(string name);
-	virtual void receive(string message) override;
 	virtual void handleRequest() override;
 	virtual string getPosition() override;
 };

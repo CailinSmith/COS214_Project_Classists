@@ -1,13 +1,6 @@
 #include "SalesStaff.h"
 
-SalesStaff::SalesStaff(string name) : Staff(name) {
-    mediators.push_back(new SalesArea());
-}
-
-void SalesStaff::receive(string message) {
-	// TODO - implement SalesStaff::receive
-	throw "Not yet implemented";
-}
+SalesStaff::SalesStaff(string name) : Staff(name) {}
 
 void SalesStaff::handleRequest() {
 	// TODO - implement SalesStaff::handleRequest

@@ -23,3 +23,8 @@ void Staff::setMessage(string message) {
 string Staff::getName() {
 	return name;
 }
+
+void Staff::registerMediator(StaffMediator* mediator) {
+    if (mediator) 
+        mediators.push_back(mediator);
+}

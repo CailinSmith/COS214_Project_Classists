@@ -20,6 +20,7 @@ public:
     string getMessage();
     void setMessage(string message);
 	string getName();
+    void registerMediator(StaffMediator* mediator);
 protected:
     vector<StaffMediator*> mediators;
 private:

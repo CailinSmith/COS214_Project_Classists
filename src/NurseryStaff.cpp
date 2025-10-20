@@ -1,8 +1,6 @@
 #include "NurseryStaff.h"
 
-NurseryStaff::NurseryStaff(string name) : Staff(name) {
-    mediators.push_back(new NurseryArea());
-}
+NurseryStaff::NurseryStaff(string name) : Staff(name) {}
 
 void NurseryStaff::handleRequest() {
 	// TODO - implement NurseryStaff::handleRequest

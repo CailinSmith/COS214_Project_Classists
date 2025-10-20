@@ -1,9 +1,6 @@
 #include "Manager.h"
 
-Manager::Manager(string name) : Staff(name) {
-    mediators.push_back(new SalesArea());
-    mediators.push_back(new NurseryArea());
-}
+Manager::Manager(string name) : Staff(name) {}
 
 void Manager::handleRequest() {
 	// TODO - implement Manager::handleRequest
