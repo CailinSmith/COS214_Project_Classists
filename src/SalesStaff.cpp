@@ -1,5 +1,9 @@
 #include "SalesStaff.h"
 
+SalesStaff::SalesStaff(const string& str) : Staff(str){}
+
+SalesStaff::~SalesStaff(){}
+
 void SalesStaff::send(string message, Staff* from) {
 	// TODO - implement SalesStaff::send
 	throw "Not yet implemented";
@@ -12,5 +16,7 @@ void SalesStaff::receive(string message) {
 
 void SalesStaff::handleRequest() {
 	// TODO - implement SalesStaff::handleRequest
-	throw "Not yet implemented";
+	std::cout << "Sales staff: " << name << " handled request.\n";
+	if(next)
+		next->handleRequest();
 }

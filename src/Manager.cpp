@@ -1,5 +1,9 @@
 #include "Manager.h"
 
+Manager::Manager(const string& str) : Staff(str){}
+
+Manager::~Manager(){}
+
 void Manager::send(string message, Staff* from) {
 	// TODO - implement Manager::send
 	throw "Not yet implemented";
@@ -12,5 +16,7 @@ void Manager::receive(string message) {
 
 void Manager::handleRequest() {
 	// TODO - implement Manager::handleRequest
-	throw "Not yet implemented";
+	std::cout << "Manager: " << name << " handled request.\n";
+	if(next)
+		next->handleRequest();
 }

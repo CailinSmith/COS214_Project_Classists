@@ -7,9 +7,11 @@ using namespace std;
 
 class Manager : public Staff {
 public:
-	void send(string message, Staff* from);
-	void receive(string message);
-	void handleRequest();
+	Manager(const string& str);
+	virtual ~Manager();
+	virtual void send(string message, Staff* from);
+	virtual void receive(string message);
+	virtual void handleRequest();
 };
 
 #endif
