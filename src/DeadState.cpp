@@ -1,7 +1,7 @@
 #include "DeadState.h"
 
 void DeadState::change(Plant* plant) {
-    // Dead state does not change to any other state
+    (void)plant;
 }
 
 string DeadState::print() {

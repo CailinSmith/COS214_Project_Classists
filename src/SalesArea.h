@@ -3,13 +3,15 @@
 
 #include "StaffMediator.h"
 #include "Staff.h"
+
 #include <string>
+
 using namespace std;
 
 class SalesArea : public StaffMediator {
-
 public:
-	virtual void notify(string message, Staff* from) = 0;
+    virtual void notify(Staff* originator) override;
+    virtual void registerColleague(Staff* colleague) override;
 };
 
 #endif

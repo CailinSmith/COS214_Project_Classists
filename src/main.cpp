@@ -74,6 +74,14 @@
 #include "Autumn.h"
 #include "Winter.h"
 
+#include "StaffMediator.h"
+#include "Staff.h"
+#include "Manager.h"
+#include "SalesStaff.h"
+#include "NurseryStaff.h"
+#include "Intern.h"
+#include "SalesArea.h"
+#include "NurseryArea.h"
 #include "Decorator.h"
 #include "ClayPot.h"
 #include "ConcretePot.h"
@@ -88,6 +96,313 @@ void printSeparator(string title) {
     cout << "  " << title << endl;
     cout << string(50, '=') << endl;
 }
+
+void MediatorTesting() {
+    printSeparator("MEDIATOR PATTERN TEST");
+    
+    cout << "Testing StaffMediator (Mediator) with Staff (Colleague) classes..." << endl << endl;
+    
+    cout << "1. Creating Mediators (SalesArea and NurseryArea):" << endl;
+    StaffMediator* salesArea = new SalesArea();
+    StaffMediator* nurseryArea = new NurseryArea();
+    cout << "   ✓ SalesArea mediator created" << endl;
+    cout << "   ✓ NurseryArea mediator created" << endl << endl;
+    
+    cout << "2. Creating Staff Members (Colleagues):" << endl;
+    Staff* manager = new Manager("Alice");
+    Staff* salesStaff1 = new SalesStaff("Bob");
+    Staff* salesStaff2 = new SalesStaff("Carol");
+    Staff* nurseryStaff1 = new NurseryStaff("David");
+    Staff* nurseryStaff2 = new NurseryStaff("Emma");
+    Staff* intern = new Intern("Frank");
+    
+    cout << "   ✓ Manager: " << manager->getName() << " (" << manager->getPosition() << ")" << endl;
+    cout << "   ✓ Sales Staff: " << salesStaff1->getName() << " (" << salesStaff1->getPosition() << ")" << endl;
+    cout << "   ✓ Sales Staff: " << salesStaff2->getName() << " (" << salesStaff2->getPosition() << ")" << endl;
+    cout << "   ✓ Nursery Staff: " << nurseryStaff1->getName() << " (" << nurseryStaff1->getPosition() << ")" << endl;
+    cout << "   ✓ Nursery Staff: " << nurseryStaff2->getName() << " (" << nurseryStaff2->getPosition() << ")" << endl;
+    cout << "   ✓ Intern: " << intern->getName() << " (" << intern->getPosition() << ")" << endl << endl;
+    
+    cout << "3. Registering Colleagues with Mediators:" << endl;
+    cout << "   Sales Area accepts: Manager, Sales Staff" << endl;
+    salesArea->registerColleague(manager);
+    salesArea->registerColleague(salesStaff1);
+    salesArea->registerColleague(salesStaff2);
+    salesArea->registerColleague(nurseryStaff1);  
+    cout << "   ✓ Registered Manager and Sales Staff with SalesArea" << endl << endl;
+    
+    cout << "   Nursery Area accepts: Manager, Nursery Staff, Intern" << endl;
+    nurseryArea->registerColleague(manager);
+    nurseryArea->registerColleague(nurseryStaff1);
+    nurseryArea->registerColleague(nurseryStaff2);
+    nurseryArea->registerColleague(intern);
+    nurseryArea->registerColleague(salesStaff1);  
+    cout << "   ✓ Registered Manager, Nursery Staff, and Intern with NurseryArea" << endl << endl;
+    
+    cout << "4. Testing Communication through SalesArea Mediator:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   Scenario: Sales Staff Bob sends a message" << endl;
+    salesStaff1->setMessage("We need more roses in the sales area!");
+    cout << "   Message: \"" << salesStaff1->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting message to all colleagues in SalesArea..." << endl;
+    salesArea->notify(salesStaff1);
+    cout << endl;
+    
+    cout << "5. Testing Communication through NurseryArea Mediator:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   Scenario: Nursery Staff David sends a message" << endl;
+    nurseryStaff1->setMessage("Seedlings need watering urgently!");
+    cout << "   Message: \"" << nurseryStaff1->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
+    nurseryArea->notify(nurseryStaff1);
+    cout << endl;
+    
+    cout << "6. Testing Intern Communication:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   Scenario: Intern Frank sends a message" << endl;
+    intern->setMessage("I've completed the pruning tasks!");
+    cout << "   Message: \"" << intern->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
+    nurseryArea->notify(intern);
+    cout << endl;
+    
+    cout << "7. Testing Manager Communication (Cross-Area):" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   Scenario: Manager Alice sends a message to SalesArea" << endl;
+    manager->setMessage("Great work team! Sales targets met this month!");
+    cout << "   Message: \"" << manager->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting to SalesArea..." << endl;
+    salesArea->notify(manager);
+    cout << endl;
+    
+    cout << "   Scenario: Manager Alice sends a different message to NurseryArea" << endl;
+    manager->setMessage("Please prepare 50 new plants for next week");
+    cout << "   Message: \"" << manager->getMessage() << "\"" << endl << endl;
+    
+    cout << "   Broadcasting to NurseryArea..." << endl;
+    nurseryArea->notify(manager);
+    cout << endl;
+    
+    cout << "8. Mediator Pattern Benefits Demonstrated:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   ✓ Loose Coupling: Staff members don't communicate directly" << endl;
+    cout << "   ✓ Centralized Control: Mediators handle all communication" << endl;
+    cout << "   ✓ Reduced Dependencies: Staff only knows about mediators" << endl;
+    cout << "   ✓ Easy to Add New Staff: Just register with mediator" << endl;
+    cout << "   ✓ Area-Specific Communication: Different mediators for different areas" << endl << endl;
+    
+    cout << "\n" << string(50, '-') << endl;
+    cout << "9. TESTING DEREGISTER MEDIATOR FUNCTIONALITY" << endl;
+    cout << string(50, '-') << endl << endl;
+    
+    cout << "   Creating new test manager..." << endl;
+    Staff* testManager = new Manager("TestManager");
+    cout << "   ✓ Test Manager created: " << testManager->getName() << endl << endl;
+    
+    cout << "   Registering TestManager with SalesArea:" << endl;
+    testManager->registerMediator(salesArea);
+    salesArea->registerColleague(testManager);
+    cout << "   ✓ TestManager registered with SalesArea" << endl << endl;
+    
+    cout << "   Testing communication before deregistration:" << endl;
+    testManager->setMessage("Test message before deregister");
+    cout << "   Message: \"" << testManager->getMessage() << "\"" << endl;
+    testManager->send();
+    cout << endl;
+    
+    cout << "   Deregistering TestManager from SalesArea:" << endl;
+    testManager->deregisterMediator(salesArea);
+    cout << "   ✓ TestManager deregistered from SalesArea" << endl;
+    cout << "   ✓ TestManager still exists: " << testManager->getName() << endl << endl;
+    
+    cout << "   Attempting to send message after deregistration:" << endl;
+    testManager->setMessage("Test message after deregister");
+    cout << "   Message: \"" << testManager->getMessage() << "\"" << endl;
+    cout << "   Note: Message won't be sent (no mediators registered)" << endl;
+    testManager->send();
+    cout << endl;
+    
+    cout << "\n" << string(50, '-') << endl;
+    cout << "10. TESTING MANAGER SET RECEIVER FUNCTIONALITY" << endl;
+    cout << string(50, '-') << endl << endl;
+    
+    cout << "   Creating Head Manager and Assistants:" << endl;
+    Manager* headManager = new Manager("HeadManager");
+    Manager* salesAssistant = new Manager("SalesAssistant");
+    Manager* nurseryAssistant = new Manager("NurseryAssistant");
+    
+    cout << "   ✓ Head Manager created: " << headManager->getName() << endl;
+    cout << "   ✓ Sales Assistant created: " << salesAssistant->getName() << endl;
+    cout << "   ✓ Nursery Assistant created: " << nurseryAssistant->getName() << endl << endl;
+    
+    cout << "   Registering HeadManager with BOTH areas:" << endl;
+    headManager->registerMediator(salesArea);
+    headManager->registerMediator(nurseryArea);
+    salesArea->registerColleague(headManager);
+    nurseryArea->registerColleague(headManager);
+    salesAssistant->registerMediator(salesArea);
+    salesArea->registerColleague(salesAssistant);
+    nurseryAssistant->registerMediator(nurseryArea);
+    nurseryArea->registerColleague(nurseryAssistant);
+    cout << "   ✓ HeadManager registered with both SalesArea and NurseryArea" << endl;
+    cout << "   ✓ SalesAssistant registered with SalesArea" << endl;
+    cout << "   ✓ NurseryAssistant registered with NurseryArea" << endl << endl;
+    
+    cout << "   HeadManager sets receiver to SalesArea ONLY:" << endl;
+    headManager->setReceiver(salesArea);
+    cout << "   ✓ Receiver set to SalesArea" << endl << endl;
+    
+    cout << "   HeadManager sends targeted message to SalesArea:" << endl;
+    headManager->setMessage("This message is ONLY for the sales team!");
+    cout << "   Message: \"" << headManager->getMessage() << "\"" << endl;
+    cout << "   Broadcasting (should only notify SalesArea)..." << endl;
+    headManager->send();
+    cout << "   Note: Only SalesArea colleagues receive this message" << endl << endl;
+    
+    cout << "   HeadManager changes receiver to NurseryArea:" << endl;
+    headManager->setReceiver(nurseryArea);
+    cout << "   ✓ Receiver changed to NurseryArea" << endl << endl;
+    
+    cout << "   HeadManager sends targeted message to NurseryArea:" << endl;
+    headManager->setMessage("This message is ONLY for the nursery team!");
+    cout << "   Message: \"" << headManager->getMessage() << "\"" << endl;
+    cout << "   Broadcasting (should only notify NurseryArea)..." << endl;
+    headManager->send();
+    cout << "   Note: Only NurseryArea colleagues receive this message" << endl << endl;
+    
+    cout << "   Benefits of Manager's setReceiver:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   ✓ Targeted Communication: Manager can send to specific areas" << endl;
+    cout << "   ✓ Reduced Noise: Only relevant staff receive messages" << endl;
+    cout << "   ✓ Flexible Control: Can change receiver dynamically" << endl;
+    cout << "   ✓ Manager Hierarchy: Manager has special privileges" << endl << endl;
+    
+    cout << "\n" << string(50, '-') << endl;
+    cout << "11. TESTING MANAGER BROADCAST MODE (NULL RECEIVER)" << endl;
+    cout << string(50, '-') << endl << endl;
+    
+    cout << "   Creating Broadcast Manager:" << endl;
+    Manager* broadcastManager = new Manager("BroadcastManager");
+    
+    cout << "   ✓ Broadcast Manager created: " << broadcastManager->getName() << endl << endl;
+    
+    cout << "   Registering BroadcastManager with BOTH areas:" << endl;
+    salesArea->registerColleague(broadcastManager);
+    nurseryArea->registerColleague(broadcastManager);
+    cout << "   ✓ BroadcastManager registered with SalesArea" << endl;
+    cout << "   ✓ BroadcastManager registered with NurseryArea" << endl << endl;
+    
+    cout << "   NOTE: Receiver is NULL by default (broadcast mode)" << endl;
+    cout << "   This means send() will broadcast to ALL registered mediators" << endl << endl;
+    
+    cout << "   BroadcastManager sends message (receiver = null):" << endl;
+    broadcastManager->setMessage("URGENT: Company-wide announcement to all areas!");
+    cout << "   Message: \"" << broadcastManager->getMessage() << "\"" << endl;
+    cout << "   Expected: Message will be sent to BOTH SalesArea AND NurseryArea" << endl << endl;
+    
+    cout << "   Broadcasting to ALL mediators..." << endl;
+    broadcastManager->send();
+    cout << endl;
+    
+    cout << "   Setting receiver to specific area, then back to null:" << endl;
+    broadcastManager->setReceiver(salesArea);
+    cout << "   ✓ Receiver set to SalesArea (targeted mode)" << endl;
+    
+    broadcastManager->setMessage("Targeted message to sales");
+    cout << "   Message: \"" << broadcastManager->getMessage() << "\"" << endl;
+    cout << "   Sending (should only reach SalesArea)..." << endl;
+    broadcastManager->send();
+    cout << endl;
+    
+    cout << "   Resetting receiver to NULL (back to broadcast mode):" << endl;
+    broadcastManager->setReceiver(nullptr);
+    cout << "   ✓ Receiver set to nullptr (broadcast mode restored)" << endl << endl;
+    
+    broadcastManager->setMessage("Broadcasting again to all areas!");
+    cout << "   Message: \"" << broadcastManager->getMessage() << "\"" << endl;
+    cout << "   Expected: Message will be sent to BOTH areas again" << endl;
+    cout << "   Broadcasting to ALL mediators..." << endl;
+    broadcastManager->send();
+    cout << endl;
+    
+    cout << "\n" << string(50, '-') << endl;
+    cout << "12. TESTING DIFFERENT MEDIATOR NOTIFICATION FORMATS" << endl;
+    cout << string(50, '-') << endl << endl;
+    
+    cout << "   Demonstrating that SalesArea and NurseryArea format" << endl;
+    cout << "   notifications differently in their notify() methods" << endl << endl;
+    
+    cout << "   Creating test staff for each area:" << endl;
+    SalesStaff* salesDemo = new SalesStaff("SalesDemo");
+    NurseryStaff* nurseryDemo = new NurseryStaff("NurseryDemo");
+    
+    salesArea->registerColleague(salesDemo);
+    nurseryArea->registerColleague(nurseryDemo);
+    cout << "   ✓ SalesDemo registered with SalesArea" << endl;
+    cout << "   ✓ NurseryDemo registered with NurseryArea" << endl << endl;
+    
+    cout << "   Testing SalesArea notification format:" << endl;
+    cout << "   " << string(45, '-') << endl;
+    salesDemo->setMessage("Sales notification test");
+    cout << "   SalesDemo sends: \"" << salesDemo->getMessage() << "\"" << endl;
+    cout << "   SalesArea will format as: 'NurseryArea: SalesDemo:Sales notification test'" << endl;
+    cout << "   Notifying through SalesArea mediator:" << endl;
+    salesArea->notify(salesDemo);
+    cout << endl;
+    
+    cout << "   Testing NurseryArea notification format:" << endl;
+    cout << "   " << string(45, '-') << endl;
+    nurseryDemo->setMessage("Nursery notification test");
+    cout << "   NurseryDemo sends: \"" << nurseryDemo->getMessage() << "\"" << endl;
+    cout << "   NurseryArea will format as: 'NurseryArea: NurseryDemo:Nursery notification test'" << endl;
+    cout << "   Notifying through NurseryArea mediator:" << endl;
+    nurseryArea->notify(nurseryDemo);
+    cout << endl;
+    
+    cout << "   Key Differences:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   ✓ Each mediator (SalesArea/NurseryArea) has its own notify() method" << endl;
+    cout << "   ✓ Derived classes of StaffMediator implement their own notification logic" << endl;
+    cout << "   ✓ Message format: '[AreaType]: [SenderName]:[Message]'" << endl;
+    cout << "   ✓ Different areas can have different communication protocols" << endl;
+    cout << "   ✓ Demonstrates polymorphism in the Mediator pattern" << endl << endl;
+    
+    cout << "   Summary of Mediator Pattern Implementation:" << endl;
+    cout << "   =============================================" << endl;
+    cout << "   Manager.send() behavior:" << endl;
+    cout << "     • If receiver == null: Broadcast to ALL mediators" << endl;
+    cout << "     • If receiver != null: Send only to specific mediator" << endl << endl;
+    cout << "   StaffMediator.notify() behavior:" << endl;
+    cout << "     • SalesArea: Formats messages for sales team" << endl;
+    cout << "     • NurseryArea: Formats messages for nursery team" << endl;
+    cout << "     • Each area's notify() is called by Staff.send()" << endl << endl;
+    
+    delete broadcastManager;
+    delete salesDemo;
+    delete nurseryDemo;
+    
+    cout << "12. Cleaning up all resources..." << endl;
+    delete salesArea;
+    delete nurseryArea;
+    delete manager;
+    delete salesStaff1;
+    delete salesStaff2;
+    delete nurseryStaff1;
+    delete nurseryStaff2;
+    delete intern;
+    delete testManager;
+    delete headManager;
+    delete salesAssistant;
+    delete nurseryAssistant;
+    cout << "   ✓ All resources cleaned up" << endl << endl;
+    
+    cout << "Mediator Pattern Test Complete!" << endl;
+}
+
 void testPlantCategories() {
     printSeparator("PLANT CATEGORIES TEST");
     
@@ -1134,6 +1449,7 @@ void DecoratorTesting(){
 }
 
 int main() {
+    MediatorTesting();
     AbstractStrategyTesting();
     CommandStaffTesting();
     PlantStateTesting();
