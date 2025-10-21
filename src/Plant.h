@@ -89,7 +89,7 @@ public:
 
 	string getSellSeason();
 
-	float calculateCost(string season);
+	float calculateCost(string currSeason);
 	virtual float baseCost() = 0;
 	virtual float seasonCost(string curSeason);
 	float getCost();
