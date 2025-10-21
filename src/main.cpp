@@ -74,6 +74,13 @@
 #include "Autumn.h"
 #include "Winter.h"
 
+#include "Decorator.h"
+#include "ClayPot.h"
+#include "ConcretePot.h"
+#include "CeramicPot.h"
+#include "ExtraFertilizer.h"
+#include "KraftWrapping.h"
+
 using namespace std;
 
 void printSeparator(string title) {
@@ -1013,6 +1020,119 @@ void SeasonStateTesting() {
     cout << "🎉 All Season State tests passed successfully!" << endl;
 }
 
+void DecoratorTesting(){
+    printSeparator("DECORATOR PATTERN TESTING");
+    
+    cout << "TEST 1: CLAY POT" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Rose* rose1 = new Rose();
+    rose1->setHealth(0.8);
+    ClayPot* clayRose = new ClayPot(rose1);
+    
+    cout << "\nRose in Clay Pot" << endl;
+    cout << "Base Cost: " << rose1->calculateCost("Summer") << endl;
+    cout << "With Clay Pot: " << clayRose->calculateCost("Summer") << endl;
+    cout << "Name: " << clayRose->getName() << endl;
+    cout << "Summary: " << clayRose->getSummary() << endl;
+
+
+    
+    cout << "\n\nTEST 2: CONCRETE POT" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Basil* basil1 = new Basil();
+    basil1->setHealth(0.9);
+    ConcretePot* concreteBasil = new ConcretePot(basil1);
+    
+    cout << "\nBasil in Concrete Pot" << endl;
+    cout << "Base Cost: " << basil1->calculateCost("Summer") << endl;
+    cout << "With Concrete Pot: " << concreteBasil->calculateCost("Summer") << endl;
+    cout << "Name: " << concreteBasil->getName() << endl;
+    cout << "Summary: " << concreteBasil->getSummary() << endl;
+    
+    cout << "\n\nTEST 3: CERAMIC POT" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Tomato* tomato1 = new Tomato();
+    tomato1->setHealth(0.85);
+    CeramicPot* ceramicTomato = new CeramicPot(tomato1);
+    
+    cout << "\nTomato in Ceramic Pot" << endl;
+    cout << "Base Cost: " << tomato1->calculateCost("Summer") << endl;
+    cout << "With Ceramic Pot: " << ceramicTomato->calculateCost("Summer") << endl;
+    cout << "Name: " << ceramicTomato->getName() << endl;
+    cout << "Summary: " << ceramicTomato->getSummary() << endl;
+    
+    cout << "\n\nTEST 4: EXTRA FERTILIZER" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Lettuce* lettuce1 = new Lettuce();
+    lettuce1->setHealth(0.92);
+    ExtraFertilizer* fertilizedLettuce = new ExtraFertilizer(lettuce1);
+    
+    cout << "\nLettuce with Extra Fertilizer" << endl;
+    cout << "Base Cost: " << lettuce1->calculateCost("Summer") << endl;
+    cout << "With Fertilizer: " << fertilizedLettuce->calculateCost("Summer") << endl;
+    cout << "Name: " << fertilizedLettuce->getName() << endl;
+    cout << "Summary: " << fertilizedLettuce->getSummary() << endl;
+    
+    cout << "\n\nTEST 5: KRAFT WRAPPING" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    SnakePlant* snake1 = new SnakePlant();
+    snake1->setHealth(0.75);
+    KraftWrapping* wrappedSnake = new KraftWrapping(snake1);
+    
+    cout << "\nSnake Plant with Kraft Wrapping" << endl;
+    cout << "Base Cost: " << snake1->calculateCost("Summer") << endl;
+    cout << "With Wrapping: " << wrappedSnake->calculateCost("Summer") << endl;
+    cout << "Name: " << wrappedSnake->getName() << endl;
+    cout << "Summary: " << wrappedSnake->getSummary() << endl;
+    
+    cout << "\n\nTEST 6: MULTIPLE DECORATORS" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Rose* rose2 = new Rose();
+    rose2->setHealth(0.95);
+    ClayPot* clayRose2 = new ClayPot(rose2);
+    ExtraFertilizer* decoratedRose = new ExtraFertilizer(clayRose2);
+    
+    cout << "\nRose with Clay Pot and Fertilizer" << endl;
+    cout << "Base Cost: " << rose2->calculateCost("Summer") << endl;
+    cout << "Final Cost: " << decoratedRose->calculateCost("Summer") << endl;
+    cout << "Name: " << decoratedRose->getName() << endl;
+    cout << "Summary: " << decoratedRose->getSummary() << endl;
+    
+    cout << "\n\nTEST 7: REMOVE DECORATOR" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    
+    Basil* basil2 = new Basil();
+    basil2->setHealth(0.8);
+    ClayPot* clayBasil = new ClayPot(basil2);
+    
+    cout << "\nBefore removing decorator:" << endl;
+    cout << "Cost: " << clayBasil->calculateCost("Summer") << endl;
+    cout << "Name: " << clayBasil->getName() << endl;
+    cout << "Summary: " << clayBasil->getSummary() << endl;
+    
+    Product* plainBasil = clayBasil->removeDecorator();
+    delete clayBasil;
+    
+    cout << "\nAfter removing decorator:" << endl;
+    cout << "Cost: " << plainBasil->calculateCost("Summer") << endl;
+    cout << "Name: " << plainBasil->getName() << endl;
+    cout << "Summary: " << plainBasil->getSummary() << endl;
+    
+    delete plainBasil;
+    delete clayRose;
+    delete concreteBasil;
+    delete ceramicTomato;
+    delete fertilizedLettuce;
+    delete wrappedSnake;
+    delete decoratedRose;
+}
+
 int main() {
     AbstractStrategyTesting();
     CommandStaffTesting();
@@ -1020,6 +1140,7 @@ int main() {
     InventoryTesting();
     TemplateMethodTesting();
     SeasonStateTesting();
-    
+    DecoratorTesting();
+
     return 0;
 }
