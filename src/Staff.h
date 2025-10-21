@@ -2,21 +2,33 @@
 #define STAFF_H
 
 #include <string>
+#include <vector>
 #include <iostream>
-using namespace std;
-class Staff {
-	protected:
-		string name;
-		Staff* next;
+#include <algorithm>
 
-	public:
-		Staff(const string& str);
-		virtual ~Staff();
-		virtual void send(string message, Staff* from) = 0;
-		virtual void receive(string message) = 0;
-		virtual void handleRequest() = 0;
-		string getName();
-		void setNext(Staff* nextStaff);
+class StaffMediator;
+
+using namespace std;
+
+class Staff {
+public:
+    Staff(string name);
+    virtual ~Staff() = default;
+    virtual void send();
+    void receive(string message);
+    virtual void handleRequest() = 0;
+    virtual string getPosition() = 0;
+    string getMessage();
+    void setMessage(string message);
+    string getName();
+    void setNext(Staff* nextStaff);
+    void registerMediator(StaffMediator* mediator);
+    void deregisterMediator(StaffMediator* mediator);
+protected:
+    vector<StaffMediator*> mediators;
+private:
+	string name, message;
+	Staff* next;
 };
 
 #endif

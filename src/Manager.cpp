@@ -1,17 +1,13 @@
 #include "Manager.h"
 
-Manager::Manager(const string& str) : Staff(str){}
+Manager::Manager(string name) : Staff(name), receiver(nullptr) {}
 
-Manager::~Manager(){}
-
-void Manager::send(string message, Staff* from) {
-	// TODO - implement Manager::send
-	throw "Not yet implemented";
-}
-
-void Manager::receive(string message) {
-	// TODO - implement Manager::receive
-	throw "Not yet implemented";
+void Manager::send() {
+    for (auto mediator : mediators) 
+        if (!receiver) 
+            mediator->notify(this);
+        else if (mediator == receiver)
+            mediator->notify(this);
 }
 
 void Manager::handleRequest() {
@@ -19,4 +15,12 @@ void Manager::handleRequest() {
 	std::cout << "Manager: " << name << " handled request.\n";
 	if(next)
 		next->handleRequest();
+}
+
+string Manager::getPosition() {
+    return "Manager";
+}
+
+void Manager::setReceiver(StaffMediator* mediator) {
+    receiver = mediator;
 }

@@ -2,8 +2,10 @@
 #define INTERN_H
 
 #include "Staff.h"
+
 #include <string>
 #include <iostream>
+
 using namespace std;
 
 class Intern : public Staff {

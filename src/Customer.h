@@ -3,6 +3,7 @@
 
 #include "Plant.h"
 #include "Staff.h"
+#include "Product.h"
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -10,7 +11,7 @@ using namespace std;
 class Customer {
 
 private:
-	vector<Plant*> order;
+	vector<Product*> order;
 	float total;
 public:
 	void send(Staff* staff, const std::string& command);

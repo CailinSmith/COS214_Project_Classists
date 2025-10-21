@@ -2,16 +2,21 @@
 #define MANAGER_H
 
 #include "Staff.h"
+#include "StaffMediator.h"
+
 #include <string>
+
 using namespace std;
 
 class Manager : public Staff {
 public:
-	Manager(const string& str);
-	virtual ~Manager();
-	virtual void send(string message, Staff* from);
-	virtual void receive(string message);
-	virtual void handleRequest();
+    Manager(string name);
+    virtual void send() override;
+    virtual void handleRequest() override;
+    virtual string getPosition() override;
+    void setReceiver(StaffMediator* mediator);
+private:
+    StaffMediator* receiver;
 };
 
 #endif
