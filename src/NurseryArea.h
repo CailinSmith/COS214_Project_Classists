@@ -10,6 +10,7 @@ using namespace std;
 
 class NurseryArea : public StaffMediator {
 public:
+    virtual void notify(Staff* originator) override;
     virtual void registerColleague(Staff* colleague) override;
 };
 

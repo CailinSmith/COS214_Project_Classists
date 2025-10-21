@@ -275,7 +275,111 @@ void MediatorTesting() {
     cout << "   ✓ Flexible Control: Can change receiver dynamically" << endl;
     cout << "   ✓ Manager Hierarchy: Manager has special privileges" << endl << endl;
     
-    cout << "11. Cleaning up all resources..." << endl;
+    cout << "\n" << string(50, '-') << endl;
+    cout << "11. TESTING MANAGER BROADCAST MODE (NULL RECEIVER)" << endl;
+    cout << string(50, '-') << endl << endl;
+    
+    cout << "   Creating Broadcast Manager:" << endl;
+    Manager* broadcastManager = new Manager("BroadcastManager");
+    
+    cout << "   ✓ Broadcast Manager created: " << broadcastManager->getName() << endl << endl;
+    
+    cout << "   Registering BroadcastManager with BOTH areas:" << endl;
+    salesArea->registerColleague(broadcastManager);
+    nurseryArea->registerColleague(broadcastManager);
+    cout << "   ✓ BroadcastManager registered with SalesArea" << endl;
+    cout << "   ✓ BroadcastManager registered with NurseryArea" << endl << endl;
+    
+    cout << "   NOTE: Receiver is NULL by default (broadcast mode)" << endl;
+    cout << "   This means send() will broadcast to ALL registered mediators" << endl << endl;
+    
+    cout << "   BroadcastManager sends message (receiver = null):" << endl;
+    broadcastManager->setMessage("URGENT: Company-wide announcement to all areas!");
+    cout << "   Message: \"" << broadcastManager->getMessage() << "\"" << endl;
+    cout << "   Expected: Message will be sent to BOTH SalesArea AND NurseryArea" << endl << endl;
+    
+    cout << "   Broadcasting to ALL mediators..." << endl;
+    broadcastManager->send();
+    cout << endl;
+    
+    cout << "   Setting receiver to specific area, then back to null:" << endl;
+    broadcastManager->setReceiver(salesArea);
+    cout << "   ✓ Receiver set to SalesArea (targeted mode)" << endl;
+    
+    broadcastManager->setMessage("Targeted message to sales");
+    cout << "   Message: \"" << broadcastManager->getMessage() << "\"" << endl;
+    cout << "   Sending (should only reach SalesArea)..." << endl;
+    broadcastManager->send();
+    cout << endl;
+    
+    cout << "   Resetting receiver to NULL (back to broadcast mode):" << endl;
+    broadcastManager->setReceiver(nullptr);
+    cout << "   ✓ Receiver set to nullptr (broadcast mode restored)" << endl << endl;
+    
+    broadcastManager->setMessage("Broadcasting again to all areas!");
+    cout << "   Message: \"" << broadcastManager->getMessage() << "\"" << endl;
+    cout << "   Expected: Message will be sent to BOTH areas again" << endl;
+    cout << "   Broadcasting to ALL mediators..." << endl;
+    broadcastManager->send();
+    cout << endl;
+    
+    cout << "\n" << string(50, '-') << endl;
+    cout << "12. TESTING DIFFERENT MEDIATOR NOTIFICATION FORMATS" << endl;
+    cout << string(50, '-') << endl << endl;
+    
+    cout << "   Demonstrating that SalesArea and NurseryArea format" << endl;
+    cout << "   notifications differently in their notify() methods" << endl << endl;
+    
+    cout << "   Creating test staff for each area:" << endl;
+    SalesStaff* salesDemo = new SalesStaff("SalesDemo");
+    NurseryStaff* nurseryDemo = new NurseryStaff("NurseryDemo");
+    
+    salesArea->registerColleague(salesDemo);
+    nurseryArea->registerColleague(nurseryDemo);
+    cout << "   ✓ SalesDemo registered with SalesArea" << endl;
+    cout << "   ✓ NurseryDemo registered with NurseryArea" << endl << endl;
+    
+    cout << "   Testing SalesArea notification format:" << endl;
+    cout << "   " << string(45, '-') << endl;
+    salesDemo->setMessage("Sales notification test");
+    cout << "   SalesDemo sends: \"" << salesDemo->getMessage() << "\"" << endl;
+    cout << "   SalesArea will format as: 'NurseryArea: SalesDemo:Sales notification test'" << endl;
+    cout << "   Notifying through SalesArea mediator:" << endl;
+    salesArea->notify(salesDemo);
+    cout << endl;
+    
+    cout << "   Testing NurseryArea notification format:" << endl;
+    cout << "   " << string(45, '-') << endl;
+    nurseryDemo->setMessage("Nursery notification test");
+    cout << "   NurseryDemo sends: \"" << nurseryDemo->getMessage() << "\"" << endl;
+    cout << "   NurseryArea will format as: 'NurseryArea: NurseryDemo:Nursery notification test'" << endl;
+    cout << "   Notifying through NurseryArea mediator:" << endl;
+    nurseryArea->notify(nurseryDemo);
+    cout << endl;
+    
+    cout << "   Key Differences:" << endl;
+    cout << "   ---------------------------------------------------" << endl;
+    cout << "   ✓ Each mediator (SalesArea/NurseryArea) has its own notify() method" << endl;
+    cout << "   ✓ Derived classes of StaffMediator implement their own notification logic" << endl;
+    cout << "   ✓ Message format: '[AreaType]: [SenderName]:[Message]'" << endl;
+    cout << "   ✓ Different areas can have different communication protocols" << endl;
+    cout << "   ✓ Demonstrates polymorphism in the Mediator pattern" << endl << endl;
+    
+    cout << "   Summary of Mediator Pattern Implementation:" << endl;
+    cout << "   =============================================" << endl;
+    cout << "   Manager.send() behavior:" << endl;
+    cout << "     • If receiver == null: Broadcast to ALL mediators" << endl;
+    cout << "     • If receiver != null: Send only to specific mediator" << endl << endl;
+    cout << "   StaffMediator.notify() behavior:" << endl;
+    cout << "     • SalesArea: Formats messages for sales team" << endl;
+    cout << "     • NurseryArea: Formats messages for nursery team" << endl;
+    cout << "     • Each area's notify() is called by Staff.send()" << endl << endl;
+    
+    delete broadcastManager;
+    delete salesDemo;
+    delete nurseryDemo;
+    
+    cout << "12. Cleaning up all resources..." << endl;
     delete salesArea;
     delete nurseryArea;
     delete manager;
