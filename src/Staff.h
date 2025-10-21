@@ -25,10 +25,10 @@ public:
     void registerMediator(StaffMediator* mediator);
     void deregisterMediator(StaffMediator* mediator);
 protected:
+	Staff* next;
     vector<StaffMediator*> mediators;
 private:
 	string name, message;
-	Staff* next;
 };
 
 #endif
