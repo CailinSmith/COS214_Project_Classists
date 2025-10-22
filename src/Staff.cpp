@@ -1,7 +1,9 @@
 #include "Staff.h"
 #include "StaffMediator.h"
 
-Staff::Staff(string name) : name(name) {}
+Staff::Staff(string name) : name(name), next(NULL) {}
+
+Staff::~Staff(){}
 
 void Staff::send() {
     for (auto mediator : mediators) 
@@ -18,6 +20,10 @@ string Staff::getMessage() {
 
 void Staff::setMessage(string message) {
     this->message = message;
+}
+
+void Staff::setNext(Staff* nextStaff){
+	next = nextStaff;
 }
 
 string Staff::getName() {

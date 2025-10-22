@@ -13,7 +13,7 @@ using namespace std;
 class Staff {
 public:
     Staff(string name);
-    virtual ~Staff() = default;
+    virtual ~Staff();
 	virtual void send();
 	void receive(string message);
 	virtual void handleRequest() = 0;
@@ -21,13 +21,15 @@ public:
     string getMessage();
     void setMessage(string message);
 	string getName();
+    void setNext(Staff* nextStaff);
     void registerMediator(StaffMediator* mediator);
     void deregisterMediator(StaffMediator* mediator);
 protected:
+    string name;
+	Staff* next;
     vector<StaffMediator*> mediators;
 private:
-	string name, message;
-	Staff* next;
+	string message;
 };
 
 #endif

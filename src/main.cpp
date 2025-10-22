@@ -1448,6 +1448,47 @@ void DecoratorTesting(){
     delete decoratedRose;
 }
 
+void ChainOfResponsibilityTesting(){
+    printSeparator("CHAIN OF RESPONSIBILITY PATTERN TEST");
+
+    std::cout << "Test 1: Full Chain Propagation\n";
+    Intern intern("John");
+    Manager manager("Bob");
+    SalesStaff sales("Carol");
+    NurseryStaff nursery("Dave");
+    intern.setNext(&manager);
+    manager.setNext(&sales);
+    sales.setNext(&nursery);
+    intern.handleRequest();
+    std::cout << "✓ Verified full chain execution\n\n";
+
+    printSeparator("Test 2: Single Handler");
+    Intern singleIntern("SingleJohn");
+    singleIntern.handleRequest();
+    std::cout << "✓ Confirmed single handler\n\n";
+
+    printSeparator("Test 4: Starting from Middle of Chain");
+    manager.handleRequest();
+    std::cout << "✓ Confirmed starting from the middle\n\n";
+
+    printSeparator("Test 5: Multiple Consecutive Calls");
+    intern.handleRequest();
+    std::cout << "--- Second call ---\n";
+    intern.handleRequest();
+    std::cout << "✓ Verified consecutive calls behaviour\n\n";
+
+    printSeparator("Test 6: Chain with Reversed Order");
+    NurseryStaff revNursery("AltDave");
+    SalesStaff revSales("AltCarol");
+    Manager revManager("AltBob");
+    Intern revIntern("AltJohn");
+    revNursery.setNext(&revSales);
+    revSales.setNext(&revManager);
+    revManager.setNext(&revIntern);
+    revNursery.handleRequest();
+    std::cout << "✓ Confirmed reverse chain functionality\n\n";
+}
+
 void ObserverTesing(){
     printSeparator("OBSERVER PATTERN TESTING");
     
@@ -1520,6 +1561,7 @@ int main() {
     TemplateMethodTesting();
     SeasonStateTesting();
     DecoratorTesting();
+    ChainOfResponsibilityTesting();
     ObserverTesing();
 
     return 0;

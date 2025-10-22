@@ -11,9 +11,12 @@ void Manager::send() {
 }
 
 void Manager::handleRequest() {
+	// TODO - implement Manager::handleRequest
     cout << getName() << " (" << getPosition() << ") received a notification from inventory" << endl;
-    // Forward the request to staff connected through mediators not sure, so just check if this is the intended behavior.
     send();
+    std::cout << "Manager: " << name << " handled request.\n";
+    if(next)
+      next->handleRequest();
 }
 
 string Manager::getPosition() {
