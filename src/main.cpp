@@ -1489,6 +1489,69 @@ void ChainOfResponsibilityTesting(){
     std::cout << "✓ Confirmed reverse chain functionality\n\n";
 }
 
+void ObserverTesing(){
+    printSeparator("OBSERVER PATTERN TESTING");
+    
+    cout << "Testing Observer Pattern functionality..." << endl << endl;
+    
+    //Low thresholds for easy testing
+    InventoryManager* inventory = new InventoryManager();
+    inventory->setSaleThreshold(2);
+    inventory->setNurseryThreshold(2);
+    
+    NurseryStaff* nurseryStaff = new NurseryStaff("John");
+    Manager* manager = new Manager("Sarah");
+    
+    cout << "Registering nursery staff and manager as observers..." << endl;
+    inventory->registerObserver(nurseryStaff);
+    inventory->registerObserver(manager);
+
+    Rose rose;
+    Basil basil;
+    Tomato tomato;
+    
+    cout << "\n=== Test 1: Adding plants to nursery (above threshold) ===" << endl;
+    inventory->addToNursery(&rose);
+    inventory->addToNursery(&basil);
+    inventory->addToNursery(&tomato);
+    
+    cout << "\nCurrent counts - Nursery: " << inventory->getNurseryCount() 
+         << ", For Sale: " << inventory->getSaleCount() << endl;
+    
+    cout << "\n=== Test 2: Moving plants to sale (triggering low nursery stock) ===" << endl;
+    inventory->removeFromNursery(&rose);
+    inventory->addToSale(&rose);
+    inventory->removeFromNursery(&basil);
+    inventory->addToSale(&basil);
+    
+    cout << "\nCurrent counts - Nursery: " << inventory->getNurseryCount() 
+         << ", For Sale: " << inventory->getSaleCount() << endl;
+    
+    cout << "\n=== Test 3: Selling plants (triggering low sale stock) ===" << endl;
+    inventory->removeFromSale(&rose);
+    inventory->removeFromSale(&basil);
+    
+    cout << "\nCurrent counts - Nursery: " << inventory->getNurseryCount() 
+         << ", For Sale: " << inventory->getSaleCount() << endl;
+    
+    cout << "\n=== Test 4: Demonstrating staff access to inventory ===" << endl;
+    cout << "Staff can inspect inventory:" << endl;
+    cout << "Available nursery plants: " << inventory->getNurseryPlants().size() << endl;
+    cout << "Available sale plants: " << inventory->getForSalePlants().size() << endl;
+    
+    cout << "\n=== Test 5: Unregistering an observer ===" << endl;
+    inventory->deregisterObserver(manager);
+    cout << "Manager unregistered. Now only nursery staff will be notified." << endl;
+    
+    inventory->removeFromNursery(&tomato);
+    cout << "\nCurrent counts - Nursery: " << inventory->getNurseryCount() 
+         << ", For Sale: " << inventory->getSaleCount() << endl;
+    
+    delete nurseryStaff;
+    delete manager;
+    delete inventory;
+}
+
 int main() {
     MediatorTesting();
     AbstractStrategyTesting();
@@ -1499,5 +1562,7 @@ int main() {
     SeasonStateTesting();
     DecoratorTesting();
     ChainOfResponsibilityTesting();
+    ObserverTesing();
+
     return 0;
 }

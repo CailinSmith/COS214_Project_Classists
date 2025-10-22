@@ -9,37 +9,49 @@
 #include <string>
 #include <iostream>
 
+
 class InventoryManager : public Aggregate, public Subject {
 
 private:
 	vector<Plant*> forSale;
 	vector<Staff*> observerList;
 	vector<Plant*> inNursery;
+	size_t saleThreshold = 2;
+	size_t nurseryThreshold = 2;
+
+	void checkAndNotify();
 
 public:
-	
+
+	InventoryManager() = default;
 	virtual ~InventoryManager() {
 		// Don't delete plants, just clear vectors
 		forSale.clear();
 		inNursery.clear();
+		observerList.clear();
 	}
 
 	void addToSale(Plant* plant);
-
 	void addToNursery(Plant* plant);
-
 	void removeFromNursery(Plant* plant);
-
 	void removeFromSale(Plant* plant);
 
-	void notifyStaff(string message);
-	
+	void notifyStaff(string message) override;
+
+	void registerObserver(Staff* staff);
+	void deregisterObserver(Staff* staff);
 
 	size_t getSaleCount() const;
 	size_t getNurseryCount() const;
 	bool isInSale(Plant* plant) const;
 	bool isInNursery(Plant* plant) const;
-	
+
+	const vector<Plant*>& getForSalePlants() const { return forSale; }
+	const vector<Plant*>& getNurseryPlants() const { return inNursery; }
+
+	void setSaleThreshold(size_t t) { saleThreshold = t; }
+	void setNurseryThreshold(size_t t) { nurseryThreshold = t; }
+
 };
 
 #endif

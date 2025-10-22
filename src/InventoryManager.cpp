@@ -1,4 +1,6 @@
 #include "InventoryManager.h"
+#include "NurseryStaff.h"
+#include "Manager.h"
 
 
 void InventoryManager::addToSale(Plant* plant) {
@@ -8,6 +10,7 @@ void InventoryManager::addToSale(Plant* plant) {
 	}
 	forSale.push_back(plant);
 	std::cout << "Added " << plant->getName() << " to sale." << std::endl;
+	checkAndNotify();
 }
 
 void InventoryManager::addToNursery(Plant* plant) {
@@ -17,6 +20,7 @@ void InventoryManager::addToNursery(Plant* plant) {
 	}
 	inNursery.push_back(plant);
 	std::cout << "Added " << plant->getName() << " to nursery." << std::endl;
+	checkAndNotify();
 }
 
 void InventoryManager::removeFromNursery(Plant* plant) {
@@ -52,6 +56,7 @@ void InventoryManager::removeFromSale(Plant* plant) {
 		{
 			forSale.erase(forSale.begin() + i);
 			std::cout << "Removed " << plant->getName() << " from sale." << std::endl;
+			checkAndNotify();
 			return;
 		}
 	}
@@ -60,13 +65,27 @@ void InventoryManager::removeFromSale(Plant* plant) {
 }
 
 void InventoryManager::notifyStaff(string message) {
-    cout << "Notifying all staff: " << message << endl;
-    for(int i = 0; i < observerList.size(); i++)
+    cout << "Notifying all observers: " << message << endl;
+    for(size_t i = 0; i < observerList.size(); i++)
 	{
         if(observerList[i] != nullptr)
 		{
-            // observerList[i]->update(message);
-            cout << "Staff member notified" << endl;
+            // Try to cast to NurseryStaff first
+            NurseryStaff* nurseryStaff = dynamic_cast<NurseryStaff*>(observerList[i]);
+            if(nurseryStaff) {
+                nurseryStaff->update(message);
+                continue;
+            }
+            
+            // Try to cast to Manager
+            Manager* manager = dynamic_cast<Manager*>(observerList[i]);
+            if(manager) {
+                manager->update(message);
+                continue;
+            }
+            
+            // Fallback to receive method if casting fails
+            observerList[i]->receive(message);
         }
     }
 }
@@ -85,7 +104,7 @@ bool InventoryManager::isInSale(Plant* plant) const {
 		return false;
 	}
     
-    for(int i = 0; i < forSale.size(); i++)
+    for(size_t i = 0; i < forSale.size(); i++)
 	{
         if(forSale[i] == plant)
 		{
@@ -101,7 +120,7 @@ bool InventoryManager::isInNursery(Plant* plant) const {
 		return false;
 	}
 
-    for(int i = 0; i < inNursery.size(); i++)
+    for(size_t i = 0; i < inNursery.size(); i++)
 	{
         if(inNursery[i] == plant)
 		{
@@ -109,4 +128,32 @@ bool InventoryManager::isInNursery(Plant* plant) const {
         }
     }
     return false;
+}
+
+void InventoryManager::registerObserver(Staff* staff) {
+	if(staff == nullptr)
+	{
+		return;
+	}
+	observerList.push_back(staff);
+}
+
+void InventoryManager::deregisterObserver(Staff* staff) {
+	if(staff == nullptr)
+	{
+		return;
+	} 
+	observerList.erase(std::remove(observerList.begin(), observerList.end(), staff), observerList.end());
+}
+
+void InventoryManager::checkAndNotify() {
+	if(forSale.size() < saleThreshold)
+	{
+		notifyStaff("Low stock: forSale count below threshold");
+	}
+	
+	if(inNursery.size() < nurseryThreshold)
+	{
+		notifyStaff("Low stock: nursery count below threshold");
+	}
 }

@@ -14,9 +14,9 @@ void Manager::handleRequest() {
 	// TODO - implement Manager::handleRequest
     cout << getName() << " (" << getPosition() << ") received a notification from inventory" << endl;
     send();
-	std::cout << "Manager: " << name << " handled request.\n";
-	if(next)
-		next->handleRequest();
+    std::cout << "Manager: " << name << " handled request.\n";
+    if(next)
+      next->handleRequest();
 }
 
 string Manager::getPosition() {
