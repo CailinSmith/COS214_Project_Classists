@@ -11,8 +11,9 @@ void Manager::send() {
 }
 
 void Manager::handleRequest() {
-	// TODO - implement Manager::handleRequest
-	throw "Not yet implemented";
+    cout << getName() << " (" << getPosition() << ") received a notification from inventory" << endl;
+    // Forward the request to staff connected through mediators not sure, so just check if this is the intended behavior.
+    send();
 }
 
 string Manager::getPosition() {
@@ -21,4 +22,9 @@ string Manager::getPosition() {
 
 void Manager::setReceiver(StaffMediator* mediator) {
     receiver = mediator;
+}
+
+void Manager::update(const string& message) {
+    cout << getName() << " (" << getPosition() << ") received observer update: " << message << endl;
+    send();
 }
