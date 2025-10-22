@@ -12,7 +12,11 @@ void Manager::send() {
 
 void Manager::handleRequest() {
 	// TODO - implement Manager::handleRequest
-	throw "Not yet implemented";
+    cout << getName() << " (" << getPosition() << ") received a notification from inventory" << endl;
+    send();
+	std::cout << "Manager: " << name << " handled request.\n";
+	if(next)
+		next->handleRequest();
 }
 
 string Manager::getPosition() {
@@ -21,4 +25,9 @@ string Manager::getPosition() {
 
 void Manager::setReceiver(StaffMediator* mediator) {
     receiver = mediator;
+}
+
+void Manager::update(const string& message) {
+    cout << getName() << " (" << getPosition() << ") received observer update: " << message << endl;
+    send();
 }

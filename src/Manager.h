@@ -15,6 +15,7 @@ public:
 	virtual void handleRequest() override;
 	virtual string getPosition() override;
     void setReceiver(StaffMediator* mediator);
+    virtual void update(const string& message);
 private:
     StaffMediator* receiver;
 };
