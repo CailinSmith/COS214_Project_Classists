@@ -12,6 +12,7 @@ public:
 	NurseryStaff(string name);
 	virtual void handleRequest() override;
 	virtual string getPosition() override;
+	virtual void update(const string& message);
 };
 
 #endif

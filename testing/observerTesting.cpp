@@ -172,3 +172,117 @@ TEST_CASE("Observer Pattern - Integration with Existing Operations") {
     delete staff;
     delete inventory;
 }
+
+TEST_CASE("Observer Pattern - Update Function Testing") {
+    InventoryManager* inventory = new InventoryManager();
+    NurseryStaff* staff = new NurseryStaff("UpdateTestStaff");
+    Manager* manager = new Manager("UpdateTestManager");
+    
+    SUBCASE("NurseryStaff update function receives messages") {
+        CHECK_NOTHROW(staff->update("Test update message"));
+        CHECK_NOTHROW(staff->update("Low stock alert"));
+        CHECK_NOTHROW(staff->update(""));
+    }
+    
+    SUBCASE("Manager update function receives messages and delegates") {
+        CHECK_NOTHROW(manager->update("Manager test message"));
+        CHECK_NOTHROW(manager->update("Critical inventory alert"));
+        CHECK_NOTHROW(manager->update(""));
+    }
+    
+    SUBCASE("Update function called through observer notification") {
+        inventory->setSaleThreshold(2);
+        inventory->setNurseryThreshold(2);
+        inventory->registerObserver(staff);
+        inventory->registerObserver(manager);
+        Rose* rose = new Rose();
+        CHECK_NOTHROW(inventory->addToNursery(rose));
+        CHECK_NOTHROW(inventory->addToSale(rose));
+        delete rose;
+    }
+    delete staff;
+    delete manager;
+    delete inventory;
+}
+
+TEST_CASE("Observer Pattern - Update Function with Different Message Types") {
+    NurseryStaff* staff = new NurseryStaff("MessageTestStaff");
+    Manager* manager = new Manager("MessageTestManager");
+    
+    SUBCASE("Update handles various message formats") {
+        CHECK_NOTHROW(staff->update("Low stock: forSale count below threshold"));
+        CHECK_NOTHROW(staff->update("Low stock: nursery count below threshold"));
+        CHECK_NOTHROW(manager->update("Emergency: All plants sold out"));
+        CHECK_NOTHROW(manager->update("Info: Restocking needed"));
+    }
+    
+    SUBCASE("Update handles special characters and long messages") {
+        CHECK_NOTHROW(staff->update("Alert! @#$%^&*()"));
+        CHECK_NOTHROW(manager->update("Very long message that contains lots of details about inventory status and what actions should be taken by staff members"));
+        CHECK_NOTHROW(staff->update("Multi\nline\nmessage"));
+    }
+    delete staff;
+    delete manager;
+}
+
+TEST_CASE("Observer Pattern - Update Function Integration with Notification System") {
+    InventoryManager* inventory = new InventoryManager();
+    NurseryStaff* staff1 = new NurseryStaff("Staff1");
+    NurseryStaff* staff2 = new NurseryStaff("Staff2");
+    Manager* manager = new Manager("IntegrationManager");
+    inventory->setSaleThreshold(1);
+    inventory->setNurseryThreshold(1);
+    
+    SUBCASE("Multiple observers receive update calls simultaneously") {
+        inventory->registerObserver(staff1);
+        inventory->registerObserver(staff2);
+        inventory->registerObserver(manager);
+        Rose* rose = new Rose();
+        CHECK_NOTHROW(inventory->addToNursery(rose));
+        delete rose;
+    }
+    
+    SUBCASE("Update function called only for registered observers") {
+        inventory->registerObserver(staff1);
+        inventory->registerObserver(manager);
+        Basil* basil = new Basil();
+        CHECK_NOTHROW(inventory->addToSale(basil));
+        delete basil;
+    }
+    
+    SUBCASE("Deregistered observer stops receiving update calls") {
+        inventory->registerObserver(staff1);
+        inventory->registerObserver(manager);
+        Rose* rose = new Rose();
+        inventory->addToNursery(rose);
+        inventory->deregisterObserver(staff1);
+        CHECK_NOTHROW(inventory->removeFromNursery(rose));
+        CHECK_NOTHROW(inventory->addToSale(rose));
+        
+        delete rose;
+    }
+    delete staff1;
+    delete staff2;
+    delete manager;
+    delete inventory;
+}
+
+TEST_CASE("Observer Pattern - Update Function Error Handling") {
+    NurseryStaff* staff = new NurseryStaff("ErrorTestStaff");
+    Manager* manager = new Manager("ErrorTestManager");
+    
+    SUBCASE("Update function handles null and empty inputs gracefully") {
+        CHECK_NOTHROW(staff->update(""));
+        CHECK_NOTHROW(manager->update(""));
+        CHECK_NOTHROW(staff->update("   "));
+        CHECK_NOTHROW(manager->update("   "));
+    }
+    
+    SUBCASE("Update function works with very short messages") {
+        CHECK_NOTHROW(staff->update("!"));
+        CHECK_NOTHROW(manager->update("X"));
+        CHECK_NOTHROW(staff->update("OK"));
+    }
+    delete staff;
+    delete manager;
+}

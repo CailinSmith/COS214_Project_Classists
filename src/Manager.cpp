@@ -23,3 +23,8 @@ string Manager::getPosition() {
 void Manager::setReceiver(StaffMediator* mediator) {
     receiver = mediator;
 }
+
+void Manager::update(const string& message) {
+    cout << getName() << " (" << getPosition() << ") received observer update: " << message << endl;
+    send();
+}

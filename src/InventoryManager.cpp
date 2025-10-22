@@ -1,4 +1,6 @@
 #include "InventoryManager.h"
+#include "NurseryStaff.h"
+#include "Manager.h"
 
 
 void InventoryManager::addToSale(Plant* plant) {
@@ -63,12 +65,27 @@ void InventoryManager::removeFromSale(Plant* plant) {
 }
 
 void InventoryManager::notifyStaff(string message) {
-    cout << "Notifying all staff: " << message << endl;
+    cout << "Notifying all observers: " << message << endl;
     for(size_t i = 0; i < observerList.size(); i++)
 	{
         if(observerList[i] != nullptr)
 		{
-			observerList[i]->receive(message);
+            // Try to cast to NurseryStaff first
+            NurseryStaff* nurseryStaff = dynamic_cast<NurseryStaff*>(observerList[i]);
+            if(nurseryStaff) {
+                nurseryStaff->update(message);
+                continue;
+            }
+            
+            // Try to cast to Manager
+            Manager* manager = dynamic_cast<Manager*>(observerList[i]);
+            if(manager) {
+                manager->update(message);
+                continue;
+            }
+            
+            // Fallback to receive method if casting fails
+            observerList[i]->receive(message);
         }
     }
 }
