@@ -15,6 +15,7 @@ public:
 	Fruit(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) : 
 	Plant("Fruit", maxHeight, wateringStrat, pruningStrat, name) {}
 
+	virtual ~Fruit() {}
 	virtual float baseCost() override;
 	virtual float seasonCost(string curSeason) override;
 };

@@ -19,7 +19,7 @@ void StaffCheckStockCommand::execute() {
             }
         }
         
-        std::cout << "Stock count for " << plant->getName() << ": " << stock << std::endl;
+        // std::cout << "Stock count for " << plant->getName() << ": " << stock << std::endl;
     } else {
         std::cout << "Error: Invalid plant or inventory manager" << std::endl;
         stock = 0;

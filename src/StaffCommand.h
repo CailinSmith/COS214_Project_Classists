@@ -20,6 +20,7 @@ protected:
 public:
 	StaffCommand(Plant* p = nullptr, InventoryManager* im = nullptr, Nursery* n = nullptr)
         : plant(p), inventoryManager(im), nursery(n) {}
+    virtual ~StaffCommand() {}
 	virtual void execute();
 
 };
