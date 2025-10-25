@@ -2,6 +2,7 @@
 #define AGGREGATE_H
 
 #include "Iterator.h"
+#include <string>
 
 class Plant;
 

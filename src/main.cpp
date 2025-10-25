@@ -73,6 +73,8 @@
 #include "Summer.h"
 #include "Autumn.h"
 #include "Winter.h"
+#include "SeasonIterator.h"
+#include "Iterator.h"
 
 #include "StaffMediator.h"
 #include "Staff.h"
@@ -1552,6 +1554,209 @@ void ObserverTesing(){
     delete inventory;
 }
 
+void IteratorTesting(){
+    cout << "\n======================== Iterator Pattern Testing ========================\n" << endl;
+    
+    InventoryManager* inventory = new InventoryManager();
+    Nursery* nursery = new Nursery(inventory);
+    
+    Spring* spring = new Spring();
+    Summer* summer = new Summer();
+    Autumn* autumn = new Autumn();
+    Winter* winter = new Winter();
+    
+    cout << "=== Setting up test plants for different seasons ===" << endl;
+    SpringFactory* springFactory = new SpringFactory();
+    SummerFactory* summerFactory = new SummerFactory();
+    AutumnFactory* autumnFactory = new AutumnFactory();
+    WinterFactory* winterFactory = new WinterFactory();
+    
+    //spring plants
+    Plant* rose = springFactory->createFlower();
+    Plant* basil = springFactory->createHerb();
+    Plant* lettuce = springFactory->createVegetable();
+    
+    //summer plants  
+    Plant* chrysanthemum = summerFactory->createFlower();
+    Plant* lavender = summerFactory->createHerb();
+    Plant* appleTree = summerFactory->createFruit();
+    
+    //autumn plants
+    Plant* pansy = autumnFactory->createFlower();
+    Plant* thyme = autumnFactory->createHerb();
+    Plant* strawberry = autumnFactory->createFruit();
+    
+    //winter plants
+    Plant* sunflower = winterFactory->createFlower();
+    Plant* rosemary = winterFactory->createHerb();
+    Plant* cucumber = winterFactory->createVegetable();
+    
+    cout << "\n=== Adding plants to inventory ===" << endl;
+    inventory->addToSale(rose);
+    inventory->addToSale(chrysanthemum);
+    inventory->addToSale(pansy);
+    inventory->addToSale(sunflower);
+    inventory->addToNursery(basil);
+    inventory->addToNursery(lettuce);
+    inventory->addToNursery(lavender);
+    inventory->addToNursery(appleTree);
+    inventory->addToNursery(thyme);
+    inventory->addToNursery(strawberry);
+    inventory->addToNursery(rosemary);
+    inventory->addToNursery(cucumber);
+    
+    cout << "\n=== Testing Iterator Pattern ===" << endl;
+    cout << "\nTest 1: Spring" << endl;
+    Iterator<Plant>* springIterator = inventory->createIterator("Spring");
+    
+    int springCount = 0;
+    for (Plant* plant = springIterator->first(); !springIterator->isDone(); plant = springIterator->next()) {
+        if (plant != nullptr) {
+            springCount++;
+            cout << "Spring Plant " << springCount << ": " << plant->getName() 
+                 << " (Season: " << plant->getSellSeason() << ")" << endl;
+        }
+    }
+    
+    if (springCount == 0) {
+        cout << "No spring plants found." << endl;
+    } else {
+        cout << "Total spring plants found: " << springCount << endl;
+    }
+    
+    cout << "\nTest 2: Summer" << endl;
+    Iterator<Plant>* summerSaleIterator = inventory->createSaleIterator("Summer");
+    
+    int summerSaleCount = 0;
+    for (Plant* plant = summerSaleIterator->first(); !summerSaleIterator->isDone(); plant = summerSaleIterator->next()) {
+        if (plant != nullptr) {
+            summerSaleCount++;
+            cout << "Summer Sale Plant " << summerSaleCount << ": " << plant->getName() 
+                 << " (Cost: $" << plant->getCost() << ")" << endl;
+        }
+    }
+    
+    if (summerSaleCount == 0) {
+        cout << "No summer plants for sale." << endl;
+    } else {
+        cout << "Total summer plants for sale: " << summerSaleCount << endl;
+    }
+    
+    cout << "\nTest 3: Autumn" << endl;
+    Iterator<Plant>* autumnNurseryIterator = inventory->createNurseryIterator("Autumn");
+    
+    int autumnNurseryCount = 0;
+    for (Plant* plant = autumnNurseryIterator->first(); !autumnNurseryIterator->isDone(); plant = autumnNurseryIterator->next()) {
+        if (plant != nullptr) {
+            autumnNurseryCount++;
+            cout << "Autumn Nursery Plant " << autumnNurseryCount << ": " << plant->getName() 
+                 << " (Health: " << plant->getHealth() << ")" << endl;
+        }
+    }
+    
+    if (autumnNurseryCount == 0) {
+        cout << "No autumn plants in nursery." << endl;
+    } else {
+        cout << "Total autumn plants in nursery: " << autumnNurseryCount << endl;
+    }
+    
+    cout << "\nTest 4: Winter" << endl;
+    Iterator<Plant>* winterIterator = inventory->createIterator("Winter");
+    
+    int winterCount = 0;
+    for (Plant* plant = winterIterator->first(); !winterIterator->isDone(); plant = winterIterator->next()) {
+        if (plant != nullptr) {
+            winterCount++;
+            cout << "Winter Plant " << winterCount << ": " << plant->getName() 
+                 << " (Location: " << (inventory->isInSale(plant) ? "For Sale" : "Nursery") << ")" << endl;
+        }
+    }
+    
+    if (winterCount == 0) {
+        cout << "No winter plants found." << endl;
+    } else {
+        cout << "Total winter plants found: " << winterCount << endl;
+    }
+    
+    cout << "\n--- Test 5: Non-existent Season Test ---" << endl;
+    Iterator<Plant>* nonExistentIterator = inventory->createIterator("NonExistentSeason");
+    
+    int nonExistentCount = 0;
+    for (Plant* plant = nonExistentIterator->first(); !nonExistentIterator->isDone(); plant = nonExistentIterator->next()) {
+        if (plant != nullptr) {
+            nonExistentCount++;
+        }
+    }
+    
+    cout << "Plants found for non-existent season: " << nonExistentCount << endl;
+    cout << "\nTest 6: Iterator Functionality" << endl;
+    Iterator<Plant>* functionalityIterator = inventory->createIterator("Spring");
+    
+    cout << "Testing first(): ";
+    Plant* firstPlant = functionalityIterator->first();
+    if (firstPlant) {
+        cout << firstPlant->getName() << endl;
+    } else {
+        cout << "No first plant" << endl;
+    }
+    
+    cout << "Testing currentItem(): ";
+    Plant* currentPlant = functionalityIterator->currentItem();
+    if (currentPlant) {
+        cout << currentPlant->getName() << endl;
+    } else {
+        cout << "No current plant" << endl;
+    }
+    
+    cout << "Testing isDone(): " << (functionalityIterator->isDone() ? "true" : "false") << endl;
+    
+    cout << "Testing next(): ";
+    Plant* nextPlant = functionalityIterator->next();
+    if (nextPlant) {
+        cout << nextPlant->getName() << endl;
+    } else {
+        cout << "No next plant" << endl;
+    }
+    
+    cout << "\n=== Summary ===" << endl;
+    cout << "Spring plants found: " << springCount << endl;
+    cout << "Summer plants for sale: " << summerSaleCount << endl;
+    cout << "Autumn plants in nursery: " << autumnNurseryCount << endl;
+    cout << "Winter plants found: " << winterCount << endl;
+    cout << "Total plants in inventory: " << (inventory->getSaleCount() + inventory->getNurseryCount()) << endl;
+    
+    delete springIterator;
+    delete summerSaleIterator;
+    delete autumnNurseryIterator;
+    delete winterIterator;
+    delete nonExistentIterator;
+    delete functionalityIterator;
+    
+    delete rose;
+    delete basil;
+    delete lettuce;
+    delete chrysanthemum;
+    delete lavender;
+    delete appleTree;
+    delete pansy;
+    delete thyme;
+    delete strawberry;
+    delete sunflower;
+    delete rosemary;
+    delete cucumber;
+    delete springFactory;
+    delete summerFactory;
+    delete autumnFactory;
+    delete winterFactory;
+    delete spring;
+    delete summer;
+    delete autumn;
+    delete winter;
+    delete nursery;
+    delete inventory;
+    std::cout << "Iterator Testing completed succesfully." << std::endl;
+}
+
 int main() {
     MediatorTesting();
     AbstractStrategyTesting();
@@ -1563,6 +1768,7 @@ int main() {
     DecoratorTesting();
     ChainOfResponsibilityTesting();
     ObserverTesing();
+    IteratorTesting();
 
     return 0;
 }
