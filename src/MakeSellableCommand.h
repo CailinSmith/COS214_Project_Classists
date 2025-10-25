@@ -1,3 +1,9 @@
+/**
+ * @file MakeSellableCommand.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef MAKESELLABLECOMMAND_H
 #define MAKESELLABLECOMMAND_H
 

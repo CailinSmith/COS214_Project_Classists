@@ -52,6 +52,19 @@ string Plant::summary() {
 	out += "Max Height: " + to_string(this->maxHeight) + " cm\n";
 	out += "Watering Strategy: " + this->wateringStrat->print() + "\n";
 	out += "Pruning Strategy: " + this->pruningStrat->print() + "\n";
+	out += "Sell Season: " + this->sellSeaon + "\n";
+	out += "Cost: " + to_string(this->cost) + "\n";
+	return out;
+}
+
+string Plant::customerSummary() {
+	string out = "";
+	out += "Plant Name: " + this->name + "\n";
+	out += "Category: " + this->category + "\n";
+	out += "Height: " + to_string(this->getActualHeight()) + " cm\n";
+	out += "Health: " + to_string(this->health) + "\n";
+	out += "State: " + this->currentState->print() + "\n";
+	out += "Cost: " + to_string(this->cost) + "\n";
 	return out;
 }
 

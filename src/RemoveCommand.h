@@ -1,3 +1,9 @@
+/**
+ * @file RemoveCommand.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef REMOVECOMMAND_H
 #define REMOVECOMMAND_H
 

@@ -1,3 +1,9 @@
+/**
+ * @file PlantCommand.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef PLANTCOMMAND_H
 #define PLANTCOMMAND_H
 

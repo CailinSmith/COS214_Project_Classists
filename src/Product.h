@@ -16,6 +16,9 @@ public:
     virtual string getName(){
         return "";
     };
+    virtual float getCost(){
+        return 0.0;
+    };
 
     //We might need to make them pv later on, just made them virtual 
     //so all the plant subclasses don't need to implement them
