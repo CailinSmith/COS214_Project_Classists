@@ -5,5 +5,6 @@ WaterCommand::WaterCommand(Plant* plant) : StaffCommand() {
 }
 
 void WaterCommand::execute() {
-	plant->water();
+	if (plant != nullptr)
+		plant->water();
 }

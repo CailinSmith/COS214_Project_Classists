@@ -6,5 +6,6 @@ RemoveCommand::RemoveCommand(Plant* plant, InventoryManager* im) : StaffCommand(
 }
 
 void RemoveCommand::execute() {
-	inventoryManager->removeFromNursery(plant);
+	if (inventoryManager != nullptr && plant != nullptr) 
+		inventoryManager->removeFromNursery(plant);
 }

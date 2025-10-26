@@ -6,5 +6,6 @@ PlantCommand::PlantCommand(Plant *p, InventoryManager* im) : StaffCommand() {
 
 void PlantCommand::execute()
 {
-    inventoryManager->addToNursery(plant);
+    if (inventoryManager != nullptr && plant != nullptr)
+        inventoryManager->addToNursery(plant);
 }

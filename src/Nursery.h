@@ -31,11 +31,12 @@ private:
 	PlantFactory* currentFactory;
 protected:
 	Nursery(InventoryManager* manager);
-	~Nursery();
 	Nursery(const Nursery&) = delete;
 	Nursery& operator=(const Nursery&) = delete;
 
 public:
+	~Nursery();
+
 	static Nursery* getInstance(InventoryManager* manager = nullptr);	
 
 	InventoryManager* getInventoryManager();

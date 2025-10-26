@@ -6,6 +6,8 @@ MakeSellableCommand::MakeSellableCommand(Plant* plant, InventoryManager* im) : S
 }
 
 void MakeSellableCommand::execute() {
-	inventoryManager->removeFromNursery(plant);
-	inventoryManager->addToSale(plant);
+	if (inventoryManager != nullptr && plant != nullptr) {
+		inventoryManager->removeFromNursery(plant);
+		inventoryManager->addToSale(plant);
+	}
 }

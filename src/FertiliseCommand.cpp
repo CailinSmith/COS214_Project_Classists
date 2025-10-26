@@ -5,5 +5,6 @@ FertiliseCommand::FertiliseCommand(Plant* plant) : StaffCommand() {
 }
 
 void FertiliseCommand::execute() {
-	plant->fertilise();
+	if (plant != nullptr)
+		plant->fertilise();
 }

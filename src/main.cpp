@@ -754,7 +754,6 @@ void CommandStaffTesting() {
     Basil basil;
     Tomato tomato;
 
-    //not a singleton 
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
 
@@ -1927,6 +1926,11 @@ int main() {
     NewStaffCommandsTesting();
     IteratorTesting();
     DynamicCastDecoratorTest();
+
+    Nursery* nursery = Nursery::getInstance();
+    if (nursery) {
+        delete nursery; 
+    }
 
     return 0;
 }
