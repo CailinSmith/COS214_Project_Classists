@@ -17,17 +17,17 @@ Iterator<Plant>* InventoryManager::createNurseryIterator(const std::string& seas
 	return new SeasonIterator(inNursery, season);
 }
 
-int catNumber(string category){
-    if (category == "Flower") return 0;
-    if (category == "Herb") return 1;
-    if (category == "Fruit") return 2;
-    if (category == "Vegetable") return 3;
-    if (category == "Succulent") return 4;
-    if (category == "Aquatic") return 5;
-    if (category == "Indoor") return 6;
-    if (category == "Medicinal") return 7;
-	return -1;
-}
+// int catNumber(string category){
+//     if (category == "Flower") return 0;
+//     if (category == "Herb") return 1;
+//     if (category == "Fruit") return 2;
+//     if (category == "Vegetable") return 3;
+//     if (category == "Succulent") return 4;
+//     if (category == "Aquatic") return 5;
+//     if (category == "Indoor") return 6;
+//     if (category == "Medicinal") return 7;
+// 	return -1;
+// }
 
 
 void InventoryManager::addToSale(Plant* plant) {
@@ -38,9 +38,8 @@ void InventoryManager::addToSale(Plant* plant) {
 
 	size_t i = 0;
 	while (i < forSale.size()) {
-		int plantCat = catNumber(plant->getCategory());
-		int currentCat = catNumber(forSale[i]->getCategory());
-		
+		int plantCat = priority[plant->getCategory()];
+		int currentCat = priority[forSale[i]->getCategory()];
 		if (plantCat < currentCat) break;
 		else if (plantCat == currentCat && plant->getName() < forSale[i]->getName()) break;
 		i++;
@@ -59,9 +58,9 @@ void InventoryManager::addToNursery(Plant* plant) {
 
 	size_t i = 0;
 	while (i < inNursery.size()) {
-		int plantCat = catNumber(plant->getCategory());
-		int currentCat = catNumber(inNursery[i]->getCategory());
-		
+		int plantCat = priority[plant->getCategory()];
+		int currentCat = priority[inNursery[i]->getCategory()];
+
 		if (plantCat < currentCat) break;
 		else if (plantCat == currentCat && plant->getName() < inNursery[i]->getName()) break;
 		i++;
