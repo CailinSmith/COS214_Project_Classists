@@ -1,3 +1,9 @@
+/**
+ * @file SellCommand.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef SELLCOMMAND_H
 #define SELLCOMMAND_H
 

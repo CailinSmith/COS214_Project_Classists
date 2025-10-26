@@ -1,3 +1,9 @@
+/**
+ * @file StaffCommand.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
 #ifndef STAFFCOMMAND_H
 #define STAFFCOMMAND_H
 
@@ -14,7 +20,8 @@ protected:
 public:
 	StaffCommand(Plant* p = nullptr, InventoryManager* im = nullptr, Nursery* n = nullptr)
         : plant(p), inventoryManager(im), nursery(n) {}
-	void execute();
+    virtual ~StaffCommand() {}
+	virtual void execute();
 
 };
 

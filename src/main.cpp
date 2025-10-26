@@ -65,6 +65,11 @@
 #include "WaterCommand.h"
 #include "PruneCommand.h"
 #include "FertiliseCommand.h"
+#include "CalcCostCommand.h"
+#include "GetInfoCommand.h"
+#include "StaffCheckoutCommand.h"
+#include "Receipt.h"
+#include "StaffCheckStockCommand.h"
 
 #include "InventoryManager.h"
 #include "Nursery.h"
@@ -1554,9 +1559,137 @@ void ObserverTesing(){
     delete inventory;
 }
 
+void NewStaffCommandsTesting() {
+    printSeparator("NEW STAFF COMMANDS TESTING");
+    
+    cout << "Testing new staff command functionality..." << endl << endl;
+
+    
+    InventoryManager* inventory = new InventoryManager();
+    Nursery* nursery = new Nursery(inventory);
+    
+    Rose* rose = new Rose();
+    Basil* basil = new Basil();
+    Tomato* tomato = new Tomato();
+    
+    inventory->addToSale(rose);
+    inventory->addToSale(basil);
+    inventory->addToSale(tomato);
+    
+    cout << "=== Test 1: GetInfoCommand ===" << endl;
+    cout << "Getting information about a Rose..." << endl;
+    GetInfoCommand* getInfoCmd = new GetInfoCommand(rose);
+    getInfoCmd->execute();
+    cout << getInfoCmd->getInfo() << endl;
+    delete getInfoCmd;
+    
+    cout << "\n=== Test 2: StaffCheckStockCommand ===" << endl;
+    cout << "Checking stock for Rose plants..." << endl;
+    StaffCheckStockCommand* checkStockCmd = new StaffCheckStockCommand(rose, inventory);
+    checkStockCmd->execute();
+    cout << "Stock count: " << checkStockCmd->getStock() << endl;
+    delete checkStockCmd;
+    
+    cout << "\n=== Test 3: CalcCostCommand ===" << endl;
+    cout << "Calculating cost for Basil with current season..." << endl;
+    CalcCostCommand* calcCostCmd = new CalcCostCommand(basil, nursery);
+    calcCostCmd->execute();
+    cout << "Calculated cost: $" << calcCostCmd->getCost() << endl;
+    delete calcCostCmd;
+    
+    cout << "\n=== Test 4: StaffCheckoutCommand ===" << endl;
+    cout << "Creating checkout with multiple plants..." << endl;
+    
+    vector<Product*> checkoutItems;
+    checkoutItems.push_back(rose);
+    checkoutItems.push_back(basil);
+    checkoutItems.push_back(tomato);
+    
+    StaffCheckoutCommand* checkoutCmd = new StaffCheckoutCommand(checkoutItems);
+    cout << "Processing checkout..." << endl;
+    checkoutCmd->execute();
+    
+    cout << "\nGenerating detailed receipt..." << endl;
+    Receipt* receipt = checkoutCmd->getReceipt();
+    if (receipt) {
+        cout << "\n" << receipt->toString() << endl;
+        cout << "Receipt total: $" << receipt->getCost() << endl;
+        cout << "Receipt date: " << receipt->getDate() << endl;
+        delete receipt;
+    }
+    delete checkoutCmd;
+    
+    cout << "\n=== Test 5: Command Pattern Demonstration ===" << endl;
+    cout << "Demonstrating polymorphic command execution..." << endl;
+    
+    vector<StaffCommand*> commands;
+    commands.push_back(new GetInfoCommand(rose));
+    commands.push_back(new StaffCheckStockCommand(basil, inventory));
+    commands.push_back(new CalcCostCommand(tomato, nursery));
+    
+    cout << "\nExecuting commands polymorphically:" << endl;
+    for (size_t i = 0; i < commands.size(); ++i) {
+        cout << "\nCommand " << (i + 1) << ":" << endl;
+        commands[i]->execute();
+    }
+    
+    for (StaffCommand* cmd : commands) {
+        delete cmd;
+    }
+    
+    cout << "\n=== Test 6: Multiple Stock Checks ===" << endl;
+    cout << "Testing stock checking for different plant types..." << endl;
+    
+    StaffCheckStockCommand* roseStock = new StaffCheckStockCommand(rose, inventory);
+    StaffCheckStockCommand* basilStock = new StaffCheckStockCommand(basil, inventory);
+    StaffCheckStockCommand* tomatoStock = new StaffCheckStockCommand(tomato, inventory);
+    
+    roseStock->execute();
+    basilStock->execute();
+    tomatoStock->execute();
+    
+    delete roseStock;
+    delete basilStock;
+    delete tomatoStock;
+    
+    cout << "\n=== Test 7: Cost Calculation with Different Plants ===" << endl;
+    cout << "Testing cost calculation for various plant types..." << endl;
+    
+    CalcCostCommand* roseCost = new CalcCostCommand(rose, nursery);
+    CalcCostCommand* basilCost = new CalcCostCommand(basil, nursery);
+    CalcCostCommand* tomatoCost = new CalcCostCommand(tomato, nursery);
+    
+    roseCost->execute();
+    basilCost->execute();
+    tomatoCost->execute();
+    
+    delete roseCost;
+    delete basilCost;
+    delete tomatoCost;
+    
+    cout << "\n=== Test 8: Empty Checkout Test ===" << endl;
+    cout << "Testing checkout with empty cart..." << endl;
+    
+    vector<Product*> emptyCart;
+    StaffCheckoutCommand* emptyCheckout = new StaffCheckoutCommand(emptyCart);
+    emptyCheckout->execute();
+    delete emptyCheckout;
+    
+    inventory->removeFromSale(rose);
+    inventory->removeFromSale(basil);
+    inventory->removeFromSale(tomato);
+    
+    delete rose;
+    delete basil;
+    delete tomato;
+    
+    delete nursery;
+    delete inventory;
+    
+    cout << "\nNew Commands Testing Complete" << endl;
+}
 void IteratorTesting(){
     cout << "\n======================== Iterator Pattern Testing ========================\n" << endl;
-    
     InventoryManager* inventory = new InventoryManager();
     Nursery* nursery = new Nursery(inventory);
     
@@ -1755,6 +1888,7 @@ void IteratorTesting(){
     delete nursery;
     delete inventory;
     std::cout << "Iterator Testing completed succesfully." << std::endl;
+
 }
 
 int main() {
@@ -1768,6 +1902,7 @@ int main() {
     DecoratorTesting();
     ChainOfResponsibilityTesting();
     ObserverTesing();
+    NewStaffCommandsTesting();
     IteratorTesting();
 
     return 0;

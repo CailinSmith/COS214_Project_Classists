@@ -49,6 +49,8 @@ public:
 
 	string summary();
 
+	string customerSummary();
+
 	float getWaterLevel();
 
 	void setWaterLevel(float level);

@@ -1,4 +1,6 @@
 #include "Plant.h"
+#include <iomanip>
+#include <sstream>
 
 Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) {
 	this->category = category;
@@ -40,18 +42,56 @@ void Plant::fertilise() {
 }
 
 string Plant::summary() {
+	stringstream ss;
 	string out = "";
 	out += "Plant Name: " + this->name + "\n";
 	out += "Category: " + this->category + "\n";
-	out += "Height: " + to_string(this->getActualHeight()) + " cm\n";
-	out += "Health: " + to_string(this->health) + "\n";
-	out += "Water Level: " + to_string(this->waterLevel) + "\n";
+	
+	ss << fixed << setprecision(2) << this->getActualHeight();
+	out += "Height: " + ss.str() + " cm\n";
+	ss.str(""); ss.clear();
+	
+	ss << fixed << setprecision(2) << this->health;
+	out += "Health: " + ss.str() + "\n";
+	ss.str(""); ss.clear();
+	
+	ss << fixed << setprecision(2) << this->waterLevel;
+	out += "Water Level: " + ss.str() + "\n";
+	ss.str(""); ss.clear();
+	
 	out += "Pruned: " + string(this->pruned ? "Yes" : "No") + "\n";
 	out += "State: " + this->currentState->print() + "\n";
 	out += "Total Water Given: " + to_string(this->totalWater) + " ml\n";
 	out += "Max Height: " + to_string(this->maxHeight) + " cm\n";
 	out += "Watering Strategy: " + this->wateringStrat->print() + "\n";
 	out += "Pruning Strategy: " + this->pruningStrat->print() + "\n";
+	out += "Sell Season: " + this->sellSeaon + "\n";
+	
+	ss << fixed << setprecision(2) << this->cost;
+	out += "Cost: " + ss.str() + "\n";
+	
+	return out;
+}
+
+string Plant::customerSummary() {
+	stringstream ss;
+	string out = "";
+	out += "Plant Name: " + this->name + "\n";
+	out += "Category: " + this->category + "\n";
+	
+	ss << fixed << setprecision(2) << this->getActualHeight();
+	out += "Height: " + ss.str() + " cm\n";
+	ss.str(""); ss.clear();
+	
+	ss << fixed << setprecision(2) << this->health;
+	out += "Health: " + ss.str() + "\n";
+	ss.str(""); ss.clear();
+	
+	out += "State: " + this->currentState->print() + "\n";
+	
+	ss << fixed << setprecision(2) << this->cost;
+	out += "Cost: " + ss.str() + "\n";
+	
 	return out;
 }
 
