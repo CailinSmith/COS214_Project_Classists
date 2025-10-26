@@ -12,16 +12,33 @@ class Spring;
 class SpringFactory;
 
 class Nursery {
+	/*how to use:
+	first initialize:
+	InventoryManager* inventoryManager = new InventoryManager();
+	Nursery* nursery = Nursery::getInstance(inventoryManager);
+
+	to access inventorymanager:
+	InventoryManager* im = nursery->getInventoryManager();
+
+	to access the singleton:
+	Nursery* n = Nursery::getInstance();
+	*/
 
 private:
+	static Nursery* instance;
 	InventoryManager* inventoryManager;
 	SeasonState* currentSeason;
 	PlantFactory* currentFactory;
+protected:
+	Nursery(InventoryManager* manager);
+	~Nursery();
+	Nursery(const Nursery&) = delete;
+	Nursery& operator=(const Nursery&) = delete;
 
 public:
-	Nursery(InventoryManager* manager);
+	static Nursery* getInstance(InventoryManager* manager = nullptr);	
 
-	~Nursery();
+	InventoryManager* getInventoryManager();
 	
 	void setSeason(SeasonState* season);
 
