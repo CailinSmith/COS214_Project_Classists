@@ -14,7 +14,7 @@
 class RubberTree : public Indoor {
 
 public:
-	RubberTree() : Indoor(300, new MediumMoisture(), new Thinning(), "Rubber Tree") {}
+	RubberTree() : Indoor(300, new MediumMoisture(), new Thinning(), "Rubber Tree", "Spring") {}
 };
 
 #endif

@@ -13,7 +13,7 @@
 
 class Pumpkin : public Vegetable {
 public:
-	Pumpkin() : Vegetable(60, new HighMoisture(), new Thinning(), "Pumpkin") {}
+	Pumpkin() : Vegetable(60, new HighMoisture(), new Thinning(), "Pumpkin", "Autumn") {}
 };
 
 #endif

@@ -12,8 +12,8 @@
 class Fruit : public Plant {
 
 public:
-	Fruit(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) : 
-	Plant("Fruit", maxHeight, wateringStrat, pruningStrat, name) {}
+	Fruit(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name, string sellSeason) : 
+	Plant("Fruit", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	virtual ~Fruit() {}
 	virtual float baseCost() override;

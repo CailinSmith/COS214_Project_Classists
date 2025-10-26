@@ -13,7 +13,7 @@
 
 class Cucumber : public Vegetable {
 public:
-	Cucumber() : Vegetable(300, new HighMoisture(), new Thinning(), "Cucumber") {}
+	Cucumber() : Vegetable(300, new HighMoisture(), new Thinning(), "Cucumber", "Summer") {}
 };
 
 #endif

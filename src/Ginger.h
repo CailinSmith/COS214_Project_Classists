@@ -14,7 +14,7 @@
 class Ginger : public Medicinal {
 
 public:
-	Ginger() : Medicinal(120, new MediumMoisture(), new Thinning(), "Ginger") {}
+	Ginger() : Medicinal(120, new MediumMoisture(), new Thinning(), "Ginger", "Summer") {}
 };
 
 #endif

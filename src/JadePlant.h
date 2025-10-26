@@ -13,7 +13,7 @@
 
 class JadePlant : public Succulent {
 public:
-	JadePlant() : Succulent(120, new DryPlant(), new Thinning(), "JadePlant") {}
+	JadePlant() : Succulent(120, new DryPlant(), new Thinning(), "JadePlant", "Spring") {}
 };
 
 #endif

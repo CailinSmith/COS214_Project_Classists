@@ -13,7 +13,7 @@
 
 class Basil : public Herb {
 public:
-	Basil() : Herb(60, new HighMoisture(), new Thinning(), "Basil") {}
+	Basil() : Herb(60, new HighMoisture(), new Thinning(), "Basil", "Summer") {}
 };
 
 #endif

@@ -14,7 +14,7 @@
 class BarrelCactus : public Succulent {
 
 public:
-	BarrelCactus() : Succulent(120, new DryPlant(), new NoPrune(), "Barrel Cactus") {}
+	BarrelCactus() : Succulent(120, new DryPlant(), new NoPrune(), "Barrel Cactus", "Spring") {}
 };
 
 #endif

@@ -12,8 +12,8 @@
 class Indoor : public Plant {
 
 public:
-	Indoor(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) : 
-	Plant("Indoor", maxHeight, wateringStrat, pruningStrat, name) {}
+	Indoor(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name, string sellSeason) : 
+	Plant("Indoor", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	virtual float baseCost() override;
 };

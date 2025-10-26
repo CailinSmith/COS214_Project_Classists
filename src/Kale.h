@@ -14,7 +14,7 @@
 class Kale : public Vegetable {
 
 public:
-	Kale() : Vegetable(60, new HighMoisture(), new NoPrune(), "Kale") {}
+	Kale() : Vegetable(60, new HighMoisture(), new NoPrune(), "Kale", "Autumn") {}
 };
 
 #endif

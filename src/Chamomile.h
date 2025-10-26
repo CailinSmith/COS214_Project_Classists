@@ -14,7 +14,7 @@
 class Chamomile : public Medicinal {
 
 public:
-	Chamomile() : Medicinal(60, new MediumMoisture(), new Thinning(), "Chamomile") {}
+	Chamomile() : Medicinal(60, new MediumMoisture(), new Thinning(), "Chamomile", "Summer") {}
 };
 
 #endif

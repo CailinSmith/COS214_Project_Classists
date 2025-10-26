@@ -13,7 +13,7 @@
 
 class AppleTree : public Fruit {
 public:
-	AppleTree() : Fruit(600, new MediumMoisture(), new Thinning(), "Apple Tree") {}
+	AppleTree() : Fruit(600, new MediumMoisture(), new Thinning(), "Apple Tree", "Spring") {}
 };
 
 #endif

@@ -13,7 +13,7 @@
 
 class Rose : public Flower {
 public:
-	Rose() : Flower(180, new MediumMoisture(), new DeadPruning(), "Rose") {}
+	Rose() : Flower(180, new MediumMoisture(), new DeadPruning(), "Rose", "Spring") {}
 };
 
 #endif
