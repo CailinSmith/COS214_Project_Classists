@@ -1690,7 +1690,9 @@ void NewStaffCommandsTesting() {
 }
 void IteratorTesting(){
     cout << "\n======================== Iterator Pattern Testing ========================\n" << endl;
-
+    InventoryManager* inventory = new InventoryManager();
+    Nursery* nursery = new Nursery(inventory);
+    
     Spring* spring = new Spring();
     Summer* summer = new Summer();
     Autumn* autumn = new Autumn();
