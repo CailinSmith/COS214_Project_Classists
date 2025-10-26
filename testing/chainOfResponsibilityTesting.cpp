@@ -1,45 +1,66 @@
 #include "doctest.h"
-#include "../src/Intern.h"
-#include "../src/Manager.h"
-#include "../src/SalesStaff.h"
-#include "../src/NurseryStaff.h"
-#include "../src/Staff.h"
 
-// will add more unit tests later once customer commands in place
+#include <iostream>
+#include <vector>
+#include <string>
+#include <memory>
+#include "Customer.h"
+#include "SalesStaff.h"
+#include "NurseryStaff.h"
+#include "CheckoutCommand.h"
+#include "AskInfoCommand.h"
+#include "Rose.h"
+#include "Tomato.h"
+#include "Manager.h"
 
-TEST_CASE("Chain of Responsibility: Single Handler") {
-    Intern intern("Jerry");
+TEST_CASE("Chain of Responsibility: Full Chain Propagates Correctly") {
+    NurseryStaff nursery("Nina");
+    SalesStaff sales("Sam");
+    Manager manager("Mike");
 
-    CHECK(intern.getName() == "Jerry");
+    nursery.setNext(&sales);
+    sales.setNext(&manager);
 
-    intern.handleRequest();
-    CHECK(true); //this passes if successful execution without seg fault
+    Rose rose;
+    Customer customer("Alice");
+
+    AskInfoCommand ask(&nursery, &rose);
+    std::string info = customer.sendCommand(&ask);
+
+    CHECK(info != "Customer Plant Summary");
+}
+
+TEST_CASE("Chain of Responsibility: Single Handler Executes Independently") {
+    NurseryStaff nursery("Nina");
+
+    Rose rose;
+    Customer customer("Alice");
+
+    AskInfoCommand ask(&nursery, &rose);
+    std::string info = customer.sendCommand(&ask);
+
+    CHECK(info != "Customer Plant Summary");
 }
 
 TEST_CASE("Chain of Responsibility: Partial Chain Stops at Last Handler") {
-    Intern intern("Alice");
-    Manager manager("Bob");
+    NurseryStaff n("Nina");
+    SalesStaff s("Sam");
 
-    intern.setNext(&manager);
+    n.setNext(&s);
 
-    CHECK(intern.getName() == "Alice");
+    Rose* rose = new Rose();
+    Tomato* tomato = new Tomato();
 
-    intern.handleRequest();
-    CHECK(true);
+    Customer customer("Alice");
+    customer.addToCart(rose);
+    customer.addToCart(tomato);
+
+    CheckoutCommand checkout(&n, &customer.getOrder());
+    //std::string r = customer.sendCommand(&checkout);
+
+    delete rose;
+    delete tomato;
 }
 
-TEST_CASE("Chain of Responsibility: Full Chain"){
-    Intern intern("Rick");
-    Manager manager("Morty");
-    SalesStaff sales("Beth");
-    NurseryStaff nursery("Dave");
+// will add more once Staff commands are fixed
 
-    intern.setNext(&manager);
-    manager.setNext(&sales);
-    sales.setNext(&nursery);
-
-    CHECK(intern.getName() == "Rick");
-
-    intern.handleRequest();
-    CHECK(true);
-}

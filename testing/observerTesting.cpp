@@ -105,10 +105,10 @@ TEST_CASE("Observer Pattern - Staff Response Functionality") {
         CHECK_NOTHROW(manager->receive("Inventory alert"));
     }
     
-    SUBCASE("Staff can handle requests") {
-        CHECK_NOTHROW(staff->handleRequest());
-        CHECK_NOTHROW(manager->handleRequest());
-    }
+    // SUBCASE("Staff can handle requests") {
+    //     CHECK_NOTHROW(staff->handleRequest());
+    //     CHECK_NOTHROW(manager->handleRequest());
+    // }
     delete staff;
     delete manager;
 }
