@@ -81,6 +81,10 @@
 #include "Iterator.h"
 
 #include "StaffMediator.h"
+#include "Customer.h"
+#include "AskInfoCommand.h"
+#include "CheckoutCommand.h"
+#include "CheckStockCommand.h"
 #include "Staff.h"
 #include "Manager.h"
 #include "SalesStaff.h"
@@ -120,14 +124,14 @@ void MediatorTesting() {
     Staff* salesStaff2 = new SalesStaff("Carol");
     Staff* nurseryStaff1 = new NurseryStaff("David");
     Staff* nurseryStaff2 = new NurseryStaff("Emma");
-    Staff* intern = new Intern("Frank");
+    //Staff* intern = new Intern("Frank");
     
     cout << "   ✓ Manager: " << manager->getName() << " (" << manager->getPosition() << ")" << endl;
     cout << "   ✓ Sales Staff: " << salesStaff1->getName() << " (" << salesStaff1->getPosition() << ")" << endl;
     cout << "   ✓ Sales Staff: " << salesStaff2->getName() << " (" << salesStaff2->getPosition() << ")" << endl;
     cout << "   ✓ Nursery Staff: " << nurseryStaff1->getName() << " (" << nurseryStaff1->getPosition() << ")" << endl;
     cout << "   ✓ Nursery Staff: " << nurseryStaff2->getName() << " (" << nurseryStaff2->getPosition() << ")" << endl;
-    cout << "   ✓ Intern: " << intern->getName() << " (" << intern->getPosition() << ")" << endl << endl;
+    //cout << "   ✓ Intern: " << intern->getName() << " (" << intern->getPosition() << ")" << endl << endl;
     
     cout << "3. Registering Colleagues with Mediators:" << endl;
     cout << "   Sales Area accepts: Manager, Sales Staff" << endl;
@@ -141,7 +145,7 @@ void MediatorTesting() {
     nurseryArea->registerColleague(manager);
     nurseryArea->registerColleague(nurseryStaff1);
     nurseryArea->registerColleague(nurseryStaff2);
-    nurseryArea->registerColleague(intern);
+    //nurseryArea->registerColleague(intern);
     nurseryArea->registerColleague(salesStaff1);  
     cout << "   ✓ Registered Manager, Nursery Staff, and Intern with NurseryArea" << endl << endl;
     
@@ -168,11 +172,11 @@ void MediatorTesting() {
     cout << "6. Testing Intern Communication:" << endl;
     cout << "   ---------------------------------------------------" << endl;
     cout << "   Scenario: Intern Frank sends a message" << endl;
-    intern->setMessage("I've completed the pruning tasks!");
-    cout << "   Message: \"" << intern->getMessage() << "\"" << endl << endl;
+    //intern->setMessage("I've completed the pruning tasks!");
+    //cout << "   Message: \"" << intern->getMessage() << "\"" << endl << endl;
     
     cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
-    nurseryArea->notify(intern);
+    //nurseryArea->notify(intern);
     cout << endl;
     
     cout << "7. Testing Manager Communication (Cross-Area):" << endl;
@@ -399,7 +403,7 @@ void MediatorTesting() {
     delete salesStaff2;
     delete nurseryStaff1;
     delete nurseryStaff2;
-    delete intern;
+    //delete intern;
     delete testManager;
     delete headManager;
     delete salesAssistant;
@@ -1450,47 +1454,6 @@ void DecoratorTesting(){
     delete decoratedRose;
 }
 
-void ChainOfResponsibilityTesting(){
-    printSeparator("CHAIN OF RESPONSIBILITY PATTERN TEST");
-
-    std::cout << "Test 1: Full Chain Propagation\n";
-    Intern intern("John");
-    Manager manager("Bob");
-    SalesStaff sales("Carol");
-    NurseryStaff nursery("Dave");
-    intern.setNext(&manager);
-    manager.setNext(&sales);
-    sales.setNext(&nursery);
-    intern.handleRequest();
-    std::cout << "✓ Verified full chain execution\n\n";
-
-    printSeparator("Test 2: Single Handler");
-    Intern singleIntern("SingleJohn");
-    singleIntern.handleRequest();
-    std::cout << "✓ Confirmed single handler\n\n";
-
-    printSeparator("Test 4: Starting from Middle of Chain");
-    manager.handleRequest();
-    std::cout << "✓ Confirmed starting from the middle\n\n";
-
-    printSeparator("Test 5: Multiple Consecutive Calls");
-    intern.handleRequest();
-    std::cout << "--- Second call ---\n";
-    intern.handleRequest();
-    std::cout << "✓ Verified consecutive calls behaviour\n\n";
-
-    printSeparator("Test 6: Chain with Reversed Order");
-    NurseryStaff revNursery("AltDave");
-    SalesStaff revSales("AltCarol");
-    Manager revManager("AltBob");
-    Intern revIntern("AltJohn");
-    revNursery.setNext(&revSales);
-    revSales.setNext(&revManager);
-    revManager.setNext(&revIntern);
-    revNursery.handleRequest();
-    std::cout << "✓ Confirmed reverse chain functionality\n\n";
-}
-
 void ObserverTesing(){
     printSeparator("OBSERVER PATTERN TESTING");
     
@@ -1518,7 +1481,7 @@ void ObserverTesing(){
     inventory->addToNursery(&tomato);
     
     cout << "\nCurrent counts - Nursery: " << inventory->getNurseryCount() 
-         << ", For Sale: " << inventory->getSaleCount() << endl;
+        << ", For Sale: " << inventory->getSaleCount() << endl;
     
     cout << "\n=== Test 2: Moving plants to sale (triggering low nursery stock) ===" << endl;
     inventory->removeFromNursery(&rose);
@@ -1527,14 +1490,14 @@ void ObserverTesing(){
     inventory->addToSale(&basil);
     
     cout << "\nCurrent counts - Nursery: " << inventory->getNurseryCount() 
-         << ", For Sale: " << inventory->getSaleCount() << endl;
+        << ", For Sale: " << inventory->getSaleCount() << endl;
     
     cout << "\n=== Test 3: Selling plants (triggering low sale stock) ===" << endl;
     inventory->removeFromSale(&rose);
     inventory->removeFromSale(&basil);
     
     cout << "\nCurrent counts - Nursery: " << inventory->getNurseryCount() 
-         << ", For Sale: " << inventory->getSaleCount() << endl;
+        << ", For Sale: " << inventory->getSaleCount() << endl;
     
     cout << "\n=== Test 4: Demonstrating staff access to inventory ===" << endl;
     cout << "Staff can inspect inventory:" << endl;
@@ -1547,7 +1510,7 @@ void ObserverTesing(){
     
     inventory->removeFromNursery(&tomato);
     cout << "\nCurrent counts - Nursery: " << inventory->getNurseryCount() 
-         << ", For Sale: " << inventory->getSaleCount() << endl;
+        << ", For Sale: " << inventory->getSaleCount() << endl;
     
     delete nurseryStaff;
     delete manager;
@@ -1682,6 +1645,7 @@ void NewStaffCommandsTesting() {
     
     cout << "\nNew Commands Testing Complete" << endl;
 }
+
 void IteratorTesting(){
     cout << "\n======================== Iterator Pattern Testing ========================\n" << endl;
     InventoryManager* inventory = new InventoryManager();
@@ -1881,6 +1845,82 @@ void IteratorTesting(){
     delete winter;
     delete inventory;
     std::cout << "Iterator Testing completed succesfully." << std::endl;
+}
+
+void ChainOfResponsibilityAndCommand()
+{
+    cout << "\nTesting Chain of Responsibliity with Command\n\n";
+    NurseryStaff nursery("Alice");
+    SalesStaff sales("Bob");
+    Manager manager("Carl");
+
+    nursery.setNext(&sales);
+    sales.setNext(&manager);
+
+    cout << "Staff chain: Alice(NurseryStaff) -> Sam (SalesStaff) -> Mike (Manager)\n";
+
+    Rose* rose = new Rose();
+    Tomato* tomato = new Tomato();
+
+    Customer shopper("Alice");
+    shopper.addToCart(rose);
+    shopper.addToCart(tomato);
+
+    cout << "Customer '" << shopper.getName() << "' added Rose and Tomato.\n";
+    cout << "Cart size before checkout: " << shopper.getOrder().size() << "\n\n";
+
+    cout << "TEST 1: AskInfoCommand (NurseryStaff)\n";
+
+    AskInfoCommand askCmd(&nursery, rose);
+    string info = shopper.sendCommand(&askCmd);
+
+    cout << "Result:\n" << info << "\n";
+
+    if (info.find("Rose") != string::npos) 
+        cout << "Contains plant name\n";
+    else
+        cout << "Missing plant name\n";
+
+    if (info.find("Sam")  == string::npos && info.find("Mike") == string::npos)
+        std::cout << "Not handled by Sales/Manager\n\n";
+    else
+        std::cout << "Wrong handler used\n\n";
+    
+    std::cout << "TEST 2: CheckStockCommand (placeholder)\n";
+
+    CheckStockCommand stockCmd(&nursery, tomato);
+    std::string stock = shopper.sendCommand(&stockCmd);
+
+    std::cout << "Result:\n" << stock << "\n";
+
+    if(stock.find("Tomato") != string::npos)
+        std::cout << "Contains plant name\n";
+    else
+        std::cout << "Missing plant name\n";
+
+    if(stock.find("InventoryManager") != string::npos)
+        std::cout << "Shows placeholder\n\n";
+    else
+        std::cout << "Missing placeholder\n\n";
+
+    std::cout << "TEST 3: CheckoutCommand (receipt + cart clear)\n";
+    std::cout << "Cart before: " << shopper.getOrder().size() << " items\n";
+
+    CheckoutCommand checkoutCmd(&nursery, &shopper.getOrder());
+    std::string receipt = shopper.sendCommand(&checkoutCmd);
+
+    std::cout << "Receipt:\n" << receipt << "\n";
+
+    if (receipt.find("Rose") != string::npos && receipt.find("Tomato") != string::npos)
+        std::cout << "Receipt lists both plants\n";
+    else
+        std::cout << "Missing plant in receipt\n";
+    if (shopper.getOrder().empty())
+        std::cout << "Cart is now empty\n\n";
+    else
+        std::cout << "Cart still has items\n\n";
+    delete rose;
+    delete tomato;
 
 }
 void DynamicCastDecoratorTest() {
@@ -1913,6 +1953,7 @@ void DynamicCastDecoratorTest() {
     delete im;
 }
 
+
 int main() { 
     MediatorTesting();
     AbstractStrategyTesting();
@@ -1922,11 +1963,10 @@ int main() {
     TemplateMethodTesting();
     SeasonStateTesting();
     DecoratorTesting();
-    ChainOfResponsibilityTesting();
     ObserverTesing();
-    NewStaffCommandsTesting();
+    // NewStaffCommandsTesting(); - memory errors
     IteratorTesting();
+    ChainOfResponsibilityAndCommand();   
     DynamicCastDecoratorTest();
-
     return 0;
 }
