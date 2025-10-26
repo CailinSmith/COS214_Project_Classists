@@ -5,7 +5,14 @@ Staff::Staff(string name) : name(name), next(NULL) {}
 
 Staff::~Staff(){}
 
-void Staff::send() {
+string Staff::handleRequest(Customer* customer, const std::string& requestType, Plant* plant, std::vector<Product*>* order){
+    if(next)
+        next->handleRequest(customer, requestType, plant, order);
+    else
+        std::cout << "No staff member can handle this request: " << requestType << "\n";
+}
+
+void Staff::send(){
     for (auto mediator : mediators) 
         mediator->notify(this);
 }

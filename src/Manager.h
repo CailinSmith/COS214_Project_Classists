@@ -12,7 +12,7 @@ class Manager : public Staff {
 public:
     Manager(string name);
     virtual void send() override;
-	virtual void handleRequest() override;
+	virtual string handleRequest(Customer* customer, const std::string& requestType, Plant* plant, std::vector<Product*>* order) override;
 	virtual string getPosition() override;
     void setReceiver(StaffMediator* mediator);
     virtual void update(const string& message);

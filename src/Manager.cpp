@@ -1,4 +1,5 @@
 #include "Manager.h"
+#include "Customer.h"
 
 Manager::Manager(string name) : Staff(name), receiver(nullptr) {}
 
@@ -10,13 +11,15 @@ void Manager::send() {
             mediator->notify(this);
 }
 
-void Manager::handleRequest() {
+string Manager::handleRequest(Customer* customer, const std::string& requestType, Plant* plant, std::vector<Product*>* order) {
 	// TODO - implement Manager::handleRequest
     cout << getName() << " (" << getPosition() << ") received a notification from inventory" << endl;
     send();
-    std::cout << "Manager: " << name << " handled request.\n";
-    if(next)
-      next->handleRequest();
+    if(next){
+        cout << "Manager passed on request:\n";
+        return next->handleRequest(customer, requestType, plant, order);
+    }
+    return "Manager cannot handle'" + requestType + "'\n";
 }
 
 string Manager::getPosition() {

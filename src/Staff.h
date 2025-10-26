@@ -5,8 +5,10 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include "Plant.h"
 
 class StaffMediator;
+class Customer;
 
 using namespace std;
 
@@ -16,7 +18,7 @@ public:
     virtual ~Staff();
 	virtual void send();
 	void receive(string message);
-	virtual void handleRequest() = 0;
+	virtual string handleRequest(Customer* customer, const std::string& requestType, Plant* plant, std::vector<Product*>* order);
 	virtual string getPosition() = 0;
     string getMessage();
     void setMessage(string message);

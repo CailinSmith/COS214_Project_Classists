@@ -17,7 +17,10 @@ public:
         return "";
     };
     virtual string getName(){
-        return "";
+        return "DefaultName";
+    };
+    virtual string getInfo(){
+        return "DefaultInfo";
     };
     virtual float getCost(){
         return 0.0;
