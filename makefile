@@ -1,6 +1,7 @@
 # =========================
 # Project Configuration
 # =========================
+MAKEFLAGS += -j #add numeber to the j to limit the number of cores e.g. -j4
 CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude -Isrc
 BUILD_DIR := build
