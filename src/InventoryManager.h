@@ -5,6 +5,7 @@
 #include "Subject.h"
 #include "Plant.h"
 #include "Staff.h"
+#include "SeasonIterator.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -30,6 +31,10 @@ public:
 		inNursery.clear();
 		observerList.clear();
 	}
+
+	virtual Iterator<Plant>* createIterator(const std::string& season) override;
+	Iterator<Plant>* createSaleIterator(const std::string& season);
+	Iterator<Plant>* createNurseryIterator(const std::string& season);
 
 	void addToSale(Plant* plant);
 	void addToNursery(Plant* plant);

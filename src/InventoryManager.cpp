@@ -2,6 +2,21 @@
 #include "NurseryStaff.h"
 #include "Manager.h"
 
+Iterator<Plant>* InventoryManager::createIterator(const std::string& season) {
+	std::vector<Plant*> allPlants;
+	allPlants.insert(allPlants.end(), forSale.begin(), forSale.end());
+	allPlants.insert(allPlants.end(), inNursery.begin(), inNursery.end());
+	return new SeasonIterator(allPlants, season);
+}
+
+Iterator<Plant>* InventoryManager::createSaleIterator(const std::string& season) {
+	return new SeasonIterator(forSale, season);
+}
+
+Iterator<Plant>* InventoryManager::createNurseryIterator(const std::string& season) {
+	return new SeasonIterator(inNursery, season);
+}
+
 
 void InventoryManager::addToSale(Plant* plant) {
 	if(!plant)
@@ -70,21 +85,20 @@ void InventoryManager::notifyStaff(string message) {
 	{
         if(observerList[i] != nullptr)
 		{
-            // Try to cast to NurseryStaff first
             NurseryStaff* nurseryStaff = dynamic_cast<NurseryStaff*>(observerList[i]);
-            if(nurseryStaff) {
+            if(nurseryStaff)
+			{
                 nurseryStaff->update(message);
                 continue;
             }
             
-            // Try to cast to Manager
             Manager* manager = dynamic_cast<Manager*>(observerList[i]);
-            if(manager) {
+            if(manager)
+			{
                 manager->update(message);
                 continue;
             }
             
-            // Fallback to receive method if casting fails
             observerList[i]->receive(message);
         }
     }
