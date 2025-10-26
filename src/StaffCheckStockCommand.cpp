@@ -1,8 +1,9 @@
 #include "StaffCheckStockCommand.h"
 #include <iostream>
 
-StaffCheckStockCommand::StaffCheckStockCommand(Plant* p, InventoryManager* im) 
-    : StaffCommand(p, im, nullptr) {
+StaffCheckStockCommand::StaffCheckStockCommand(Plant* p, InventoryManager* im) : StaffCommand() {
+    plant = p;
+    inventoryManager = im;
 }
 
 StaffCheckStockCommand::~StaffCheckStockCommand() {}

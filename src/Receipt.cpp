@@ -17,12 +17,22 @@ Receipt::Receipt(const std::vector<Product*>& plants) : cost(0.0f) {
     receipt << "===============================\n";
     receipt << "Date: " << date << "\n";
     receipt << "-------------------------------\n";
+
+    Nursery* nursery = Nursery::getInstance();
+    InventoryManager* im = nursery->getInventoryManager();
+    std::string season = nursery->getSeason();
     
     for (Product* plant : plants) {
         if (plant != nullptr) {
+            plant->calculateCost(season); //recalculate if necessary
             cost += plant->getCost();
             receipt << plant->getName() << std::string(20 - plant->getName().length(), ' ') 
                    << "$" << std::fixed << std::setprecision(2) << plant->getCost() << "\n";
+            
+            Plant* plantPtr = plant->getBasePlant();
+            if (plantPtr != nullptr) {
+                im->removeFromSale(plantPtr);
+            }
         }
     }
     

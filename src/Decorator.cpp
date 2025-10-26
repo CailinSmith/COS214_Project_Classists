@@ -27,3 +27,16 @@ Product* Decorator::removeDecorator() {
     this->plant = nullptr;  // Prevent deletion in destructor
     return innerProduct;
 }
+
+Plant *Decorator::getBasePlant() {
+    if (plant == nullptr) {
+        return nullptr;
+    }
+    
+    Plant* directCast = dynamic_cast<Plant*>(plant);
+    if (directCast != nullptr) {
+        return directCast;  
+    }
+    
+    return plant->getBasePlant();
+}

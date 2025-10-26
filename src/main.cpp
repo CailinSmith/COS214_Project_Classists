@@ -59,7 +59,6 @@
 #include "StockCommand.h"
 #include "PlantCommand.h"
 #include "MakeSellableCommand.h"
-#include "SellCommand.h"
 #include "RemoveCommand.h"
 #include "RemoveSaleCommand.h"
 #include "WaterCommand.h"
@@ -757,7 +756,7 @@ void CommandStaffTesting() {
 
     //not a singleton 
     InventoryManager* manager = new InventoryManager();
-    Nursery nursery = Nursery(manager);
+    Nursery* nursery = Nursery::getInstance(manager);
 
     manager->addToNursery(&rose);
     manager->addToNursery(&basil);
@@ -765,8 +764,7 @@ void CommandStaffTesting() {
 
     WaterCommand waterRose(&rose);
     WaterCommand waterBasil(&basil);
-    StockCommand stockNursery(&nursery);
-    SellCommand sellTomato(&tomato, manager);
+    StockCommand stockNursery;
     PlantCommand plantRose(&rose, manager);
     MakeSellableCommand makeRoseSellable(&rose, manager);
     RemoveCommand removeBasil(&basil, manager);
@@ -780,8 +778,6 @@ void CommandStaffTesting() {
     waterBasil.execute();
     cout << "\033[32mStocking Nursery:\033[0m" << endl;
     stockNursery.execute();
-    cout << "\033[32mSelling Tomato:\033[0m" << endl;
-    sellTomato.execute();
     cout << "\033[32mPlanting Rose:\033[0m" << endl;
     plantRose.execute();
     cout << "\033[32mMaking Rose Sellable:\033[0m" << endl;
@@ -1033,7 +1029,7 @@ void InventoryTesting() {
     Tomato tomato;
 
     InventoryManager* manager = new InventoryManager();
-    Nursery nursery = Nursery(manager);
+    Nursery* nursery = Nursery::getInstance(manager);
 
     std::cout << "Adding plants to nursery..." << std::endl;
     manager->addToNursery(&rose);
@@ -1231,7 +1227,7 @@ void SeasonStateTesting() {
     
     InventoryManager* inventory = new InventoryManager();
     
-    Nursery* nursery = new Nursery(inventory);
+    Nursery* nursery = Nursery::getInstance(inventory);
     
     cout << "🏪 Nursery Created!" << endl;
     cout << "📅 Initial Season: " << nursery->getSeason() << endl << endl;
@@ -1336,7 +1332,6 @@ void SeasonStateTesting() {
     cout << "✓ Memory management working correctly" << endl;
     cout << "✓ No memory leaks detected" << endl << endl;
     
-    delete nursery;
     delete inventory;
     
     cout << "🎉 All Season State tests passed successfully!" << endl;
@@ -1566,7 +1561,7 @@ void NewStaffCommandsTesting() {
 
     
     InventoryManager* inventory = new InventoryManager();
-    Nursery* nursery = new Nursery(inventory);
+    Nursery* nursery = Nursery::getInstance(inventory);
     
     Rose* rose = new Rose();
     Basil* basil = new Basil();
@@ -1683,7 +1678,6 @@ void NewStaffCommandsTesting() {
     delete basil;
     delete tomato;
     
-    delete nursery;
     delete inventory;
     
     cout << "\nNew Commands Testing Complete" << endl;
@@ -1691,7 +1685,7 @@ void NewStaffCommandsTesting() {
 void IteratorTesting(){
     cout << "\n======================== Iterator Pattern Testing ========================\n" << endl;
     InventoryManager* inventory = new InventoryManager();
-    Nursery* nursery = new Nursery(inventory);
+    Nursery* nursery = Nursery::getInstance(inventory);
     
     Spring* spring = new Spring();
     Summer* summer = new Summer();
@@ -1885,13 +1879,41 @@ void IteratorTesting(){
     delete summer;
     delete autumn;
     delete winter;
-    delete nursery;
     delete inventory;
     std::cout << "Iterator Testing completed succesfully." << std::endl;
 
 }
+void DynamicCastDecoratorTest() {
+    cout << "\n=== Dynamic Cast Decorator Test ===" << endl;
+    
+    InventoryManager* im = new InventoryManager();
+    
+    Rose* plant = new Rose();
+    cout << "Original plant: " << plant->getName() << endl;
+    im->addToSale(plant);
+    cout << "Added plant to sale inventory" << endl;
+    
+    Product* decoratedPlant = new ExtraFertilizer(plant);
+    cout << "First decorator: " << decoratedPlant->getName() << endl;
+    Product* doubleDecorated = new KraftWrapping(decoratedPlant);
+    cout << "Double decorated: " << doubleDecorated->getName() << endl;
+    
+    Plant* castResult = doubleDecorated->getBasePlant();
+    if (castResult != nullptr) {
+        cout << "✅ getBasePlant() succeeded through multiple decorators!" << endl;
+        cout << "   Found underlying plant: " << castResult->getName() << endl;
+        im->removeFromSale(castResult);
+    } else {
+        cout << "❌ getBasePlant() failed - no underlying plant found" << endl;
+    }
+    
+    cout << "Final decorated plant: " << doubleDecorated->getName() << endl;
+    cout << "Dynamic Cast Test completed\n" << endl;
+    delete doubleDecorated;  
+    delete im;
+}
 
-int main() {
+int main() { 
     MediatorTesting();
     AbstractStrategyTesting();
     CommandStaffTesting();
@@ -1904,6 +1926,7 @@ int main() {
     ObserverTesing();
     NewStaffCommandsTesting();
     IteratorTesting();
+    DynamicCastDecoratorTest();
 
     return 0;
 }

@@ -1,7 +1,8 @@
 #include "GetInfoCommand.h"
 #include <iostream>
 
-GetInfoCommand::GetInfoCommand(Plant* p) : StaffCommand(p, nullptr, nullptr){
+GetInfoCommand::GetInfoCommand(Plant* p) : StaffCommand(){
+    plant = p;
 }
 
 GetInfoCommand::~GetInfoCommand() {}

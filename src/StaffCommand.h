@@ -18,8 +18,7 @@ protected:
     Nursery* nursery;
 
 public:
-	StaffCommand(Plant* p = nullptr, InventoryManager* im = nullptr, Nursery* n = nullptr)
-        : plant(p), inventoryManager(im), nursery(n) {}
+	StaffCommand() : plant(nullptr), inventoryManager(nullptr), nursery(nullptr) {}
     virtual ~StaffCommand() {}
 	virtual void execute();
 

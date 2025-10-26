@@ -33,7 +33,7 @@ TEST_CASE("Testing Season State - Winter print method") {
 
 TEST_CASE("Testing Season State - Spring to Summer transition") {
     InventoryManager* manager = new InventoryManager();
-    Nursery* nursery = new Nursery(manager);
+    Nursery* nursery = Nursery::getInstance(manager);
     
     nursery->setSeason(new Spring());
     CHECK(nursery->getSeason() == "Spring");
@@ -41,13 +41,13 @@ TEST_CASE("Testing Season State - Spring to Summer transition") {
     nursery->changeSeason();
     CHECK(nursery->getSeason() == "Summer");
     
-    delete nursery;
+     
     delete manager;
 }
 
 TEST_CASE("Testing Season State - Summer to Autumn transition") {
     InventoryManager* manager = new InventoryManager();
-    Nursery* nursery = new Nursery(manager);
+    Nursery* nursery = Nursery::getInstance(manager);
     
     nursery->setSeason(new Summer());
     CHECK(nursery->getSeason() == "Summer");
@@ -55,13 +55,13 @@ TEST_CASE("Testing Season State - Summer to Autumn transition") {
     nursery->changeSeason();
     CHECK(nursery->getSeason() == "Autumn");
     
-    delete nursery;
+     
     delete manager;
 }
 
 TEST_CASE("Testing Season State - Autumn to Winter transition") {
     InventoryManager* manager = new InventoryManager();
-    Nursery* nursery = new Nursery(manager);
+    Nursery* nursery = Nursery::getInstance(manager);
     
     nursery->setSeason(new Autumn());
     CHECK(nursery->getSeason() == "Autumn");
@@ -69,13 +69,13 @@ TEST_CASE("Testing Season State - Autumn to Winter transition") {
     nursery->changeSeason();
     CHECK(nursery->getSeason() == "Winter");
     
-    delete nursery;
+     
     delete manager;
 }
 
 TEST_CASE("Testing Season State - Winter to Spring transition (full cycle)") {
     InventoryManager* manager = new InventoryManager();
-    Nursery* nursery = new Nursery(manager);
+    Nursery* nursery = Nursery::getInstance(manager);
     
     nursery->setSeason(new Winter());
     CHECK(nursery->getSeason() == "Winter");
@@ -83,13 +83,13 @@ TEST_CASE("Testing Season State - Winter to Spring transition (full cycle)") {
     nursery->changeSeason();
     CHECK(nursery->getSeason() == "Spring");
     
-    delete nursery;
+     
     delete manager;
 }
 
 TEST_CASE("Testing Season State - Complete seasonal cycle") {
     InventoryManager* manager = new InventoryManager();
-    Nursery* nursery = new Nursery(manager);
+    Nursery* nursery = Nursery::getInstance(manager);
     
     nursery->setSeason(new Spring());
     CHECK(nursery->getSeason() == "Spring");
@@ -106,13 +106,13 @@ TEST_CASE("Testing Season State - Complete seasonal cycle") {
     nursery->changeSeason();
     CHECK(nursery->getSeason() == "Spring");
     
-    delete nursery;
+     
     delete manager;
 }
 
 TEST_CASE("Testing Season State - Multiple cycles") {
     InventoryManager* manager = new InventoryManager();
-    Nursery* nursery = new Nursery(manager);
+    Nursery* nursery = Nursery::getInstance(manager);
     
     nursery->setSeason(new Spring());
     
@@ -132,6 +132,6 @@ TEST_CASE("Testing Season State - Multiple cycles") {
     
     CHECK(nursery->getSeason() == "Spring");
     
-    delete nursery;
+     
     delete manager;
 }
