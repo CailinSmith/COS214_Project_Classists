@@ -180,7 +180,7 @@ string Plant::getSellSeason() {
 }
 
 float Plant::seasonCost(string curSeason) {
-	(void) curSeason; 
+	(void) curSeason;
 	return 0;
 }
 

@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <map>
 
 
 class InventoryManager : public Aggregate, public Subject {
@@ -17,6 +18,16 @@ private:
 	vector<Plant*> forSale;
 	vector<Staff*> observerList;
 	vector<Plant*> inNursery;
+	map<string, int> priority = {
+		{"Flower", 0},
+		{"Herb", 1},
+		{"Fruit", 2},
+		{"Vegetable", 3},
+		{"Succulent", 4},
+		{"Aquatic", 5},
+		{"Indoor", 6},
+		{"Medicinal", 7}
+	};
 	size_t saleThreshold = 2;
 	size_t nurseryThreshold = 2;
 
