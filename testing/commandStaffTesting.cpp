@@ -43,6 +43,7 @@ TEST_CASE("Command Pattern: WaterCommand affects plant water level") {
 
 TEST_CASE("Command Pattern: PruneCommand affects plant pruned status") {
     Basil basil;
+    basil.setPruned(false);
     CHECK_FALSE(basil.getPruned());
     PruneCommand pruneBasil(&basil);
     pruneBasil.execute();

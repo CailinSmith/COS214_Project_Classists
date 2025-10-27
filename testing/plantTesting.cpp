@@ -14,6 +14,7 @@ TEST_CASE("Plant defaults and basic getters") {
 
 TEST_CASE("changeHealth increases health and height when well watered") {
     Rose rose;
+    rose.setPruned(false);
     rose.setWaterLevel(1.0f);
     rose.setHealth(0.2f);
 
