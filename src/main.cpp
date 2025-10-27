@@ -1981,7 +1981,8 @@ int main() {
 
     Nursery* nursery = Nursery::getInstance();
     if (nursery) {
-        delete nursery; 
+        Nursery::destroyInstance();
+        nursery = nullptr;
     }
     return 0;
 }

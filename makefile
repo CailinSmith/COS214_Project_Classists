@@ -54,21 +54,6 @@ test: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
 # =========================
-# Single-file test: chainOfResponsibility
-# Builds only chainOfResponsibilityTesting.cpp together with core objects
-# =========================
-$(COR_TEST_TARGET): $(CORE_OBJS) $(BUILD_DIR)/chainOfResponsibilityTesting.test.o
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-.PHONY: cor-test cor-val
-cor-test: $(COR_TEST_TARGET)
-	@echo "Built $(COR_TEST_TARGET)"
-
-cor-val: cor-test
-	@echo "Running valgrind on $(COR_TEST_TARGET)"
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(COR_TEST_TARGET)
-
-# =========================
 # Run main binary
 # =========================
 run: $(TARGET)

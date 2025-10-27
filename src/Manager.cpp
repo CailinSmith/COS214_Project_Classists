@@ -12,6 +12,7 @@ void Manager::send() {
 }
 
 pair<string, Receipt*> Manager::handleRequest(const string& requestType, Plant* plant, vector<Product*>* order, vector<bool>* flags) {
+    (void)plant; // Unused parameter
     pair<string, Receipt*> result;
     result.second = nullptr;
 
@@ -37,6 +38,7 @@ pair<string, Receipt*> Manager::handleRequest(const string& requestType, Plant* 
         }
         return result;
     }
+    return result;
 }
 string Manager::getPosition() {
     return "Manager";

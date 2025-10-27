@@ -21,6 +21,14 @@ Nursery* Nursery::getInstance(InventoryManager* manager) {
 	return instance;
 }
 
+void Nursery::destroyInstance() {
+	if (instance != nullptr) {
+		delete instance;
+		// Nursery::~Nursery sets instance = nullptr but clear again for safety
+		instance = nullptr;
+	}
+}
+
 Nursery::~Nursery() {
 	delete currentSeason;
 	delete currentFactory;

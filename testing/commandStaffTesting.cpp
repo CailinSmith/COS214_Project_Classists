@@ -65,6 +65,7 @@ TEST_CASE("Command Pattern: PlantCommand adds plant to nursery") {
     
     CHECK(manager->getNurseryCount() == initialCount + 1);
     CHECK(manager->isInNursery(rose));
+    delete rose;
     delete manager;
 }
 
@@ -80,6 +81,7 @@ TEST_CASE("Command Pattern: MakeSellableCommand moves plant to sale") {
     CHECK(manager->getSaleCount() == initialSaleCount + 1);
     CHECK(manager->isInSale(rose));
     CHECK_FALSE(manager->isInNursery(rose));
+    delete rose;
     delete manager;
 }
 
@@ -144,6 +146,8 @@ TEST_CASE("Command Pattern: StaffCheckStockCommand checks inventory") {
     StaffCheckStockCommand checkStock(rose, manager);
     CHECK_NOTHROW(checkStock.execute());
     
+    // cleanup created plant
+    delete rose;
     delete manager;
 }
 
@@ -166,8 +170,14 @@ TEST_CASE("Command Pattern: StaffCheckoutCommand processes checkout") {
     CHECK(receipt != nullptr);
     CHECK(receipt->getCost() >= 0.0f);
     CHECK_FALSE(receipt->toString().empty());
-    
+    //caller takes ownership of the returned receipt (getReceipt transfers ownership)
+    delete receipt;
     delete manager;
+
+    // Clean up products
+    for (Product* product : products) {
+        delete product;
+    }
 }
 
 TEST_CASE("Command Pattern: Receipt functionality with multiple products") {
@@ -186,6 +196,11 @@ TEST_CASE("Command Pattern: Receipt functionality with multiple products") {
     CHECK(receiptText.find("GreensOnly") != std::string::npos);
     CHECK(receiptText.find("TOTAL:") != std::string::npos);
     CHECK(receiptText.find("Thank you for shopping!") != std::string::npos);
+
+    // Clean up products
+    for (Product* product : products) {
+        delete product;
+    }
 }
 
 TEST_CASE("Command Pattern: Command execution with null plants") {

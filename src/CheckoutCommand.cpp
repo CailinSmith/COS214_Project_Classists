@@ -1,6 +1,8 @@
 #include "CheckoutCommand.h"
 
-CheckoutCommand::CheckoutCommand(Staff* s, std::vector<Product*>* o, vector<bool>* flags) : CustomerCommand(s, nullptr, o, nullptr){}
+CheckoutCommand::CheckoutCommand(Staff* s, std::vector<Product*>* o, vector<bool>* flags) : CustomerCommand(s, nullptr, o, nullptr){
+    (void) flags; // Unused parameter
+}
 
 pair<string, Receipt*> CheckoutCommand::execute(){
     if(staff)

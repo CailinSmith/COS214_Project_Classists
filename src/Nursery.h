@@ -34,11 +34,13 @@ protected:
 	Nursery(InventoryManager* manager);
 	Nursery(const Nursery&) = delete;
 	Nursery& operator=(const Nursery&) = delete;
-
-public:
 	~Nursery();
 
+public:
+
 	static Nursery* getInstance(InventoryManager* manager = nullptr);	
+	// Destroy the singleton instance (safe to call at program/test teardown)
+	static void destroyInstance();
 
 	InventoryManager* getInventoryManager();
 	//clear the pointer to the inventory manager (used when the manager is destroyed)
