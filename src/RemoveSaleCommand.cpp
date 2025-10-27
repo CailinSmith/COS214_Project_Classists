@@ -6,5 +6,6 @@ RemoveSaleCommand::RemoveSaleCommand(Plant* plant, InventoryManager* im) : Staff
 }
 
 void RemoveSaleCommand::execute() {
-	inventoryManager->removeFromSale(plant);
+	if (inventoryManager != nullptr && plant != nullptr)
+		inventoryManager->removeFromSale(plant);
 }

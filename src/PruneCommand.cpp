@@ -5,5 +5,6 @@ PruneCommand::PruneCommand(Plant* plant) : StaffCommand() {
 }
 
 void PruneCommand::execute() {
-	plant->prune();
+	if (plant != nullptr)
+		plant->prune();
 }
