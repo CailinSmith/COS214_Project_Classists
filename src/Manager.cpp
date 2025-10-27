@@ -11,17 +11,33 @@ void Manager::send() {
             mediator->notify(this);
 }
 
-string Manager::handleRequest(Customer* customer, const std::string& requestType, Plant* plant, std::vector<Product*>* order) {
-	// TODO - implement Manager::handleRequest
-    cout << getName() << " (" << getPosition() << ") received a notification from inventory" << endl;
-    send();
-    if(next){
-        cout << "Manager passed on request:\n";
-        return next->handleRequest(customer, requestType, plant, order);
-    }
-    return "Manager cannot handle'" + requestType + "'\n";
-}
+pair<string, Receipt*> Manager::handleRequest(const string& requestType, Plant* plant, vector<Product*>* order, vector<bool>* flags) {
+    pair<string, Receipt*> result;
+    result.second = nullptr;
 
+    if (requestType == "Refund" && order && flags && order->size() == flags->size()) {
+        float total = 0.0f;
+        std::stringstream ss;
+        std::vector<size_t> toRemove;
+
+        for (size_t i = 0; i < order->size(); ++i) {
+            if ((*flags)[i] && (*order)[i]) {
+                Product* p = (*order)[i];
+                total += p->calculateCost(Nursery::getInstance()->getSeason());
+                ss << p->getName() << " ";
+                toRemove.push_back(i);
+            }
+        }
+        ss << total;
+        result.first = ss.str();
+
+        for (auto it = toRemove.rbegin(); it != toRemove.rend(); ++it) {
+            delete (*order)[*it];
+            order->erase(order->begin() + *it);
+        }
+        return result;
+    }
+}
 string Manager::getPosition() {
     return "Manager";
 }

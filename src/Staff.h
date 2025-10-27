@@ -3,9 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 #include <iostream>
 #include <algorithm>
 #include "Plant.h"
+#include "Receipt.h"
 
 class StaffMediator;
 class Customer;
@@ -18,7 +20,7 @@ public:
     virtual ~Staff();
 	virtual void send();
 	void receive(string message);
-	virtual string handleRequest(Customer* customer, const std::string& requestType, Plant* plant, std::vector<Product*>* order);
+	virtual pair<string, Receipt*> handleRequest(const std::string& requestType, Plant* plant, std::vector<Product*>* order, vector<bool>* flags);
 	virtual string getPosition() = 0;
     string getMessage();
     void setMessage(string message);

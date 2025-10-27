@@ -1,9 +1,11 @@
 #include "Receipt.h"
+#include "Nursery.h"
 #include <chrono>
 #include <iomanip>
 #include <sstream>
 
 Receipt::Receipt(const std::vector<Product*>& plants) : cost(0.0f) {
+    this->orderPlants = &plants;
     std::stringstream receipt;
     
     auto now = std::chrono::system_clock::now();
@@ -27,7 +29,7 @@ Receipt::Receipt(const std::vector<Product*>& plants) : cost(0.0f) {
             plant->calculateCost(season); //recalculate if necessary
             cost += plant->getCost();
             receipt << plant->getName() << std::string(20 - plant->getName().length(), ' ') 
-                   << "$" << std::fixed << std::setprecision(2) << plant->getCost() << "\n";
+                    << "$" << std::fixed << std::setprecision(2) << plant->getCost() << "\n";
             
             Plant* plantPtr = plant->getBasePlant();
             if (plantPtr != nullptr) {
@@ -57,4 +59,8 @@ std::string Receipt::getDate() const {
 
 std::string Receipt::toString() const {
     return receiptContent;
+}
+
+const std::vector<Product*>* Receipt::getPlants() const{
+    return orderPlants;
 }

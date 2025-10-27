@@ -4,12 +4,10 @@
 #include "CustomerCommand.h"
 #include "Plant.h"
 
-class AskInfoCommand : public CustomerCommand{
-    private:
-        Plant* plant;
+class AskInfoCommand : public CustomerCommand {
     public:
         AskInfoCommand(Staff* s, Plant* p);
-        virtual string execute(Customer* customer) override;
+        virtual pair<string, Receipt*> execute() override;
 };
 
 #endif

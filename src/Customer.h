@@ -4,8 +4,10 @@
 #include "Staff.h"
 #include "Product.h"
 #include "Receipt.h"
+#include "Nursery.h"
 #include <vector>
 #include <iostream>
+
 
 class CustomerCommand;
 
@@ -18,17 +20,18 @@ private:
 	string name;
 	vector<Product*> order;
 	CustomerCommand* command;
-	Receipt* receipt;
+	vector<Receipt*> receipts;
 public:
 	Customer(string n);
 	~Customer();
-	std::string sendCommand(CustomerCommand* cmd);
+	pair<string, Receipt*> sendCommand(CustomerCommand* cmd);
 	void addToCart(Product* p);
 	void clearOrder();
 	float totalCost();
-	void setReceipt(Receipt r);
+	void addReceipt(Receipt* r);
 	string getName() const;
 	vector<Product*>& getOrder();
+	vector<Receipt*>& getReceipts();
 };
 
 #endif

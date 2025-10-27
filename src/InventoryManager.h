@@ -4,12 +4,15 @@
 #include "Aggregate.h"
 #include "Subject.h"
 #include "Plant.h"
-#include "Staff.h"
 #include "SeasonIterator.h"
 #include <vector>
 #include <string>
 #include <iostream>
+#include <algorithm>
 
+
+class Staff;
+using namespace std;
 
 class InventoryManager : public Aggregate, public Subject {
 

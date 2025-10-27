@@ -4,6 +4,7 @@
 #include "SeasonState.h"
 #include "PlantFactory.h"
 #include "InventoryManager.h"
+#include "Staff.h"
 #include <string>
 using namespace std;
 

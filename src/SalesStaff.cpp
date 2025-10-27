@@ -4,20 +4,26 @@
 
 SalesStaff::SalesStaff(string name) : Staff(name) {}
 
-string SalesStaff::handleRequest(Customer* customer, const string& requestType, Plant* plant, std::vector<Product*>* order) {
+pair<string, Receipt*> SalesStaff::handleRequest(const string& requestType, Plant* plant, vector<Product*>* order, vector<bool>* flags) {
 	// TODO - implement SalesStaff::handleRequest
+	pair<string, Receipt*> result;
 	if (requestType == "Checkout" && order){
 		StaffCheckoutCommand cmd(*order);
 		cmd.execute();
 		Receipt* receipt = cmd.getReceipt();
-		if(receipt)
-			customer->setReceipt(*receipt);
-		return receipt->toString();
+		if(receipt){
+			result.first = receipt->toString();
+			result.second = receipt;
+		}
+		else
+			result.first = "Error generating receipt\n";
+		return result;
 	}
 	else if(next){
-		return next->handleRequest(customer, requestType, plant, order);
+		return next->handleRequest(requestType, plant, order, flags);
 	}
-	return "No staff could handle '" + requestType + "'\n";
+	result.first = "No staff could handle '" + requestType + "'\n";
+	return result;
 }
 
 string SalesStaff::getPosition() {

@@ -3,11 +3,12 @@
 
 NurseryStaff::NurseryStaff(string name) : Staff(name){}
 
-std::string NurseryStaff::handleRequest(Customer* customer, const std::string& requestType, Plant* plant, std::vector<Product*>* order) {
+pair<string, Receipt*> NurseryStaff::handleRequest(const string& requestType, Plant* plant, vector<Product*>* order, vector<bool>* flags) {
 	// TODO - implement NurseryStaff::handleRequest
-	cout << getName() << " (" << getPosition() << ") handling mediator request." << endl;
-	std::cout << "Nursery staff: " << name << " handled request.\n";
-	if(requestType == "CheckStock" && plant){ // code below leaks due to Nursery, InventoryManager and StaffCheckStockCommand each having leaks
+	pair<string, Receipt*> result;
+	result.second = nullptr;
+
+	if(requestType == "CheckStock" && plant){
 		InventoryManager* inventoryManager = new InventoryManager();
 		Nursery* nursery = Nursery::getInstance(inventoryManager);
 		InventoryManager* im = nursery->getInventoryManager();
@@ -15,17 +16,20 @@ std::string NurseryStaff::handleRequest(Customer* customer, const std::string& r
 		cmd.execute();
 		int stock = cmd.getStock();
 		delete inventoryManager;
-		return stock + " units of " + plant->getName() + " are in stock.\n";
+		result.first = to_string(stock) + " units of " + plant->getName() + " are in stock.\n";
+		return result;
 	}
 	else if(requestType == "AskInfo" && plant){
 		GetInfoCommand cmd(plant);
-		cmd.execute(); // 1 leak from here
-		return cmd.getInfo();
+		cmd.execute();
+		result.first = cmd.getInfo();
+		return result;
 	}
 	else if(next){
-		return next->handleRequest(customer, requestType, plant, order);
-	}
-	return "No staff could handle the request: '" + requestType + "'\n";
+		return next->handleRequest(requestType, plant, order, flags);
+	} 
+	result.first = "No staff could handle the request: '" + requestType + "'\n";
+	return result;
 }
 
 string NurseryStaff::getPosition() {

@@ -1,26 +1,45 @@
 #include "Customer.h"
 #include "CustomerCommand.h"
 
-Customer::Customer(string n) : total(0.0), command(NULL), receipt(NULL){
+Customer::Customer(string n) : total(0.0), command(NULL){
     name = n;
 }
 
 Customer::~Customer(){
+    // Clean up receipts
+    for (Receipt* r : receipts) {
+        delete r;
+    }
+    receipts.clear();
+    
+    // Clean up any remaining products in order
+    clearOrder();
 }
 
-void Customer::setReceipt(Receipt r){
-    receipt = &r;
+void Customer::addReceipt(Receipt* r){
+    receipts.push_back(new Receipt(*r->getPlants()));
 }
 
-std::string Customer::sendCommand(CustomerCommand* cmd){
+pair<string, Receipt*> Customer::sendCommand(CustomerCommand* cmd){
     if(cmd){
         command = cmd;
-        return command->execute(this);
+        auto res = command->execute();
+        if (res.second != nullptr) {
+            addReceipt(res.second);
+            order.clear();
+            res.second = nullptr;
+            order.clear();  // Clear but don't delete products
+        }
+        return res;
     }
-    return "Invalid command\n";
+    pair<string, Receipt*> result;
+    result.first = "Invalid command";
+    result.second = nullptr;
+    return result;
 }
 
 void Customer::clearOrder(){
+    // Don't delete products here as they might be used elsewhere
     order.clear();
 }
 
@@ -39,9 +58,13 @@ string Customer::getName() const{
 float Customer::totalCost(){
     float cost = 0.0;
     for(auto plant : order){
-        cost += plant->calculateCost("Summer");//just for now until we can have global season logic
+        cost += plant->calculateCost(Nursery::getInstance()->getSeason());
     }
     this->total = cost;
     return cost;
+}
+
+vector<Receipt*>& Customer::getReceipts(){
+    return receipts;
 }
 

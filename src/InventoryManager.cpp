@@ -17,7 +17,6 @@ Iterator<Plant>* InventoryManager::createNurseryIterator(const std::string& seas
 	return new SeasonIterator(inNursery, season);
 }
 
-
 void InventoryManager::addToSale(Plant* plant) {
 	if(!plant)
 	{

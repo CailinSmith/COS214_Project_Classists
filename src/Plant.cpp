@@ -74,27 +74,26 @@ string Plant::summary() {
 }
 
 string Plant::customerSummary() {
-	// stringstream ss;
-	// string out = "";
-	// out += "Plant Name: " + this->name + "\n";
-	// out += "Category: " + this->category + "\n";
+	stringstream ss;
+	string out = "";
+	out += "Plant Name: " + this->name + "\n";
+	out += "Category: " + this->category + "\n";
 	
-	// ss << fixed << setprecision(2) << this->getActualHeight();
-	// out += "Height: " + ss.str() + " cm\n";
-	// ss.str(""); ss.clear();
+	ss << fixed << setprecision(2) << this->getActualHeight();
+	out += "Height: " + ss.str() + " cm\n";
+	ss.str(""); ss.clear();
 	
-	// ss << fixed << setprecision(2) << this->health;
-	// out += "Health: " + ss.str() + "\n";
-	// ss.str(""); ss.clear();
+	ss << fixed << setprecision(2) << this->health;
+	out += "Health: " + ss.str() + "\n";
+	ss.str(""); ss.clear();
 	
-	// if(this->currentState)
-	// 	out += "State: " + this->currentState->print() + "\n";
+	if(this->currentState)
+		out += "State: " + this->currentState->print() + "\n";
 	
-	// ss << fixed << setprecision(2) << this->cost;
-	// out += "Cost: " + ss.str() + "\n";
+	ss << fixed << setprecision(2) << this->cost;
+	out += "Cost: " + ss.str() + "\n";
 	
-	// return out;
-	return "Customer Plant Summary";
+	return out;
 }
 
 float Plant::getWaterLevel() {

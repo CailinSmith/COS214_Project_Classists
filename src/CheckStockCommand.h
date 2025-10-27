@@ -6,7 +6,7 @@
 class CheckStockCommand : public CustomerCommand{
     public:
         CheckStockCommand(Staff* s, Plant* p);
-        virtual string execute(Customer* customer) override;
+        virtual pair<string, Receipt*> execute() override;
 };
 
 #endif

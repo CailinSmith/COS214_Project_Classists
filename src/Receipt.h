@@ -9,7 +9,6 @@
 
 #include "Plant.h"
 #include "Product.h"
-#include "Nursery.h"
 #include <vector>
 #include <string>
 
@@ -18,6 +17,7 @@ private:
     float cost;
     std::string date;
     std::string receiptContent; 
+    const std::vector<Product*>* orderPlants;
 
 public:
     Receipt(const std::vector<Product*>& plants);
@@ -25,6 +25,7 @@ public:
     float getCost() const;
     std::string getDate() const;
     std::string toString() const;
+    const std::vector<Product*>* getPlants() const;
 };
 
 #endif

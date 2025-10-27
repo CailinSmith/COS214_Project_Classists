@@ -14,7 +14,7 @@ using namespace std;
 class NurseryStaff : public Staff {
 public:
 	NurseryStaff(string name);
-	virtual std::string handleRequest(Customer* customer, const std::string& requestType, Plant* plant, std::vector<Product*>* order) override;
+	virtual pair<string, Receipt*> handleRequest(const string& requestType, Plant* plant, vector<Product*>* order, vector<bool>* flags) override;
 	virtual string getPosition() override;
 	virtual void update(const string& message);
 };

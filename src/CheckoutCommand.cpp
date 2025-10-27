@@ -1,9 +1,12 @@
 #include "CheckoutCommand.h"
 
-CheckoutCommand::CheckoutCommand(Staff* s, std::vector<Product*>* o) : CustomerCommand(s, NULL, o){}
+CheckoutCommand::CheckoutCommand(Staff* s, std::vector<Product*>* o, vector<bool>* flags) : CustomerCommand(s, nullptr, o, nullptr){}
 
-string CheckoutCommand::execute(Customer* customer){
+pair<string, Receipt*> CheckoutCommand::execute(){
     if(staff)
-        return staff->handleRequest(customer, "Checkout", nullptr, order);
-    return "No staff assigned\n";
+        return staff->handleRequest("Checkout", nullptr, order, nullptr);
+    pair<string, Receipt*> result;
+    result.first = "No staff assigned\n";
+    result.second = nullptr;
+    return result;
 }

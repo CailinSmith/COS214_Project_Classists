@@ -5,8 +5,8 @@
 
 class CheckoutCommand : public CustomerCommand{
     public:
-        CheckoutCommand(Staff* s, std::vector<Product*>* o);
-        virtual string execute(Customer* customer) override;
+        CheckoutCommand(Staff* s, std::vector<Product*>* o, vector<bool>* flags);
+        virtual pair<string, Receipt*> execute() override;
 };
 
 #endif

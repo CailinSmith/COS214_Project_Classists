@@ -5,7 +5,10 @@ StaffCheckoutCommand::StaffCheckoutCommand(const std::vector<Product*>& p)
     : plants(p) {
 }
 
-StaffCheckoutCommand::~StaffCheckoutCommand() {}
+StaffCheckoutCommand::~StaffCheckoutCommand() {
+    if(receipt)
+        delete receipt;
+}
 
 void StaffCheckoutCommand::execute() {
     if (!plants.empty()) {
