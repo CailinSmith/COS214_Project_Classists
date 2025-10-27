@@ -14,7 +14,7 @@
 class PeaceLily : public Indoor {
 
 public:
-	PeaceLily() : Indoor(120, new HighMoisture(), new DeadPruning(), "Peace Lily") {}
+	PeaceLily() : Indoor(120, new HighMoisture(), new DeadPruning(), "Peace Lily", "Spring") {}
 };
 
 #endif

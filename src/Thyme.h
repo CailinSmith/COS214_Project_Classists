@@ -14,7 +14,7 @@
 class Thyme : public Herb {
 
 public:
-	Thyme() : Herb(30, new DryPlant(), new Thinning(), "Thyme") {}
+	Thyme() : Herb(30, new DryPlant(), new Thinning(), "Thyme", "Summer") {}
 };
 
 #endif

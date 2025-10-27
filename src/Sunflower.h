@@ -14,7 +14,7 @@
 class Sunflower : public Flower {
 
 public:
-	Sunflower() : Flower(400, new MediumMoisture(), new NoPrune(), "Sunflower") {}
+	Sunflower() : Flower(400, new MediumMoisture(), new NoPrune(), "Sunflower", "Summer") {}
 };
 
 #endif

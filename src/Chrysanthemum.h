@@ -13,7 +13,7 @@
 
 class Chrysanthemum : public Flower {
 public:
-	Chrysanthemum() : Flower(60, new MediumMoisture(), new DeadPruning(), "Chrysanthemum") {}
+	Chrysanthemum() : Flower(60, new MediumMoisture(), new DeadPruning(), "Chrysanthemum", "Autumn") {}
 };
 
 #endif

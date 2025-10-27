@@ -13,7 +13,7 @@
 
 class AloeVera : public Medicinal {
 public:
-	AloeVera() : Medicinal(60, new DryPlant(), new Thinning(), "Aloe Vera") {}
+	AloeVera() : Medicinal(60, new DryPlant(), new Thinning(), "Aloe Vera", "Summer") {}
 };
 
 #endif

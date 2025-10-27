@@ -14,7 +14,7 @@
 class Echeveria : public Succulent {
 
 public:
-	Echeveria() : Succulent(30, new DryPlant(), new Thinning(), "Echeveria") {}
+	Echeveria() : Succulent(30, new DryPlant(), new Thinning(), "Echeveria", "Summer") {}
 };
 
 #endif

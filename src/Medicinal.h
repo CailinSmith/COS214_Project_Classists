@@ -12,8 +12,8 @@
 class Medicinal : public Plant {
 
 public:
-	Medicinal(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) : 
-	Plant("Medicinal", maxHeight, wateringStrat, pruningStrat, name) {}
+	Medicinal(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name, string sellSeason) : 
+	Plant("Medicinal", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	virtual float baseCost() override;
 };

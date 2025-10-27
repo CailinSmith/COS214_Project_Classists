@@ -14,7 +14,7 @@
 class Strawberry : public Fruit {
 
 public:
-	Strawberry() : Fruit(25, new MediumMoisture(), new Thinning(), "Strawberry") {}
+	Strawberry() : Fruit(25, new MediumMoisture(), new Thinning(), "Strawberry", "Spring") {}
 };
 
 #endif

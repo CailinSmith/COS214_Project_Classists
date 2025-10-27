@@ -9,13 +9,15 @@
 #include "../src/Lettuce.h"
 #include "../src/Chrysanthemum.h"
 #include "../src/Pansy.h"
+#include "../src/AloeVera.h"
+#include "../src/Thyme.h"
 #include "../src/Sunflower.h"
 
 TEST_CASE("Iterator Pattern - Basic SeasonIterator Creation") {
     std::vector<Plant*> plants;
-    Plant* rose = new Rose();
+    Plant* tomato = new Tomato();
     Plant* basil = new Basil();
-    plants.push_back(rose);
+    plants.push_back(tomato);
     plants.push_back(basil);
     SeasonIterator* iterator = new SeasonIterator(plants, "Summer");
     
@@ -23,18 +25,18 @@ TEST_CASE("Iterator Pattern - Basic SeasonIterator Creation") {
     CHECK_FALSE(iterator->isDone());
     
     delete iterator;
-    delete rose;
+    delete tomato;
     delete basil;
 }
 
 TEST_CASE("Iterator Pattern - InventoryManager createIterator") {
     InventoryManager* inventory = new InventoryManager();
-    Plant* rose = new Rose();
-    Plant* chrysanthemum = new Chrysanthemum();
-    Plant* pansy = new Pansy();
-    inventory->addToSale(rose);
-    inventory->addToNursery(chrysanthemum);
-    inventory->addToSale(pansy);
+    Plant* tomato = new Tomato();
+    Plant* aloevera = new AloeVera();
+    Plant* thyme = new Thyme();
+    inventory->addToSale(tomato);
+    inventory->addToNursery(aloevera);
+    inventory->addToSale(thyme);
     
     SUBCASE("Create iterator for Summer season") {
         Iterator<Plant>* summerIterator = inventory->createIterator("Summer");
@@ -81,22 +83,22 @@ TEST_CASE("Iterator Pattern - InventoryManager createIterator") {
         
         delete nurseryIterator;
     }
-    delete rose;
-    delete chrysanthemum;
-    delete pansy;
+    delete tomato;
+    delete aloevera;
+    delete thyme;
     delete inventory;
 }
 
 TEST_CASE("Iterator Pattern - Season Filtering") {
     std::vector<Plant*> plants;
-    Plant* rose = new Rose();
-    Plant* chrysanthemum = new Chrysanthemum();
-    Plant* pansy = new Pansy();
+    Plant* tomato = new Tomato();
+    Plant* aloevera = new AloeVera();
+    Plant* thyme = new Thyme();
     Plant* sunflower = new Sunflower();
     
-    plants.push_back(rose);
-    plants.push_back(chrysanthemum);
-    plants.push_back(pansy);
+    plants.push_back(tomato);
+    plants.push_back(aloevera);
+    plants.push_back(thyme);
     plants.push_back(sunflower);
     
     SUBCASE("Filter Summer plants") {
@@ -119,18 +121,18 @@ TEST_CASE("Iterator Pattern - Season Filtering") {
         CHECK(nonExistentIterator->currentItem() == nullptr);
         delete nonExistentIterator;
     }
-    delete rose;
-    delete chrysanthemum;
-    delete pansy;
+    delete tomato;
+    delete aloevera;
+    delete thyme;
     delete sunflower;
 }
 
 TEST_CASE("Iterator Pattern - Iterator Methods") {
     std::vector<Plant*> plants;
-    Plant* rose = new Rose();
-    Plant* chrysanthemum = new Chrysanthemum();
-    plants.push_back(rose);
-    plants.push_back(chrysanthemum);
+    Plant* tomato = new Tomato();
+    Plant* aloevera = new AloeVera();
+    plants.push_back(tomato);
+    plants.push_back(aloevera);
     SeasonIterator* iterator = new SeasonIterator(plants, "Summer");
     
     SUBCASE("Test first() method") {
@@ -163,6 +165,6 @@ TEST_CASE("Iterator Pattern - Iterator Methods") {
         CHECK(iterator->currentItem() == nullptr);
     }
     delete iterator;
-    delete rose;
-    delete chrysanthemum;
+    delete tomato;
+    delete aloevera;
 }

@@ -123,7 +123,7 @@ TEST_CASE("Decorator: Season price effect still works") {
     Rose* rose = new Rose();
     rose->setHealth(0.8);
     ClayPot* clayRose = new ClayPot(rose);
-    float summerCost = clayRose->calculateCost("Summer");
+    float summerCost = clayRose->calculateCost("Spring");
     float winterCost = clayRose->calculateCost("Winter");
     
     CHECK(summerCost == 160.0); 

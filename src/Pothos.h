@@ -14,7 +14,7 @@
 class Pothos : public Indoor {
 
 public:
-	Pothos() : Indoor(300, new MediumMoisture(), new Thinning(), "Pothos") {}
+	Pothos() : Indoor(300, new MediumMoisture(), new Thinning(), "Pothos", "Winter") {}
 };
 
 #endif

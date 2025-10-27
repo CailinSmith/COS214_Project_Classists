@@ -14,7 +14,7 @@
 class WaterLily : public Aquatic {
 
 public:
-	WaterLily() : Aquatic(20, new HighMoisture(), new DeadPruning(), "Water Lily") {}
+	WaterLily() : Aquatic(20, new HighMoisture(), new DeadPruning(), "Water Lily", "Summer") {}
 };
 
 #endif

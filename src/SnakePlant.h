@@ -13,7 +13,7 @@
 
 class SnakePlant : public Indoor {
 public:
-	SnakePlant() : Indoor(120, new DryPlant(), new NoPrune(), "SnakePlant") {}
+	SnakePlant() : Indoor(120, new DryPlant(), new NoPrune(), "SnakePlant", "Winter") {}
 };
 
 #endif
