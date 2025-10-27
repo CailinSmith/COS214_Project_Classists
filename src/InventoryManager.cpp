@@ -1,6 +1,8 @@
 #include "InventoryManager.h"
 #include "NurseryStaff.h"
 #include "Manager.h"
+// include Nursery here so destructor can clear nursery pointer when manager is destroyed
+#include "Nursery.h"
 
 Iterator<Plant>* InventoryManager::createIterator(const std::string& season) {
 	std::vector<Plant*> allPlants;
@@ -169,4 +171,17 @@ void InventoryManager::checkAndNotify() {
 	{
 		notifyStaff("Low stock: nursery count below threshold");
 	}
+}
+
+InventoryManager::~InventoryManager() {
+	//if this manager was registered with the Nursery singleton, clear that pointer
+	Nursery* nursery = Nursery::getInstance();
+	if (nursery != nullptr && nursery->getInventoryManager() == this) {
+		nursery->clearInventoryManager();
+	}
+
+	//dont delete plants, just clear vectors
+	forSale.clear();
+	inNursery.clear();
+	observerList.clear();
 }

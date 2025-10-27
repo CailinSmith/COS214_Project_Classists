@@ -27,6 +27,11 @@ Nursery::~Nursery() {
 	instance = nullptr;
 }
 
+//clear the stored InventoryManager pointer (used when the manager is destroyed)
+void Nursery::clearInventoryManager() {
+	inventoryManager = nullptr;
+}
+
 InventoryManager* Nursery::getInventoryManager() {
 	return inventoryManager;
 }

@@ -26,7 +26,9 @@ pair<string, Receipt*> Customer::sendCommand(CustomerCommand* cmd){
         auto res = command->execute();
         if (res.second != nullptr) {
             addReceipt(res.second);
-            order.clear();
+            // addReceipt copied the receipt into customer's storage. delete
+            // the temporary receipt returned by the command to avoid leaking it.
+            delete res.second;
             res.second = nullptr;
             order.clear();  // Clear but don't delete products
         }

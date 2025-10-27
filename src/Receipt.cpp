@@ -5,45 +5,51 @@
 #include <sstream>
 
 Receipt::Receipt(const std::vector<Product*>& plants) : cost(0.0f) {
-    this->orderPlants = &plants;
+    // Own a copy of the products list to avoid dangling pointers when the
+    // caller modifies or destroys their container.
+    this->orderPlants = plants;
     std::stringstream receipt;
-    
+
     auto now = std::chrono::system_clock::now();
     auto time_t = std::chrono::system_clock::to_time_t(now);
     std::stringstream ss;
     ss << std::put_time(std::localtime(&time_t), "%Y-%m-%d %H:%M:%S");
     date = ss.str();
-    
-    receipt << "===============================\n";
+
+    receipt << "\n===============================\n";
     receipt << "           GreensOnly          \n";
     receipt << "===============================\n";
     receipt << "Date: " << date << "\n";
     receipt << "-------------------------------\n";
 
     Nursery* nursery = Nursery::getInstance();
-    InventoryManager* im = nursery->getInventoryManager();
-    std::string season = nursery->getSeason();
-    
-    for (Product* plant : plants) {
+    InventoryManager* im = nullptr;
+    std::string season = "";
+    if (nursery) {
+        im = nursery->getInventoryManager();
+        season = nursery->getSeason();
+    }
+
+    for (Product* plant : this->orderPlants) {
         if (plant != nullptr) {
             plant->calculateCost(season); //recalculate if necessary
             cost += plant->getCost();
-            receipt << plant->getName() << std::string(20 - plant->getName().length(), ' ') 
+            receipt << plant->getName() << std::string(20 - plant->getName().length(), ' ')
                     << "$" << std::fixed << std::setprecision(2) << plant->getCost() << "\n";
-            
+
             Plant* plantPtr = plant->getBasePlant();
-            if (plantPtr != nullptr) {
+            if (plantPtr != nullptr && im != nullptr) {
                 im->removeFromSale(plantPtr);
             }
         }
     }
-    
+
     receipt << "-------------------------------\n";
     receipt << "TOTAL:" << std::string(15, ' ') << "$" << std::fixed << std::setprecision(2) << cost << "\n";
     receipt << "===============================\n";
     receipt << "     Thank you for shopping!   \n";
     receipt << "===============================\n";
-    
+
     receiptContent = receipt.str();
 }
 
@@ -62,5 +68,5 @@ std::string Receipt::toString() const {
 }
 
 const std::vector<Product*>* Receipt::getPlants() const{
-    return orderPlants;
+    return &orderPlants;
 }

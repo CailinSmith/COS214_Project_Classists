@@ -41,6 +41,8 @@ public:
 	static Nursery* getInstance(InventoryManager* manager = nullptr);	
 
 	InventoryManager* getInventoryManager();
+	//clear the pointer to the inventory manager (used when the manager is destroyed)
+	void clearInventoryManager();
 	
 	void setSeason(SeasonState* season);
 

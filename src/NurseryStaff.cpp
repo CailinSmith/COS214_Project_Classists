@@ -9,13 +9,22 @@ pair<string, Receipt*> NurseryStaff::handleRequest(const string& requestType, Pl
 	result.second = nullptr;
 
 	if(requestType == "CheckStock" && plant){
-		InventoryManager* inventoryManager = new InventoryManager();
-		Nursery* nursery = Nursery::getInstance(inventoryManager);
+		// Use the existing Nursery singleton's InventoryManager. Do not create/delete
+		// a temporary InventoryManager here — that can lead to a dangling pointer
+		// if the Nursery singleton was initialised with the passed manager.
+		Nursery* nursery = Nursery::getInstance();
+		if (!nursery) {
+			result.first = "Error: Nursery has not been initialised with an InventoryManager.\n";
+			return result;
+		}
 		InventoryManager* im = nursery->getInventoryManager();
+		if (!im) {
+			result.first = "Error: Nursery's InventoryManager is null.\n";
+			return result;
+		}
 		StaffCheckStockCommand cmd(plant, im);
 		cmd.execute();
 		int stock = cmd.getStock();
-		delete inventoryManager;
 		result.first = to_string(stock) + " units of " + plant->getName() + " are in stock.\n";
 		return result;
 	}

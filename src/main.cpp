@@ -1851,10 +1851,8 @@ void ChainOfResponsibilityAndCommand()
 {
     std::cout << "\n=== TESTING CUSTOMER COMMANDS + CHAIN OF RESPONSIBILITY ===\n\n";
 
-    // Build chain: NurseryStaff -> SalesStaff -> Manager
-    // Initialize Nursery singleton with an InventoryManager so staff commands can access inventory
-    InventoryManager* invManager = new InventoryManager();
-    Nursery::getInstance(invManager);
+    // InventoryManager* invManager = new InventoryManager();
+    // Nursery::getInstance(invManager);
 
     SalesStaff sales("Sam");
     NurseryStaff nursery("Nina");
@@ -1930,6 +1928,9 @@ void ChainOfResponsibilityAndCommand()
 
     std::cout << "=== ALL TESTS COMPLETED ===\n\n";
 
+    delete rose;
+    delete tomato;
+
 }
 
 void DynamicCastDecoratorTest() {
@@ -1964,19 +1965,19 @@ void DynamicCastDecoratorTest() {
 
 
 int main() { 
-    // MediatorTesting();
-    // AbstractStrategyTesting();
-    // CommandStaffTesting();
-    // PlantStateTesting();
-    // InventoryTesting();
-    // TemplateMethodTesting();
-    // SeasonStateTesting();
-    // DecoratorTesting();
-    // ObserverTesing();
-    // NewStaffCommandsTesting(); 
-    // IteratorTesting();
+    MediatorTesting();
+    AbstractStrategyTesting();
+    CommandStaffTesting();
+    PlantStateTesting();
+    InventoryTesting();
+    TemplateMethodTesting();
+    SeasonStateTesting();
+    DecoratorTesting();
+    ObserverTesing();
+    NewStaffCommandsTesting(); 
+    IteratorTesting();
     ChainOfResponsibilityAndCommand();   
-    // DynamicCastDecoratorTest();
+    DynamicCastDecoratorTest();
 
     Nursery* nursery = Nursery::getInstance();
     if (nursery) {

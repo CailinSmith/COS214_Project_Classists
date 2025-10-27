@@ -17,7 +17,7 @@ private:
     float cost;
     std::string date;
     std::string receiptContent; 
-    const std::vector<Product*>* orderPlants;
+    std::vector<Product*> orderPlants;
 
 public:
     Receipt(const std::vector<Product*>& plants);

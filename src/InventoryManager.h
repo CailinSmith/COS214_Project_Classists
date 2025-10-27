@@ -28,12 +28,7 @@ private:
 public:
 
 	InventoryManager() = default;
-	virtual ~InventoryManager() {
-		// Don't delete plants, just clear vectors
-		forSale.clear();
-		inNursery.clear();
-		observerList.clear();
-	}
+	virtual ~InventoryManager();
 
 	virtual Iterator<Plant>* createIterator(const std::string& season) override;
 	Iterator<Plant>* createSaleIterator(const std::string& season);
