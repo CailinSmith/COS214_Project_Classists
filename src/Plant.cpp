@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <sstream>
 
-Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) {
+Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name, string sellSeason) {
 	this->category = category;
 	this->maxHeight = maxHeight;
 	this->wateringStrat = wateringStrat;
@@ -11,12 +11,12 @@ Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, Pr
 	this->health = 0.0;
 	this->height = 0.0;
 	this->currentState = new SeedState();
-	this->pruned = false; //made false for testing purposes, change to true once state is implemented
+	this->pruned = true; 
 	this->sold = false;
 	this->totalWater = 0;
 	this->name = name;
 	this->cost = 0.0; //ook testing purposes
-	this->sellSeaon = "Summer"; //also testing purposes 
+	this->sellSeason = sellSeason; 
 }
 
 Plant::~Plant() {
@@ -65,7 +65,7 @@ string Plant::summary() {
 	out += "Max Height: " + to_string(this->maxHeight) + " cm\n";
 	out += "Watering Strategy: " + this->wateringStrat->print() + "\n";
 	out += "Pruning Strategy: " + this->pruningStrat->print() + "\n";
-	out += "Sell Season: " + this->sellSeaon + "\n";
+	out += "Sell Season: " + this->sellSeason + "\n";
 	
 	ss << fixed << setprecision(2) << this->cost;
 	out += "Cost: " + ss.str() + "\n";
@@ -177,7 +177,7 @@ void Plant::changePlantState() {
 }
 
 string Plant::getSellSeason() {
-	return sellSeaon;
+	return sellSeason;
 }
 
 float Plant::seasonCost(string curSeason) {

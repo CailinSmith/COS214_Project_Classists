@@ -34,10 +34,10 @@ private:
 	int totalWater;
 	string name;
 	float cost;
-	string sellSeaon;
+	string sellSeason;
 
 public:
-	Plant(string category, int maxHeight, WateringStrategy* waterStrat, PruningStrategy* pruneStrat, string name);
+	Plant(string category, int maxHeight, WateringStrategy* waterStrat, PruningStrategy* pruneStrat, string name, string sellSeason);
 
 	virtual ~Plant();
 

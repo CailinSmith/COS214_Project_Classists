@@ -46,14 +46,14 @@ TEST_CASE("Template Method Pattern: Medicinal base cost is 60.0") {
 TEST_CASE("Template Method Pattern: Rose with health 0.75 in-season") {
     Rose rose;
     rose.setHealth(0.75f);
-    float cost = rose.calculateCost("Summer");
+    float cost = rose.calculateCost("Spring");
     CHECK(cost == 110.0f); 
 }
 
 TEST_CASE("Template Method Pattern: Basil with health 0.8") {
     Basil basil;
     basil.setHealth(0.8f);
-    float cost = basil.calculateCost("Summer");
+    float cost = basil.calculateCost("Spring");
     CHECK(cost == 50.0f); 
 }
 
@@ -67,7 +67,7 @@ TEST_CASE("Template Method Pattern: Tomato with health 0.7 in-season") {
 TEST_CASE("Template Method Pattern: Rose with health 0.95 in-season") {
     Rose rose;
     rose.setHealth(0.95f);
-    float cost = rose.calculateCost("Summer");
+    float cost = rose.calculateCost("Spring");
     CHECK(cost == 120.0f);
 }
 
@@ -81,7 +81,7 @@ TEST_CASE("Template Method Pattern: Basil with health 1.0") {
 TEST_CASE("Template Method Pattern: Lettuce with health 0.92 in-season") {
     Lettuce lettuce;
     lettuce.setHealth(0.92f);
-    float cost = lettuce.calculateCost("Summer");
+    float cost = lettuce.calculateCost("Spring");
     CHECK(cost == 97.6f); 
 }
 

@@ -12,8 +12,8 @@
 class Succulent : public Plant {
 
 public:
-	Succulent(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name) : 
-	Plant("Succulent", maxHeight, wateringStrat, pruningStrat, name) {}
+	Succulent(int maxHeight, WateringStrategy* wateringStrat, PruningStrategy* pruningStrat, string name, string sellSeason) : 
+	Plant("Succulent", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	virtual float baseCost() override;
 };

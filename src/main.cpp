@@ -1072,6 +1072,48 @@ void InventoryTesting() {
 
     std::cout << "\nTesting removing null plant from sale..." << std::endl;
     manager->removeFromSale(nullptr);
+
+    std::cout<< "\nTesting InventoryManager insertion structure..." << std::endl;
+    Rose rose2;
+    Basil basil2;
+    Lavender lavender;
+    Thyme thyme;
+    RubberTree rubberTree;
+    Ginger ginger;
+    Chamomile chamomile;
+     Tomato tomato2;
+    AppleTree appleTree;
+    OrangeTree orangeTree;
+    Lettuce lettuce;
+    Pumpkin pumpkin;
+    Cattails cattails;
+    SnakePlant snakePlant;
+    Chrysanthemum chris;
+    Pansy pansy;
+    Sunflower sunflower;
+
+    manager->addToNursery(&rose2);
+    manager->addToNursery(&basil2);
+    manager->addToNursery(&lavender);
+    manager->addToNursery(&thyme);
+    manager->addToNursery(&rubberTree);
+    manager->addToNursery(&ginger);
+    manager->addToNursery(&chamomile);
+    manager->addToNursery(&tomato2);
+    manager->addToNursery(&appleTree);
+    manager->addToNursery(&orangeTree);
+    manager->addToNursery(&lettuce);
+    manager->addToNursery(&pumpkin);
+    manager->addToNursery(&cattails);
+    manager->addToNursery(&snakePlant);
+    manager->addToNursery(&chris);
+    manager->addToNursery(&pansy);
+    manager->addToNursery(&sunflower);
+
+    std::vector<Plant*> nurseryPlants = manager->getNurseryPlants();
+    for (Plant* plant : nurseryPlants) 
+        std::cout << " - " << plant->getName()<<", Category: " << plant->getCategory() << std::endl;
+
     delete manager;
 }
 

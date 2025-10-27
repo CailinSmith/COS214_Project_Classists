@@ -14,7 +14,7 @@
 class Coneflower : public Medicinal {
 
 public:
-	Coneflower() : Medicinal(90, new MediumMoisture(), new DeadPruning(), "Coneflower") {}
+	Coneflower() : Medicinal(90, new MediumMoisture(), new DeadPruning(), "Coneflower", "Summer") {}
 };
 
 #endif

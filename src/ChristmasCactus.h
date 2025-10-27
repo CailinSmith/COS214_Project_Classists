@@ -14,7 +14,7 @@
 class ChristmasCactus : public Succulent {
 
 public:
-	ChristmasCactus() : Succulent(60, new MediumMoisture(), new Thinning(), "Christmas Cactus") {}
+	ChristmasCactus() : Succulent(60, new MediumMoisture(), new Thinning(), "Christmas Cactus", "Autumn"){}
 };
 
 #endif

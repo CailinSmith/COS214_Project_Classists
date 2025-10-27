@@ -13,7 +13,7 @@
 
 class Pansy : public Flower {
 public:
-	Pansy() : Flower(25, new MediumMoisture(), new DeadPruning(), "Pansy") {}
+	Pansy() : Flower(25, new MediumMoisture(), new DeadPruning(), "Pansy", "Spring") {}
 };
 
 #endif

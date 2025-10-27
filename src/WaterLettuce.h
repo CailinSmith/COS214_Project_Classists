@@ -14,7 +14,7 @@
 class WaterLettuce : public Aquatic {
 
 public:
-	WaterLettuce() : Aquatic(20, new HighMoisture(), new Thinning(), "Water Lettuce") {}
+	WaterLettuce() : Aquatic(20, new HighMoisture(), new Thinning(), "Water Lettuce", "Summer") {}
 };
 
 #endif

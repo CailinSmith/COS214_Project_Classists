@@ -13,7 +13,7 @@
 
 class Rosemary : public Herb {
 public:
-	Rosemary() : Herb(150, new DryPlant(), new Thinning(), "Rosemary") {}
+	Rosemary() : Herb(150, new DryPlant(), new Thinning(), "Rosemary", "Spring") {}
 };
 
 #endif

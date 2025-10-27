@@ -14,7 +14,7 @@
 class Cattails : public Aquatic {
 	
 public:
-	Cattails() : Aquatic(300, new HighMoisture(), new Reduction(), "Cattails") {}
+	Cattails() : Aquatic(300, new HighMoisture(), new Reduction(), "Cattails", "Summer") {}
 };
 
 #endif
