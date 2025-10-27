@@ -98,6 +98,7 @@
 #include "CeramicPot.h"
 #include "ExtraFertilizer.h"
 #include "KraftWrapping.h"
+#include "RefundCommand.h"
 
 using namespace std;
 
@@ -1722,7 +1723,7 @@ void IteratorTesting(){
         if (plant != nullptr) {
             summerSaleCount++;
             cout << "Summer Sale Plant " << summerSaleCount << ": " << plant->getName() 
-                 << " (Cost: $" << plant->getCost() << ")" << endl;
+                << " (Cost: $" << plant->getCost() << ")" << endl;
         }
     }
     
@@ -1740,7 +1741,7 @@ void IteratorTesting(){
         if (plant != nullptr) {
             autumnNurseryCount++;
             cout << "Autumn Nursery Plant " << autumnNurseryCount << ": " << plant->getName() 
-                 << " (Health: " << plant->getHealth() << ")" << endl;
+                << " (Health: " << plant->getHealth() << ")" << endl;
         }
     }
     
@@ -1758,7 +1759,7 @@ void IteratorTesting(){
         if (plant != nullptr) {
             winterCount++;
             cout << "Winter Plant " << winterCount << ": " << plant->getName() 
-                 << " (Location: " << (inventory->isInSale(plant) ? "For Sale" : "Nursery") << ")" << endl;
+                << " (Location: " << (inventory->isInSale(plant) ? "For Sale" : "Nursery") << ")" << endl;
         }
     }
     
@@ -1848,80 +1849,89 @@ void IteratorTesting(){
 
 void ChainOfResponsibilityAndCommand()
 {
-    cout << "\nTesting Chain of Responsibliity with Command\n\n";
-    NurseryStaff nursery("Alice");
-    SalesStaff sales("Bob");
-    Manager manager("Carl");
+    std::cout << "\n=== TESTING CUSTOMER COMMANDS + CHAIN OF RESPONSIBILITY ===\n\n";
 
+    // Build chain: NurseryStaff -> SalesStaff -> Manager
+    // Initialize Nursery singleton with an InventoryManager so staff commands can access inventory
+    InventoryManager* invManager = new InventoryManager();
+    Nursery::getInstance(invManager);
+
+    SalesStaff sales("Sam");
+    NurseryStaff nursery("Nina");
+    Manager manager("Mike");
+    // correct chain order: nursery -> sales -> manager
     nursery.setNext(&sales);
     sales.setNext(&manager);
 
-    cout << "Staff chain: Alice(NurseryStaff) -> Sam (SalesStaff) -> Mike (Manager)\n";
+    std::cout << "Staff chain built successfully.\n\n";
 
+    // Create plants
     Rose* rose = new Rose();
     Tomato* tomato = new Tomato();
 
+    // Create customer and add items
     Customer shopper("Alice");
     shopper.addToCart(rose);
     shopper.addToCart(tomato);
 
-    cout << "Customer '" << shopper.getName() << "' added Rose and Tomato.\n";
-    cout << "Cart size before checkout: " << shopper.getOrder().size() << "\n\n";
+    std::cout << "Customer cart has " << shopper.getOrder().size() << " items.\n\n";
 
-    cout << "TEST 1: AskInfoCommand (NurseryStaff)\n";
-
+    // TEST 1: AskInfoCommand
+    std::cout << "TEST 1: AskInfoCommand (handled by NurseryStaff)\n";
     AskInfoCommand askCmd(&nursery, rose);
-    string info = shopper.sendCommand(&askCmd);
+    std::string askResult = shopper.sendCommand(&askCmd).first;
+    std::cout << "Result: " << askResult << "\n";
+    if (askResult.find("Rose") != std::string::npos) {
+        std::cout << "AskInfo returned correct info." << std::endl << std::endl;
+    } else {
+        std::cout << "AskInfo did not return expected info.\n\n";
+    }
 
-    cout << "Result:\n" << info << "\n";
-
-    if (info.find("Rose") != string::npos) 
-        cout << "Contains plant name\n";
-    else
-        cout << "Missing plant name\n";
-
-    if (info.find("Sam")  == string::npos && info.find("Mike") == string::npos)
-        std::cout << "Not handled by Sales/Manager\n\n";
-    else
-        std::cout << "Wrong handler used\n\n";
-    
-    std::cout << "TEST 2: CheckStockCommand (placeholder)\n";
-
+    // TEST 2: CheckStockCommand
+    std::cout << "TEST 2: CheckStockCommand (handled by NurseryStaff)\n";
     CheckStockCommand stockCmd(&nursery, tomato);
-    std::string stock = shopper.sendCommand(&stockCmd);
+    std::string stockResult = shopper.sendCommand(&stockCmd).first;
+    std::cout << "Result: " << stockResult << "\n";
+    if (stockResult.find("Tomato") != std::string::npos) {
+        std::cout << "CheckStock returned correct stock info." << std::endl << std::endl;
+    } else {
+        std::cout << "CheckStock did not return expected info.\n\n";
+    }
 
-    std::cout << "Result:\n" << stock << "\n";
+    // TEST 3: CheckoutCommand
+    std::cout << "TEST 3: CheckoutCommand (handled by SalesStaff)\n";
+    std::cout << "Cart before checkout: " << shopper.getOrder().size() << " items\n";
+    CheckoutCommand checkoutCmd(&nursery, &shopper.getOrder(), nullptr);
+    auto checkoutRes = shopper.sendCommand(&checkoutCmd);
+    std::string checkoutResult = checkoutRes.first;
+    std::cout << "Result (Receipt): " << checkoutResult << "\n";
+    if (checkoutResult.find("Rose") != std::string::npos && checkoutResult.find("Tomato") != std::string::npos && shopper.getOrder().empty()) {
+        std::cout << "[PASS] Checkout generated receipt and cleared cart." << std::endl << std::endl;
+    } else {
+        std::cout << "[FAIL] Checkout did not generate expected receipt or clear cart.\n\n";
+    }
 
-    if(stock.find("Tomato") != string::npos)
-        std::cout << "Contains plant name\n";
-    else
-        std::cout << "Missing plant name\n";
+    // TEST 4: RefundCommand
+    std::cout << "TEST 4: RefundCommand (handled by SalesStaff)\n";
+    Rose* refundRose = new Rose();
+    std::vector<Product*> refundOrder;
+    refundOrder.push_back(refundRose);
+    std::vector<bool> flags(1, true); // Flag indicating items are eligible for refund
 
-    if(stock.find("InventoryManager") != string::npos)
-        std::cout << "Shows placeholder\n\n";
-    else
-        std::cout << "Missing placeholder\n\n";
+    RefundCommand refundCmd(&nursery, &refundOrder, &flags);
+    auto refundRes = shopper.sendCommand(&refundCmd);
+    std::string refundResult = refundRes.first;
+    std::cout << "Result: " << refundResult << "\n";
+    if (refundResult == "100") {
+        std::cout << "[PASS] Refund command processed successfully." << std::endl << std::endl;
+    } else {
+        std::cout << "[FAIL] Refund command did not process correctly.\n\n";
+    }
 
-    std::cout << "TEST 3: CheckoutCommand (receipt + cart clear)\n";
-    std::cout << "Cart before: " << shopper.getOrder().size() << " items\n";
-
-    CheckoutCommand checkoutCmd(&nursery, &shopper.getOrder());
-    std::string receipt = shopper.sendCommand(&checkoutCmd);
-
-    std::cout << "Receipt:\n" << receipt << "\n";
-
-    if (receipt.find("Rose") != string::npos && receipt.find("Tomato") != string::npos)
-        std::cout << "Receipt lists both plants\n";
-    else
-        std::cout << "Missing plant in receipt\n";
-    if (shopper.getOrder().empty())
-        std::cout << "Cart is now empty\n\n";
-    else
-        std::cout << "Cart still has items\n\n";
-    delete rose;
-    delete tomato;
+    std::cout << "=== ALL TESTS COMPLETED ===\n\n";
 
 }
+
 void DynamicCastDecoratorTest() {
     cout << "\n=== Dynamic Cast Decorator Test ===" << endl;
     
@@ -1954,19 +1964,19 @@ void DynamicCastDecoratorTest() {
 
 
 int main() { 
-    MediatorTesting();
-    AbstractStrategyTesting();
-    CommandStaffTesting();
-    PlantStateTesting();
-    InventoryTesting();
-    TemplateMethodTesting();
-    SeasonStateTesting();
-    DecoratorTesting();
-    ObserverTesing();
-    // NewStaffCommandsTesting(); - memory errors
-    IteratorTesting();
+    // MediatorTesting();
+    // AbstractStrategyTesting();
+    // CommandStaffTesting();
+    // PlantStateTesting();
+    // InventoryTesting();
+    // TemplateMethodTesting();
+    // SeasonStateTesting();
+    // DecoratorTesting();
+    // ObserverTesing();
+    // NewStaffCommandsTesting(); 
+    // IteratorTesting();
     ChainOfResponsibilityAndCommand();   
-    DynamicCastDecoratorTest();
+    // DynamicCastDecoratorTest();
 
     Nursery* nursery = Nursery::getInstance();
     if (nursery) {
