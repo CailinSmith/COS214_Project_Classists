@@ -8,16 +8,27 @@ BUILD_DIR := build
 SRC_DIR := src
 TEST_DIR := testing
 
+# FTXUI Configuration
+FTXUI_INSTALL := ftxui_install
+FTXUI_INCLUDE := $(FTXUI_INSTALL)/include
+FTXUI_LIB := $(FTXUI_INSTALL)/lib
+FTXUI_LIBS := -L$(FTXUI_LIB) -lftxui-component -lftxui-dom -lftxui-screen
+
 # =========================
 # Targets
 # =========================
 TARGET := $(BUILD_DIR)/main
+GUI_TARGET := $(BUILD_DIR)/gui
 TEST_TARGET := $(BUILD_DIR)/test_runner
 
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
-OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
+MAIN_SRCS := $(filter-out $(SRC_DIR)/gui.cpp,$(SRCS))
+OBJS := $(MAIN_SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
 CORE_OBJS := $(filter-out $(BUILD_DIR)/main.o,$(OBJS))
+
+# GUI objects (all core objects + gui.o)
+GUI_OBJS := $(CORE_OBJS) $(BUILD_DIR)/gui.o
 
 TEST_SRCS := $(wildcard $(TEST_DIR)/*.cpp)
 TEST_OBJS := $(TEST_SRCS:$(TEST_DIR)/%.cpp=$(BUILD_DIR)/%.test.o)
@@ -29,13 +40,23 @@ COR_TEST_TARGET := $(BUILD_DIR)/cor_test
 # =========================
 # Default target
 # =========================
-all: setup $(TARGET)
+all: setup $(TARGET) $(GUI_TARGET)
 
 # =========================
 # Build main project
 # =========================
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# =========================
+# Build GUI application
+# =========================
+$(GUI_TARGET): $(GUI_OBJS)
+	$(CXX) $(CXXFLAGS) -I$(FTXUI_INCLUDE) -o $@ $^ $(FTXUI_LIBS)
+
+$(BUILD_DIR)/gui.o: $(SRC_DIR)/gui.cpp
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -I$(FTXUI_INCLUDE) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	mkdir -p $(BUILD_DIR)
@@ -59,6 +80,12 @@ test: $(TEST_TARGET)
 # =========================
 run: $(TARGET)
 	./$(TARGET)
+
+# =========================
+# Run GUI application
+# =========================
+rungui: $(GUI_TARGET)
+	./$(GUI_TARGET)
 
 # =========================
 # Memory check with Valgrind

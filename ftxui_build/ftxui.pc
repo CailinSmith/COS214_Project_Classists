@@ -1,0 +1,9 @@
+prefix="/home/alex_lange/Year 2/COS 214/Project/COS214_Project_Classists/ftxui_install"
+libdir="/home/alex_lange/Year 2/COS 214/Project/COS214_Project_Classists/ftxui_install/lib"
+includedir="/home/alex_lange/Year 2/COS 214/Project/COS214_Project_Classists/ftxui_install/include"
+
+Name: ftxui
+Description: C++ Functional Terminal User Interface.
+Version: 6.1.9
+Cflags: -I${includedir}
+Libs: -L${libdir} -lftxui-component -lftxui-dom -lftxui-screen
