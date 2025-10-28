@@ -6,7 +6,6 @@
 #include "Lettuce.h"
 #include "Plant.h"
 
-
 TEST_CASE("Plant State: Initialization - All plants start in Seed State") {
     SUBCASE("Rose plant initialization") {
         Rose plant;
@@ -43,7 +42,6 @@ TEST_CASE("Plant State: Initialization - All plants start in Seed State") {
         CHECK(plant.getHeight() == 0.0);
     }
 }
-
 
 TEST_CASE("Plant State: Seed to Seedling Transitions") {
     SUBCASE("Normal transition at threshold") {
@@ -111,7 +109,6 @@ TEST_CASE("Plant State: Seed to Seedling Transitions") {
     }
 }
 
-
 TEST_CASE("Plant State: Seedling to Growing Transitions") {
     SUBCASE("Normal progression to Growing") {
         Tomato plant;
@@ -154,7 +151,6 @@ TEST_CASE("Plant State: Seedling to Growing Transitions") {
     }
 }
 
-
 TEST_CASE("Plant State: Growing to Mature Transitions") {
     SUBCASE("Normal progression to Mature") {
         Rose plant;
@@ -196,7 +192,6 @@ TEST_CASE("Plant State: Growing to Mature Transitions") {
         CHECK(plant.getState() == "Mature");
     }
 }
-
 
 TEST_CASE("Plant State: Mature to Ready for Sale Transitions") {
     SUBCASE("Normal progression to Ready for Sale") {
@@ -243,7 +238,6 @@ TEST_CASE("Plant State: Mature to Ready for Sale Transitions") {
         CHECK(plant.getState() == "Ready for Sale");
     }
 }
-
 
 TEST_CASE("Plant State: Transitions to and from Dying State") {
     SUBCASE("Growing to Dying when health drops") {
@@ -336,7 +330,6 @@ TEST_CASE("Plant State: Transitions to and from Dying State") {
     }
 }
 
-
 TEST_CASE("Plant State: Dead State - Terminal State Tests") {
     SUBCASE("Dying to Dead when health is zero") {
         Rose plant;
@@ -412,7 +405,6 @@ TEST_CASE("Plant State: Dead State - Terminal State Tests") {
     }
 }
 
-
 TEST_CASE("Plant State: State Degradation Tests") {
     SUBCASE("Ready for Sale degrades to Mature") {
         JadePlant plant;
@@ -473,7 +465,6 @@ TEST_CASE("Plant State: State Degradation Tests") {
     }
 }
 
-
 TEST_CASE("Plant State: Boundary Value Analysis") {
     SUBCASE("Health at 0.0") {
         Rose plant;
@@ -482,6 +473,7 @@ TEST_CASE("Plant State: Boundary Value Analysis") {
         plant.changePlantState();
         plant.changePlantState();
         plant.changePlantState();
+        // Should handle gracefully
         CHECK(plant.getState() != "");
     }
     
@@ -531,7 +523,6 @@ TEST_CASE("Plant State: Boundary Value Analysis") {
     }
 }
 
-
 TEST_CASE("Plant State: Edge Cases and Unusual Scenarios") {
     SUBCASE("Multiple state changes without property updates") {
         Basil plant;
@@ -545,6 +536,7 @@ TEST_CASE("Plant State: Edge Cases and Unusual Scenarios") {
         plant.changePlantState();
         string thirdState = plant.getState();
         
+        // Should progress through states
         CHECK(firstState == "Seedling State");
         CHECK(secondState == "Growing");
         CHECK(thirdState == "Mature");
@@ -595,6 +587,7 @@ TEST_CASE("Plant State: Edge Cases and Unusual Scenarios") {
         plant.setHeight(0.9);
         plant.setHealth(0.1);
         plant.changePlantState();
+        // State should be determined by the lower value
         CHECK(plant.getState() == "Seedling State");
     }
     
@@ -603,10 +596,10 @@ TEST_CASE("Plant State: Edge Cases and Unusual Scenarios") {
         plant.setHeight(0.1);
         plant.setHealth(0.9);
         plant.changePlantState();
+        // State should be determined appropriately
         CHECK(plant.getState() == "Seedling State");
     }
 }
-
 
 TEST_CASE("Plant State: Complete Lifecycle Scenarios") {
     SUBCASE("Full healthy lifecycle") {
@@ -681,6 +674,7 @@ TEST_CASE("Plant State: Complete Lifecycle Scenarios") {
         plant.changePlantState();
         CHECK(plant.getState() == "Dead");
         
+        // Confirm death is permanent
         plant.setHealth(1.0);
         plant.setHeight(1.0);
         plant.changePlantState();
