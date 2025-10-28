@@ -8,11 +8,17 @@ BUILD_DIR := build
 SRC_DIR := src
 TEST_DIR := testing
 
+# Dependencies folder (absolute path for Makefile safety)
+DEPS_DIR := $(CURDIR)/.deps
+
 # FTXUI Configuration
-FTXUI_INSTALL := ftxui_install
+FTXUI_SRC := $(DEPS_DIR)/ftxui_src
+FTXUI_BUILD := $(DEPS_DIR)/ftxui_build
+FTXUI_INSTALL := $(DEPS_DIR)/ftxui_install
 FTXUI_INCLUDE := $(FTXUI_INSTALL)/include
 FTXUI_LIB := $(FTXUI_INSTALL)/lib
-FTXUI_LIBS := -L$(FTXUI_LIB) -lftxui-component -lftxui-dom -lftxui-screen
+# Note: We'll add quotes in the recipes where this is used
+FTXUI_LIBS := -lftxui-component -lftxui-dom -lftxui-screen
 
 # =========================
 # Targets
@@ -40,7 +46,10 @@ COR_TEST_TARGET := $(BUILD_DIR)/cor_test
 # =========================
 # Default target
 # =========================
-all: setup $(TARGET) $(GUI_TARGET)
+all: setup $(TARGET)
+
+# Build everything including GUI
+all-gui: setup $(TARGET) $(GUI_TARGET)
 
 # =========================
 # Build main project
@@ -51,12 +60,21 @@ $(TARGET): $(OBJS)
 # =========================
 # Build GUI application
 # =========================
-$(GUI_TARGET): $(GUI_OBJS)
-	$(CXX) $(CXXFLAGS) -I$(FTXUI_INCLUDE) -o $@ $^ $(FTXUI_LIBS)
+$(GUI_TARGET): check-ftxui $(GUI_OBJS)
+	$(CXX) $(CXXFLAGS) -I"$(FTXUI_INCLUDE)" -o $@ $(GUI_OBJS) -L"$(FTXUI_LIB)" $(FTXUI_LIBS)
 
 $(BUILD_DIR)/gui.o: $(SRC_DIR)/gui.cpp
 	mkdir -p $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -I$(FTXUI_INCLUDE) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I"$(FTXUI_INCLUDE)" -c $< -o $@
+
+check-ftxui:
+	@if [ ! -d "$(FTXUI_INSTALL)/lib" ] || [ ! -f "$(FTXUI_INSTALL)/lib/libftxui-screen.a" ]; then \
+		echo "ERROR: FTXUI libraries not found!"; \
+		echo ""; \
+		echo "Run: make install-deps"; \
+		echo ""; \
+		exit 1; \
+	fi
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	mkdir -p $(BUILD_DIR)
@@ -84,7 +102,7 @@ run: $(TARGET)
 # =========================
 # Run GUI application
 # =========================
-rungui: $(GUI_TARGET)
+rungui: setup $(GUI_TARGET)
 	./$(GUI_TARGET)
 
 # =========================
@@ -109,36 +127,101 @@ setup:
 clean:
 	rm -rf $(BUILD_DIR)
 
+clean-all: clean
+	rm -rf "$(DEPS_DIR)"
+
 # =========================
 # Install Dependencies
 # =========================
-dependencies:
-	@echo "Installing FTXUI dependencies..."
-	@echo "Checking for required packages..."
-	@command -v cmake >/dev/null 2>&1 || { echo "cmake is required but not installed. Installing..."; sudo apt-get update && sudo apt-get install -y cmake; }
-	@command -v g++ >/dev/null 2>&1 || { echo "g++ is required but not installed. Installing..."; sudo apt-get update && sudo apt-get install -y g++; }
-	@echo "Checking if FTXUI is already built..."
+install-deps:
+	@if ! command -v cmake >/dev/null 2>&1; then \
+		echo "ERROR: cmake is not installed!"; \
+		echo "Please install cmake first:"; \
+		echo "  Ubuntu/Debian: sudo apt-get install cmake g++ git build-essential"; \
+		echo "  Fedora/RHEL:   sudo dnf install cmake gcc-c++ git make"; \
+		echo "  macOS:         brew install cmake"; \
+		exit 1; \
+	fi
+	@if ! command -v g++ >/dev/null 2>&1; then \
+		echo "ERROR: g++ is not installed!"; \
+		echo "Please install g++ first:"; \
+		echo "  Ubuntu/Debian: sudo apt-get install g++ build-essential"; \
+		echo "  Fedora/RHEL:   sudo dnf install gcc-c++"; \
+		echo "  macOS:         xcode-select --install"; \
+		exit 1; \
+	fi
+	@if ! command -v git >/dev/null 2>&1; then \
+		echo "ERROR: git is not installed!"; \
+		echo "Please install git first:"; \
+		echo "  Ubuntu/Debian: sudo apt-get install git"; \
+		echo "  Fedora/RHEL:   sudo dnf install git"; \
+		echo "  macOS:         brew install git"; \
+		exit 1; \
+	fi
 	@if [ ! -d "$(FTXUI_INSTALL)/lib" ] || [ ! -f "$(FTXUI_INSTALL)/lib/libftxui-screen.a" ]; then \
-		echo "FTXUI not found or incomplete. Building FTXUI..."; \
-		if [ ! -d "ftxui_src" ]; then \
+		mkdir -p "$(DEPS_DIR)"; \
+		if [ ! -d "$(FTXUI_SRC)" ]; then \
 			echo "Cloning FTXUI repository..."; \
-			git clone https://github.com/ArthurSonzogni/FTXUI.git ftxui_src; \
+			git clone https://github.com/ArthurSonzogni/FTXUI.git "$(FTXUI_SRC)" || exit 1; \
 		fi; \
-		mkdir -p ftxui_build; \
-		cd ftxui_build && \
-		cmake ../ftxui_src -DCMAKE_INSTALL_PREFIX=../$(FTXUI_INSTALL) && \
-		make -j$(shell nproc) && \
+		echo "Building FTXUI (this may take a few minutes)..."; \
+		mkdir -p "$(FTXUI_BUILD)" && \
+		mkdir -p "$(FTXUI_INSTALL)" && \
+		cd "$(FTXUI_BUILD)" && \
+		cmake "$(FTXUI_SRC)" -DCMAKE_INSTALL_PREFIX="$(FTXUI_INSTALL)" && \
+		make -j4 && \
 		make install && \
-		cd ..; \
+		cd "$(CURDIR)" && \
 		echo "FTXUI installed successfully!"; \
 	else \
-		echo "FTXUI is already installed."; \
+		echo "FTXUI is already installed in $(DEPS_DIR)"; \
 	fi
-	@echo "All dependencies are installed!"
+
+# Build just the GUI (without running it)
+gui: setup $(GUI_TARGET)
+
+# Build everything including GUI
+all-gui: setup $(OBJS) $(GUI_TARGET)
+
+# =========================
+# Help and Information
+# =========================
+help:
+	@echo ""
+	@echo "======================================================"
+	@echo "NURSERY MANAGEMENT SYSTEM - BUILD HELP"
+	@echo "======================================================"
+	@echo ""
+	@echo "QUICK START:"
+	@echo "  make install-deps    # Install FTXUI dependencies (run first!)"
+	@echo "  make rungui          # Build and run the GUI"
+	@echo "  make run             # Build and run the CLI application"
+	@echo ""
+	@echo "BUILD TARGETS:"
+	@echo "  make                 # Build main application"
+	@echo "  make gui             # Build GUI application (no run)"
+	@echo "  make all             # Build main application"
+	@echo "  make all-gui         # Build everything including GUI"
+	@echo ""
+	@echo "TESTING:"
+	@echo "  make test            # Run unit tests"
+	@echo "  make val             # Run valgrind memory check (main + tests)"
+	@echo "  make val-test        # Run valgrind memory check (tests only)"
+	@echo ""
+	@echo "CLEANUP:"
+	@echo "  make clean           # Remove build/ directory"
+	@echo "  make clean-all       # Remove build/ and .deps/ (all dependencies)"
+	@echo ""
+	@echo "DEPENDENCIES:"
+	@echo "  make install-deps    # Install/build FTXUI from source"
+	@echo ""
+	@echo "NOTES:"
+	@echo "  - FTXUI setup: ~2-3 minutes (one-time only)"
+	@echo "  - GUI requires: cmake, g++, git"
+	@echo "  - Main app works without GUI"
+	@echo ""
 
 # =========================
 # Phony targets
 # =========================
-.PHONY: all clean test setup val install-deps rungui
-
-.PHONY: run
+.PHONY: all all-gui clean clean-all test setup val install-deps rungui gui check-ftxui run help val-test

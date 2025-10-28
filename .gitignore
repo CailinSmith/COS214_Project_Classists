@@ -7,6 +7,9 @@
 # Builder folder
 build/
 
+# Dependencies folder (FTXUI and other deps)
+.deps/
+
 # Precompiled headers
 *.gch
 *.pch
