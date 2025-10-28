@@ -12,7 +12,7 @@
 class StockCommand : public StaffCommand {
 
 public:
-	StockCommand(Nursery* n);
+	StockCommand();
 	void execute();
 };
 

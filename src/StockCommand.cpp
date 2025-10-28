@@ -1,7 +1,10 @@
 #include "StockCommand.h"
 
-StockCommand::StockCommand(Nursery *n) : StaffCommand(nullptr, nullptr, n) {}
+StockCommand::StockCommand() : StaffCommand() {}
 
 void StockCommand::execute() {
-    if (nursery) nursery->stockNursery();
+    Nursery* nursery = Nursery::getInstance();
+    if (nursery) {
+        nursery->stockNursery();
+    }
 }

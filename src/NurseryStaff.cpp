@@ -1,13 +1,44 @@
 #include "NurseryStaff.h"
+#include "Customer.h"
 
-NurseryStaff::NurseryStaff(string name) : Staff(name) {}
+NurseryStaff::NurseryStaff(string name) : Staff(name){}
 
-void NurseryStaff::handleRequest() {
+pair<string, Receipt*> NurseryStaff::handleRequest(const string& requestType, Plant* plant, vector<Product*>* order, vector<bool>* flags) {
 	// TODO - implement NurseryStaff::handleRequest
-	cout << getName() << " (" << getPosition() << ") handling mediator request." << endl;
-	std::cout << "Nursery staff: " << name << " handled request.\n";
-	if(next)
-		next->handleRequest();
+	pair<string, Receipt*> result;
+	result.second = nullptr;
+
+	if(requestType == "CheckStock" && plant){
+		// Use the existing Nursery singleton's InventoryManager. Do not create/delete
+		// a temporary InventoryManager here — that can lead to a dangling pointer
+		// if the Nursery singleton was initialised with the passed manager.
+		Nursery* nursery = Nursery::getInstance();
+		if (!nursery) {
+			result.first = "Error: Nursery has not been initialised with an InventoryManager.\n";
+			return result;
+		}
+		InventoryManager* im = nursery->getInventoryManager();
+		if (!im) {
+			result.first = "Error: Nursery's InventoryManager is null.\n";
+			return result;
+		}
+		StaffCheckStockCommand cmd(plant, im);
+		cmd.execute();
+		int stock = cmd.getStock();
+		result.first = to_string(stock) + " units of " + plant->getName() + " are in stock.\n";
+		return result;
+	}
+	else if(requestType == "AskInfo" && plant){
+		GetInfoCommand cmd(plant);
+		cmd.execute();
+		result.first = cmd.getInfo();
+		return result;
+	}
+	else if(next){
+		return next->handleRequest(requestType, plant, order, flags);
+	} 
+	result.first = "No staff could handle the request: '" + requestType + "'\n";
+	return result;
 }
 
 string NurseryStaff::getPosition() {

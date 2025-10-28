@@ -89,6 +89,8 @@ public:
 
     void changePlantState();
 
+	void changeHealth();
+
 	string getSellSeason();
 
 	float calculateCost(string currSeason);

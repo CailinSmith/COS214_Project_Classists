@@ -2,10 +2,13 @@
 #include <iostream>
 
 StaffCheckoutCommand::StaffCheckoutCommand(const std::vector<Product*>& p) 
-    : plants(p) {
+    : plants(p), receipt(nullptr) {
 }
 
-StaffCheckoutCommand::~StaffCheckoutCommand() {}
+StaffCheckoutCommand::~StaffCheckoutCommand() {
+    if(receipt)
+        delete receipt;
+}
 
 void StaffCheckoutCommand::execute() {
     if (!plants.empty()) {
@@ -23,5 +26,9 @@ void StaffCheckoutCommand::execute() {
 }
 
 Receipt* StaffCheckoutCommand::getReceipt() {
-    return receipt;
+    // Transfer ownership to the caller. After this call, this command no longer
+    // owns the receipt and will not delete it in the destructor.
+    Receipt* temp = receipt;
+    receipt = nullptr;
+    return temp;
 }

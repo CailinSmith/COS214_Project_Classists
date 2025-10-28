@@ -87,7 +87,8 @@ string Plant::customerSummary() {
 	out += "Health: " + ss.str() + "\n";
 	ss.str(""); ss.clear();
 	
-	out += "State: " + this->currentState->print() + "\n";
+	if(this->currentState)
+		out += "State: " + this->currentState->print() + "\n";
 	
 	ss << fixed << setprecision(2) << this->cost;
 	out += "Cost: " + ss.str() + "\n";
@@ -195,4 +196,52 @@ float Plant::calculateCost(string currSeason) {
 
 float Plant::getCost() {
 	return cost;
+}
+
+void Plant::changeHealth() {
+	float healthDelta = 0.0f;
+	float heightDelta = 0.0f;
+
+	if (waterLevel < 0.20f) {
+		healthDelta -= 0.010f; // dehydration
+		heightDelta -= 0.003f;
+	} else {
+		// well watered or recently watered (1.0 means just watered)
+		healthDelta += 0.006f; // well watered
+		heightDelta += 0.004f; // promotes growth
+	}
+
+	if (pruned) {
+		healthDelta += 0.002f;
+		heightDelta -= 0.005f;
+	}
+
+	//as plant approaches max height, growth slows down.
+	if (height >= 0.90f) {
+		// prevent further meaningful growth when near max
+		if (heightDelta > 0.0f) heightDelta *= 0.2f;
+	}
+
+	//if health is very low --> decay accelerates
+	if (health < 0.20f) {
+		healthDelta -= 0.005f;
+		heightDelta -= 0.008f;
+	}
+
+	//apply deltas
+	health += healthDelta;
+	height += heightDelta;
+
+	//clamp values to valid ranges
+	if (health > 1.0f) health = 1.0f;
+	if (health < 0.0f) health = 0.0f;
+	if (height > 1.0f) height = 1.0f;
+	if (height < 0.0f) height = 0.0f;
+
+	//waterlevel decayy
+	const float waterDecay = 0.005f;
+	waterLevel -= waterDecay;
+	if (waterLevel < 0.0f) waterLevel = 0.0f;
+
+	changePlantState();
 }

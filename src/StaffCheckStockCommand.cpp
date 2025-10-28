@@ -1,13 +1,23 @@
 #include "StaffCheckStockCommand.h"
+#include "Nursery.h"
 #include <iostream>
 
-StaffCheckStockCommand::StaffCheckStockCommand(Plant* p, InventoryManager* im) 
-    : StaffCommand(p, im, nullptr) {
+StaffCheckStockCommand::StaffCheckStockCommand(Plant* p, InventoryManager* im) : StaffCommand() {
+    plant = p;
+    (void) im;
+    // don't store the passed InventoryManager pointer; we'll fetch the current manager
+    // from the Nursery singleton at execution time to avoid iterating a freed manager.
 }
 
 StaffCheckStockCommand::~StaffCheckStockCommand() {}
 
 void StaffCheckStockCommand::execute() {
+    InventoryManager* inventoryManager = nullptr;
+    Nursery* nursery = Nursery::getInstance();
+    if (nursery) {
+        inventoryManager = nursery->getInventoryManager();
+    }
+
     if (plant && inventoryManager) {
         stock = 0;
         std::string targetName = plant->getName();

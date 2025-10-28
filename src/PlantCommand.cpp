@@ -1,7 +1,11 @@
 #include "PlantCommand.h"
-PlantCommand::PlantCommand(Plant *p, InventoryManager* im) : StaffCommand(p, im, nullptr) {}
+PlantCommand::PlantCommand(Plant *p, InventoryManager* im) : StaffCommand() {
+    plant = p;
+    inventoryManager = im;
+}
 
 void PlantCommand::execute()
 {
-    inventoryManager->addToNursery(plant);
+    if (inventoryManager != nullptr && plant != nullptr)
+        inventoryManager->addToNursery(plant);
 }

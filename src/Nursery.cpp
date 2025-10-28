@@ -3,14 +3,45 @@
 #include "SpringFactory.h"
 #include <iostream>
 
+Nursery* Nursery::instance = nullptr;
+
 Nursery::Nursery(InventoryManager* manager) : inventoryManager(manager) {
 	currentSeason = new Spring();
 	currentFactory = new SpringFactory();
 }
 
+Nursery* Nursery::getInstance(InventoryManager* manager) {
+	if (instance == nullptr) {
+		if (manager == nullptr) {
+			std::cout << "Error: InventoryManager is required for first initialization of Nursery" << std::endl;
+			return nullptr;
+		}
+		instance = new Nursery(manager);
+	}
+	return instance;
+}
+
+void Nursery::destroyInstance() {
+	if (instance != nullptr) {
+		delete instance;
+		// Nursery::~Nursery sets instance = nullptr but clear again for safety
+		instance = nullptr;
+	}
+}
+
 Nursery::~Nursery() {
 	delete currentSeason;
 	delete currentFactory;
+	instance = nullptr;
+}
+
+//clear the stored InventoryManager pointer (used when the manager is destroyed)
+void Nursery::clearInventoryManager() {
+	inventoryManager = nullptr;
+}
+
+InventoryManager* Nursery::getInventoryManager() {
+	return inventoryManager;
 }
 
 void Nursery::setSeason(SeasonState* season) {

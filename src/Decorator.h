@@ -2,6 +2,7 @@
 #define DECORATOR_H
 
 #include "Product.h"
+#include "Plant.h"
 
 class Decorator : public Product {
 
@@ -12,6 +13,7 @@ public:
 	virtual string getSummary();
 	virtual string getName();
 	Product* removeDecorator();
+	Plant* getBasePlant() override;
 
 private:
 	Product* plant;

@@ -3,6 +3,9 @@
 #include <string>
 using namespace std;
 
+// Forward declaration
+class Plant;
+
 class Product {
 public:
     virtual ~Product() {}
@@ -14,11 +17,17 @@ public:
         return "";
     };
     virtual string getName(){
-        return "";
+        return "DefaultName";
+    };
+    virtual string getInfo(){
+        return "DefaultInfo";
     };
     virtual float getCost(){
         return 0.0;
     };
+    virtual Plant* getBasePlant(){
+        return nullptr;
+    }
 
     //We might need to make them pv later on, just made them virtual 
     //so all the plant subclasses don't need to implement them

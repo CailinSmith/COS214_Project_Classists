@@ -22,6 +22,10 @@ CORE_OBJS := $(filter-out $(BUILD_DIR)/main.o,$(OBJS))
 TEST_SRCS := $(wildcard $(TEST_DIR)/*.cpp)
 TEST_OBJS := $(TEST_SRCS:$(TEST_DIR)/%.cpp=$(BUILD_DIR)/%.test.o)
 
+# Target for running only chainOfResponsibility tests
+COR_TEST_TARGET := $(BUILD_DIR)/cor_test
+
+
 # =========================
 # Default target
 # =========================
@@ -62,6 +66,12 @@ run: $(TARGET)
 val: $(TARGET) $(TEST_TARGET)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_TARGET)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TARGET)
+
+# Run valgrind only on unit tests (test runner)
+.PHONY: val-test
+val-test: $(TEST_TARGET)
+	@echo "Running valgrind on unit tests ($(TEST_TARGET))"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_TARGET)
 
 # =========================
 # Setup / Clean
