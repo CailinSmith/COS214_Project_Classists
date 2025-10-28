@@ -28,6 +28,7 @@ TEST_CASE("Command Pattern: WaterCommand executes without error") {
 TEST_CASE("Command Pattern: StockCommand executes without error") {
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
     StockCommand stockNursery;
     CHECK_NOTHROW(stockNursery.execute());
     delete manager;
@@ -117,6 +118,7 @@ TEST_CASE("Command Pattern: RemoveSaleCommand removes plant from sale") {
 TEST_CASE("Command Pattern: CalcCostCommand calculates plant cost") {
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
     Rose* rose = new Rose();
     
     CalcCostCommand calcCost(rose, nursery);
@@ -140,6 +142,7 @@ TEST_CASE("Command Pattern: GetInfoCommand returns plant information") {
 TEST_CASE("Command Pattern: StaffCheckStockCommand checks inventory") {
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
     
     Rose* rose = new Rose();
     manager->addToSale(rose);
@@ -155,6 +158,7 @@ TEST_CASE("Command Pattern: StaffCheckStockCommand checks inventory") {
 TEST_CASE("Command Pattern: StaffCheckoutCommand processes checkout") {
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
     
     std::vector<Product*> products;
     products.push_back(new Rose());

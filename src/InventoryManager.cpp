@@ -19,18 +19,6 @@ Iterator<Plant>* InventoryManager::createNurseryIterator(const std::string& seas
 	return new SeasonIterator(inNursery, season);
 }
 
-// int catNumber(string category){
-//     if (category == "Flower") return 0;
-//     if (category == "Herb") return 1;
-//     if (category == "Fruit") return 2;
-//     if (category == "Vegetable") return 3;
-//     if (category == "Succulent") return 4;
-//     if (category == "Aquatic") return 5;
-//     if (category == "Indoor") return 6;
-//     if (category == "Medicinal") return 7;
-// 	return -1;
-// }
-
 
 void InventoryManager::addToSale(Plant* plant) {
 	if(!plant)
@@ -48,7 +36,6 @@ void InventoryManager::addToSale(Plant* plant) {
 	}
 
 	forSale.insert(forSale.begin() + i, plant);
-	std::cout << "Added " << plant->getName() << " to sale." << std::endl;
 	checkAndNotify();
 }
 
@@ -68,14 +55,12 @@ void InventoryManager::addToNursery(Plant* plant) {
 		i++;
 	}
 	inNursery.insert(inNursery.begin() + i, plant);
-	std::cout << "Added " << plant->getName() << " to nursery." << std::endl;
 	checkAndNotify();
 }
 
 void InventoryManager::removeFromNursery(Plant* plant) {
 	if(plant == nullptr)
 	{
-		std::cout << "Cannot remove null plant from nursery." << std::endl;
 		return;
 	}
 	
@@ -84,18 +69,15 @@ void InventoryManager::removeFromNursery(Plant* plant) {
 		if(inNursery[i] == plant)
 		{
 			inNursery.erase(inNursery.begin() + i);
-			std::cout << "Removed " << plant->getName() << " from nursery." << std::endl;
 			return;
 		}
 	}
 	
-	std::cout << plant->getName() << " not found in nursery." << std::endl;
 }
 
 void InventoryManager::removeFromSale(Plant* plant) {
 	if(plant == nullptr)
 	{
-		std::cout << "Cannot remove null plant from sale." << std::endl;
 		return;
 	}
 	
@@ -104,17 +86,14 @@ void InventoryManager::removeFromSale(Plant* plant) {
 		if(forSale[i] == plant)
 		{
 			forSale.erase(forSale.begin() + i);
-			std::cout << "Removed " << plant->getName() << " from sale." << std::endl;
 			checkAndNotify();
 			return;
 		}
 	}
 	
-	std::cout << plant->getName() << " not found in sale." << std::endl;
 }
 
 void InventoryManager::notifyStaff(string message) {
-    cout << "Notifying all observers: " << message << endl;
     for(size_t i = 0; i < observerList.size(); i++)
 	{
         if(observerList[i] != nullptr)
