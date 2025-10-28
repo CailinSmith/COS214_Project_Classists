@@ -1,0 +1,19 @@
+/**
+ * @file AppleTree.h
+ * @author Cailin Smith
+ * @date 2025-10-09
+ */
+
+#ifndef APPLETREE_H
+#define APPLETREE_H
+
+#include "Fruit.h"
+#include "MediumMoisture.h"
+#include "Thinning.h"
+
+class AppleTree : public Fruit {
+public:
+	AppleTree() : Fruit(600, new MediumMoisture(), new Thinning(), "Apple Tree", "Spring") {}
+};
+
+#endif
