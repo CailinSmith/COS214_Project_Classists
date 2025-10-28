@@ -110,8 +110,35 @@ clean:
 	rm -rf $(BUILD_DIR)
 
 # =========================
+# Install Dependencies
+# =========================
+dependencies:
+	@echo "Installing FTXUI dependencies..."
+	@echo "Checking for required packages..."
+	@command -v cmake >/dev/null 2>&1 || { echo "cmake is required but not installed. Installing..."; sudo apt-get update && sudo apt-get install -y cmake; }
+	@command -v g++ >/dev/null 2>&1 || { echo "g++ is required but not installed. Installing..."; sudo apt-get update && sudo apt-get install -y g++; }
+	@echo "Checking if FTXUI is already built..."
+	@if [ ! -d "$(FTXUI_INSTALL)/lib" ] || [ ! -f "$(FTXUI_INSTALL)/lib/libftxui-screen.a" ]; then \
+		echo "FTXUI not found or incomplete. Building FTXUI..."; \
+		if [ ! -d "ftxui_src" ]; then \
+			echo "Cloning FTXUI repository..."; \
+			git clone https://github.com/ArthurSonzogni/FTXUI.git ftxui_src; \
+		fi; \
+		mkdir -p ftxui_build; \
+		cd ftxui_build && \
+		cmake ../ftxui_src -DCMAKE_INSTALL_PREFIX=../$(FTXUI_INSTALL) && \
+		make -j$(shell nproc) && \
+		make install && \
+		cd ..; \
+		echo "FTXUI installed successfully!"; \
+	else \
+		echo "FTXUI is already installed."; \
+	fi
+	@echo "All dependencies are installed!"
+
+# =========================
 # Phony targets
 # =========================
-.PHONY: all clean test setup val
+.PHONY: all clean test setup val install-deps rungui
 
 .PHONY: run
