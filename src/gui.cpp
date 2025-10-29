@@ -116,11 +116,11 @@ public:
     }
     
     struct ColoredChar {
-        char ch;
-        int fgColor; // 0-255 for terminal colors
-        int bgColor;
+        std::string ch;  // Changed to string to support UTF-8 multi-byte characters (blocks, etc.)
+        int fgColor; // RGB packed as int (R<<16 | G<<8 | B)
+        int bgColor; // RGB packed as int
         
-        ColoredChar(char c = ' ', int fg = 7, int bg = 0) : ch(c), fgColor(fg), bgColor(bg) {}
+        ColoredChar(std::string c = " ", int fg = 0xFFFFFF, int bg = 0x000000) : ch(c), fgColor(fg), bgColor(bg) {}
     };
     
     // Parse ANSI color codes and extract colored characters
@@ -191,10 +191,33 @@ public:
                     currentLine.clear();
                 }
             } else if (ansiText[i] >= 32 || (unsigned char)ansiText[i] >= 128) {  // Printable ASCII + UTF-8
-                // Regular character - encode RGB as single int
+                // Handle multi-byte UTF-8 characters properly
+                std::string utf8Char;
+                unsigned char byte = ansiText[i];
+                
+                if ((byte & 0x80) == 0) {
+                    // Single-byte ASCII
+                    utf8Char = ansiText[i];
+                } else if ((byte & 0xE0) == 0xC0) {
+                    // 2-byte UTF-8
+                    utf8Char = ansiText.substr(i, 2);
+                    i += 1;
+                } else if ((byte & 0xF0) == 0xE0) {
+                    // 3-byte UTF-8 (block characters like █ are here)
+                    utf8Char = ansiText.substr(i, 3);
+                    i += 2;
+                } else if ((byte & 0xF8) == 0xF0) {
+                    // 4-byte UTF-8
+                    utf8Char = ansiText.substr(i, 4);
+                    i += 3;
+                } else {
+                    // Invalid UTF-8, skip
+                    continue;
+                }
+                
                 int fgColor = (currentFgR << 16) | (currentFgG << 8) | currentFgB;
                 int bgColor = (currentBgR << 16) | (currentBgG << 8) | currentBgB;
-                currentLine.push_back(ColoredChar(ansiText[i], fgColor, bgColor));
+                currentLine.push_back(ColoredChar(utf8Char, fgColor, bgColor));
             }
         }
         
@@ -225,9 +248,13 @@ public:
         fileCheck.close();
         
         std::string tempFile = "/tmp/ascii_temp.txt";
-        // chafa with block symbols produces colored pixel/block art
+        // chafa optimized for pixel art: no dithering, block symbols only, preserve exact colors
+        // --symbols block: Use solid blocks for clean 1:1 pixel mapping
+        // --dither none: No dithering to preserve sharp pixel art edges
+        // --color-space rgb: Keep exact RGB colors
+        // --fill all: Fill entire character cells to avoid gaps
         std::string command = "chafa --size " + std::to_string(width) + "x" + std::to_string(height) + 
-                             " --symbols block --color-space rgb \"" + imagePath + "\" > " + tempFile + " 2>&1";
+                             " --symbols block --color-space rgb --dither none --fill all \"" + imagePath + "\" > " + tempFile + " 2>&1";
         
         int result = system(command.c_str());
         
@@ -391,10 +418,11 @@ private:
         std::string info = result.first;
         
         // Try to load and display plant image
-        std::string imagePath = "assets/aloe.jpg"; // Default test image
+        std::string imagePath = "assets/example.jpg"; // Default test image
         
-        // Smaller image size to fit in constrained layout (around 50 chars wide fits well)
-        std::string asciiArt = convertImageToASCII(imagePath, 58, 20);
+        // Pixel art optimized size: keep it moderate to preserve pixel aesthetic
+        // 50x32 maintains good detail while keeping sharp, blocky pixel art look
+        std::string asciiArt = convertImageToASCII(imagePath, 50, 32);
         
         // Parse the ANSI codes and convert to FTXUI colored elements
         auto coloredImage = parseAnsiImage(asciiArt);
@@ -410,18 +438,11 @@ private:
             for (const auto& line : coloredImage) {
                 Elements lineChars;
                 for (const auto& coloredChar : line) {
-                    // Extract RGB components from background color
-                    int r = (coloredChar.bgColor >> 16) & 0xFF;
-                    int g = (coloredChar.bgColor >> 8) & 0xFF;
-                    int b = coloredChar.bgColor & 0xFF;
-                    
-                    // Skip pure black pixels (padding/background from chafa)
-                    if (r == 0 && g == 0 && b == 0) {
-                        continue;
-                    }
-                    
-                    // Use a space character and background color for pixel blocks
-                    auto elem = text(" ") | bgcolor(terminalColorToFTXUI(coloredChar.bgColor));
+                    // Use the actual character with its foreground and background colors
+                    // For pixel art with blocks, the character itself carries the color info
+                    auto elem = text(coloredChar.ch) | 
+                               color(terminalColorToFTXUI(coloredChar.fgColor)) |
+                               bgcolor(terminalColorToFTXUI(coloredChar.bgColor));
                     lineChars.push_back(elem);
                 }
                 if (!lineChars.empty()) {
