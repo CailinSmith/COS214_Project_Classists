@@ -418,7 +418,7 @@ private:
         std::string info = result.first;
         
         // Try to load and display plant image
-        std::string imagePath = "assets/example.jpg"; // Default test image
+        std::string imagePath = "assets/tomato.jpg"; // Default test image
         
         // Pixel art optimized size: keep it moderate to preserve pixel aesthetic
         // 50x32 maintains good detail while keeping sharp, blocky pixel art look
