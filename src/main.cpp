@@ -761,6 +761,7 @@ void CommandStaffTesting() {
 
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
 
     manager->addToNursery(&rose);
     manager->addToNursery(&basil);
@@ -1034,6 +1035,7 @@ void InventoryTesting() {
 
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
 
     std::cout << "Adding plants to nursery..." << std::endl;
     manager->addToNursery(&rose);
@@ -1274,6 +1276,7 @@ void SeasonStateTesting() {
     InventoryManager* inventory = new InventoryManager();
     
     Nursery* nursery = Nursery::getInstance(inventory);
+    (void) nursery; //singleton instantiation
     
     cout << "🏪 Nursery Created!" << endl;
     cout << "📅 Initial Season: " << nursery->getSeason() << endl << endl;
@@ -1567,6 +1570,7 @@ void NewStaffCommandsTesting() {
     
     InventoryManager* inventory = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(inventory);
+    (void) nursery; //singleton instantiation
     
     Rose* rose = new Rose();
     Basil* basil = new Basil();
@@ -1692,6 +1696,7 @@ void IteratorTesting(){
     cout << "\n======================== Iterator Pattern Testing ========================\n" << endl;
     InventoryManager* inventory = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(inventory);
+    (void) nursery; //singleton instantiation
     
     Spring* spring = new Spring();
     Summer* summer = new Summer();
