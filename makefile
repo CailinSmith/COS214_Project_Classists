@@ -63,8 +63,13 @@ run: $(TARGET)
 # =========================
 # Memory check with Valgrind
 # =========================
-val: $(TARGET) $(TEST_TARGET)
+# Run valgrind on both main and unit tests
+.PHONY: val-all
+val-all: $(TARGET) $(TEST_TARGET)
+	@echo "Running valgrind on unit tests ($(TEST_TARGET))"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_TARGET)
+	@echo ""
+	@echo "Running valgrind on main executable ($(TARGET))"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TARGET)
 
 # Run valgrind only on unit tests (test runner)
@@ -72,6 +77,12 @@ val: $(TARGET) $(TEST_TARGET)
 val-test: $(TEST_TARGET)
 	@echo "Running valgrind on unit tests ($(TEST_TARGET))"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_TARGET)
+
+# Run valgrind only on main executable
+.PHONY: val-main
+val-main: $(TARGET)
+	@echo "Running valgrind on main executable ($(TARGET))"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TARGET)
 
 # =========================
 # Setup / Clean
@@ -85,6 +96,6 @@ clean:
 # =========================
 # Phony targets
 # =========================
-.PHONY: all clean test setup val
+.PHONY: all clean test setup val-all val-test val-main
 
 .PHONY: run

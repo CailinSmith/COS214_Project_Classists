@@ -19,7 +19,7 @@ public:
     Staff(string name);
     virtual ~Staff();
 	virtual void send();
-	void receive(string message);
+	string receive(string message);
 	virtual pair<string, Receipt*> handleRequest(const std::string& requestType, Plant* plant, std::vector<Product*>* order, vector<bool>* flags);
 	virtual string getPosition() = 0;
     string getMessage();

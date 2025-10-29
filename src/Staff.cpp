@@ -22,8 +22,8 @@ void Staff::send(){
         mediator->notify(this);
 }
 
-void Staff::receive(string message) {
-    cout << getName() << " received message: " << message << endl;
+string Staff::receive(string message) {
+    return getName() + " received message: " + message + "\n";
 }
 
 string Staff::getMessage() {
