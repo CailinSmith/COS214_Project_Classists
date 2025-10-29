@@ -121,7 +121,12 @@ float Plant::getHeight() {
 }
 
 void Plant::setHeight(float height) {
-	this->height = height;
+    if (height < 0) 
+        this->height = 0;
+    else if (height > 1) 
+        this->height = 1;
+    else
+	    this->height = height;
 }
 
 float Plant::getActualHeight() {
@@ -139,7 +144,12 @@ void Plant::setState(PlantState* state) {
 }
 
 void Plant::setHealth(float health) {
-	this->health = health;
+    if (health < 0) 
+        this->health = 0;
+    else if (health > 1) 
+        this->health = 1;
+    else
+	    this->health = health;
 }
 
 float Plant::getHealth() {
