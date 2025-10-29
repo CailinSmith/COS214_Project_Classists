@@ -89,7 +89,6 @@
 #include "Manager.h"
 #include "SalesStaff.h"
 #include "NurseryStaff.h"
-#include "Intern.h"
 #include "SalesArea.h"
 #include "NurseryArea.h"
 #include "Decorator.h"
@@ -125,14 +124,12 @@ void MediatorTesting() {
     Staff* salesStaff2 = new SalesStaff("Carol");
     Staff* nurseryStaff1 = new NurseryStaff("David");
     Staff* nurseryStaff2 = new NurseryStaff("Emma");
-    //Staff* intern = new Intern("Frank");
-    
+
     cout << "   ✓ Manager: " << manager->getName() << " (" << manager->getPosition() << ")" << endl;
     cout << "   ✓ Sales Staff: " << salesStaff1->getName() << " (" << salesStaff1->getPosition() << ")" << endl;
     cout << "   ✓ Sales Staff: " << salesStaff2->getName() << " (" << salesStaff2->getPosition() << ")" << endl;
     cout << "   ✓ Nursery Staff: " << nurseryStaff1->getName() << " (" << nurseryStaff1->getPosition() << ")" << endl;
     cout << "   ✓ Nursery Staff: " << nurseryStaff2->getName() << " (" << nurseryStaff2->getPosition() << ")" << endl;
-    //cout << "   ✓ Intern: " << intern->getName() << " (" << intern->getPosition() << ")" << endl << endl;
     
     cout << "3. Registering Colleagues with Mediators:" << endl;
     cout << "   Sales Area accepts: Manager, Sales Staff" << endl;
@@ -142,13 +139,12 @@ void MediatorTesting() {
     salesArea->registerColleague(nurseryStaff1);  
     cout << "   ✓ Registered Manager and Sales Staff with SalesArea" << endl << endl;
     
-    cout << "   Nursery Area accepts: Manager, Nursery Staff, Intern" << endl;
+    cout << "   Nursery Area accepts: Manager, Nursery Staff" << endl;
     nurseryArea->registerColleague(manager);
     nurseryArea->registerColleague(nurseryStaff1);
     nurseryArea->registerColleague(nurseryStaff2);
-    //nurseryArea->registerColleague(intern);
     nurseryArea->registerColleague(salesStaff1);  
-    cout << "   ✓ Registered Manager, Nursery Staff, and Intern with NurseryArea" << endl << endl;
+    cout << "   ✓ Registered Manager and Nursery Staff with NurseryArea" << endl << endl;
     
     cout << "4. Testing Communication through SalesArea Mediator:" << endl;
     cout << "   ---------------------------------------------------" << endl;
@@ -169,17 +165,7 @@ void MediatorTesting() {
     cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
     nurseryArea->notify(nurseryStaff1);
     cout << endl;
-    
-    cout << "6. Testing Intern Communication:" << endl;
-    cout << "   ---------------------------------------------------" << endl;
-    cout << "   Scenario: Intern Frank sends a message" << endl;
-    //intern->setMessage("I've completed the pruning tasks!");
-    //cout << "   Message: \"" << intern->getMessage() << "\"" << endl << endl;
-    
-    cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
-    //nurseryArea->notify(intern);
-    cout << endl;
-    
+        
     cout << "7. Testing Manager Communication (Cross-Area):" << endl;
     cout << "   ---------------------------------------------------" << endl;
     cout << "   Scenario: Manager Alice sends a message to SalesArea" << endl;
@@ -404,7 +390,7 @@ void MediatorTesting() {
     delete salesStaff2;
     delete nurseryStaff1;
     delete nurseryStaff2;
-    //delete intern;
+
     delete testManager;
     delete headManager;
     delete salesAssistant;
