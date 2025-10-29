@@ -3,6 +3,9 @@
 #include <string>
 #include <memory>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
 
 #include "ftxui/component/captured_mouse.hpp"
 #include "ftxui/component/component.hpp"
@@ -42,20 +45,17 @@ class PlantShopGUI {
 private:
     ScreenInteractive screen = ScreenInteractive::Fullscreen();
     
-    // Core system objects
     InventoryManager* inventoryManager;
     Nursery* nursery;
     Customer* customer;
     Staff* salesStaff;
     
-    // GUI state
     int mainMenuSelected = 0;
     int categoryMenuSelected = 0;
     int plantListSelected = 0;
     std::string inputBuffer;
     std::string messageBuffer;
     
-    // Current view state
     enum View {
         MAIN_MENU,
         CATEGORY_SELECTION,
@@ -67,7 +67,6 @@ private:
     };
     View currentView = MAIN_MENU;
     
-    // Data for current view
     std::vector<std::string> categories = {
         "Flower", "Herb", "Fruit", "Vegetable", 
         "Succulent", "Aquatic", "Indoor", "Medicinal"
@@ -79,13 +78,11 @@ private:
 
 public:
     PlantShopGUI() {
-        // Initialize the nursery system
         inventoryManager = new InventoryManager();
         nursery = Nursery::getInstance(inventoryManager);
         customer = new Customer("John Doe");
         salesStaff = new SalesStaff("Alice");
         
-        // Stock some plants for demonstration
         initializePlants();
     }
     
@@ -97,7 +94,6 @@ public:
     }
     
     void initializePlants() {
-        // Add various plants to the sale inventory
         Plant* rose = new Rose();
         Plant* basil = new Basil();
         Plant* tomato = new Tomato();
@@ -117,6 +113,144 @@ public:
         inventoryManager->addToSale(lavender);
         inventoryManager->addToSale(apple);
         inventoryManager->addToSale(cactus);
+    }
+    
+    struct ColoredChar {
+        char ch;
+        int fgColor; // 0-255 for terminal colors
+        int bgColor;
+        
+        ColoredChar(char c = ' ', int fg = 7, int bg = 0) : ch(c), fgColor(fg), bgColor(bg) {}
+    };
+    
+    // Parse ANSI color codes and extract colored characters
+    std::vector<std::vector<ColoredChar>> parseAnsiImage(const std::string& ansiText) {
+        std::vector<std::vector<ColoredChar>> result;
+        std::vector<ColoredChar> currentLine;
+        
+        int currentFgR = 255, currentFgG = 255, currentFgB = 255;
+        int currentBgR = 0, currentBgG = 0, currentBgB = 0;
+        
+        for (size_t i = 0; i < ansiText.length(); i++) {
+            if (ansiText[i] == '\033' || ansiText[i] == '\x1b') {
+                // Found escape sequence, parse it
+                if (i + 1 < ansiText.length() && ansiText[i + 1] == '[') {
+                    i += 2; // Skip ESC[
+                    std::string code;
+                    while (i < ansiText.length() && ansiText[i] != 'm' && ansiText[i] != 'l' && ansiText[i] != 'h') {
+                        code += ansiText[i];
+                        i++;
+                    }
+                    
+                    // Skip non-color escape sequences (like cursor hide/show)
+                    if (i < ansiText.length() && (ansiText[i] == 'l' || ansiText[i] == 'h')) {
+                        continue;
+                    }
+                    
+                    // Parse RGB color codes: 38;2;R;G;B for foreground, 48;2;R;G;B for background
+                    std::vector<int> numbers;
+                    std::string num;
+                    for (char c : code) {
+                        if (c == ';') {
+                            if (!num.empty()) {
+                                numbers.push_back(std::stoi(num));
+                                num.clear();
+                            }
+                        } else if (std::isdigit(c)) {
+                            num += c;
+                        }
+                    }
+                    if (!num.empty()) {
+                        numbers.push_back(std::stoi(num));
+                    }
+                    
+                    // Process the numbers
+                    for (size_t j = 0; j < numbers.size(); j++) {
+                        if (numbers[j] == 0) {
+                            // Reset
+                            currentFgR = currentFgG = currentFgB = 255;
+                            currentBgR = currentBgG = currentBgB = 0;
+                        } else if (numbers[j] == 38 && j + 4 < numbers.size() && numbers[j + 1] == 2) {
+                            // Foreground RGB: 38;2;R;G;B
+                            currentFgR = numbers[j + 2];
+                            currentFgG = numbers[j + 3];
+                            currentFgB = numbers[j + 4];
+                            j += 4;
+                        } else if (numbers[j] == 48 && j + 4 < numbers.size() && numbers[j + 1] == 2) {
+                            // Background RGB: 48;2;R;G;B
+                            currentBgR = numbers[j + 2];
+                            currentBgG = numbers[j + 3];
+                            currentBgB = numbers[j + 4];
+                            j += 4;
+                        }
+                    }
+                }
+            } else if (ansiText[i] == '\n') {
+                if (!currentLine.empty()) {
+                    result.push_back(currentLine);
+                    currentLine.clear();
+                }
+            } else if (ansiText[i] >= 32 || (unsigned char)ansiText[i] >= 128) {  // Printable ASCII + UTF-8
+                // Regular character - encode RGB as single int
+                int fgColor = (currentFgR << 16) | (currentFgG << 8) | currentFgB;
+                int bgColor = (currentBgR << 16) | (currentBgG << 8) | currentBgB;
+                currentLine.push_back(ColoredChar(ansiText[i], fgColor, bgColor));
+            }
+        }
+        
+        if (!currentLine.empty()) {
+            result.push_back(currentLine);
+        }
+        
+        return result;
+    }
+    
+    // Convert RGB color (stored as int) to FTXUI Color
+    Color terminalColorToFTXUI(int colorCode) {
+        // Extract RGB components from packed integer
+        int r = (colorCode >> 16) & 0xFF;
+        int g = (colorCode >> 8) & 0xFF;
+        int b = colorCode & 0xFF;
+        
+        return Color::RGB(r, g, b);
+    }
+    
+    // Helper function to convert image to ASCII art using chafa
+    std::string convertImageToASCII(const std::string& imagePath, int width = 50, int height = 25) {
+        // Check if image file exists
+        std::ifstream fileCheck(imagePath);
+        if (!fileCheck.good()) {
+            return "[Image not found: " + imagePath + "]";
+        }
+        fileCheck.close();
+        
+        std::string tempFile = "/tmp/ascii_temp.txt";
+        // chafa with block symbols produces colored pixel/block art
+        std::string command = "chafa --size " + std::to_string(width) + "x" + std::to_string(height) + 
+                             " --symbols block --color-space rgb \"" + imagePath + "\" > " + tempFile + " 2>&1";
+        
+        int result = system(command.c_str());
+        
+        if (result != 0) {
+            return "[chafa not available. Install with: sudo apt-get install chafa]";
+        }
+        
+        // Read the generated ASCII art
+        std::ifstream file(tempFile);
+        if (!file.is_open()) {
+            return "[Failed to generate ASCII art]";
+        }
+        
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+        file.close();
+        
+        std::string output = buffer.str();
+        
+        // Clean up temp file
+        remove(tempFile.c_str());
+        
+        return output;
     }
     
     void run() {
@@ -256,13 +390,58 @@ private:
         
         std::string info = result.first;
         
-        return vbox({
-            text("🌿 Plant Details 🌿") | bold | center,
-            separator(),
-            text(info),
-            separator(),
-            text("Press 'b' to go back") | dim
-        }) | border | center;
+        // Try to load and display plant image
+        std::string imagePath = "assets/aloe.jpg"; // Default test image
+        
+        // Smaller image size to fit in constrained layout (around 50 chars wide fits well)
+        std::string asciiArt = convertImageToASCII(imagePath, 58, 20);
+        
+        // Parse the ANSI codes and convert to FTXUI colored elements
+        auto coloredImage = parseAnsiImage(asciiArt);
+        
+        Elements content;
+        content.push_back(text("🌿 Plant Details 🌿") | bold | center);
+        content.push_back(separator());
+        
+        // Check if we got valid image data
+        if (!coloredImage.empty() && coloredImage[0].size() > 0) {
+            // Convert to FTXUI elements with colors
+            Elements asciiLines;
+            for (const auto& line : coloredImage) {
+                Elements lineChars;
+                for (const auto& coloredChar : line) {
+                    // Extract RGB components from background color
+                    int r = (coloredChar.bgColor >> 16) & 0xFF;
+                    int g = (coloredChar.bgColor >> 8) & 0xFF;
+                    int b = coloredChar.bgColor & 0xFF;
+                    
+                    // Skip pure black pixels (padding/background from chafa)
+                    if (r == 0 && g == 0 && b == 0) {
+                        continue;
+                    }
+                    
+                    // Use a space character and background color for pixel blocks
+                    auto elem = text(" ") | bgcolor(terminalColorToFTXUI(coloredChar.bgColor));
+                    lineChars.push_back(elem);
+                }
+                if (!lineChars.empty()) {
+                    asciiLines.push_back(hbox(lineChars));
+                }
+            }
+            
+            if (!asciiLines.empty()) {
+                content.push_back(text("Plant Image:") | bold | color(Color::Green) | center);
+                content.push_back(vbox(asciiLines) | border | center);
+                content.push_back(separator());
+            }
+        }
+        
+        content.push_back(text("Plant Information:") | bold | color(Color::Green));
+        content.push_back(text(info));
+        content.push_back(separator());
+        content.push_back(text("Press 'b' to go back") | dim);
+        
+        return vbox(content) | border | size(WIDTH, LESS_THAN, 100) | center;
     }
     
     Element renderStockCheck() {
