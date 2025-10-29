@@ -189,7 +189,8 @@ float Plant::calculateCost(string currSeason) {
 	float ncost =baseCost();
 	if (getHealth() >0.9)
 		ncost += baseCost()*(getHealth()-0.85);
-	ncost += seasonCost(currSeason);
+	if (currSeason!="")
+		ncost += seasonCost(currSeason);
 	cost=ncost;
 	return ncost;
 }

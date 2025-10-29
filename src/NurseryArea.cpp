@@ -7,7 +7,7 @@ void NurseryArea::notify(Staff* originator) {
 }
 
 void NurseryArea::registerColleague(Staff* colleague) {
-    if (colleague && (colleague->getPosition() == "Nursery staff" || colleague->getPosition() == "Manager" || colleague->getPosition() == "Intern")) {
+    if (colleague && (colleague->getPosition() == "Nursery staff" || colleague->getPosition() == "Manager" )) {
         colleagues.push_back(colleague);
         colleague->registerMediator(this);
     }
