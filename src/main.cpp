@@ -1998,24 +1998,24 @@ void DynamicCastDecoratorTest() {
 
 
 int main() { 
-    // MediatorTesting();
-    // AbstractStrategyTesting();
-    // CommandStaffTesting();
-    // PlantStateTesting();
-    // InventoryTesting();
-    // TemplateMethodTesting();
-    // SeasonStateTesting();
+    MediatorTesting();
+    AbstractStrategyTesting();
+    CommandStaffTesting();
+    PlantStateTesting();
+    InventoryTesting();
+    TemplateMethodTesting();
+    SeasonStateTesting();
     DecoratorTesting();
-    // ObserverTesing();
-    // NewStaffCommandsTesting(); 
-    // IteratorTesting();
-    // ChainOfResponsibilityAndCommand();   
-    // DynamicCastDecoratorTest();
+    ObserverTesing();
+    NewStaffCommandsTesting(); 
+    IteratorTesting();
+    ChainOfResponsibilityAndCommand();   
+    DynamicCastDecoratorTest();
 
-    // Nursery* nursery = Nursery::getInstance();
-    // if (nursery) {
-    //     Nursery::destroyInstance();
-    //     nursery = nullptr;
-    // }
+    Nursery* nursery = Nursery::getInstance();
+    if (nursery) {
+        Nursery::destroyInstance();
+        nursery = nullptr;
+    }
     return 0;
 }
