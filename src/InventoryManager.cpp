@@ -4,6 +4,23 @@
 // include Nursery here so destructor can clear nursery pointer when manager is destroyed
 #include "Nursery.h"
 
+// demo helpers: plant types and strategies
+#include "Flower.h"
+#include "Herb.h"
+#include "Succulent.h"
+#include "Aquatic.h"
+#include "Indoor.h"
+#include "Medicinal.h"
+#include "Fruit.h"
+#include "Vegetable.h"
+
+#include "HighMoisture.h"
+#include "MediumMoisture.h"
+#include "DryPlant.h"
+
+#include "NoPrune.h"
+#include "Thinning.h"
+
 Iterator<Plant>* InventoryManager::createIterator(const std::string& season) {
 	std::vector<Plant*> allPlants;
 	allPlants.insert(allPlants.end(), forSale.begin(), forSale.end());
@@ -84,7 +101,7 @@ void InventoryManager::removeFromNursery(Plant* plant) {
 		if(inNursery[i] == plant)
 		{
 			inNursery.erase(inNursery.begin() + i);
-			std::cout << "Removed " << plant->getName() << " from nursery." << std::endl;
+			// std::cout << "Removed " << plant->getName() << " from nursery." << std::endl;
 			return;
 		}
 	}
@@ -104,7 +121,7 @@ void InventoryManager::removeFromSale(Plant* plant) {
 		if(forSale[i] == plant)
 		{
 			forSale.erase(forSale.begin() + i);
-			std::cout << "Removed " << plant->getName() << " from sale." << std::endl;
+			// std::cout << "Removed " << plant->getName() << " from sale." << std::endl;
 			checkAndNotify();
 			return;
 		}
@@ -114,7 +131,7 @@ void InventoryManager::removeFromSale(Plant* plant) {
 }
 
 void InventoryManager::notifyStaff(string message) {
-    cout << "Notifying all observers: " << message << endl;
+    // cout << "Notifying all observers: " << message << endl;
     for(size_t i = 0; i < observerList.size(); i++)
 	{
         if(observerList[i] != nullptr)
@@ -203,6 +220,60 @@ void InventoryManager::checkAndNotify() {
 	if(inNursery.size() < nurseryThreshold)
 	{
 		notifyStaff("Low stock: nursery count below threshold");
+	}
+}
+
+void InventoryManager::populateDemoInventory(size_t nurseryCount, size_t saleCount) {
+	// Create a small variety of plants for sale
+	for (size_t i = 0; i < saleCount; ++i) {
+		Plant* p = nullptr;
+		switch (i % 6) {
+			case 0:
+				p = new Flower(10, new HighMoisture(), new NoPrune(), string("Rose") + to_string(i+1), "Spring");
+				break;
+			case 1:
+				p = new Herb(5, new MediumMoisture(), new NoPrune(), string("Basil") + to_string(i+1), "Summer");
+				break;
+			case 2:
+				p = new Succulent(3, new DryPlant(), new NoPrune(), string("AloeVera") + to_string(i+1), "Winter");
+				break;
+			case 3:
+				p = new Aquatic(7, new HighMoisture(), new NoPrune(), string("Cattails") + to_string(i+1), "Spring");
+				break;
+			case 4:
+				p = new Indoor(6, new MediumMoisture(), new NoPrune(), string("Pothos") + to_string(i+1), "Fall");
+				break;
+			case 5:
+				p = new Medicinal(4, new MediumMoisture(), new NoPrune(), string("Chamomile") + to_string(i+1), "Summer");
+				break;
+		}
+		if (p) addToSale(p);
+	}
+
+	// Create nursery plants
+	for (size_t i = 0; i < nurseryCount; ++i) {
+		Plant* p = nullptr;
+		switch (i % 6) {
+			case 0:
+				p = new Flower(8, new MediumMoisture(), new Thinning(), string("Pansy") + to_string(i+1), "Spring");
+				break;
+			case 1:
+				p = new Herb(4, new MediumMoisture(), new NoPrune(), string("Kale") + to_string(i+1), "Autumn");
+				break;
+			case 2:
+				p = new Succulent(3, new DryPlant(), new NoPrune(), string("Echeveria") + to_string(i+1), "Summer");
+				break;
+			case 3:
+				p = new Fruit(12, new HighMoisture(), new Thinning(), string("OrangeTree") + to_string(i+1), "Winter");
+				break;
+			case 4:
+				p = new Vegetable(6, new HighMoisture(), new NoPrune(), string("Cucumber") + to_string(i+1), "Summer");
+				break;
+			case 5:
+				p = new Indoor(5, new MediumMoisture(), new NoPrune(), string("PeaceLily") + to_string(i+1), "Spring");
+				break;
+		}
+		if (p) addToNursery(p);
 	}
 }
 

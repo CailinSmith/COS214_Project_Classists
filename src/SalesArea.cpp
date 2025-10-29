@@ -2,8 +2,8 @@
 
 void SalesArea::notify(Staff* originator) {
     for (auto colleague : colleagues) 
-        if (colleague != originator) 
-            colleague->receive("NurseryArea: " + originator->getName() + ":" + originator->getMessage());
+            if (colleague != originator) 
+                colleague->receive("NurseryArea: " + originator->getName() + ": " + originator->getMessage());
 }
 
 void SalesArea::registerColleague(Staff* colleague) {
@@ -11,4 +11,9 @@ void SalesArea::registerColleague(Staff* colleague) {
         colleagues.push_back(colleague);
         colleague->registerMediator(this);
     }
+}
+
+void SalesArea::unregisterColleague(Staff* colleague) {
+    colleagues.erase(std::remove(colleagues.begin(), colleagues.end(), colleague), colleagues.end());
+    if (colleague) colleague->deregisterMediator(this);
 }

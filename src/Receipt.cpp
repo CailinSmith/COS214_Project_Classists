@@ -34,7 +34,9 @@ Receipt::Receipt(const std::vector<Product*>& plants) : cost(0.0f) {
         if (plant != nullptr) {
             plant->calculateCost(season); //recalculate if necessary
             cost += plant->getCost();
-            receipt << plant->getName() << std::string(20 - plant->getName().length(), ' ')
+            std::string name = plant->getName();
+            size_t pad = (name.length() < 20) ? (20 - name.length()) : 1;
+            receipt << name << std::string(pad, ' ')
                     << "$" << std::fixed << std::setprecision(2) << plant->getCost() << "\n";
 
             Plant* plantPtr = plant->getBasePlant();
