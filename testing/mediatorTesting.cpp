@@ -629,3 +629,221 @@ TEST_CASE("Mediator Pattern - Receive Function Return Values") {
         delete manager;
     }
 }
+
+TEST_CASE("Mediator Pattern - Null Pointer Edge Cases") {
+    SUBCASE("Register null colleague to mediator") {
+        SalesArea* salesArea = new SalesArea();
+        
+        CHECK_NOTHROW(salesArea->registerColleague(nullptr));
+        
+        delete salesArea;
+    }
+    
+    SUBCASE("Register multiple null colleagues") {
+        NurseryArea* nurseryArea = new NurseryArea();
+        
+        for (int i = 0; i < 5; i++) {
+            CHECK_NOTHROW(nurseryArea->registerColleague(nullptr));
+        }
+        
+        delete nurseryArea;
+    }
+    
+    SUBCASE("Mix of null and valid colleague registrations") {
+        SalesArea* salesArea = new SalesArea();
+        SalesStaff* staff1 = new SalesStaff("Valid1");
+        SalesStaff* staff2 = new SalesStaff("Valid2");
+        
+        salesArea->registerColleague(staff1);
+        CHECK_NOTHROW(salesArea->registerColleague(nullptr));
+        salesArea->registerColleague(staff2);
+        CHECK_NOTHROW(salesArea->registerColleague(nullptr));
+        
+        staff1->setMessage("Test from Valid1");
+        CHECK_NOTHROW(staff1->send());
+        
+        staff2->setMessage("Test from Valid2");
+        CHECK_NOTHROW(staff2->send());
+        
+        delete staff1;
+        delete staff2;
+        delete salesArea;
+    }
+    
+    SUBCASE("Send message without registering mediator") {
+        SalesStaff* staff = new SalesStaff("Unregistered");
+        
+        staff->setMessage("No mediator registered");
+        CHECK_NOTHROW(staff->send());
+        
+        delete staff;
+    }
+    
+    SUBCASE("Deregister null mediator") {
+        NurseryStaff* staff = new NurseryStaff("Test");
+        
+        CHECK_NOTHROW(staff->deregisterMediator(nullptr));
+        
+        delete staff;
+    }
+    
+    SUBCASE("Register null mediator manually") {
+        Manager* manager = new Manager("TestManager");
+        
+        CHECK_NOTHROW(manager->registerMediator(nullptr));
+        
+        manager->setMessage("Test after null mediator registration");
+        CHECK_NOTHROW(manager->send());
+        
+        delete manager;
+    }
+}
+
+TEST_CASE("Mediator Pattern - Use After Delete Edge Cases") {
+    SUBCASE("Send after mediator deletion") {
+        SalesArea* salesArea = new SalesArea();
+        SalesStaff* staff = new SalesStaff("AfterDelete");
+        
+        salesArea->registerColleague(staff);
+        
+        delete salesArea;
+        
+        staff->setMessage("Mediator deleted");
+        
+        delete staff;
+    }
+    
+    SUBCASE("Access staff after deletion - double deletion test") {
+        NurseryArea* nurseryArea = new NurseryArea();
+        NurseryStaff* staff = new NurseryStaff("DoubleDelete");
+        
+        nurseryArea->registerColleague(staff);
+        
+        delete staff;
+        
+        delete nurseryArea;
+        
+    }
+    
+    SUBCASE("Deregister after mediator deletion") {
+        SalesArea* salesArea = new SalesArea();
+        Manager* manager = new Manager("DeregAfterDelete");
+        
+        salesArea->registerColleague(manager);
+        
+        delete salesArea;
+        
+        delete manager;
+    }
+}
+
+TEST_CASE("Mediator Pattern - Extreme Stress Cases") {
+    SUBCASE("Register and immediately deregister repeatedly") {
+        SalesArea* salesArea = new SalesArea();
+        SalesStaff* staff = new SalesStaff("Flicker");
+        
+        for (int i = 0; i < 100; i++) {
+            salesArea->registerColleague(staff);
+            staff->deregisterMediator(salesArea);
+        }
+        
+        salesArea->registerColleague(staff);
+        staff->setMessage("Final message");
+        CHECK_NOTHROW(staff->send());
+        
+        delete staff;
+        delete salesArea;
+    }
+    
+    SUBCASE("Send without message after deregistration") {
+        NurseryArea* nurseryArea = new NurseryArea();
+        NurseryStaff* staff = new NurseryStaff("NoMsgAfterDereg");
+        
+        nurseryArea->registerColleague(staff);
+        staff->deregisterMediator(nurseryArea);
+        
+        CHECK_NOTHROW(staff->send());
+        
+        delete staff;
+        delete nurseryArea;
+    }
+    
+    SUBCASE("Hundreds of rapid registrations") {
+        SalesArea* salesArea = new SalesArea();
+        vector<SalesStaff*> staffList;
+        
+        for (int i = 0; i < 500; i++) {
+            SalesStaff* staff = new SalesStaff("Staff" + to_string(i));
+            staffList.push_back(staff);
+            salesArea->registerColleague(staff);
+        }
+        
+        for (int i = 0; i < 50; i++) {
+            int index = i * 10;
+            staffList[index]->setMessage("Message " + to_string(i));
+            CHECK_NOTHROW(staffList[index]->send());
+        }
+        
+        for (auto staff : staffList) {
+            delete staff;
+        }
+        delete salesArea;
+    }
+    
+    SUBCASE("Manager with null receiver after deregistration") {
+        SalesArea* salesArea = new SalesArea();
+        Manager* manager = new Manager("NullAfterDereg");
+        
+        salesArea->registerColleague(manager);
+        manager->deregisterMediator(salesArea);
+        
+        manager->setReceiver(nullptr);
+        manager->setMessage("Broadcast after deregistration");
+        CHECK_NOTHROW(manager->send());
+        
+        delete manager;
+        delete salesArea;
+    }
+}
+
+TEST_CASE("Mediator Pattern - Boundary Conditions") {
+    SUBCASE("Staff name with maximum length") {
+        string longName(10000, 'A');
+        SalesStaff* staff = new SalesStaff(longName);
+        
+        CHECK(staff->getName() == longName);
+        CHECK(staff->getPosition() == "Sales staff");
+        
+        delete staff;
+    }
+    
+    SUBCASE("Message with maximum length") {
+        SalesArea* salesArea = new SalesArea();
+        SalesStaff* staff = new SalesStaff("LongMsg");
+        
+        string longMsg(100000, 'X');
+        salesArea->registerColleague(staff);
+        staff->setMessage(longMsg);
+        
+        CHECK(staff->getMessage() == longMsg);
+        CHECK_NOTHROW(staff->send());
+        
+        delete staff;
+        delete salesArea;
+    }
+    
+    SUBCASE("Zero-length operations") {
+        NurseryArea* nurseryArea = new NurseryArea();
+        NurseryStaff* staff = new NurseryStaff("");
+        
+        nurseryArea->registerColleague(staff);
+        staff->setMessage("");
+        CHECK_NOTHROW(staff->send());
+        
+        string result = staff->receive("");
+        CHECK(result == " received message: \n");
+        
+        delete staff;
+        delete nurseryArea;
+    }
+}

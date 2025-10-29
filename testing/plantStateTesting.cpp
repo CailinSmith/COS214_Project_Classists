@@ -587,7 +587,6 @@ TEST_CASE("Plant State: Edge Cases and Unusual Scenarios") {
         plant.setHeight(0.9);
         plant.setHealth(0.1);
         plant.changePlantState();
-        // State should be determined by the lower value
         CHECK(plant.getState() == "Seedling State");
     }
     
@@ -596,7 +595,6 @@ TEST_CASE("Plant State: Edge Cases and Unusual Scenarios") {
         plant.setHeight(0.1);
         plant.setHealth(0.9);
         plant.changePlantState();
-        // State should be determined appropriately
         CHECK(plant.getState() == "Seedling State");
     }
 }
@@ -674,10 +672,132 @@ TEST_CASE("Plant State: Complete Lifecycle Scenarios") {
         plant.changePlantState();
         CHECK(plant.getState() == "Dead");
         
-        // Confirm death is permanent
         plant.setHealth(1.0);
         plant.setHeight(1.0);
         plant.changePlantState();
         CHECK(plant.getState() == "Dead");
+    }
+}
+
+TEST_CASE("Plant State: Negative Value Edge Cases") {
+    SUBCASE("Negative health value") {
+        Rose plant;
+        plant.setHeight(0.5);
+        plant.setHealth(-0.1);
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Negative height value") {
+        Basil plant;
+        plant.setHeight(-0.5);
+        plant.setHealth(0.5);
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Both negative values") {
+        Tomato plant;
+        plant.setHeight(-0.3);
+        plant.setHealth(-0.3);
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Very large negative values") {
+        Lettuce plant;
+        plant.setHeight(-100.0);
+        plant.setHealth(-100.0);
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+}
+
+TEST_CASE("Plant State: Values Beyond Maximum Edge Cases") {
+    SUBCASE("Health greater than 1.0") {
+        Rose plant;
+        plant.setHeight(0.5);
+        plant.setHealth(1.5);
+        plant.changePlantState();
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Height greater than 1.0") {
+        Basil plant;
+        plant.setHeight(2.0);
+        plant.setHealth(0.5);
+        plant.changePlantState();
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Both values greater than 1.0") {
+        Tomato plant;
+        plant.setHeight(1.8);
+        plant.setHealth(1.8);
+        plant.changePlantState();
+        plant.changePlantState();
+        plant.changePlantState();
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Extremely large values") {
+        JadePlant plant;
+        plant.setHeight(1000.0);
+        plant.setHealth(1000.0);
+        plant.changePlantState();
+        plant.changePlantState();
+        plant.changePlantState();
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Values slightly above 1.0") {
+        Lettuce plant;
+        plant.setHeight(1.01);
+        plant.setHealth(1.01);
+        plant.changePlantState();
+        plant.changePlantState();
+        plant.changePlantState();
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+}
+
+TEST_CASE("Plant State: Mixed Extreme Values") {
+    SUBCASE("Negative health with positive height") {
+        Rose plant;
+        plant.setHeight(0.5);
+        plant.setHealth(-0.2);
+        plant.changePlantState();
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Positive health with negative height") {
+        Basil plant;
+        plant.setHeight(-0.3);
+        plant.setHealth(0.7);
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Health above 1.0 with negative height") {
+        Tomato plant;
+        plant.setHeight(-0.5);
+        plant.setHealth(1.5);
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
+    }
+    
+    SUBCASE("Height above 1.0 with zero health") {
+        Lettuce plant;
+        plant.setHeight(2.0);
+        plant.setHealth(0.0);
+        plant.changePlantState();
+        plant.changePlantState();
+        CHECK(plant.getState() != "");
     }
 }

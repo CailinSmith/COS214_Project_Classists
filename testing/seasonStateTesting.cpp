@@ -238,10 +238,10 @@ TEST_CASE("Season State: Partial Cycle Transitions") {
         nursery->changeSeason(); 
         CHECK(nursery->getSeason() == "Autumn");
         
-        nursery->changeSeason(); // -> Winter
+        nursery->changeSeason(); 
         CHECK(nursery->getSeason() == "Winter");
         
-        nursery->changeSeason(); // -> Spring
+        nursery->changeSeason(); 
         CHECK(nursery->getSeason() == "Spring");
         
         nursery->changeSeason(); 
@@ -440,7 +440,6 @@ TEST_CASE("Season State: Mixed Setting and Changing Operations") {
         nursery->setSeason(new Spring());
         CHECK(nursery->getSeason() == "Spring");
         
-        // Jump to Winter (3 seasons forward or 1 back)
         nursery->setSeason(new Winter());
         CHECK(nursery->getSeason() == "Winter");
         
@@ -505,22 +504,18 @@ TEST_CASE("Season State: Consistency and Invariant Tests") {
         InventoryManager* manager = new InventoryManager();
         Nursery* nursery = Nursery::getInstance(manager);
         
-        // Test Spring -> Summer
         nursery->setSeason(new Spring());
         nursery->changeSeason();
         CHECK(nursery->getSeason() == "Summer");
         
-        // Test Summer -> Autumn
         nursery->setSeason(new Summer());
         nursery->changeSeason();
         CHECK(nursery->getSeason() == "Autumn");
         
-        // Test Autumn -> Winter
         nursery->setSeason(new Autumn());
         nursery->changeSeason();
         CHECK(nursery->getSeason() == "Winter");
         
-        // Test Winter -> Spring
         nursery->setSeason(new Winter());
         nursery->changeSeason();
         CHECK(nursery->getSeason() == "Spring");
@@ -537,7 +532,6 @@ TEST_CASE("Season State: Edge Cases and Boundary Conditions") {
         nursery->setSeason(new Spring());
         CHECK(nursery->getSeason() == "Spring");
         
-        // No changes made
         CHECK(nursery->getSeason() == "Spring");
         
         delete manager;
@@ -611,6 +605,98 @@ TEST_CASE("Season State: Edge Cases and Boundary Conditions") {
             
             CHECK(nursery->getSeason() == startingSeason);
         }
+        
+        delete manager;
+    }
+}
+
+TEST_CASE("Season State: Null Pointer Edge Cases") {
+    SUBCASE("Set season to nullptr") {
+        InventoryManager* manager = new InventoryManager();
+        Nursery* nursery = Nursery::getInstance(manager);
+        
+        nursery->setSeason(new Spring());
+        CHECK(nursery->getSeason() == "Spring");
+        
+        CHECK_NOTHROW(nursery->setSeason(nullptr));
+        
+        delete manager;
+    }
+    
+    SUBCASE("Initialize Nursery with nullptr manager") {
+        CHECK_NOTHROW(Nursery::getInstance(nullptr));
+    }
+    
+    SUBCASE("Change season without setting initial season") {
+        InventoryManager* manager = new InventoryManager();
+        Nursery* nursery = Nursery::getInstance(manager);
+        
+        CHECK_NOTHROW(nursery->changeSeason());
+        
+        delete manager;
+    }
+    
+    SUBCASE("Get season without setting initial season") {
+        InventoryManager* manager = new InventoryManager();
+        Nursery* nursery = Nursery::getInstance(manager);
+        
+        CHECK_NOTHROW(nursery->getSeason());
+        
+        delete manager;
+    }
+    
+    SUBCASE("Multiple nullptr setSeason calls") {
+        InventoryManager* manager = new InventoryManager();
+        Nursery* nursery = Nursery::getInstance(manager);
+        
+        nursery->setSeason(new Spring());
+        
+        for (int i = 0; i < 5; i++) {
+            CHECK_NOTHROW(nursery->setSeason(nullptr));
+        }
+        
+        delete manager;
+    }
+    
+    SUBCASE("Alternate between valid season and nullptr") {
+        InventoryManager* manager = new InventoryManager();
+        Nursery* nursery = Nursery::getInstance(manager);
+        
+        nursery->setSeason(new Spring());
+        CHECK(nursery->getSeason() == "Spring");
+        
+        nursery->setSeason(nullptr);
+        
+        nursery->setSeason(new Summer());
+        CHECK_NOTHROW(nursery->getSeason());
+        
+        delete manager;
+    }
+}
+
+TEST_CASE("Season State: Memory Management Edge Cases") {
+    SUBCASE("Rapid season setting without deletion") {
+        InventoryManager* manager = new InventoryManager();
+        Nursery* nursery = Nursery::getInstance(manager);
+        
+        for (int i = 0; i < 10; i++) {
+            nursery->setSeason(new Spring());
+            nursery->setSeason(new Summer());
+            nursery->setSeason(new Autumn());
+            nursery->setSeason(new Winter());
+        }
+        
+        CHECK(nursery->getSeason() == "Winter");
+        
+        delete manager;
+    }
+    
+    SUBCASE("Season changes after manager deletion") {
+        InventoryManager* manager = new InventoryManager();
+        Nursery* nursery = Nursery::getInstance(manager);
+        
+        nursery->setSeason(new Spring());
+        CHECK(nursery->getSeason() == "Spring");
         
         delete manager;
     }

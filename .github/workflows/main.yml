@@ -24,4 +24,4 @@ jobs:
         run: make test
 
       - name: Run Valgrind
-        run: make val
+        run: make val-all
