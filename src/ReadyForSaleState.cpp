@@ -3,6 +3,7 @@
 void ReadyForSaleState::change(Plant* plant) {
     if (plant->getHealth() <= 0.7)
         plant->setState(new MatureState());
+    plant->setPruned(false);
 }
 
 string ReadyForSaleState::print() {

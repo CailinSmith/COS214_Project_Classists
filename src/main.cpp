@@ -1397,7 +1397,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << rose1->calculateCost("Summer") << endl;
     cout << "With Clay Pot: " << clayRose->calculateCost("Summer") << endl;
     cout << "Name: " << clayRose->getName() << endl;
-    cout << "Summary: " << clayRose->getSummary() << endl;
+    cout << "Summary: " << clayRose->summary() << endl;
 
 
     
@@ -1412,7 +1412,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << basil1->calculateCost("Summer") << endl;
     cout << "With Concrete Pot: " << concreteBasil->calculateCost("Summer") << endl;
     cout << "Name: " << concreteBasil->getName() << endl;
-    cout << "Summary: " << concreteBasil->getSummary() << endl;
+    cout << "Summary: " << concreteBasil->summary() << endl;
     
     cout << "\n\nTEST 3: CERAMIC POT" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1425,7 +1425,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << tomato1->calculateCost("Summer") << endl;
     cout << "With Ceramic Pot: " << ceramicTomato->calculateCost("Summer") << endl;
     cout << "Name: " << ceramicTomato->getName() << endl;
-    cout << "Summary: " << ceramicTomato->getSummary() << endl;
+    cout << "Summary: " << ceramicTomato->summary() << endl;
     
     cout << "\n\nTEST 4: EXTRA FERTILIZER" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1438,7 +1438,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << lettuce1->calculateCost("Summer") << endl;
     cout << "With Fertilizer: " << fertilizedLettuce->calculateCost("Summer") << endl;
     cout << "Name: " << fertilizedLettuce->getName() << endl;
-    cout << "Summary: " << fertilizedLettuce->getSummary() << endl;
+    cout << "Summary: " << fertilizedLettuce->summary() << endl;
     
     cout << "\n\nTEST 5: KRAFT WRAPPING" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1451,7 +1451,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << snake1->calculateCost("Summer") << endl;
     cout << "With Wrapping: " << wrappedSnake->calculateCost("Summer") << endl;
     cout << "Name: " << wrappedSnake->getName() << endl;
-    cout << "Summary: " << wrappedSnake->getSummary() << endl;
+    cout << "Summary: " << wrappedSnake->summary() << endl;
     
     cout << "\n\nTEST 6: MULTIPLE DECORATORS" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1465,7 +1465,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << rose2->calculateCost("Summer") << endl;
     cout << "Final Cost: " << decoratedRose->calculateCost("Summer") << endl;
     cout << "Name: " << decoratedRose->getName() << endl;
-    cout << "Summary: " << decoratedRose->getSummary() << endl;
+    cout << "Summary: " << decoratedRose->summary() << endl;
     
     cout << "\n\nTEST 7: REMOVE DECORATOR" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1477,7 +1477,7 @@ void DecoratorTesting(){
     cout << "\nBefore removing decorator:" << endl;
     cout << "Cost: " << clayBasil->calculateCost("Summer") << endl;
     cout << "Name: " << clayBasil->getName() << endl;
-    cout << "Summary: " << clayBasil->getSummary() << endl;
+    cout << "Summary: " << clayBasil->summary() << endl;
     
     Product* plainBasil = clayBasil->removeDecorator();
     delete clayBasil;
@@ -1485,7 +1485,7 @@ void DecoratorTesting(){
     cout << "\nAfter removing decorator:" << endl;
     cout << "Cost: " << plainBasil->calculateCost("Summer") << endl;
     cout << "Name: " << plainBasil->getName() << endl;
-    cout << "Summary: " << plainBasil->getSummary() << endl;
+    cout << "Summary: " << plainBasil->summary() << endl;
     
     delete plainBasil;
     delete clayRose;

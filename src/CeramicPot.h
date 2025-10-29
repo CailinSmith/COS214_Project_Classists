@@ -9,7 +9,7 @@ public:
     CeramicPot(Product* plant);
     ~CeramicPot();
     float calculateCost(string currentSeason);
-    string getSummary();
+    string summary();
     string getName();
 };
 

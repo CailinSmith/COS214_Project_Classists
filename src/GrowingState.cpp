@@ -5,6 +5,7 @@ void GrowingState::change(Plant* plant) {
         plant->setState(new MatureState());
     else if (plant->getHealth() < 0.2) 
         plant->setState(new DyingState());
+    plant->setPruned(false);
 }
 
 string GrowingState::print() {

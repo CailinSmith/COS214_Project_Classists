@@ -9,7 +9,7 @@ public:
 	ConcretePot(Product* plant);
 	~ConcretePot();
 	float calculateCost(string currentSeason);
-	string getSummary();
+	string summary();
 	string getName();
 };
 

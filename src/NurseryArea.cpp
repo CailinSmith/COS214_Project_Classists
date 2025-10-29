@@ -3,7 +3,7 @@
 void NurseryArea::notify(Staff* originator) {
     for (auto colleague : colleagues) 
         if (colleague != originator) 
-            colleague->receive("NurseryArea: " + originator->getName() + ": " + originator->getMessage());
+            colleague->receive("Nursery Area: " + originator->getName() + ": " + originator->getMessage());
 }
 
 void NurseryArea::registerColleague(Staff* colleague) {

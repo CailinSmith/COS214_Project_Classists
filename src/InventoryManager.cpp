@@ -5,21 +5,18 @@
 #include "Nursery.h"
 
 // demo helpers: plant types and strategies
-#include "Flower.h"
-#include "Herb.h"
-#include "Succulent.h"
-#include "Aquatic.h"
-#include "Indoor.h"
-#include "Medicinal.h"
-#include "Fruit.h"
-#include "Vegetable.h"
-
-#include "HighMoisture.h"
-#include "MediumMoisture.h"
-#include "DryPlant.h"
-
-#include "NoPrune.h"
-#include "Thinning.h"
+#include "Rose.h"
+#include "Basil.h"
+#include "AloeVera.h"
+#include "Cattails.h"
+#include "Pothos.h"
+#include "Chamomile.h"
+#include "Pansy.h"
+#include "Kale.h"
+#include "Echeveria.h"
+#include "OrangeTree.h"
+#include "Cucumber.h"
+#include "PeaceLily.h"
 
 Iterator<Plant>* InventoryManager::createIterator(const std::string& season) {
 	std::vector<Plant*> allPlants;
@@ -65,7 +62,7 @@ void InventoryManager::addToSale(Plant* plant) {
 	}
 
 	forSale.insert(forSale.begin() + i, plant);
-	std::cout << "Added " << plant->getName() << " to sale." << std::endl;
+	// std::cout << "Added " << plant->getName() << " to sale." << std::endl;
 	checkAndNotify();
 }
 
@@ -85,7 +82,7 @@ void InventoryManager::addToNursery(Plant* plant) {
 		i++;
 	}
 	inNursery.insert(inNursery.begin() + i, plant);
-	std::cout << "Added " << plant->getName() << " to nursery." << std::endl;
+	// std::cout << "Added " << plant->getName() << " to nursery." << std::endl;
 	checkAndNotify();
 }
 
@@ -229,25 +226,31 @@ void InventoryManager::populateDemoInventory(size_t nurseryCount, size_t saleCou
 		Plant* p = nullptr;
 		switch (i % 6) {
 			case 0:
-				p = new Flower(10, new HighMoisture(), new NoPrune(), string("Rose") + to_string(i+1), "Spring");
+				p = new Rose();
 				break;
 			case 1:
-				p = new Herb(5, new MediumMoisture(), new NoPrune(), string("Basil") + to_string(i+1), "Summer");
+				p = new Basil();
 				break;
 			case 2:
-				p = new Succulent(3, new DryPlant(), new NoPrune(), string("AloeVera") + to_string(i+1), "Winter");
+				p = new AloeVera();
 				break;
 			case 3:
-				p = new Aquatic(7, new HighMoisture(), new NoPrune(), string("Cattails") + to_string(i+1), "Spring");
+				p = new Cattails();
 				break;
 			case 4:
-				p = new Indoor(6, new MediumMoisture(), new NoPrune(), string("Pothos") + to_string(i+1), "Fall");
+				p = new Pothos();
 				break;
 			case 5:
-				p = new Medicinal(4, new MediumMoisture(), new NoPrune(), string("Chamomile") + to_string(i+1), "Summer");
+				p = new Chamomile();
 				break;
 		}
-		if (p) addToSale(p);
+		if (p) {
+			p->setHealth(0.9);
+			p->setHealth(0.9);
+			p->calculateCost("Spring");
+			p->setState(new ReadyForSaleState());
+			addToSale(p);
+		}
 	}
 
 	// Create nursery plants
@@ -255,22 +258,22 @@ void InventoryManager::populateDemoInventory(size_t nurseryCount, size_t saleCou
 		Plant* p = nullptr;
 		switch (i % 6) {
 			case 0:
-				p = new Flower(8, new MediumMoisture(), new Thinning(), string("Pansy") + to_string(i+1), "Spring");
+				p = new Pansy();
 				break;
 			case 1:
-				p = new Herb(4, new MediumMoisture(), new NoPrune(), string("Kale") + to_string(i+1), "Autumn");
+				p = new Kale();
 				break;
 			case 2:
-				p = new Succulent(3, new DryPlant(), new NoPrune(), string("Echeveria") + to_string(i+1), "Summer");
+				p = new Echeveria();
 				break;
 			case 3:
-				p = new Fruit(12, new HighMoisture(), new Thinning(), string("OrangeTree") + to_string(i+1), "Winter");
+				p = new OrangeTree();
 				break;
 			case 4:
-				p = new Vegetable(6, new HighMoisture(), new NoPrune(), string("Cucumber") + to_string(i+1), "Summer");
+				p = new Cucumber();
 				break;
 			case 5:
-				p = new Indoor(5, new MediumMoisture(), new NoPrune(), string("PeaceLily") + to_string(i+1), "Spring");
+				p = new PeaceLily();
 				break;
 		}
 		if (p) addToNursery(p);

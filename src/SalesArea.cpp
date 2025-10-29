@@ -2,8 +2,8 @@
 
 void SalesArea::notify(Staff* originator) {
     for (auto colleague : colleagues) 
-            if (colleague != originator) 
-                colleague->receive("NurseryArea: " + originator->getName() + ": " + originator->getMessage());
+        if (colleague != originator) 
+            colleague->receive("Sales Area: " + originator->getName() + ": " + originator->getMessage());
 }
 
 void SalesArea::registerColleague(Staff* colleague) {

@@ -59,6 +59,12 @@ $(BUILD_DIR)/demo_demo.o: $(DEMO_SRC)
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
+# Integration tests (WSL-friendly runner)
+.PHONY: itests
+itests: setup $(TARGET)
+	# Run the integration test for case2 (WSL / bash runner)
+	./tests/run_and_check.sh case2
+
 # Demo target: link project core objects with a small demo main
 .PHONY: demo
 demo: $(CORE_OBJS) $(DEMO_OBJ)
