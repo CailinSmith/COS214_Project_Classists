@@ -30,6 +30,13 @@
 #include "RefundCommand.h"
 #include "Receipt.h"
 
+// Include decorators
+#include "CeramicPot.h"
+#include "ConcretePot.h"
+#include "ClayPot.h"
+#include "KraftWrapping.h"
+#include "ExtraFertilizer.h"
+
 // Include all 32 plant types for initialization
 #include "Rose.h"
 #include "Basil.h"
@@ -95,12 +102,19 @@ private:
         PLANT_LIST,
         PLANT_DETAILS,
         CART_VIEW,
+        DECORATION_MENU,
+        CHECKOUT_SUMMARY,
         STOCK_CHECK,
         PAST_ORDERS,
         REFUND_MENU
     };
     View currentView = MAIN_MENU;
     int cartListSelected = 0;
+    int decorationMenuSelected = 0;
+    int currentDecoratingIndex = 0;
+    bool hasPot = false;          // Track if current plant has a pot
+    bool hasWrapping = false;     // Track if current plant has wrapping
+    bool hasFertilizer = false;   // Track if current plant has fertilizer
     
     std::vector<std::string> categories = {
         "Flower", "Herb", "Fruit", "Vegetable", 
@@ -519,6 +533,10 @@ private:
                 return renderPlantDetails();
             case CART_VIEW:
                 return renderCart();
+            case DECORATION_MENU:
+                return renderDecorationMenu();
+            case CHECKOUT_SUMMARY:
+                return renderCheckoutSummary();
             case STOCK_CHECK:
                 return renderStockCheck();
             case PAST_ORDERS:
@@ -544,7 +562,7 @@ private:
             if (static_cast<int>(i) == mainMenuSelected) {
                 menuItems.push_back(
                     hbox({
-                        text("► " + options[i]) | color(Color::Green) | bold | underlined
+                        text("► " + options[i]) | color(Color::Green) | bold
                     })
                 );
             } else {
@@ -584,7 +602,7 @@ private:
             if (static_cast<int>(i) == categoryMenuSelected) {
                 categoryItems.push_back(
                     hbox({
-                        text("► " + emoji + categories[i]) | color(Color::Green) | bold | underlined
+                        text("► " + emoji + categories[i]) | color(Color::Green) | bold
                     })
                 );
             } else {
@@ -626,7 +644,7 @@ private:
                 if (static_cast<int>(i) == plantListSelected) {
                     plantItems.push_back(
                         hbox({
-                            text("► " + plantInfo) | color(Color::Green) | bold | underlined
+                            text("► " + plantInfo) | color(Color::Green) | bold
                         })
                     );
                 } else {
@@ -845,6 +863,166 @@ private:
 
     }
     
+    Element renderDecorationMenu() {
+        auto& order = customer->getOrder();
+        
+        if (currentDecoratingIndex >= static_cast<int>(order.size())) {
+            // All plants decorated, proceed to actual checkout
+            performActualCheckout();
+            return renderMainMenu();
+        }
+        
+        Product* currentProduct = order[currentDecoratingIndex];
+        std::string plantName = currentProduct->getName();
+        
+        // Truncate plant name if too long to prevent GUI stretching
+        const size_t MAX_NAME_LENGTH = 60;
+        if (plantName.length() > MAX_NAME_LENGTH) {
+            plantName = plantName.substr(0, MAX_NAME_LENGTH - 3) + "...";
+        }
+        
+        std::string season = nursery->getSeason();
+        float currentCost = currentProduct->calculateCost(season);
+        
+        std::ostringstream currentPriceStream;
+        currentPriceStream << std::fixed << std::setprecision(2) << currentCost;
+        
+        // Build options list dynamically based on what's already been added
+        std::vector<std::string> decorationOptions;
+        decorationOptions.push_back("Done decorating - Next plant");
+        
+        // Only show pot options if no pot has been added yet
+        if (!hasPot) {
+            decorationOptions.push_back("Ceramic Pot (+R80.00)");
+            decorationOptions.push_back("Concrete Pot (+R60.00)");
+            decorationOptions.push_back("Clay Pot (+R50.00)");
+        }
+        
+        // Always show wrapping if not added
+        if (!hasWrapping) {
+            decorationOptions.push_back("Kraft Wrapping (+R20.00)");
+        }
+        
+        // Always show fertilizer if not added
+        if (!hasFertilizer) {
+            decorationOptions.push_back("Extra Fertilizer (+R80.00)");
+        }
+        
+        Elements decorationItems;
+        for (size_t i = 0; i < decorationOptions.size(); i++) {
+            if (static_cast<int>(i) == decorationMenuSelected) {
+                decorationItems.push_back(
+                    hbox({
+                        text("► " + decorationOptions[i]) | color(Color::Green) | bold
+                    })
+                );
+            } else {
+                decorationItems.push_back(text("  " + decorationOptions[i]));
+            }
+        }
+        
+        // Show what's been added
+        Elements addedDecorations;
+        addedDecorations.push_back(text("Current decorations:") | bold);
+        if (hasPot || hasWrapping || hasFertilizer) {
+            if (hasPot) addedDecorations.push_back(text("  ✓ Pot") | color(Color::Green));
+            if (hasWrapping) addedDecorations.push_back(text("  ✓ Kraft Wrapping") | color(Color::Green));
+            if (hasFertilizer) addedDecorations.push_back(text("  ✓ Extra Fertilizer") | color(Color::Green));
+        } else {
+            addedDecorations.push_back(text("  None yet") | dim);
+        }
+        
+        return vbox({
+            text("🌿 Decorate Plant 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
+            hbox({
+                text("Plant: ") | bold,
+                text(plantName) | color(Color::Cyan) | flex_shrink
+            }),
+            hbox({
+                text("Current Price: ") | bold,
+                text("R" + currentPriceStream.str()) | color(Color::Yellow)
+            }),
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(addedDecorations),
+            text("") | size(HEIGHT, EQUAL, 1),
+            text("Progress: " + std::to_string(currentDecoratingIndex + 1) + " / " + 
+                 std::to_string(order.size())) | dim | center,
+            text("") | size(HEIGHT, EQUAL, 1),
+            separator(),
+            text("Select decoration to add:") | bold,
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(decorationItems),
+            separator(),
+            text("💡 Use ↑↓ arrows to select, Enter to add/continue") | dim | center,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow)
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+    Element renderCheckoutSummary() {
+        auto& order = customer->getOrder();
+        std::string season = nursery->getSeason();
+        
+        Elements summaryItems;
+        float total = 0.0f;
+        
+        summaryItems.push_back(text("Items in your order:") | bold);
+        summaryItems.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        
+        for (size_t i = 0; i < order.size(); i++) {
+            Product* p = order[i];
+            float itemCost = p->calculateCost(season);
+            total += itemCost;
+            
+            std::ostringstream priceStream;
+            priceStream << std::fixed << std::setprecision(2) << itemCost;
+            
+            // Truncate name if too long
+            std::string itemName = p->getName();
+            if (itemName.length() > 50) {
+                itemName = itemName.substr(0, 47) + "...";
+            }
+            
+            summaryItems.push_back(hbox({
+                text(std::to_string(i + 1) + ". "),
+                text(itemName) | flex,
+                text(" R" + priceStream.str()) | color(Color::Yellow) | bold
+            }));
+        }
+        
+        summaryItems.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        summaryItems.push_back(separator());
+        
+        std::ostringstream totalStream;
+        totalStream << std::fixed << std::setprecision(2) << total;
+        
+        summaryItems.push_back(hbox({
+            text("TOTAL: ") | bold | color(Color::White),
+            filler(),
+            text("R" + totalStream.str()) | bold | color(Color::Green) | 
+                 size(HEIGHT, EQUAL, 2)
+        }));
+        summaryItems.push_back(separator());
+        
+        return vbox({
+            text("🌿 Checkout Summary 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(summaryItems) | flex_shrink,
+            text("") | size(HEIGHT, EQUAL, 1),
+            separator(),
+            text("Options:") | bold,
+            text("  [Enter] - Complete purchase") | color(Color::Green),
+            text("  [b]     - Cancel and return to main menu") | color(Color::Red),
+            text("") | size(HEIGHT, EQUAL, 1),
+            text("💡 Review your order before completing purchase") | dim | center,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow)
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
     Element renderStockCheck() {
         if (!selectedPlant) {
             return text("No plant selected") | center;
@@ -884,7 +1062,7 @@ private:
                 if (static_cast<int>(i) == selectedOrderIndex) {
                     orderElements.push_back(
                         hbox({
-                            text("► " + orderInfo) | color(Color::Green) | bold | underlined
+                            text("► " + orderInfo) | color(Color::Green) | bold
                         })
                     );
                 } else {
@@ -970,6 +1148,10 @@ private:
                 return handleDetailsInput(event);
             case CART_VIEW:
                 return handleCartInput(event);
+            case DECORATION_MENU:
+                return handleDecorationInput(event);
+            case CHECKOUT_SUMMARY:
+                return handleCheckoutSummaryInput(event);
             case STOCK_CHECK:
                 return handleDetailsInput(event);
             case PAST_ORDERS:
@@ -1002,7 +1184,7 @@ private:
                     selectedOrderIndex = 0;
                     break;
                 case 3: 
-                    performCheckout();
+                    startCheckoutFlow();
                     break;
                 case 4:
                     screen.ExitLoopClosure()();
@@ -1139,6 +1321,43 @@ private:
         return false;
     }
     
+    bool handleDecorationInput(Event event) {
+        // Calculate max options dynamically
+        int maxOptions = 0; // "Done decorating"
+        if (!hasPot) maxOptions += 3; // 3 pot types
+        if (!hasWrapping) maxOptions += 1;
+        if (!hasFertilizer) maxOptions += 1;
+        
+        if (event == Event::ArrowUp) {
+            decorationMenuSelected = std::max(0, decorationMenuSelected - 1);
+            return true;
+        } 
+        else if (event == Event::ArrowDown) {
+            decorationMenuSelected = std::min(maxOptions, decorationMenuSelected + 1);
+            return true;
+        } 
+        else if (event == Event::Return) {
+            applyDecoration();
+            return true;
+        }
+        return false;
+    }
+    
+    bool handleCheckoutSummaryInput(Event event) {
+        if (event == Event::Return) {
+            // Complete the purchase
+            performActualCheckout();
+            return true;
+        } 
+        else if (event == Event::Character('b') || event == Event::Character('B')) {
+            // Cancel and return to main menu
+            messageBuffer = "Checkout cancelled";
+            currentView = MAIN_MENU;
+            return true;
+        }
+        return false;
+    }
+    
     bool handlePastOrdersInput(Event event) {
         auto& receipts = customer->getReceipts();
         
@@ -1203,10 +1422,123 @@ private:
         }
     }
     
-    void performCheckout() {
+    void startCheckoutFlow() {
         auto& order = customer->getOrder();
         if (order.empty()) {
             messageBuffer = "Cannot checkout - cart is empty!";
+            return;
+        }
+        
+        // Start the decoration flow and reset decoration flags
+        currentDecoratingIndex = 0;
+        decorationMenuSelected = 0;
+        hasPot = false;
+        hasWrapping = false;
+        hasFertilizer = false;
+        currentView = DECORATION_MENU;
+    }
+    
+    void applyDecoration() {
+        auto& order = customer->getOrder();
+        
+        if (currentDecoratingIndex >= static_cast<int>(order.size())) {
+            return;
+        }
+        
+        // Build the same options list to map selection to action
+        std::vector<std::string> decorationOptions;
+        decorationOptions.push_back("Done decorating - Next plant");
+        
+        std::vector<int> optionTypes; // 0=done, 1=ceramic, 2=concrete, 3=clay, 4=wrapping, 5=fertilizer
+        optionTypes.push_back(0);
+        
+        if (!hasPot) {
+            decorationOptions.push_back("Ceramic Pot (+R80.00)");
+            optionTypes.push_back(1);
+            decorationOptions.push_back("Concrete Pot (+R60.00)");
+            optionTypes.push_back(2);
+            decorationOptions.push_back("Clay Pot (+R50.00)");
+            optionTypes.push_back(3);
+        }
+        
+        if (!hasWrapping) {
+            decorationOptions.push_back("Kraft Wrapping (+R20.00)");
+            optionTypes.push_back(4);
+        }
+        
+        if (!hasFertilizer) {
+            decorationOptions.push_back("Extra Fertilizer (+R80.00)");
+            optionTypes.push_back(5);
+        }
+        
+        // Get the selected option type
+        if (decorationMenuSelected < 0 || decorationMenuSelected >= static_cast<int>(optionTypes.size())) {
+            return;
+        }
+        
+        int selectedType = optionTypes[decorationMenuSelected];
+        Product* currentProduct = order[currentDecoratingIndex];
+        Product* decorated = nullptr;
+        
+        if (selectedType == 0) {
+            // Done decorating this plant - move to next
+            currentDecoratingIndex++;
+            decorationMenuSelected = 0;
+            hasPot = false;
+            hasWrapping = false;
+            hasFertilizer = false;
+            messageBuffer = "Moving to next plant...";
+            
+            // If we've decorated all plants, show checkout summary
+            if (currentDecoratingIndex >= static_cast<int>(order.size())) {
+                currentView = CHECKOUT_SUMMARY;
+                messageBuffer = "";
+            }
+        } else {
+            // Apply decoration
+            switch (selectedType) {
+                case 1: // Ceramic Pot
+                    decorated = new CeramicPot(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasPot = true;
+                    messageBuffer = "Added Ceramic Pot!";
+                    break;
+                case 2: // Concrete Pot
+                    decorated = new ConcretePot(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasPot = true;
+                    messageBuffer = "Added Concrete Pot!";
+                    break;
+                case 3: // Clay Pot
+                    decorated = new ClayPot(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasPot = true;
+                    messageBuffer = "Added Clay Pot!";
+                    break;
+                case 4: // Kraft Wrapping
+                    decorated = new KraftWrapping(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasWrapping = true;
+                    messageBuffer = "Added Kraft Wrapping!";
+                    break;
+                case 5: // Extra Fertilizer
+                    decorated = new ExtraFertilizer(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasFertilizer = true;
+                    messageBuffer = "Added Extra Fertilizer!";
+                    break;
+            }
+            
+            // Reset selection to top after adding decoration
+            decorationMenuSelected = 0;
+        }
+    }
+    
+    void performActualCheckout() {
+        auto& order = customer->getOrder();
+        if (order.empty()) {
+            messageBuffer = "Cannot checkout - cart is empty!";
+            currentView = MAIN_MENU;
             return;
         }
         
@@ -1222,8 +1554,10 @@ private:
             totalStream << std::fixed << std::setprecision(2) << result.second->getCost();
             messageBuffer = "Checkout successful! Total: R" + totalStream.str();
         } else {
-            messageBuffer = "Checkout completed: " + result.first;
+            messageBuffer = "Checkout completed: ";
         }
+        
+        currentView = MAIN_MENU;
     }
     
     void processRefund() {
