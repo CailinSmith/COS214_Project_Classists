@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iomanip>
 #include <cstdlib>
+#include <algorithm>
 
 #include "ftxui/component/captured_mouse.hpp"
 #include "ftxui/component/component.hpp"
@@ -93,11 +94,13 @@ private:
         CATEGORY_SELECTION,
         PLANT_LIST,
         PLANT_DETAILS,
+        CART_VIEW,
         STOCK_CHECK,
         PAST_ORDERS,
         REFUND_MENU
     };
     View currentView = MAIN_MENU;
+    int cartListSelected = 0;
     
     std::vector<std::string> categories = {
         "Flower", "Herb", "Fruit", "Vegetable", 
@@ -514,6 +517,8 @@ private:
                 return renderPlantList();
             case PLANT_DETAILS:
                 return renderPlantDetails();
+            case CART_VIEW:
+                return renderCart();
             case STOCK_CHECK:
                 return renderStockCheck();
             case PAST_ORDERS:
@@ -547,23 +552,26 @@ private:
             }
         }
         
-        auto cartInfo = text("Current cart: " + std::to_string(customer->getOrder().size()) + " items") | 
+        auto cartInfo = text("Current cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
                         color(Color::Cyan);
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | 
+                         color(Color::Yellow) | dim;
         
-        Elements mainMenuContent;
-        mainMenuContent.push_back(text("🌿 GreensOnly Plant Shop 🌿") | bold | center | color(Color::Green));
-        mainMenuContent.push_back(separator());
-        mainMenuContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
-        mainMenuContent.push_back(vbox(menuItems));
-        mainMenuContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
-        mainMenuContent.push_back(separator());
-        mainMenuContent.push_back(cartInfo);
-        mainMenuContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
-        mainMenuContent.push_back(text(messageBuffer) | color(Color::Yellow));
-        mainMenuContent.push_back(text("💡 Use ↑↓ arrows to navigate, Enter to select") | dim);
-        mainMenuContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
-        
-        return vbox(mainMenuContent) | border | center;
+        return vbox({
+            text("🌿 GreensOnly Plant Shop 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(menuItems),
+            text("") | size(HEIGHT, EQUAL, 1),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow),
+            text("💡 Use ↑↓ arrows to navigate, Enter to select") | dim,
+            text("") | size(HEIGHT, EQUAL, 1)
+        }) | border | center;
+
     }
     
     Element renderCategorySelection() {
@@ -584,12 +592,20 @@ private:
             }
         }
         
+        auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
+                        color(Color::Cyan) | dim;
+        auto seasonInfo = text("Season: " + nursery->getSeason()) | 
+                         color(Color::Yellow) | dim;
+        
         return vbox({
             text("🌿 Select Plant Category 🌿") | bold | center | color(Color::Green),
             separator(),
             vbox(categoryItems),
             separator(),
+            cartInfo,
+            seasonInfo,
             text("💡 Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
+
         }) | border | center;
     }
     
@@ -620,13 +636,21 @@ private:
         }
         
         std::string header = (selectedCategory == "All Plants") ? "All Plants" : (selectedCategory + " Plants");
+        
+        auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
+                        color(Color::Cyan) | dim;
+        auto seasonInfo = text("Season: " + nursery->getSeason()) | 
+                         color(Color::Yellow) | dim;
 
         return vbox({
             text("🌿 " + header + " 🌿") | bold | center | color(Color::Green),
             separator(),
             vbox(plantItems),
             separator(),
+            cartInfo,
+            seasonInfo,
             text("💡 Use ↑↓ arrows to select plant, Enter to view details, 'b' to go back") | dim
+
         }) | border | center;
     }
     
@@ -634,6 +658,12 @@ private:
         if (!selectedPlant) {
             return text("No plant selected") | center;
         }
+        
+        //Check if plant is already in cart
+        auto& order = customer->getOrder();
+        Plant* base = selectedPlant->getBasePlant();
+        bool alreadyInCart = std::any_of(order.begin(), order.end(), 
+            [&](Product* q){ return q->getBasePlant() == base; });
         
         AskInfoCommand* infoCmd = new AskInfoCommand(nurseryStaff, selectedPlant);
         auto result = customer->sendCommand(infoCmd);
@@ -720,19 +750,99 @@ private:
         content.push_back(vbox(scrollableContent) | flex_shrink);
         
         content.push_back(separator());
-        
-        // cart button doesn't work rn
-        content.push_back(
-            hbox({
-                filler(),
-                text(" Add to Cart ") | bgcolor(Color::Green) | color(Color::White) | bold | center,
-                filler()
-            })
-        );
-        content.push_back(text("") | size(HEIGHT, EQUAL, 1));
-        content.push_back(text("💡 Press 'b' to go back") | color(Color::CyanLight) | dim | center);
+        if (alreadyInCart) {
+            content.push_back(
+                hbox({
+                    filler(),
+                    text(" Already in Cart ✓ ") | bgcolor(Color::GrayDark) | color(Color::White) | bold | center,
+                    filler()
+                })
+            );
+            content.push_back(text("") | size(HEIGHT, EQUAL, 1));
+            content.push_back(text("This plant is already in your cart! Press 'b' to go back") | dim | center | color(Color::Yellow));
+        } else {
+            content.push_back(
+                hbox({
+                    filler(),
+                    text(" [A] Add to Cart ") | bgcolor(Color::Green) | color(Color::White) | bold | center,
+                    filler()
+                })
+            );
+            content.push_back(text("") | size(HEIGHT, EQUAL, 1));
+            content.push_back(text("Press 'a' to add to cart, 'b' to go back") | dim | center);
+        }
         
         return vbox(content) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+    Element renderCart() {
+        auto& order = customer->getOrder();
+        
+        if (order.empty()) {
+            return vbox({
+                text("🌿 My Cart 🌿") | bold | center | color(Color::Green),
+                separator(),
+                text("") | size(HEIGHT, EQUAL, 1),
+                text("Your cart is empty!") | center | color(Color::Yellow),
+                text("") | size(HEIGHT, EQUAL, 1),
+                separator(),
+                text("Press 'b' to go back to main menu") | dim | center
+            }) | border | center;
+        }
+        
+        Elements cartItems;
+        std::string season = nursery->getSeason();
+        float total = 0.0f;
+        
+        for (size_t i = 0; i < order.size(); i++) {
+            Product* p = order[i];
+            float cost = p->calculateCost(season);
+            total += cost;
+            
+            std::ostringstream priceStream;
+            priceStream << std::fixed << std::setprecision(2) << cost;
+            
+            Element item;
+            if (static_cast<int>(i) == cartListSelected) {
+                item = hbox({
+                    text("► ") | color(Color::Green) | bold,
+                    text(std::to_string(i + 1) + ". " + p->getName()) | color(Color::Green) | bold | flex,
+                    text(" R" + priceStream.str()) | color(Color::Green) | bold
+                });
+            } else {
+                item = hbox({
+                    text("  "),
+                    text(std::to_string(i + 1) + ". " + p->getName()) | flex,
+                    text(" R" + priceStream.str())
+                });
+            }
+            cartItems.push_back(item);
+        }
+        
+        std::ostringstream totalStream;
+        totalStream << std::fixed << std::setprecision(2) << total;
+        
+        return vbox({
+            text("🌿 My Cart 🌿") | bold | center | color(Color::Green),
+            separator(),
+            vbox(cartItems),
+            separator(),
+            hbox({
+                text("TOTAL: ") | bold,
+                filler(),
+                text("R" + totalStream.str()) | bold | color(Color::Green)
+            }),
+            separator(),
+            text("Options:") | bold,
+            text("  [Enter] - View selected plant details"),
+            text("  [d]     - Remove selected plant from cart"),
+            text("  [c]     - Clear entire cart"),
+            text("  [b]     - Back to main menu"),
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow),
+            text("Use ↑↓ arrows to select item") | dim
+        }) | border | center;
+
     }
     
     Element renderStockCheck() {
@@ -783,10 +893,18 @@ private:
             }
         }
         
+        auto cartInfo = text("Current cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
+                        color(Color::Cyan) | dim;
+        auto seasonInfo = text("Season: " + nursery->getSeason()) | 
+                         color(Color::Yellow) | dim;
+        
         return vbox({
             text("🌿 Past Orders 🌿") | bold | center | color(Color::Green),
             separator(),
             vbox(orderElements),
+            separator(),
+            cartInfo,
+            seasonInfo,
             separator(),
             text("Options:") | bold,
             text("  [r] - Request refund for selected order"),
@@ -849,6 +967,9 @@ private:
             case PLANT_LIST:
                 return handlePlantListInput(event);
             case PLANT_DETAILS:
+                return handleDetailsInput(event);
+            case CART_VIEW:
+                return handleCartInput(event);
             case STOCK_CHECK:
                 return handleDetailsInput(event);
             case PAST_ORDERS:
@@ -873,7 +994,8 @@ private:
                     categoryMenuSelected = 0;
                     break;
                 case 1: 
-                    showCart();
+                    currentView = CART_VIEW;
+                    cartListSelected = 0;
                     break;
                 case 2:
                     currentView = PAST_ORDERS;
@@ -927,7 +1049,7 @@ private:
             plantListSelected = std::min(static_cast<int>(currentPlants.size()) - 1, plantListSelected + 1);
             return true;
         } else if (event == Event::Return) {
-            // View plant details
+            //View plant details
             selectedPlant = currentPlants[plantListSelected];
             currentView = PLANT_DETAILS;
             return true;
@@ -941,6 +1063,77 @@ private:
     bool handleDetailsInput(Event event) {
         if (event == Event::Character('b') || event == Event::Character('B')) {
             currentView = PLANT_LIST;
+            return true;
+        } 
+        else if (event == Event::Character('a') || event == Event::Character('A')) {
+            //Check in cart before adding to cart
+            auto& order = customer->getOrder();
+            Plant* base = selectedPlant->getBasePlant();
+
+            if (std::any_of(order.begin(), order.end(), 
+                [&](Product* q){ return q->getBasePlant() == base; })) 
+            {
+                messageBuffer = selectedPlant->getName() + " is already in your cart!";
+            } else {
+                customer->addToCart(selectedPlant);
+                messageBuffer = selectedPlant->getName() + " added to cart!";
+                currentView = PLANT_LIST;  
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    bool handleCartInput(Event event) {
+        auto& order = customer->getOrder();
+        
+        if (order.empty()) {
+            if (event == Event::Character('b') || event == Event::Character('B')) {
+                currentView = MAIN_MENU;
+                return true;
+            }
+            return false;
+        }
+        
+        if (event == Event::ArrowUp) {
+            cartListSelected = std::max(0, cartListSelected - 1);
+            return true;
+        } 
+        else if (event == Event::ArrowDown) {
+            cartListSelected = std::min(static_cast<int>(order.size()) - 1, cartListSelected + 1);
+            return true;
+        } 
+        else if (event == Event::Return) {
+            //View platn details from cart
+            Product* product = order[cartListSelected];
+            selectedPlant = product->getBasePlant();
+            if (selectedPlant) {
+                currentView = PLANT_DETAILS;
+            } else {
+                messageBuffer = "Cannot view details for this item";
+            }
+            return true;
+        }
+        else if (event == Event::Character('d') || event == Event::Character('D')) {
+            //Remove item from cart
+            if (cartListSelected >= 0 && cartListSelected < static_cast<int>(order.size())) {
+                std::string removedName = order[cartListSelected]->getName();
+                order.erase(order.begin() + cartListSelected);
+                messageBuffer = removedName + " removed from cart";
+                if (cartListSelected >= static_cast<int>(order.size()) && !order.empty()) {
+                    cartListSelected = static_cast<int>(order.size()) - 1;
+                }
+            }
+            return true;
+        }
+        else if (event == Event::Character('c') || event == Event::Character('C')) {
+            order.clear();
+            cartListSelected = 0;
+            messageBuffer = "Cart cleared!";
+            return true;
+        }
+        else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = MAIN_MENU;
             return true;
         }
         return false;
