@@ -174,6 +174,18 @@ install-deps:
 		echo "  macOS:         brew install git"; \
 		exit 1; \
 	fi
+	@if ! command -v chafa >/dev/null 2>&1; then \
+		echo "WARNING: chafa is not installed!"; \
+		echo "The GUI requires chafa for image rendering."; \
+		echo "Please install chafa:"; \
+		echo "  Ubuntu/Debian: sudo apt-get install chafa"; \
+		echo "  Fedora/RHEL:   sudo dnf install chafa"; \
+		echo "  macOS:         brew install chafa"; \
+		echo "  Arch Linux:    sudo pacman -S chafa"; \
+		echo ""; \
+		echo "Continuing with FTXUI installation..."; \
+		echo ""; \
+	fi
 	@if [ ! -d "$(FTXUI_INSTALL)/lib" ] || [ ! -f "$(FTXUI_INSTALL)/lib/libftxui-screen.a" ]; then \
 		mkdir -p "$(DEPS_DIR)"; \
 		if [ ! -d "$(FTXUI_SRC)" ]; then \
