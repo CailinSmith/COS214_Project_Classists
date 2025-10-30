@@ -447,6 +447,49 @@ public:
         return output;
     }
     
+    // Create a visual health bar from health value (0.0 to 1.0)
+    Element createHealthBar(float health) {
+        // Clamp health between 0 and 1
+        health = std::max(0.0f, std::min(1.0f, health));
+        
+        int barWidth = 20;
+        int filledBars = static_cast<int>(health * barWidth);
+        int emptyBars = barWidth - filledBars;
+        
+        // Create filled and empty portions using Unicode block characters
+        std::string filled = "";
+        for (int i = 0; i < filledBars; i++) {
+            filled += "█";
+        }
+        std::string empty = "";
+        for (int i = 0; i < emptyBars; i++) {
+            empty += "░";
+        }
+        
+        // Choose color based on health level
+        Color barColor;
+        if (health > 0.7f) {
+            barColor = Color::Green;
+        } else if (health > 0.4f) {
+            barColor = Color::Yellow;
+        } else {
+            barColor = Color::Red;
+        }
+        
+        // Create percentage text
+        int percentage = static_cast<int>(health * 100);
+        std::string percentText = std::to_string(percentage) + "%";
+        
+        return hbox({
+            text("Health: ") | color(Color::White),
+            text("[") | color(Color::White),
+            text(filled) | color(barColor) | bold,
+            text(empty) | color(Color::GrayDark),
+            text("]") | color(Color::White),
+            text(" " + percentText) | color(barColor) | bold
+        });
+    }
+    
     void run() {
         auto mainComponent = Renderer([&] {
             return renderCurrentView();
@@ -499,7 +542,11 @@ private:
         Elements menuItems;
         for (size_t i = 0; i < options.size(); i++) {
             if (static_cast<int>(i) == mainMenuSelected) {
-                menuItems.push_back(text("► " + options[i]) | color(Color::Green) | bold);
+                menuItems.push_back(
+                    hbox({
+                        text("► " + options[i]) | color(Color::Green) | bold | underlined
+                    })
+                );
             } else {
                 menuItems.push_back(text("  " + options[i]));
             }
@@ -521,18 +568,27 @@ private:
             seasonInfo,
             text("") | size(HEIGHT, EQUAL, 1),
             text(messageBuffer) | color(Color::Yellow),
-            text("Use ↑↓ arrows to navigate, Enter to select") | dim,
+            text("💡 Use ↑↓ arrows to navigate, Enter to select") | dim,
             text("") | size(HEIGHT, EQUAL, 1)
         }) | border | center;
+
     }
     
     Element renderCategorySelection() {
+        // Emoji for each category
+        std::vector<std::string> categoryEmojis = {"🌸", "🌿", "🍎", "🥕", "🌵", "💧", "🏠", "💊"};
+        
         Elements categoryItems;
         for (size_t i = 0; i < categories.size(); i++) {
+            std::string emoji = (i < categoryEmojis.size()) ? categoryEmojis[i] + " " : "";
             if (static_cast<int>(i) == categoryMenuSelected) {
-                categoryItems.push_back(text("► " + categories[i]) | color(Color::Green) | bold);
+                categoryItems.push_back(
+                    hbox({
+                        text("► " + emoji + categories[i]) | color(Color::Green) | bold | underlined
+                    })
+                );
             } else {
-                categoryItems.push_back(text("  " + categories[i]));
+                categoryItems.push_back(text("  " + emoji + categories[i]));
             }
         }
         
@@ -542,13 +598,14 @@ private:
                          color(Color::Yellow) | dim;
         
         return vbox({
-            text("🌿 Select Plant Category 🌿") | bold | center,
+            text("🌿 Select Plant Category 🌿") | bold | center | color(Color::Green),
             separator(),
             vbox(categoryItems),
             separator(),
             cartInfo,
             seasonInfo,
-            text("Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
+            text("💡 Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
+
         }) | border | center;
     }
     
@@ -567,7 +624,11 @@ private:
                                       " - R" + priceStream.str();
                 
                 if (static_cast<int>(i) == plantListSelected) {
-                    plantItems.push_back(text("► " + plantInfo) | color(Color::Green) | bold);
+                    plantItems.push_back(
+                        hbox({
+                            text("► " + plantInfo) | color(Color::Green) | bold | underlined
+                        })
+                    );
                 } else {
                     plantItems.push_back(text("  " + plantInfo));
                 }
@@ -582,13 +643,14 @@ private:
                          color(Color::Yellow) | dim;
 
         return vbox({
-            text("🌿 " + header + " 🌿") | bold | center,
+            text("🌿 " + header + " 🌿") | bold | center | color(Color::Green),
             separator(),
             vbox(plantItems),
             separator(),
             cartInfo,
             seasonInfo,
-            text("Use ↑↓ arrows to select plant, Enter to view details, 'b' to go back") | dim
+            text("💡 Use ↑↓ arrows to select plant, Enter to view details, 'b' to go back") | dim
+
         }) | border | center;
     }
     
@@ -643,10 +705,43 @@ private:
         }
         
         scrollableContent.push_back(text("Plant Information:") | bold | color(Color::Green));
+        
+        // Extract health value and create health bar
+        float healthValue = selectedPlant->getHealth();
+        scrollableContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        scrollableContent.push_back(createHealthBar(healthValue));
+        scrollableContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        
         std::istringstream infoStream(info);
         std::string line;
         while (std::getline(infoStream, line)) {
             if (!line.empty()) {
+                // Skip the health line if it exists (we're showing it as a bar instead)
+                if (line.find("Health:") != std::string::npos || line.find("health:") != std::string::npos) {
+                    continue;
+                }
+                
+                // Add "R" currency symbol to price/cost lines
+                if (line.find("Price:") != std::string::npos || line.find("Cost:") != std::string::npos || line.find("price:") != std::string::npos || line.find("cost:") != std::string::npos) {
+                    // Find the number after the colon
+                    size_t colonPos = line.find(':');
+                    if (colonPos != std::string::npos) {
+                        std::string beforeColon = line.substr(0, colonPos + 1);
+                        std::string afterColon = line.substr(colonPos + 1);
+                        
+                        // Trim whitespace from afterColon
+                        size_t firstNonSpace = afterColon.find_first_not_of(" \t");
+                        if (firstNonSpace != std::string::npos) {
+                            afterColon = afterColon.substr(firstNonSpace);
+                        }
+                        
+                        // Add R prefix if not already there
+                        if (!afterColon.empty() && afterColon[0] != 'R') {
+                            line = beforeColon + " R" + afterColon;
+                        }
+                    }
+                }
+                
                 scrollableContent.push_back(text("  " + line));
             }
         }
@@ -747,6 +842,7 @@ private:
             text(messageBuffer) | color(Color::Yellow),
             text("Use ↑↓ arrows to select item") | dim
         }) | border | center;
+
     }
     
     Element renderStockCheck() {
@@ -761,13 +857,13 @@ private:
         std::string stockInfo = result.first;
         
         return vbox({
-            text("🌿 Stock Check 🌿") | bold | center,
+            text("🌿 Stock Check 🌿") | bold | center | color(Color::Green),
             separator(),
             text("Plant: " + selectedPlant->getName()) | bold,
             text("") | size(HEIGHT, EQUAL, 1),
             text(stockInfo),
             separator(),
-            text("Press 'b' to go back") | dim
+            text("💡 Press 'b' to go back") | dim
         }) | border | center;
     }
     
@@ -786,7 +882,11 @@ private:
                                        r->getDate() + " - R" + priceStream.str();
                 
                 if (static_cast<int>(i) == selectedOrderIndex) {
-                    orderElements.push_back(text("► " + orderInfo) | color(Color::Green) | bold);
+                    orderElements.push_back(
+                        hbox({
+                            text("► " + orderInfo) | color(Color::Green) | bold | underlined
+                        })
+                    );
                 } else {
                     orderElements.push_back(text("  " + orderInfo));
                 }
@@ -799,7 +899,7 @@ private:
                          color(Color::Yellow) | dim;
         
         return vbox({
-            text("🌿 Past Orders 🌿") | bold | center,
+            text("🌿 Past Orders 🌿") | bold | center | color(Color::Green),
             separator(),
             vbox(orderElements),
             separator(),
@@ -811,7 +911,7 @@ private:
             text("  [b] - Back to main menu"),
             text("") | size(HEIGHT, EQUAL, 1),
             text(messageBuffer) | color(Color::Yellow),
-            text("Use ↑↓ arrows to select order") | dim
+            text("💡 Use ↑↓ arrows to select order") | dim
         }) | border | center;
     }
     
@@ -821,7 +921,7 @@ private:
         if (selectedOrderIndex < 0 || selectedOrderIndex >= static_cast<int>(receipts.size())) {
             return vbox({
                 text("Invalid order selected") | color(Color::Red),
-                text("Press 'b' to go back") | dim
+                text("💡 Press 'b' to go back") | dim
             }) | border | center;
         }
         
@@ -842,7 +942,7 @@ private:
         totalStream << std::fixed << std::setprecision(2) << selectedReceipt->getCost();
         
         return vbox({
-            text("🌿 Select Plant to Refund 🌿") | bold | center,
+            text("🌿 Select Plant to Refund 🌿") | bold | center | color(Color::Green),
             separator(),
             text("Order Date: " + selectedReceipt->getDate()) | bold,
             text("Total: R" + totalStream.str()) | bold,
@@ -850,7 +950,7 @@ private:
             vbox(plantElements),
             separator(),
             text("Enter plant number (1-" + std::to_string(plants->size()) + "): " + inputBuffer) | color(Color::Cyan),
-            text("Press Enter to submit, 'b' to cancel") | dim,
+            text("💡 Press Enter to submit, 'b' to cancel") | dim,
             text("") | size(HEIGHT, EQUAL, 1),
             text(messageBuffer) | color(Color::Yellow)
         }) | border | center;
