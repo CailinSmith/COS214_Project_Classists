@@ -177,7 +177,7 @@ TEST_CASE("Decorator: getSummary includes decorator info") {
     lettuce->setHealth(0.85);
     CeramicPot* decorated = new CeramicPot(lettuce);
     
-    string summary = decorated->getSummary();
+    string summary = decorated->summary();
     CHECK(summary.find("Extra: Ceramic Pot") != string::npos);
     
     delete decorated;

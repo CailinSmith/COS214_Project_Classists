@@ -9,7 +9,7 @@ public:
     KraftWrapping(Product* plant);
     ~KraftWrapping();
     float calculateCost(string currentSeason);
-    string getSummary();
+    string summary();
     string getName();
 };
 
