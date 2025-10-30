@@ -11,6 +11,7 @@
 
 class StaffMediator;
 class Customer;
+class StaffCommand;
 
 using namespace std;
 
@@ -21,6 +22,7 @@ public:
 	virtual void send();
 	string receive(string message);
 	virtual pair<string, Receipt*> handleRequest(const std::string& requestType, Plant* plant, std::vector<Product*>* order, vector<bool>* flags);
+    void setCommand(StaffCommand* cmd);
 	virtual string getPosition() = 0;
     string getMessage();
     void setMessage(string message);
@@ -32,6 +34,7 @@ protected:
     string name;
 	Staff* next;
     vector<StaffMediator*> mediators;
+    StaffCommand* command;
 private:
 	string message;
 };

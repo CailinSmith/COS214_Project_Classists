@@ -8,9 +8,10 @@ pair<string, Receipt*> SalesStaff::handleRequest(const string& requestType, Plan
 	// TODO - implement SalesStaff::handleRequest
 	pair<string, Receipt*> result;
 	if (requestType == "Checkout" && order){
-		StaffCheckoutCommand cmd(*order);
-		cmd.execute();
-		Receipt* receipt = cmd.getReceipt();
+		StaffCheckoutCommand* checkoutCommand = new StaffCheckoutCommand(*order);
+        setCommand(checkoutCommand);
+        command->execute();
+		Receipt* receipt = checkoutCommand->getReceipt(); //not using command->getReceipt() as StaffCommand has no such method
 		if(receipt){
 			// Make a deep copy of the receipt to return to the caller. The
 			// StaffCheckoutCommand owns its receipt and will delete it in its

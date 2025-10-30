@@ -1,9 +1,15 @@
 #include "Staff.h"
 #include "StaffMediator.h"
+#include "StaffCommand.h"
 
-Staff::Staff(string name) : name(name), next(NULL) {}
+Staff::Staff(string name) : name(name), next(NULL), command(nullptr) {}
 
-Staff::~Staff(){}
+Staff::~Staff() {
+    if (command) {
+        delete command;
+        command = nullptr;
+    }
+}
 
 pair<string, Receipt*> Staff::handleRequest(const std::string& requestType, Plant* plant, std::vector<Product*>* order, vector<bool>* flags){
     if(next)
@@ -15,6 +21,12 @@ pair<string, Receipt*> Staff::handleRequest(const std::string& requestType, Plan
         res.second = nullptr;
         return res;
     }
+}
+
+void Staff::setCommand(StaffCommand* cmd) {
+    if (cmd)
+        delete command; 
+    command = cmd;
 }
 
 void Staff::send(){
