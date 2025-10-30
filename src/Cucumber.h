@@ -14,6 +14,10 @@
 class Cucumber : public Vegetable {
 public:
 	Cucumber() : Vegetable(300, new HighMoisture(), new Thinning(), "Cucumber", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/cucumber.jpg";
+	}
 };
 
 #endif

@@ -15,6 +15,10 @@ class RubberTree : public Indoor {
 
 public:
 	RubberTree() : Indoor(300, new MediumMoisture(), new Thinning(), "Rubber Tree", "Spring") {}
+	
+	string getImagePath() override {
+		return "assets/rubbertree.jpg";
+	}
 };
 
 #endif

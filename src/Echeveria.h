@@ -15,6 +15,10 @@ class Echeveria : public Succulent {
 
 public:
 	Echeveria() : Succulent(30, new DryPlant(), new Thinning(), "Echeveria", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/echeveria.jpg";
+	}
 };
 
 #endif

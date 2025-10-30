@@ -14,6 +14,10 @@
 class OrangeTree : public Fruit {
 public:
 	OrangeTree() : Fruit(600, new MediumMoisture(), new Thinning(), "Orange Tree", "Winter") {}
+	
+	string getImagePath() override {
+		return "assets/orangetree.jpg";
+	}
 };
 
 #endif

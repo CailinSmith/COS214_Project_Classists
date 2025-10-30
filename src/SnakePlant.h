@@ -14,6 +14,10 @@
 class SnakePlant : public Indoor {
 public:
 	SnakePlant() : Indoor(120, new DryPlant(), new NoPrune(), "SnakePlant", "Winter") {}
+	
+	string getImagePath() override {
+		return "assets/snakeplant.jpg";
+	}
 };
 
 #endif

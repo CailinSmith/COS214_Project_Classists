@@ -15,6 +15,10 @@ class PeaceLily : public Indoor {
 
 public:
 	PeaceLily() : Indoor(120, new HighMoisture(), new DeadPruning(), "Peace Lily", "Spring") {}
+	
+	string getImagePath() override {
+		return "assets/peacelily.jpg";
+	}
 };
 
 #endif

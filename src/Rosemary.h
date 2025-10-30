@@ -14,6 +14,10 @@
 class Rosemary : public Herb {
 public:
 	Rosemary() : Herb(150, new DryPlant(), new Thinning(), "Rosemary", "Spring") {}
+	
+	string getImagePath() override {
+		return "assets/rosemary.jpg";
+	}
 };
 
 #endif
