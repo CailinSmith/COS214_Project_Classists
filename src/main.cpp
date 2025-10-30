@@ -1968,6 +1968,10 @@ void ChainOfResponsibilityAndCommand()
         std::cout << "[FAIL] Refund command did not process correctly.\n\n";
     }
 
+
+    delete refundRose;
+    refundOrder.clear();
+
     std::cout << "=== ALL TESTS COMPLETED ===\n\n";
 
     delete rose;
