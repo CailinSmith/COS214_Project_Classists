@@ -15,6 +15,8 @@
 #include "CheckoutCommand.h"
 #include "RemoveCommand.h"
 #include "RemoveSaleCommand.h"
+#include "AskInfoCommand.h"
+#include "CheckStockCommand.h"
 #include "Spring.h"
 #include "Summer.h"
 #include "Autumn.h"
@@ -261,30 +263,33 @@ void NurseryFacade::runCustomerMenu() {
                 string numStr = compact.size() > 1 ? compact.substr(1) : string();
 
                 if (cmd == 'i') {
-                    if (!numStr.empty()) {
-                        try {
-                            int num = stoi(numStr);
-                            if (num>=1 && num <= (int)items.size()) {
-                                Plant* p = items[num-1];
-                                cout << "Name: " << p->getName() << "\n";
-                                cout << "Category: " << p->getCategory() << "\n";
-                                cout << "State: " << p->getState() << "\n";
-                                cout << "Health: " << p->getHealth() << "\n";
-                                cout << "Cost: $" << p->getCost() << "\n";
-                            } else cout << "Index out of range\n";
-                        } catch(...) { cout << "Invalid input\n"; }
-                    } else cout << "Missing number\n";
-                    //continue to prompt for another option (no pause)
-                    continue;
+                        if (!numStr.empty()) {
+                            try {
+                                int num = stoi(numStr);
+                                if (num>=1 && num <= (int)items.size()) {
+                                    Plant* p = items[num-1];
+                                    Customer tmp("Guest");
+                                    AskInfoCommand cmd(nurseryStaff_, p);
+                                    auto res = tmp.sendCommand(&cmd);
+                                    cout << res.first;
+                                } else cout << "Index out of range\n";
+                            } catch(...) { cout << "Invalid input\n"; }
+                        } else cout << "Missing number\n";
+                        continue;
                 } else if (cmd == 's') {
-                    if (!numStr.empty()) {
-                        try {
-                            int num = stoi(numStr);
-                            if (num>=1 && num <= (int)items.size()) cout << "Stock: " << getStockCountByName(items[num-1]->getName()) << "\n";
-                            else cout << "Index out of range\n";
-                        } catch(...) { cout << "Invalid input\n"; }
-                    } else cout << "Missing number\n";
-                    continue;
+                        if (!numStr.empty()) {
+                            try {
+                                int num = stoi(numStr);
+                                if (num>=1 && num <= (int)items.size()) {
+                                    Plant* p = items[num-1];
+                                    Customer tmp("Guest");
+                                    CheckStockCommand cmd(nurseryStaff_, p);
+                                    auto res = tmp.sendCommand(&cmd);
+                                    cout << res.first;
+                                } else cout << "Index out of range\n";
+                            } catch(...) { cout << "Invalid input\n"; }
+                        } else cout << "Missing number\n";
+                        continue;
                 } else if (cmd == 'a') {
                     if (!numStr.empty()) {
                         try {
@@ -411,8 +416,11 @@ void NurseryFacade::runStaffMenu() {
                                 try {
                                     int num = stoi(numStr);
                                     if (num>=1 && num <= (int)items.size()) {
-                                        Product* p = items[num-1];
-                                        cout << p->summary() << "\n";
+                                        Plant* p = items[num-1];
+                                        Customer tmpC("StaffQuery");
+                                        AskInfoCommand cmd(currentStaff, p);
+                                        auto res = tmpC.sendCommand(&cmd);
+                                        cout << res.first;
                                         cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
                                         string tmp; getline(cin, tmp);
                                         continue;
@@ -459,8 +467,11 @@ void NurseryFacade::runStaffMenu() {
                             try {
                                 int num = stoi(numStr);
                                 if (num>=1 && num <= (int)items.size()) {
-                                    Product* p = items[num-1];
-                                    cout << p->summary() << "\n";
+                                    Plant* p = items[num-1];
+                                    Customer tmpC("StaffQuery");
+                                    AskInfoCommand cmd(currentStaff, p);
+                                    auto res = tmpC.sendCommand(&cmd);
+                                    cout << res.first;
                                     cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
                                     string tmp; getline(cin, tmp);
                                     continue;
@@ -808,21 +819,25 @@ void NurseryFacade::listSalePlants() {
                     int num = stoi(numStr);
                     if (num>=1 && num <= (int)items.size()) {
                         Plant* p = items[num-1];
-                        cout << "Name: " << p->getName() << "\n";
-                        cout << "Category: " << p->getCategory() << "\n";
-                        cout << "State: " << p->getState() << "\n";
-                        cout << "Health: " << p->getHealth() << "\n";
-                        cout << "Cost: $" << p->getCost() << "\n";
+                        Customer tmp("Guest");
+                        AskInfoCommand cmd(nurseryStaff_, p);
+                        auto res = tmp.sendCommand(&cmd);
+                        cout << res.first;
                     } else cout << "Index out of range\n";
                 } catch(...) { cout << "Invalid input\n"; }
             } else cout << "Missing number\n";
-            //continue prompting for options until user presses 'r'
             continue;
         } else if (cmd == 's') {
             if (!numStr.empty()) {
                 try {
                     int num = stoi(numStr);
-                    if (num>=1 && num <= (int)items.size()) cout << "Stock: " << getStockCountByName(items[num-1]->getName()) << "\n";
+                    if (num>=1 && num <= (int)items.size()) {
+                        Plant* p = items[num-1];
+                        Customer tmp("Guest");
+                        CheckStockCommand cmd(nurseryStaff_, p);
+                        auto res = tmp.sendCommand(&cmd);
+                        cout << res.first;
+                    }
                     else cout << "Index out of range\n";
                 } catch(...) { cout << "Invalid input\n"; }
             } else cout << "Missing number\n";
