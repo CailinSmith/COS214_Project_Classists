@@ -9,7 +9,7 @@ public:
     ClayPot(Product* plant);
     ~ClayPot();
     float calculateCost(string currentSeason);
-    string getSummary();
+    string summary();
     string getName();
 };
 

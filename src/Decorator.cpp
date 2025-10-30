@@ -14,8 +14,8 @@ float Decorator::calculateCost(string currentSeason) {
     return plant->calculateCost(currentSeason);
 }
 
-string Decorator::getSummary() {
-    return plant->getSummary();
+string Decorator::summary() {
+    return plant->summary();
 }
 
 string Decorator::getName() {
