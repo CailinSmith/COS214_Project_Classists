@@ -15,6 +15,10 @@ class Sunflower : public Flower {
 
 public:
 	Sunflower() : Flower(400, new MediumMoisture(), new NoPrune(), "Sunflower", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/sunflower.jpg";
+	}
 };
 
 #endif

@@ -14,6 +14,10 @@
 class Basil : public Herb {
 public:
 	Basil() : Herb(60, new HighMoisture(), new Thinning(), "Basil", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/basil.jpg";
+	}
 };
 
 #endif

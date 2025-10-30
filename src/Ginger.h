@@ -15,6 +15,10 @@ class Ginger : public Medicinal {
 
 public:
 	Ginger() : Medicinal(120, new MediumMoisture(), new Thinning(), "Ginger", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/ginger.jpg";
+	}
 };
 
 #endif

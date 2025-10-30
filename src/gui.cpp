@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 #include <cstdlib>
 
 #include "ftxui/component/captured_mouse.hpp"
@@ -28,16 +29,42 @@
 #include "RefundCommand.h"
 #include "Receipt.h"
 
-// Include plant types for initialization
+// Include all 32 plant types for initialization
 #include "Rose.h"
 #include "Basil.h"
 #include "Tomato.h"
+#include "Lettuce.h"
 #include "JadePlant.h"
+#include "WaterLily.h"
+#include "SnakePlant.h"
 #include "AloeVera.h"
 #include "Chrysanthemum.h"
 #include "Lavender.h"
 #include "AppleTree.h"
+#include "Pumpkin.h"
 #include "BarrelCactus.h"
+#include "WaterHyacinth.h"
+#include "RubberTree.h"
+#include "Coneflower.h"
+#include "Pansy.h"
+#include "Thyme.h"
+#include "Strawberry.h"
+#include "Kale.h"
+#include "Echeveria.h"
+#include "Cattails.h"
+#include "PeaceLily.h"
+#include "Chamomile.h"
+#include "Sunflower.h"
+#include "Rosemary.h"
+#include "OrangeTree.h"
+#include "Cucumber.h"
+#include "ChristmasCactus.h"
+#include "WaterLettuce.h"
+#include "Pothos.h"
+#include "Ginger.h"
+#include "NurseryStaff.h"
+#include "ReadyForSaleState.h"
+#include "Summer.h"
 
 using namespace ftxui;
 
@@ -48,11 +75,16 @@ private:
     InventoryManager* inventoryManager;
     Nursery* nursery;
     Customer* customer;
+    
+    // Chain of Responsibility: nursery -> sales -> manager
+    Staff* nurseryStaff;
     Staff* salesStaff;
+    Staff* managerStaff;
     
     int mainMenuSelected = 0;
     int categoryMenuSelected = 0;
     int plantListSelected = 0;
+    int detailsScrollOffset = 0;
     std::string inputBuffer;
     std::string messageBuffer;
     
@@ -81,38 +113,176 @@ public:
         inventoryManager = new InventoryManager();
         nursery = Nursery::getInstance(inventoryManager);
         customer = new Customer("John Doe");
-        salesStaff = new SalesStaff("Alice");
+        
+        // Set up Chain of Responsibility: nursery -> sales -> manager
+        nurseryStaff = new NurseryStaff("Nina");
+        salesStaff = new SalesStaff("Sam");
+        managerStaff = new Manager("Mike");
+        nurseryStaff->setNext(salesStaff);
+        salesStaff->setNext(managerStaff);
+
+        nursery->setSeason(new Summer());
         
         initializePlants();
     }
     
     ~PlantShopGUI() {
         delete customer;
+        delete nurseryStaff;
         delete salesStaff;
+        delete managerStaff;
         delete inventoryManager;
         Nursery::destroyInstance();
     }
     
+    // Initialize 2 of each of the 32 plant types with appropriate values for ReadyForSaleState state
     void initializePlants() {
-        Plant* rose = new Rose();
-        Plant* basil = new Basil();
-        Plant* tomato = new Tomato();
-        Plant* jade = new JadePlant();
-        Plant* aloe = new AloeVera();
-        Plant* chrys = new Chrysanthemum();
-        Plant* lavender = new Lavender();
-        Plant* apple = new AppleTree();
-        Plant* cactus = new BarrelCactus();
+        // Get current season from nursery
+        std::string currentSeason = nursery->getSeason();
         
-        inventoryManager->addToSale(rose);
-        inventoryManager->addToSale(basil);
-        inventoryManager->addToSale(tomato);
-        inventoryManager->addToSale(jade);
-        inventoryManager->addToSale(aloe);
-        inventoryManager->addToSale(chrys);
-        inventoryManager->addToSale(lavender);
-        inventoryManager->addToSale(apple);
-        inventoryManager->addToSale(cactus);
+        // Helper lambda to set up a plant for ReadyForSaleState state
+        // Values are now decimals: height (0.8-1.0), health (0.7-1.0), waterLevel (0.9-1.0)
+        auto setupPlant = [&currentSeason](Plant* p, float height, float health, float waterLevel) {
+            p->setHeight(height);
+            p->setHealth(health);
+            p->setWaterLevel(waterLevel);
+            p->setPruned(true);
+            p->setState(new ReadyForSaleState());
+            p->calculateCost(currentSeason);
+        };
+        
+        // Create 2 of each plant type with slightly different values
+        // At least one of each pair has health >= 0.9
+        
+        Plant* rose1 = new Rose(); setupPlant(rose1, 0.85, 0.90, 0.95);
+        Plant* rose2 = new Rose(); setupPlant(rose2, 0.92, 0.88, 0.98);
+        
+        Plant* chrys1 = new Chrysanthemum(); setupPlant(chrys1, 0.83, 0.92, 0.93);
+        Plant* chrys2 = new Chrysanthemum(); setupPlant(chrys2, 0.89, 0.86, 0.96);
+        
+        Plant* pansy1 = new Pansy(); setupPlant(pansy1, 0.81, 0.80, 0.91);
+        Plant* pansy2 = new Pansy(); setupPlant(pansy2, 0.87, 0.93, 0.94);
+        
+        Plant* cone1 = new Coneflower(); setupPlant(cone1, 0.90, 0.87, 0.97);
+        Plant* cone2 = new Coneflower(); setupPlant(cone2, 0.95, 0.91, 0.99);
+        
+        Plant* sun1 = new Sunflower(); setupPlant(sun1, 0.94, 0.89, 0.95);
+        Plant* sun2 = new Sunflower(); setupPlant(sun2, 0.98, 0.92, 0.98);
+        
+        Plant* basil1 = new Basil(); setupPlant(basil1, 0.82, 0.90, 0.92);
+        Plant* basil2 = new Basil(); setupPlant(basil2, 0.86, 0.85, 0.95);
+        
+        Plant* lav1 = new Lavender(); setupPlant(lav1, 0.84, 0.91, 0.94);
+        Plant* lav2 = new Lavender(); setupPlant(lav2, 0.88, 0.87, 0.97);
+        
+        Plant* thyme1 = new Thyme(); setupPlant(thyme1, 0.80, 0.81, 0.91);
+        Plant* thyme2 = new Thyme(); setupPlant(thyme2, 0.85, 0.92, 0.93);
+        
+        Plant* rose_m1 = new Rosemary(); setupPlant(rose_m1, 0.83, 0.82, 0.92);
+        Plant* rose_m2 = new Rosemary(); setupPlant(rose_m2, 0.87, 0.93, 0.95);
+        
+        Plant* tom1 = new Tomato(); setupPlant(tom1, 0.86, 0.85, 0.94);
+        Plant* tom2 = new Tomato(); setupPlant(tom2, 0.91, 0.90, 0.97);
+        
+        Plant* let1 = new Lettuce(); setupPlant(let1, 0.81, 0.80, 0.91);
+        Plant* let2 = new Lettuce(); setupPlant(let2, 0.84, 0.91, 0.93);
+        
+        Plant* kale1 = new Kale(); setupPlant(kale1, 0.82, 0.92, 0.92);
+        Plant* kale2 = new Kale(); setupPlant(kale2, 0.86, 0.84, 0.95);
+        
+        Plant* cuc1 = new Cucumber(); setupPlant(cuc1, 0.84, 0.83, 0.93);
+        Plant* cuc2 = new Cucumber(); setupPlant(cuc2, 0.88, 0.91, 0.96);
+        
+        Plant* apple1 = new AppleTree(); setupPlant(apple1, 0.93, 0.88, 0.96);
+        Plant* apple2 = new AppleTree(); setupPlant(apple2, 0.97, 0.92, 0.99);
+        
+        Plant* pump1 = new Pumpkin(); setupPlant(pump1, 0.87, 0.84, 0.94);
+        Plant* pump2 = new Pumpkin(); setupPlant(pump2, 0.91, 0.90, 0.97);
+        
+        Plant* straw1 = new Strawberry(); setupPlant(straw1, 0.82, 0.81, 0.91);
+        Plant* straw2 = new Strawberry(); setupPlant(straw2, 0.86, 0.92, 0.94);
+        
+        Plant* orange1 = new OrangeTree(); setupPlant(orange1, 0.96, 0.93, 0.97);
+        Plant* orange2 = new OrangeTree(); setupPlant(orange2, 0.99, 0.95, 0.99);
+        
+        Plant* jade1 = new JadePlant(); setupPlant(jade1, 0.83, 0.90, 0.92);
+        Plant* jade2 = new JadePlant(); setupPlant(jade2, 0.87, 0.86, 0.95);
+        
+        Plant* cact1 = new BarrelCactus(); setupPlant(cact1, 0.84, 0.91, 0.91);
+        Plant* cact2 = new BarrelCactus(); setupPlant(cact2, 0.88, 0.87, 0.94);
+        
+        Plant* echev1 = new Echeveria(); setupPlant(echev1, 0.80, 0.80, 0.90);
+        Plant* echev2 = new Echeveria(); setupPlant(echev2, 0.83, 0.92, 0.93);
+        
+        Plant* xmas1 = new ChristmasCactus(); setupPlant(xmas1, 0.82, 0.82, 0.91);
+        Plant* xmas2 = new ChristmasCactus(); setupPlant(xmas2, 0.86, 0.93, 0.94);
+        
+        Plant* wlily1 = new WaterLily(); setupPlant(wlily1, 0.81, 0.85, 0.95);
+        Plant* wlily2 = new WaterLily(); setupPlant(wlily2, 0.85, 0.91, 0.98);
+        
+        Plant* whya1 = new WaterHyacinth(); setupPlant(whya1, 0.83, 0.86, 0.96);
+        Plant* whya2 = new WaterHyacinth(); setupPlant(whya2, 0.87, 0.92, 0.99);
+        
+        Plant* cat1 = new Cattails(); setupPlant(cat1, 0.91, 0.87, 0.97);
+        Plant* cat2 = new Cattails(); setupPlant(cat2, 0.95, 0.93, 0.99);
+        
+        Plant* wlet1 = new WaterLettuce(); setupPlant(wlet1, 0.81, 0.84, 0.95);
+        Plant* wlet2 = new WaterLettuce(); setupPlant(wlet2, 0.84, 0.91, 0.98);
+        
+        Plant* snake1 = new SnakePlant(); setupPlant(snake1, 0.85, 0.83, 0.92);
+        Plant* snake2 = new SnakePlant(); setupPlant(snake2, 0.89, 0.90, 0.95);
+        
+        Plant* rubber1 = new RubberTree(); setupPlant(rubber1, 0.92, 0.88, 0.94);
+        Plant* rubber2 = new RubberTree(); setupPlant(rubber2, 0.96, 0.92, 0.97);
+        
+        Plant* peace1 = new PeaceLily(); setupPlant(peace1, 0.83, 0.84, 0.96);
+        Plant* peace2 = new PeaceLily(); setupPlant(peace2, 0.87, 0.91, 0.99);
+        
+        Plant* pothos1 = new Pothos(); setupPlant(pothos1, 0.86, 0.85, 0.93);
+        Plant* pothos2 = new Pothos(); setupPlant(pothos2, 0.90, 0.92, 0.96);
+        
+        Plant* aloe1 = new AloeVera(); setupPlant(aloe1, 0.82, 0.82, 0.92);
+        Plant* aloe2 = new AloeVera(); setupPlant(aloe2, 0.86, 0.91, 0.95);
+        
+        Plant* cham1 = new Chamomile(); setupPlant(cham1, 0.81, 0.81, 0.91);
+        Plant* cham2 = new Chamomile(); setupPlant(cham2, 0.85, 0.93, 0.94);
+        
+        Plant* ging1 = new Ginger(); setupPlant(ging1, 0.84, 0.83, 0.94);
+        Plant* ging2 = new Ginger(); setupPlant(ging2, 0.88, 0.92, 0.97);
+        
+        // Add all plants to inventory for sale
+        inventoryManager->addToSale(rose1); inventoryManager->addToSale(rose2);
+        inventoryManager->addToSale(chrys1); inventoryManager->addToSale(chrys2);
+        inventoryManager->addToSale(pansy1); inventoryManager->addToSale(pansy2);
+        inventoryManager->addToSale(cone1); inventoryManager->addToSale(cone2);
+        inventoryManager->addToSale(sun1); inventoryManager->addToSale(sun2);
+        inventoryManager->addToSale(basil1); inventoryManager->addToSale(basil2);
+        inventoryManager->addToSale(lav1); inventoryManager->addToSale(lav2);
+        inventoryManager->addToSale(thyme1); inventoryManager->addToSale(thyme2);
+        inventoryManager->addToSale(rose_m1); inventoryManager->addToSale(rose_m2);
+        inventoryManager->addToSale(tom1); inventoryManager->addToSale(tom2);
+        inventoryManager->addToSale(let1); inventoryManager->addToSale(let2);
+        inventoryManager->addToSale(kale1); inventoryManager->addToSale(kale2);
+        inventoryManager->addToSale(cuc1); inventoryManager->addToSale(cuc2);
+        inventoryManager->addToSale(apple1); inventoryManager->addToSale(apple2);
+        inventoryManager->addToSale(pump1); inventoryManager->addToSale(pump2);
+        inventoryManager->addToSale(straw1); inventoryManager->addToSale(straw2);
+        inventoryManager->addToSale(orange1); inventoryManager->addToSale(orange2);
+        inventoryManager->addToSale(jade1); inventoryManager->addToSale(jade2);
+        inventoryManager->addToSale(cact1); inventoryManager->addToSale(cact2);
+        inventoryManager->addToSale(echev1); inventoryManager->addToSale(echev2);
+        inventoryManager->addToSale(xmas1); inventoryManager->addToSale(xmas2);
+        inventoryManager->addToSale(wlily1); inventoryManager->addToSale(wlily2);
+        inventoryManager->addToSale(whya1); inventoryManager->addToSale(whya2);
+        inventoryManager->addToSale(cat1); inventoryManager->addToSale(cat2);
+        inventoryManager->addToSale(wlet1); inventoryManager->addToSale(wlet2);
+        inventoryManager->addToSale(snake1); inventoryManager->addToSale(snake2);
+        inventoryManager->addToSale(rubber1); inventoryManager->addToSale(rubber2);
+        inventoryManager->addToSale(peace1); inventoryManager->addToSale(peace2);
+        inventoryManager->addToSale(pothos1); inventoryManager->addToSale(pothos2);
+        inventoryManager->addToSale(aloe1); inventoryManager->addToSale(aloe2);
+        inventoryManager->addToSale(cham1); inventoryManager->addToSale(cham2);
+        inventoryManager->addToSale(ging1); inventoryManager->addToSale(ging2);
     }
     
     struct ColoredChar {
@@ -248,11 +418,6 @@ public:
         fileCheck.close();
         
         std::string tempFile = "/tmp/ascii_temp.txt";
-        // chafa optimized for pixel art: no dithering, block symbols only, preserve exact colors
-        // --symbols block: Use solid blocks for clean 1:1 pixel mapping
-        // --dither none: No dithering to preserve sharp pixel art edges
-        // --color-space rgb: Keep exact RGB colors
-        // --fill all: Fill entire character cells to avoid gaps
         std::string command = "chafa --size " + std::to_string(width) + "x" + std::to_string(height) + 
                              " --symbols block --color-space rgb --dither none --fill all \"" + imagePath + "\" > " + tempFile + " 2>&1";
         
@@ -274,7 +439,6 @@ public:
         
         std::string output = buffer.str();
         
-        // Clean up temp file
         remove(tempFile.c_str());
         
         return output;
@@ -320,11 +484,11 @@ private:
     
     Element renderMainMenu() {
         std::vector<std::string> options = {
-            "1. View Sale Plants",
-            "2. View Past Orders",
-            "3. View Current Cart",
-            "4. Checkout",
-            "5. Exit (Press 'q' or ESC)"
+            "View Plants",
+            "My Cart",
+            "Refunds",
+            "Checkout",
+            "Exit"
         };
         
         Elements menuItems;
@@ -340,14 +504,17 @@ private:
                         color(Color::Cyan);
         
         return vbox({
-            text("🌿 GreensOnly Plant Shop 🌿") | bold | center,
+            text("🌿 GreensOnly Plant Shop 🌿") | bold | center | color(Color::Green),
             separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
             vbox(menuItems),
+            text("") | size(HEIGHT, EQUAL, 1),
             separator(),
             cartInfo,
             text("") | size(HEIGHT, EQUAL, 1),
             text(messageBuffer) | color(Color::Yellow),
-            text("Use ↑↓ arrows to navigate, Enter to select") | dim
+            text("Use ↑↓ arrows to navigate, Enter to select") | dim,
+            text("") | size(HEIGHT, EQUAL, 1)
         }) | border | center;
     }
     
@@ -378,8 +545,11 @@ private:
         } else {
             for (size_t i = 0; i < currentPlants.size(); i++) {
                 Plant* p = currentPlants[i];
+                // Format price as R0.00
+                std::ostringstream priceStream;
+                priceStream << std::fixed << std::setprecision(2) << p->getCost();
                 std::string plantInfo = std::to_string(i + 1) + ". " + p->getName() + 
-                                      " - $" + std::to_string(static_cast<int>(p->getCost()));
+                                      " - R" + priceStream.str();
                 
                 if (static_cast<int>(i) == plantListSelected) {
                     plantItems.push_back(text("► " + plantInfo) | color(Color::Green) | bold);
@@ -389,19 +559,14 @@ private:
             }
         }
         
+        std::string header = (selectedCategory == "All Plants") ? "All Plants" : (selectedCategory + " Plants");
+
         return vbox({
-            text("🌿 " + selectedCategory + " Plants 🌿") | bold | center,
+            text("🌿 " + header + " 🌿") | bold | center,
             separator(),
             vbox(plantItems),
             separator(),
-            text("Options:") | bold,
-            text("  [i] - View plant info"),
-            text("  [s] - Check stock"),
-            text("  [a] - Add to cart"),
-            text("  [b] - Back to categories"),
-            text("") | size(HEIGHT, EQUAL, 1),
-            text(messageBuffer) | color(Color::Yellow),
-            text("Use ↑↓ arrows to select plant, then press option key") | dim
+            text("Use ↑↓ arrows to select plant, Enter to view details, 'b' to go back") | dim
         }) | border | center;
     }
     
@@ -410,36 +575,29 @@ private:
             return text("No plant selected") | center;
         }
         
-        // Get detailed info using the command pattern
-        AskInfoCommand* infoCmd = new AskInfoCommand(salesStaff, selectedPlant);
+        AskInfoCommand* infoCmd = new AskInfoCommand(nurseryStaff, selectedPlant);
         auto result = customer->sendCommand(infoCmd);
-        delete infoCmd;
-        
+        delete infoCmd;     
         std::string info = result.first;
         
-        // Try to load and display plant image
-        std::string imagePath = "assets/tomato.jpg"; // Default test image
-        
-        // Pixel art optimized size: keep it moderate to preserve pixel aesthetic
-        // 50x32 maintains good detail while keeping sharp, blocky pixel art look
-        std::string asciiArt = convertImageToASCII(imagePath, 50, 32);
+        std::string imagePath = selectedPlant->getImagePath();
+        //Size adjuster here for images, it's width (characters) x height (lines)
+        std::string asciiArt = convertImageToASCII(imagePath, 30, 15);
         
         // Parse the ANSI codes and convert to FTXUI colored elements
         auto coloredImage = parseAnsiImage(asciiArt);
         
         Elements content;
-        content.push_back(text("🌿 Plant Details 🌿") | bold | center);
-        content.push_back(separator());
         
-        // Check if we got valid image data
+        content.push_back(text("🌿 " + selectedPlant->getName() + " 🌿") | bold | center | color(Color::Green));
+        content.push_back(separator());
+        Elements scrollableContent;
+        
         if (!coloredImage.empty() && coloredImage[0].size() > 0) {
-            // Convert to FTXUI elements with colors
             Elements asciiLines;
             for (const auto& line : coloredImage) {
                 Elements lineChars;
                 for (const auto& coloredChar : line) {
-                    // Use the actual character with its foreground and background colors
-                    // For pixel art with blocks, the character itself carries the color info
                     auto elem = text(coloredChar.ch) | 
                                color(terminalColorToFTXUI(coloredChar.fgColor)) |
                                bgcolor(terminalColorToFTXUI(coloredChar.bgColor));
@@ -451,16 +609,35 @@ private:
             }
             
             if (!asciiLines.empty()) {
-                content.push_back(text("Plant Image:") | bold | color(Color::Green) | center);
-                content.push_back(vbox(asciiLines) | border | center);
-                content.push_back(separator());
+                scrollableContent.push_back(vbox(asciiLines) | center);
+                scrollableContent.push_back(separator());
             }
         }
         
-        content.push_back(text("Plant Information:") | bold | color(Color::Green));
-        content.push_back(text(info));
+        scrollableContent.push_back(text("Plant Information:") | bold | color(Color::Green));
+        std::istringstream infoStream(info);
+        std::string line;
+        while (std::getline(infoStream, line)) {
+            if (!line.empty()) {
+                scrollableContent.push_back(text("  " + line));
+            }
+        }
+        
+        scrollableContent.push_back(text("") | size(HEIGHT, EQUAL, 1));      
+        content.push_back(vbox(scrollableContent) | flex_shrink);
+        
         content.push_back(separator());
-        content.push_back(text("Press 'b' to go back") | dim);
+        
+        // cart button doesn't work rn
+        content.push_back(
+            hbox({
+                filler(),
+                text(" Add to Cart ") | bgcolor(Color::Green) | color(Color::White) | bold | center,
+                filler()
+            })
+        );
+        content.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        content.push_back(text("Press 'b' to go back") | dim | center);
         
         return vbox(content) | border | size(WIDTH, LESS_THAN, 100) | center;
     }
@@ -470,7 +647,6 @@ private:
             return text("No plant selected") | center;
         }
         
-        // Check stock using the command pattern
         CheckStockCommand* stockCmd = new CheckStockCommand(salesStaff, selectedPlant);
         auto result = customer->sendCommand(stockCmd);
         delete stockCmd;
@@ -497,9 +673,10 @@ private:
         } else {
             for (size_t i = 0; i < receipts.size(); i++) {
                 Receipt* r = receipts[i];
+                std::ostringstream priceStream;
+                priceStream << std::fixed << std::setprecision(2) << r->getCost();
                 std::string orderInfo = "Order " + std::to_string(i + 1) + ": " + 
-                                       r->getDate() + " - $" + 
-                                       std::to_string(static_cast<int>(r->getCost()));
+                                       r->getDate() + " - R" + priceStream.str();
                 
                 if (static_cast<int>(i) == selectedOrderIndex) {
                     orderElements.push_back(text("► " + orderInfo) | color(Color::Green) | bold);
@@ -539,16 +716,21 @@ private:
         Elements plantElements;
         for (size_t i = 0; i < plants->size(); i++) {
             Product* p = (*plants)[i];
+            std::ostringstream priceStream;
+            priceStream << std::fixed << std::setprecision(2) << p->getCost();
             std::string plantInfo = std::to_string(i + 1) + ". " + p->getName() + 
-                                  " - $" + std::to_string(static_cast<int>(p->getCost()));
+                                  " - R" + priceStream.str();
             plantElements.push_back(text(plantInfo));
         }
+        
+        std::ostringstream totalStream;
+        totalStream << std::fixed << std::setprecision(2) << selectedReceipt->getCost();
         
         return vbox({
             text("🌿 Select Plant to Refund 🌿") | bold | center,
             separator(),
             text("Order Date: " + selectedReceipt->getDate()) | bold,
-            text("Total: $" + std::to_string(static_cast<int>(selectedReceipt->getCost()))) | bold,
+            text("Total: R" + totalStream.str()) | bold,
             separator(),
             vbox(plantElements),
             separator(),
@@ -560,7 +742,7 @@ private:
     }
     
     bool handleInput(Event event) {
-        messageBuffer = ""; // Clear previous messages
+        messageBuffer = "";
         
         switch (currentView) {
             case MAIN_MENU:
@@ -589,21 +771,21 @@ private:
             return true;
         } else if (event == Event::Return) {
             switch (mainMenuSelected) {
-                case 0: // View Sale Plants
+                case 0:
                     currentView = CATEGORY_SELECTION;
                     categoryMenuSelected = 0;
                     break;
-                case 1: // View Past Orders
+                case 1: 
+                    showCart();
+                    break;
+                case 2:
                     currentView = PAST_ORDERS;
                     selectedOrderIndex = 0;
                     break;
-                case 2: // View Current Cart
-                    showCart();
-                    break;
-                case 3: // Checkout
+                case 3: 
                     performCheckout();
                     break;
-                case 4: // Exit
+                case 4:
                     screen.ExitLoopClosure()();
                     break;
             }
@@ -647,21 +829,10 @@ private:
         } else if (event == Event::ArrowDown) {
             plantListSelected = std::min(static_cast<int>(currentPlants.size()) - 1, plantListSelected + 1);
             return true;
-        } else if (event == Event::Character('i') || event == Event::Character('I')) {
-            // View info
+        } else if (event == Event::Return) {
+            // View plant details
             selectedPlant = currentPlants[plantListSelected];
             currentView = PLANT_DETAILS;
-            return true;
-        } else if (event == Event::Character('s') || event == Event::Character('S')) {
-            // Check stock
-            selectedPlant = currentPlants[plantListSelected];
-            currentView = STOCK_CHECK;
-            return true;
-        } else if (event == Event::Character('a') || event == Event::Character('A')) {
-            // Add to cart
-            selectedPlant = currentPlants[plantListSelected];
-            customer->addToCart(selectedPlant);
-            messageBuffer = "Added " + selectedPlant->getName() + " to cart!";
             return true;
         } else if (event == Event::Character('b') || event == Event::Character('B')) {
             currentView = CATEGORY_SELECTION;
@@ -736,8 +907,9 @@ private:
         if (order.empty()) {
             messageBuffer = "Cart is empty!";
         } else {
-            messageBuffer = "Cart has " + std::to_string(order.size()) + " items. Total: $" + 
-                          std::to_string(static_cast<int>(customer->totalCost()));
+            std::ostringstream totalStream;
+            totalStream << std::fixed << std::setprecision(2) << customer->totalCost();
+            messageBuffer = "Cart has " + std::to_string(order.size()) + " items. Total: R" + totalStream.str();
         }
     }
     
@@ -756,7 +928,9 @@ private:
         delete checkoutCmd;
         
         if (result.second != nullptr) {
-            messageBuffer = "Checkout successful! Total: $" + std::to_string(static_cast<int>(result.second->getCost()));
+            std::ostringstream totalStream;
+            totalStream << std::fixed << std::setprecision(2) << result.second->getCost();
+            messageBuffer = "Checkout successful! Total: R" + totalStream.str();
         } else {
             messageBuffer = "Checkout completed: " + result.first;
         }

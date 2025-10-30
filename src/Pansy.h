@@ -14,6 +14,10 @@
 class Pansy : public Flower {
 public:
 	Pansy() : Flower(25, new MediumMoisture(), new DeadPruning(), "Pansy", "Spring") {}
+	
+	string getImagePath() override {
+		return "assets/pansy.jpg";
+	}
 };
 
 #endif

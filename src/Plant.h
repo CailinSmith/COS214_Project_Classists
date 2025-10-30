@@ -97,6 +97,8 @@ public:
 	virtual float baseCost() = 0;
 	virtual float seasonCost(string curSeason);
 	float getCost();
+	
+	virtual string getImagePath() = 0;
 
 	virtual Plant* getBasePlant() {
 		return this;

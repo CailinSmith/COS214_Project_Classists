@@ -15,6 +15,10 @@ class Coneflower : public Medicinal {
 
 public:
 	Coneflower() : Medicinal(90, new MediumMoisture(), new DeadPruning(), "Coneflower", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/coneflower.jpg";
+	}
 };
 
 #endif

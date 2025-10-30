@@ -14,6 +14,10 @@
 class JadePlant : public Succulent {
 public:
 	JadePlant() : Succulent(120, new DryPlant(), new Thinning(), "JadePlant", "Spring") {}
+	
+	string getImagePath() override {
+		return "assets/jadeplant.jpg";
+	}
 };
 
 #endif
