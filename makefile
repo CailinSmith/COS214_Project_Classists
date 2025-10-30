@@ -39,9 +39,9 @@ GUI_OBJS := $(CORE_OBJS) $(BUILD_DIR)/gui.o
 TEST_SRCS := $(wildcard $(TEST_DIR)/*.cpp)
 TEST_OBJS := $(TEST_SRCS:$(TEST_DIR)/%.cpp=$(BUILD_DIR)/%.test.o)
 
-# Target for running only chainOfResponsibility tests
-COR_TEST_TARGET := $(BUILD_DIR)/cor_test
-
+# Demo program (kept outside src/ so it won't be picked up by the src/*.cpp wildcard)
+DEMO_SRC := demos/demo.cpp
+DEMO_OBJ := $(BUILD_DIR)/demo_demo.o
 
 # =========================
 # Default target
@@ -90,8 +90,24 @@ $(BUILD_DIR)/%.test.o: $(TEST_DIR)/%.cpp
 	mkdir -p $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Build demo object
+$(BUILD_DIR)/demo_demo.o: $(DEMO_SRC)
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)
+
+# Integration tests (WSL-friendly runner)
+.PHONY: itests
+itests: setup $(TARGET)
+	# Run the integration test for case2 (WSL / bash runner)
+	./tests/run_and_check.sh case2
+
+# Demo target: link project core objects with a small demo main
+.PHONY: demo
+demo: $(CORE_OBJS) $(DEMO_OBJ)
+	$(CXX) $(CXXFLAGS) -o $(BUILD_DIR)/demo $^
 
 # =========================
 # Run main binary

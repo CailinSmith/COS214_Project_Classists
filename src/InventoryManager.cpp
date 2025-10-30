@@ -4,6 +4,20 @@
 // include Nursery here so destructor can clear nursery pointer when manager is destroyed
 #include "Nursery.h"
 
+// demo helpers: plant types and strategies
+#include "Rose.h"
+#include "Basil.h"
+#include "AloeVera.h"
+#include "Cattails.h"
+#include "Pothos.h"
+#include "Chamomile.h"
+#include "Pansy.h"
+#include "Kale.h"
+#include "Echeveria.h"
+#include "OrangeTree.h"
+#include "Cucumber.h"
+#include "PeaceLily.h"
+
 Iterator<Plant>* InventoryManager::createIterator(const std::string& season) {
 	std::vector<Plant*> allPlants;
 	allPlants.insert(allPlants.end(), forSale.begin(), forSale.end());
@@ -48,7 +62,7 @@ void InventoryManager::addToSale(Plant* plant) {
 	}
 
 	forSale.insert(forSale.begin() + i, plant);
-	std::cout << "Added " << plant->getName() << " to sale." << std::endl;
+	// std::cout << "Added " << plant->getName() << " to sale." << std::endl;
 	checkAndNotify();
 }
 
@@ -68,7 +82,7 @@ void InventoryManager::addToNursery(Plant* plant) {
 		i++;
 	}
 	inNursery.insert(inNursery.begin() + i, plant);
-	std::cout << "Added " << plant->getName() << " to nursery." << std::endl;
+	// std::cout << "Added " << plant->getName() << " to nursery." << std::endl;
 	checkAndNotify();
 }
 
@@ -84,7 +98,7 @@ void InventoryManager::removeFromNursery(Plant* plant) {
 		if(inNursery[i] == plant)
 		{
 			inNursery.erase(inNursery.begin() + i);
-			std::cout << "Removed " << plant->getName() << " from nursery." << std::endl;
+			// std::cout << "Removed " << plant->getName() << " from nursery." << std::endl;
 			return;
 		}
 	}
@@ -104,7 +118,7 @@ void InventoryManager::removeFromSale(Plant* plant) {
 		if(forSale[i] == plant)
 		{
 			forSale.erase(forSale.begin() + i);
-			std::cout << "Removed " << plant->getName() << " from sale." << std::endl;
+			// std::cout << "Removed " << plant->getName() << " from sale." << std::endl;
 			checkAndNotify();
 			return;
 		}
@@ -114,7 +128,7 @@ void InventoryManager::removeFromSale(Plant* plant) {
 }
 
 void InventoryManager::notifyStaff(string message) {
-    cout << "Notifying all observers: " << message << endl;
+    // cout << "Notifying all observers: " << message << endl;
     for(size_t i = 0; i < observerList.size(); i++)
 	{
         if(observerList[i] != nullptr)
@@ -203,6 +217,66 @@ void InventoryManager::checkAndNotify() {
 	if(inNursery.size() < nurseryThreshold)
 	{
 		notifyStaff("Low stock: nursery count below threshold");
+	}
+}
+
+void InventoryManager::populateDemoInventory(size_t nurseryCount, size_t saleCount) {
+	// Create a small variety of plants for sale
+	for (size_t i = 0; i < saleCount; ++i) {
+		Plant* p = nullptr;
+		switch (i % 6) {
+			case 0:
+				p = new Rose();
+				break;
+			case 1:
+				p = new Basil();
+				break;
+			case 2:
+				p = new AloeVera();
+				break;
+			case 3:
+				p = new Cattails();
+				break;
+			case 4:
+				p = new Pothos();
+				break;
+			case 5:
+				p = new Chamomile();
+				break;
+		}
+		if (p) {
+			p->setHealth(0.9);
+			p->setHealth(0.9);
+			p->calculateCost("Spring");
+			p->setState(new ReadyForSaleState());
+			addToSale(p);
+		}
+	}
+
+	// Create nursery plants
+	for (size_t i = 0; i < nurseryCount; ++i) {
+		Plant* p = nullptr;
+		switch (i % 6) {
+			case 0:
+				p = new Pansy();
+				break;
+			case 1:
+				p = new Kale();
+				break;
+			case 2:
+				p = new Echeveria();
+				break;
+			case 3:
+				p = new OrangeTree();
+				break;
+			case 4:
+				p = new Cucumber();
+				break;
+			case 5:
+				p = new PeaceLily();
+				break;
+		}
+		if (p) addToNursery(p);
 	}
 }
 

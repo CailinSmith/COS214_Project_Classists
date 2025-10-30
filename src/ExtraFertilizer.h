@@ -9,7 +9,7 @@ public:
     ExtraFertilizer(Product* plant);
     ~ExtraFertilizer();
     float calculateCost(string currentSeason);
-    string getSummary();
+    string summary();
     string getName();
 };
 

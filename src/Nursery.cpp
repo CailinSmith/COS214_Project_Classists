@@ -48,6 +48,12 @@ void Nursery::setSeason(SeasonState* season) {
 	if (currentSeason) 
 		delete currentSeason;
 	currentSeason = season;
+	if (inventoryManager){
+		for (Plant *p : inventoryManager->getForSalePlants()){
+			if (p)
+				p->calculateCost(getSeason());
+		}
+	}
 }
 
 string Nursery::getSeason() {
@@ -63,8 +69,15 @@ void Nursery::setFactory(PlantFactory* factory) {
 }
 
 void Nursery::changeSeason() {
-	if (currentSeason) 
+	if (currentSeason) {
 		currentSeason->change(this);
+
+		if (inventoryManager) {
+			for (Plant* p : inventoryManager->getForSalePlants()) {
+				if (p) p->calculateCost(getSeason());
+			}
+		}
+	}
 }
 
 void Nursery::stockNursery() {

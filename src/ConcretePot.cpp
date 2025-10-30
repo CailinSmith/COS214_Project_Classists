@@ -8,8 +8,8 @@ float ConcretePot::calculateCost(string currentSeason) {
     return Decorator::calculateCost(currentSeason) + 60.00;
 }
 
-string ConcretePot::getSummary() {
-    return Decorator::getSummary() + "Pot: Concrete Pot \n";
+string ConcretePot::summary() {
+    return Decorator::summary() + "Pot: Concrete Pot \n";
 }
 
 string ConcretePot::getName() {

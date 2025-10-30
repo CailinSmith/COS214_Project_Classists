@@ -10,7 +10,7 @@ public:
 	Decorator (Product* plant);
 	virtual ~Decorator();
 	virtual float calculateCost(string currentSeason);
-	virtual string getSummary();
+	virtual string summary();
 	virtual string getName();
 	Product* removeDecorator();
 	Plant* getBasePlant() override;

@@ -97,6 +97,10 @@ public:
 	virtual float baseCost() = 0;
 	virtual float seasonCost(string curSeason);
 	float getCost();
+
+	virtual Plant* getBasePlant() {
+		return this;
+	}
 };
 
 #endif

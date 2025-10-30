@@ -13,7 +13,7 @@ public:
         (void)currentSeason; // Temporary solution to problem of unused parameter warning
         return 0.0;
     };
-    virtual string getSummary(){
+    virtual string summary(){
         return "";
     };
     virtual string getName(){
