@@ -45,7 +45,3 @@ pair<string, Receipt*> NurseryStaff::handleRequest(const string& requestType, Pl
 string NurseryStaff::getPosition() {
 	return "Nursery staff";
 }
-
-void NurseryStaff::update(const string& message) {
-	cout << getName() << " (" << getPosition() << ") received observer update: " << message << endl;
-}

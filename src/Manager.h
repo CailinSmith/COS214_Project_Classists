@@ -17,7 +17,7 @@ public:
     virtual pair<string, Receipt*> handleRequest(const string& requestType, Plant* plant, vector<Product*>* order, vector<bool>* flags) override;
 	virtual string getPosition() override;
     void setReceiver(StaffMediator* mediator);
-    virtual void update(const string& message);
+    virtual void update(const string& message) override;
 private:
     StaffMediator* receiver;
 };

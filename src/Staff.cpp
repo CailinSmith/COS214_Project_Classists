@@ -38,6 +38,10 @@ string Staff::receive(string message) {
     return getName() + " received message: " + message + "\n";
 }
 
+void Staff::update(const string& message) {
+	cout << getName() << " (" << getPosition() << ") received observer update: " << message << endl;
+}
+
 string Staff::getMessage() {
     return message;
 }

@@ -16,7 +16,6 @@ public:
 	NurseryStaff(string name);
 	virtual pair<string, Receipt*> handleRequest(const string& requestType, Plant* plant, vector<Product*>* order, vector<bool>* flags) override;
 	virtual string getPosition() override;
-	virtual void update(const string& message);
 };
 
 #endif
