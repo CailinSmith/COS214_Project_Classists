@@ -1,6 +1,4 @@
 #include "InventoryManager.h"
-#include "NurseryStaff.h"
-#include "Manager.h"
 // include Nursery here so destructor can clear nursery pointer when manager is destroyed
 #include "Nursery.h"
 
