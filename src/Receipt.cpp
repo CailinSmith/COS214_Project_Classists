@@ -37,14 +37,15 @@ Receipt::Receipt(const std::vector<Product*>& plants) : cost(0.0f) {
 
     for (Product* plant : this->orderPlants) {
         if (plant != nullptr) {
-            // plant->calculateCost(season); //recalculate if necessary
-            cost += plant->getCost();
+            // rcalculate the item's cost taking decorators into account.
+            float itemCost = plant->calculateCost(season);
+            cost += itemCost;
             std::string name = plant->getName();
-    // Use setw to ensure the name column has a fixed width so prices align
-    std::ostringstream priceStr;
-    priceStr << "$" << std::fixed << std::setprecision(2) << plant->getCost();
-    receipt << std::left << std::setw(NAME_COL) << name
-        << std::right << std::setw(WIDTH - NAME_COL) << priceStr.str() << "\n";
+            //use setw to ensure the name column has a fixed width so prices align
+            std::ostringstream priceStr;
+            priceStr << "$" << std::fixed << std::setprecision(2) << itemCost;
+            receipt << std::left << std::setw(NAME_COL) << name
+                    << std::right << std::setw(WIDTH - NAME_COL) << priceStr.str() << "\n";
 
             Plant* plantPtr = plant->getBasePlant();
             if (plantPtr != nullptr && im != nullptr) {
