@@ -47,5 +47,5 @@ string NurseryStaff::getPosition() {
 }
 
 void NurseryStaff::update(const string& message) {
-	cout << getName() << " (" << getPosition() << ") received observer update: " << message << endl;
+	receive(message);
 }

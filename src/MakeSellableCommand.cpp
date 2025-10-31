@@ -9,5 +9,6 @@ void MakeSellableCommand::execute() {
 	if (inventoryManager != nullptr && plant != nullptr) {
 		inventoryManager->removeFromNursery(plant);
 		inventoryManager->addToSale(plant);
+		plant->calculateCost(Nursery::getInstance()->getSeason());
 	}
 }

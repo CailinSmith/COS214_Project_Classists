@@ -15,6 +15,10 @@ class Pothos : public Indoor {
 
 public:
 	Pothos() : Indoor(300, new MediumMoisture(), new Thinning(), "Pothos", "Winter") {}
+	
+	string getImagePath() override {
+		return "assets/pothos.jpg";
+	}
 };
 
 #endif

@@ -87,6 +87,9 @@ TEST_CASE("CoR + Command: Refund") {
     CHECK(result.first.find("Rose") != string::npos);
     CHECK(result.first.find("Tomato") != string::npos);
     CHECK(customer.getOrder().empty());
+
+    delete rose;
+    delete tomato;
 }
 
 TEST_CASE("CoR + Command: Full Chain Flow") {

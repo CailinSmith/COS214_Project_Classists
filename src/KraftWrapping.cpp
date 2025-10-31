@@ -10,6 +10,7 @@ float KraftWrapping::calculateCost(string currentSeason) {
 
 string KraftWrapping::summary() {
     return Decorator::summary() + "Extra: Kraft Wrapping\n";
+
 }
 
 string KraftWrapping::getName() {

@@ -15,6 +15,10 @@ class ChristmasCactus : public Succulent {
 
 public:
 	ChristmasCactus() : Succulent(60, new MediumMoisture(), new Thinning(), "Christmas Cactus", "Autumn"){}
+	
+	string getImagePath() override {
+		return "assets/christmascactus.jpg";
+	}
 };
 
 #endif

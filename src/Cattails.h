@@ -15,6 +15,10 @@ class Cattails : public Aquatic {
 	
 public:
 	Cattails() : Aquatic(300, new HighMoisture(), new Reduction(), "Cattails", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/cattails.jpg";
+	}
 };
 
 #endif

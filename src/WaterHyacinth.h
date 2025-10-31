@@ -15,6 +15,10 @@ class WaterHyacinth : public Aquatic {
 
 public:
 	WaterHyacinth() : Aquatic(30, new HighMoisture(), new Thinning(), "Water Hyacinth", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/waterhyacinth.jpg";
+	}
 };
 
 #endif

@@ -15,6 +15,10 @@ class WaterLettuce : public Aquatic {
 
 public:
 	WaterLettuce() : Aquatic(20, new HighMoisture(), new Thinning(), "Water Lettuce", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/waterlettuce.jpg";
+	}
 };
 
 #endif

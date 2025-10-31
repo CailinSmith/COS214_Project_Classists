@@ -14,6 +14,10 @@
 class Chrysanthemum : public Flower {
 public:
 	Chrysanthemum() : Flower(60, new MediumMoisture(), new DeadPruning(), "Chrysanthemum", "Autumn") {}
+	
+	string getImagePath() override {
+		return "assets/chrysanthemum.jpg";
+	}
 };
 
 #endif

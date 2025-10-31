@@ -23,7 +23,7 @@ public:
         return "DefaultInfo";
     };
     virtual float getCost(){
-        return 0.0;
+        return calculateCost("");
     };
     virtual Plant* getBasePlant(){
         return nullptr;

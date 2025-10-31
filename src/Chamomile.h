@@ -15,6 +15,10 @@ class Chamomile : public Medicinal {
 
 public:
 	Chamomile() : Medicinal(60, new MediumMoisture(), new Thinning(), "Chamomile", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/chamomile.jpg";
+	}
 };
 
 #endif
