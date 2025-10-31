@@ -90,12 +90,6 @@ NurseryFacade::NurseryFacade(InventoryManager* mgr) {
         nurseryArea_->registerColleague(nurseryStaff_);
     }
 
-    //observer
-    if (manager_) {
-        if (managerStaff_) manager_->registerObserver(managerStaff_);
-        if (nurseryStaff_) manager_->registerObserver(nurseryStaff_);
-    }
-
     //chain of responsibility
     if (nurseryStaff_ && salesStaff_) nurseryStaff_->setNext(salesStaff_);
     if (salesStaff_ && managerStaff_) salesStaff_->setNext(managerStaff_);
@@ -149,14 +143,14 @@ void NurseryFacade::runSettings() {
         cout << MENU_BLUE << MENU_SEP << "\n";
         cout << "--- SETTINGS ---\n";
         cout << MENU_SEP << MENU_RESET << "\n";
-        cout << "1) Set tick interval (ms) - current: " << tickInterval_.count() << " ms\n";
+        cout << "1) Set tick interval (tps) - current: " << tickInterval_.count() << " tps\n";
         cout << "2) Set season\n";
         cout << "3) Return\n";
         cout << MENU_BLUE << "Choice: " << MENU_RESET;
         string line; if (!getline(cin, line)) break;
         if (line == "1") {
             cout << "Enter tick interval in milliseconds: "; string v; getline(cin, v);
-            try { int ms = stoi(v); if (ms < 100) ms = 100; setTickInterval(std::chrono::milliseconds(ms)); cout << "Tick interval set to " << ms << " ms\n"; }
+            try { int tps = stoi(v); if (tps < 100) tps = 100; setTickInterval(std::chrono::milliseconds(tps)); cout << "Tick interval set to " << tps << " tps\n"; }
             catch(...) { cout << "Invalid value\n"; }
         } else if (line == "2") {
             cout << "Choose season:\n1) Spring\n2) Summer\n3) Autumn\n4) Winter\n";
@@ -245,7 +239,7 @@ void NurseryFacade::runCustomerMenu() {
 
             auto items = groups[chosen];
             cout << "==== Plants in category '" << chosen << "' ====\n";
-            for (size_t i=0;i<items.size();++i) cout << i+1 << ") " << items[i]->getName() << " - $" << items[i]->getCost() << "\n";
+            for (size_t i=0;i<items.size();++i) cout << i+1 << ") " << items[i]->getName() << " - R" << items[i]->getCost() << "\n";
 
             while (true) {
                 cout << endl;
@@ -327,7 +321,7 @@ void NurseryFacade::runCustomerMenu() {
         } else if (line == "3") {
             cout << "Current order items:\n";
             for (size_t i=0;i<currentOrder_.size();++i) {
-                cout << i+1 << ") " << currentOrder_[i]->getName() << " - $" << currentOrder_[i]->getCost() << "\n";
+                cout << i+1 << ") " << currentOrder_[i]->getName() << " - R" << currentOrder_[i]->getCost() << "\n";
             }
             cout << "Total items: " << currentOrder_.size() << "\n";
             cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
@@ -343,7 +337,7 @@ void NurseryFacade::runCustomerMenu() {
             }
             cout << "Past receipts:\n";
             for (size_t i=0;i<pastReceipts_.size();++i) {
-                cout << i+1 << ") " << pastReceipts_[i]->getDate() << " - $" << pastReceipts_[i]->getCost() << "\n";
+                cout << i+1 << ") " << pastReceipts_[i]->getDate() << " - R" << pastReceipts_[i]->getCost() << "\n";
             }
             cout << MENU_BLUE << "Choose a receipt number to view (or 0 to return): " << MENU_RESET;
             string sel; if (!getline(cin, sel)) break;
@@ -374,13 +368,29 @@ void NurseryFacade::runCustomerMenu() {
                         cout << "Please enter 'y' or 'n'.\n";
                     }
                 }
-                RefundCommand cmd(nurseryStaff_, &orderCopy, &flags);
+                
+                pastReceipts_.erase(pastReceipts_.begin() + idx);
+                delete chosen;
+                
+                RefundCommand cmd(managerStaff_, &orderCopy, &flags);
                 auto res = cmd.execute();
                 cout << "Refund result: " << res.first << "\n";
+                
                 if (res.second) {
-                    delete pastReceipts_[idx];
-                    pastReceipts_[idx] = res.second;
-                    cout << "Updated receipt:\n" << res.second->toString() << "\n";
+                    const std::vector<Product*>* rp = res.second->getPlants();
+                    if (rp && !rp->empty()) {
+                        pastReceipts_.push_back(res.second);
+                        cout << "Updated receipt:\n" << res.second->toString() << "\n";
+                    } else {
+                        delete res.second;
+                        cout << "All items refunded - receipt removed.\n";
+                    }
+                } else if (!orderCopy.empty()) {
+                    Receipt* newReceipt = new Receipt(orderCopy);
+                    pastReceipts_.push_back(newReceipt);
+                    cout << "Updated receipt:\n" << newReceipt->toString() << "\n";
+                } else {
+                    cout << "All items refunded - receipt removed.\n";
                 }
             }
         }
@@ -415,20 +425,58 @@ void NurseryFacade::runStaffMenu() {
         cout << "--- STAFF MENU ---\n";
         cout << MENU_SEP << MENU_RESET << "\n";
         bool isSales = (currentStaff && currentStaff->getPosition() == string("Sales staff"));
-        if (!isSales) cout << "1) View plants (sale)\n";
-        if (!isSales) cout << "2) View plants (nursery)\n";
-        if (!isSales) cout << "3) Care for a plant\n";
-    cout << "4) Move plant between nursery/sale\n";
-    cout << "5) Send message to area\n";
-    cout << "6) View notifications\n";
-    cout << "7) Clear notifications\n";
-        cout << "8) Switch staff\n";
-        cout << "9) Remove plant from system\n";
-        cout << "10) Add plant to nursery\n";
-    cout << "11) Return\n";
-    cout << MENU_BLUE << "Choose: " << MENU_RESET;
+
+
+        vector<int> displayToActual;
+        auto labelFor = [&](int actual) -> string {
+            switch(actual) {
+                case 1: return string("View plants (sale)");
+                case 2: return string("View plants (nursery)");
+                case 3: return string("Care for a plant");
+                case 4: return string("Move plant between nursery/sale");
+                case 5: return string("Send message to area");
+                case 6: return string("View notifications");
+                case 7: return string("Clear notifications");
+                case 8: return string("Switch staff");
+                case 9: return string("Remove plant from system");
+                case 10: return string("Add plant to nursery");
+                case 11: return string("Return");
+                default: return string("");
+            }
+        };
+
+        if (isSales) {
+            // allowed actions for sales staff (omit 10 = "Add plant to nursery")
+            vector<int> allowed = {4,5,6,7,8,9,11};
+            for (size_t i = 0; i < allowed.size(); ++i) {
+                cout << i+1 << ") " << labelFor(allowed[i]) << "\n";
+                displayToActual.push_back(allowed[i]);
+            }
+            cout << MENU_BLUE << "Choose: " << MENU_RESET;
+        } else {
+            cout << "1) View plants (sale)\n";
+            cout << "2) View plants (nursery)\n";
+            cout << "3) Care for a plant\n";
+            cout << "4) Move plant between nursery/sale\n";
+            cout << "5) Send message to area\n";
+            cout << "6) View notifications\n";
+            cout << "7) Clear notifications\n";
+            cout << "8) Switch staff\n";
+            cout << "9) Remove plant from system\n";
+            cout << "10) Add plant to nursery\n";
+            cout << "11) Return\n";
+            cout << MENU_BLUE << "Choose: " << MENU_RESET;
+        }
         string line;
         if (!getline(cin, line)) break;
+        if (isSales) {
+            try {
+                int d = stoi(line);
+                if (d >= 1 && (size_t)d <= displayToActual.size()) {
+                    line = to_string(displayToActual[d-1]);
+                }
+            } catch(...) { /* keep original line if not a number */ }
+        }
             if (line == "1") {
                 if (currentStaff && currentStaff->getPosition() == string("Sales staff")) { cout << "Not permitted for Sales staff\n"; continue; }
                 {
@@ -459,13 +507,10 @@ void NurseryFacade::runStaffMenu() {
                                 try {
                                     int num = stoi(numStr);
                                     if (num>=1 && num <= (int)items.size()) {
-                                        Plant* p = items[num-1];
-                                        Customer tmpC("StaffQuery");
-                                        AskInfoCommand cmd(nurseryStaff_, p);
-                                        auto res = tmpC.sendCommand(&cmd);
-                                        cout << res.first;
-                                        cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
-                                        string tmp; getline(cin, tmp);
+                                            Plant* p = items[num-1];
+                                            cout << p->summary();
+                                            cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
+                                            string tmp; getline(cin, tmp);
                                         continue;
                                     } else cout << "Index out of range\n";
                                 } catch(...) { cout << "Invalid input\n"; }
@@ -511,10 +556,7 @@ void NurseryFacade::runStaffMenu() {
                                 int num = stoi(numStr);
                                 if (num>=1 && num <= (int)items.size()) {
                                     Plant* p = items[num-1];
-                                    Customer tmpC("StaffQuery");
-                                    AskInfoCommand cmd(nurseryStaff_, p);
-                                    auto res = tmpC.sendCommand(&cmd);
-                                    cout << res.first;
+                                    cout << p->summary();
                                     cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
                                     string tmp; getline(cin, tmp);
                                     continue;
@@ -791,7 +833,7 @@ void NurseryFacade::runStaffMenu() {
                 double cost = tmp ? tmp->getCost() : 0.0;
                 string name = all[idx].first;
                 delete tmp;
-                cout << i+1 << ") " << name << " - $" << cost << "\n";
+                cout << i+1 << ") " << name << " - R" << cost << "\n";
             }
 
             cout << MENU_BLUE << "Choose plant number to create (or 0 to cancel): " << MENU_RESET;
@@ -838,7 +880,7 @@ void NurseryFacade::listSalePlants() {
     cout << "==== Sale plants ====" << "\n";
     cout << MENU_SEP << MENU_RESET << "\n";
     for (size_t i=0;i<items.size();++i) {
-        cout << i+1 << ") " << items[i]->getName() << " - " << items[i]->getCategory() << " - $" << items[i]->getCost() << "\n";
+    cout << i+1 << ") " << items[i]->getName() << " - " << items[i]->getCategory() << " - R" << items[i]->getCost() << "\n";
     }
 
     while (true) {
@@ -940,7 +982,7 @@ void NurseryFacade::listPlantsInCategory(const std::string &category) {
     int idx = 1;
     for (auto p : sale) {
         if (p->getCategory() == category) {
-            cout << idx << ") " << p->getName() << " - $" << p->getCost() << "\n";
+            cout << idx << ") " << p->getName() << " - R" << p->getCost() << "\n";
         }
         ++idx;
     }
@@ -962,7 +1004,7 @@ void NurseryFacade::viewPlantInfo(size_t index) {
     cout << "Category: " << p->getCategory() << "\n";
     cout << "State: " << p->getState() << "\n";
     cout << "Health: " << p->getHealth() << "\n";
-    cout << "Cost: $" << p->getCost() << "\n";
+    cout << "Cost: R" << p->getCost() << "\n";
 }
 
 Plant* NurseryFacade::pickSalePlant(size_t index) {
@@ -1042,6 +1084,12 @@ void NurseryFacade::start() {
     //If inventory is empty, seed demo plants once at startup.
     if (manager_->getSaleCount() == 0 && manager_->getNurseryCount() == 0) {
         manager_->populateDemoInventory(8, 8);
+    }
+
+    //register observers only after demo inventory has been created/added
+    if (manager_) {
+        if (managerStaff_) manager_->registerObserver(managerStaff_);
+        if (nurseryStaff_) manager_->registerObserver(nurseryStaff_);
     }
 
     threads_.emplace_back(&NurseryFacade::tickLoop, this);
@@ -1132,7 +1180,7 @@ void NurseryFacade::automatedCustomerLoop() {
     if (p) p->changeHealth();
         vector<Product*> order; order.push_back(p);
     Receipt tmp(order);
-    //cout << "[AutomatedCustomer] purchased " << p->getName() << " total $" << tmp.getCost() << "\n";
+    //cout << "[AutomatedCustomer] purchased " << p->getName() << " total R" << tmp.getCost() << "\n";
     soldProducts_.push_back(p);
     }
 }

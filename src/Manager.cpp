@@ -27,37 +27,43 @@ pair<string, Receipt*> Manager::handleRequest(const string& requestType, Plant* 
         std::string season = "";
         if (nursery) season = nursery->getSeason();
 
-        for (size_t i = 0; i < order->size(); ++i) {
-            Product* p = (*order)[i];
+
+        std::vector<Product*> original = *order;
+        std::vector<Product*> refundedPlants;
+
+        for (size_t i = 0; i < original.size(); ++i) {
+            Product* p = original[i];
             if (p == nullptr) continue;
             if ((*flags)[i]) {
                 total += p->calculateCost(season);
                 ss << p->getName() << " ";
+                refundedPlants.push_back(p);
             } else {
                 remaining.push_back(p);
             }
         }
+
         ss << total;
         result.first = ss.str();
 
-        result.second = new Receipt(remaining);
+        order->clear();
+        for (auto p : remaining) order->push_back(p);
+        result.second = nullptr;
 
-        //return refunded items back to the nursery inventory (not for sale).
+
         if (nursery) {
             InventoryManager* im = nursery->getInventoryManager();
             if (im) {
-                for (size_t i = 0; i < order->size(); ++i) {
-                    if ((*flags)[i]) {
-                        Product* p = (*order)[i];
-                        if (!p) continue;
-                        Plant* plantPtr = p->getBasePlant();
-                        if (plantPtr && !im->isInNursery(plantPtr)) {
-                            im->addToNursery(plantPtr);
-                        }
+                for (Product* p : refundedPlants) {
+                    if (!p) continue;
+                    Plant* plantPtr = p->getBasePlant();
+                    if (plantPtr && !im->isInNursery(plantPtr)) {
+                        im->addToNursery(plantPtr);
                     }
                 }
             }
         }
+
         return result;
     }
     return result;

@@ -34,7 +34,7 @@ public:
     void start(); //blocking main menu
     //stop() signals threads to terminate and joins them.
     void stop();
-    void setTickInterval(std::chrono::milliseconds ms) { tickInterval_ = ms; }
+    void setTickInterval(std::chrono::milliseconds tps) { tickInterval_ = tps; }
     void listSaleCategories();
     void listPlantsInCategory(const std::string &category);
     size_t getStockCountByName(const std::string &name);

@@ -1720,9 +1720,6 @@ private:
                 refundTotal += (*plants)[i]->getCost();
             }
         }
-
-        size_t receiptCountBefore = receipts.size();
-        
         //Remove the old receipt before calling sendCommands
         receipts.erase(receipts.begin() + selectedOrderIndex);
         
@@ -1732,16 +1729,12 @@ private:
         
         std::string message = result.first;
         
-        if (receipts.size() >= receiptCountBefore) {
-            Receipt* lastReceipt = receipts.back();
-            if (lastReceipt != nullptr && lastReceipt->getPlants()->empty()) {
-                //Remove the empty receipt
-                receipts.pop_back();
-                delete lastReceipt;
-            }
-        }
-        
-        if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
+        // Manager now modifies refundOrder directly, keeping only remaining items
+        // Create a new receipt if there are remaining items
+        if (!refundOrder.empty()) {
+            Receipt* newReceipt = new Receipt(refundOrder);
+            receipts.insert(receipts.begin() + selectedOrderIndex, newReceipt);
+        } else if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
             selectedOrderIndex--;
         }
         

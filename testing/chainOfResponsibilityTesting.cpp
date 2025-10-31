@@ -66,7 +66,6 @@ TEST_CASE("CoR + Command: Checkout") {
     CheckoutCommand cmd(&sales, &customer.getOrder(), nullptr);
     pair<string, Receipt*> p = customer.sendCommand(&cmd);
     string result = p.first;
-    Receipt* receipt = p.second;
     CHECK(result.find("Rose") != string::npos);
 }
 
@@ -88,6 +87,14 @@ TEST_CASE("CoR + Command: Refund") {
     CHECK(result.first.find("Tomato") != string::npos);
     CHECK(customer.getOrder().empty());
 
+    // Both plants refunded and returned to nursery
+    // Clean them up by removing from nursery and deleting
+    Nursery* nursery = Nursery::getInstance();
+    InventoryManager* im = nursery ? nursery->getInventoryManager() : nullptr;
+    if (im) {
+        im->removeFromNursery(rose);
+        im->removeFromNursery(tomato);
+    }
     delete rose;
     delete tomato;
 }
@@ -131,7 +138,14 @@ TEST_CASE("CoR + Command: Refund - Partial refund (one item)") {
     CHECK(customer.getOrder().size() == 1);
     CHECK(refundReceipt == nullptr);
 
-    delete tomato; // no need to delete rose since it was refunded
+    // Rose was refunded and returned to nursery - remove it and delete
+    // Nursery* nursery = Nursery::getInstance();
+    // InventoryManager* im = nursery ? nursery->getInventoryManager() : nullptr;
+    // if (im) {
+    //     im->removeFromNursery(rose);
+    // }
+    delete rose;
+    delete tomato;
 }
 
 TEST_CASE("CoR + Command: Empty Cart Checkout") {
@@ -158,6 +172,6 @@ TEST_CASE("CoR + Command: Checkout - SalesStaff generates receipt") {
 
     CHECK(result.find("Rose") != std::string::npos);
     CHECK(result.find("Tomato") != std::string::npos);
-    CHECK(result.find("$310.00") != std::string::npos);
+    CHECK(result.find("R310.00") != std::string::npos);
     CHECK(customer.getOrder().empty());
 }
