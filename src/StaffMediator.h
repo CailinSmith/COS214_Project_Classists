@@ -10,8 +10,9 @@ using namespace std;
 class StaffMediator {
 public:
     virtual ~StaffMediator() = default;
-	virtual void notify(Staff* originator) = 0;
+    virtual void notify(Staff* originator) = 0;
     virtual void registerColleague(Staff* colleague) = 0;
+    virtual void unregisterColleague(Staff* colleague) = 0;
 protected:
     vector<Staff*> colleagues;
 };

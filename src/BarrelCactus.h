@@ -15,6 +15,10 @@ class BarrelCactus : public Succulent {
 
 public:
 	BarrelCactus() : Succulent(120, new DryPlant(), new NoPrune(), "Barrel Cactus", "Spring") {}
+	
+	string getImagePath() override {
+		return "assets/barrelcactus.jpg";
+	}
 };
 
 #endif

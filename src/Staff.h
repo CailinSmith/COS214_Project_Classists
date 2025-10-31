@@ -6,6 +6,8 @@
 #include <utility>
 #include <iostream>
 #include <algorithm>
+#include <chrono>
+#include <mutex>
 #include "Plant.h"
 #include "Receipt.h"
 
@@ -20,7 +22,9 @@ public:
     Staff(string name);
     virtual ~Staff();
 	virtual void send();
-	string receive(string message);
+	void receive(string message);
+    std::string getChatHistoryString() const;
+    void clearChatHistory();
 	virtual pair<string, Receipt*> handleRequest(const std::string& requestType, Plant* plant, std::vector<Product*>* order, vector<bool>* flags);
     void setCommand(StaffCommand* cmd);
 	virtual string getPosition() = 0;
@@ -36,6 +40,9 @@ protected:
 	Staff* next;
     vector<StaffMediator*> mediators;
     StaffCommand* command;
+    //protected chat history storage (timestamp + message)
+    mutable std::mutex chatMutex;
+    std::vector<std::pair<std::chrono::system_clock::time_point, std::string>> chatHistory;
 private:
 	string message;
 };

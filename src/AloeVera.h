@@ -14,6 +14,10 @@
 class AloeVera : public Medicinal {
 public:
 	AloeVera() : Medicinal(60, new DryPlant(), new Thinning(), "Aloe Vera", "Summer") {}
+	
+	string getImagePath() override {
+		return "assets/aloevera.jpg";
+	}
 };
 
 #endif

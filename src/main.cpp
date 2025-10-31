@@ -1959,6 +1959,10 @@ void ChainOfResponsibilityAndCommand()
         std::cout << "[FAIL] Refund command did not process correctly.\n\n";
     }
 
+
+    delete refundRose;
+    refundOrder.clear();
+
     std::cout << "=== ALL TESTS COMPLETED ===\n\n";
 
     delete rose;
@@ -1996,6 +2000,137 @@ void DynamicCastDecoratorTest() {
     delete im;
 }
 
+void RefundFlowTest() {
+    printSeparator("REFUND FLOW TEST");
+
+    InventoryManager* inventory = new InventoryManager();
+    Nursery* nur = Nursery::getInstance(inventory);
+    
+    cout << "Creating staff chain..." << endl;
+    NurseryStaff nursery("Alice");
+    SalesStaff sales("Bob");
+    Manager manager("Charles");
+    nursery.setNext(&sales);
+    sales.setNext(&manager);
+    
+    cout << "Creating customer with order (2 items)..." << endl;
+    Customer customer("TestCustomer");
+    Rose rose;
+    Tomato tomato;
+    customer.addToCart(&rose);
+    customer.addToCart(&tomato);
+    
+    cout << "\n--- CHECKOUT (creating initial receipt) ---" << endl;
+    CheckoutCommand checkoutCmd(&sales, &customer.getOrder(), nullptr);
+    auto checkoutRes = customer.sendCommand(&checkoutCmd);
+    cout << "Receipt created:" << endl;
+    cout << checkoutRes.first << endl;
+    
+    cout << "\n--- BEFORE REFUND ---" << endl;
+    auto& receipts = customer.getReceipts();
+    cout << "Number of receipts: " << receipts.size() << endl;
+    if (!receipts.empty()) {
+        cout << "Last receipt:" << endl;
+        cout << receipts.back()->toString() << endl;
+    }
+    
+    cout << "\n--- REFUNDING ONE ITEM (Rose) ---" << endl;
+    if (!receipts.empty()) {
+        Receipt* lastReceipt = receipts.back();
+        const std::vector<Product*>* plants = lastReceipt->getPlants();
+        
+        if (plants && !plants->empty()) {
+            vector<Product*> refundOrder;
+            for (auto p : *plants) refundOrder.push_back(p);
+            
+            vector<bool> flags = {true, false};  
+            receipts.pop_back();
+            delete lastReceipt;  
+            
+            RefundCommand refundCmd(&manager, &refundOrder, &flags);
+            auto refundRes = customer.sendCommand(&refundCmd);
+            cout << "Refund result: " << refundRes.first << endl;
+            
+            if (refundRes.second) {
+                const std::vector<Product*>* rp = refundRes.second->getPlants();
+                if (rp && !rp->empty()) {
+                    receipts.push_back(refundRes.second);
+                } else {
+                    delete refundRes.second;
+                }
+            } else if (!refundOrder.empty()) {
+                receipts.push_back(new Receipt(refundOrder));
+            }
+        }
+    }
+    
+    cout << "\n--- AFTER PARTIAL REFUND ---" << endl;
+    cout << "Number of receipts: " << receipts.size() << endl;
+    if (!receipts.empty()) {
+        cout << "Updated receipt:" << endl;
+        cout << receipts.back()->toString() << endl;
+    } else {
+        cout << "No receipts remaining" << endl;
+    }
+    
+    cout << "\n--- REFUNDING ALL REMAINING ITEMS ---" << endl;
+    if (!receipts.empty()) {
+        Receipt* lastReceipt2 = receipts.back();
+        const std::vector<Product*>* plants = lastReceipt2->getPlants();
+        
+        if (plants && !plants->empty()) {
+            vector<Product*> refundOrder;
+            for (auto p : *plants) refundOrder.push_back(p);
+            
+            vector<bool> flags(refundOrder.size(), true);
+            receipts.pop_back();
+            delete lastReceipt2; 
+            
+            RefundCommand refundCmd2(&manager, &refundOrder, &flags);
+            auto refundRes2 = customer.sendCommand(&refundCmd2);
+            cout << "Refund result: " << refundRes2.first << endl;
+            
+            if (refundRes2.second) {
+                const std::vector<Product*>* rp = refundRes2.second->getPlants();
+                if (rp && !rp->empty()) {
+                    receipts.push_back(refundRes2.second);
+                } else {
+                    delete refundRes2.second;
+                }
+            } else if (!refundOrder.empty()) {
+                receipts.push_back(new Receipt(refundOrder));
+            }
+        }
+    }
+    
+    cout << "\n--- AFTER FULL REFUND ---" << endl;
+    cout << "Number of receipts: " << receipts.size() << endl;
+    if (!receipts.empty()) {
+        cout << "Remaining receipt:" << endl;
+        cout << receipts.back()->toString() << endl;
+    } else {
+        cout << "No receipts remaining (all items refunded)" << endl;
+    }
+    
+    cout << "\nRefund Flow Test Complete!" << endl;
+    
+    for (Receipt* r : receipts) {
+        delete r;
+    }
+    receipts.clear();
+    
+    if (nur) {
+        InventoryManager* im = nur->getInventoryManager();
+        if (im) {
+            im->removeFromNursery(&rose);
+            im->removeFromNursery(&tomato);
+        }
+    }
+    
+    Nursery::destroyInstance();
+    delete inventory;
+}
+
 
 int main() { 
     MediatorTesting();
@@ -2011,6 +2146,7 @@ int main() {
     IteratorTesting();
     ChainOfResponsibilityAndCommand();   
     DynamicCastDecoratorTest();
+    RefundFlowTest();
 
     Nursery* nursery = Nursery::getInstance();
     if (nursery) {

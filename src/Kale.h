@@ -15,6 +15,10 @@ class Kale : public Vegetable {
 
 public:
 	Kale() : Vegetable(60, new HighMoisture(), new NoPrune(), "Kale", "Autumn") {}
+	
+	string getImagePath() override {
+		return "assets/kale.jpg";
+	}
 };
 
 #endif

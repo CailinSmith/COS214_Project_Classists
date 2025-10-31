@@ -31,8 +31,8 @@ private:
 		{"Indoor", 6},
 		{"Medicinal", 7}
 	};
-	size_t saleThreshold = 2;
-	size_t nurseryThreshold = 2;
+	size_t saleThreshold = 5;
+	size_t nurseryThreshold = 5;
 
 	void checkAndNotify();
 
@@ -62,6 +62,8 @@ public:
 
 	const vector<Plant*>& getForSalePlants() const { return forSale; }
 	const vector<Plant*>& getNurseryPlants() const { return inNursery; }
+
+	void populateDemoInventory(size_t nurseryCount, size_t saleCount);
 
 	void setSaleThreshold(size_t t) { saleThreshold = t; }
 	void setNurseryThreshold(size_t t) { nurseryThreshold = t; }

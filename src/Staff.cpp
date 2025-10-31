@@ -1,6 +1,10 @@
 #include "Staff.h"
 #include "StaffMediator.h"
 #include "StaffCommand.h"
+#include <chrono>
+#include <iomanip>
+#include <sstream>
+#include <mutex>
 
 Staff::Staff(string name) : name(name), next(NULL), command(nullptr) {}
 
@@ -34,8 +38,9 @@ void Staff::send(){
         mediator->notify(this);
 }
 
-string Staff::receive(string message) {
-    return getName() + " received message: " + message + "\n";
+void Staff::receive(string message) {
+    std::lock_guard<std::mutex> lk(chatMutex);
+    chatHistory.emplace_back(std::chrono::system_clock::now(), message);
 }
 
 string Staff::getMessage() {
@@ -65,4 +70,22 @@ void Staff::deregisterMediator(StaffMediator* mediator) {
 
 void Staff::update(const string& message) {
     (void)message;
+}
+
+std::string Staff::getChatHistoryString() const {
+    std::ostringstream out;
+    std::lock_guard<std::mutex> lk(chatMutex);
+    for (const auto &entry : chatHistory) {
+        auto tp = entry.first;
+        auto msg = entry.second;
+        std::time_t t = std::chrono::system_clock::to_time_t(tp);
+        std::tm tm = *std::localtime(&t);
+        out << "\033[34m" << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << "\033[0m" << " - " << msg << "\n";
+    }
+    return out.str();
+}
+
+void Staff::clearChatHistory() {
+    std::lock_guard<std::mutex> lk(chatMutex);
+    chatHistory.clear();
 }

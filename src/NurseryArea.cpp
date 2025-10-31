@@ -3,7 +3,7 @@
 void NurseryArea::notify(Staff* originator) {
     for (auto colleague : colleagues) 
         if (colleague != originator) 
-            colleague->receive("NurseryArea: " + originator->getName() + ":" + originator->getMessage());
+            colleague->receive("Nursery Area: " + originator->getName() + ": " + originator->getMessage());
 }
 
 void NurseryArea::registerColleague(Staff* colleague) {
@@ -11,4 +11,9 @@ void NurseryArea::registerColleague(Staff* colleague) {
         colleagues.push_back(colleague);
         colleague->registerMediator(this);
     }
+}
+
+void NurseryArea::unregisterColleague(Staff* colleague) {
+    colleagues.erase(std::remove(colleagues.begin(), colleagues.end(), colleague), colleagues.end());
+    if (colleague) colleague->deregisterMediator(this);
 }

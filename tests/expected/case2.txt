@@ -1,0 +1,19 @@
+# Expected output patterns for case2 — updated to match the actual run output
+# The checker matches these regexes in order against program stdout (ANSI stripped).
+MEDIATOR PATTERN TEST
+Mediator Pattern Test Complete
+COMPREHENSIVE PLANT NURSERY SYSTEM TEST
+PLANT CATEGORIES TEST
+ALL FACTORIES TEST
+COMPREHENSIVE FACTORY PLANT CREATION TEST
+PLANT STATISTICS
+===== COMMAND PATTERN TESTING =====
+GreensOnly
+Basil\s+R50\.00
+TOTAL: R350\.00
+=== TESTING CUSTOMER COMMANDS \+ CHAIN OF RESPONSIBILITY ===
+Customer cart has 2 items\.
+Plant Name: Rose
+Result: Error: Nursery's InventoryManager is null\.
+Cart before checkout: 2 items
+=== ALL TESTS COMPLETED ===

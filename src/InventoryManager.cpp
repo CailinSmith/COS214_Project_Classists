@@ -4,6 +4,20 @@
 // include Nursery here so destructor can clear nursery pointer when manager is destroyed
 #include "Nursery.h"
 
+// demo helpers: plant types and strategies
+#include "Rose.h"
+#include "Basil.h"
+#include "AloeVera.h"
+#include "Cattails.h"
+#include "Pothos.h"
+#include "Chamomile.h"
+#include "Pansy.h"
+#include "Kale.h"
+#include "Echeveria.h"
+#include "OrangeTree.h"
+#include "Cucumber.h"
+#include "PeaceLily.h"
+
 Iterator<Plant>* InventoryManager::createIterator(const std::string& season) {
 	std::vector<Plant*> allPlants;
 	allPlants.insert(allPlants.end(), forSale.begin(), forSale.end());
@@ -168,6 +182,66 @@ void InventoryManager::checkAndNotify() {
 	if(inNursery.size() < nurseryThreshold)
 	{
 		notifyStaff("Low stock: nursery count below threshold");
+	}
+}
+
+void InventoryManager::populateDemoInventory(size_t nurseryCount, size_t saleCount) {
+	// Create a small variety of plants for sale
+	for (size_t i = 0; i < saleCount; ++i) {
+		Plant* p = nullptr;
+		switch (i % 6) {
+			case 0:
+				p = new Rose();
+				break;
+			case 1:
+				p = new Basil();
+				break;
+			case 2:
+				p = new AloeVera();
+				break;
+			case 3:
+				p = new Cattails();
+				break;
+			case 4:
+				p = new Pothos();
+				break;
+			case 5:
+				p = new Chamomile();
+				break;
+		}
+		if (p) {
+			p->setHealth(0.9);
+			p->setHealth(0.9);
+			p->calculateCost("Spring");
+			p->setState(new ReadyForSaleState());
+			addToSale(p);
+		}
+	}
+
+	// Create nursery plants
+	for (size_t i = 0; i < nurseryCount; ++i) {
+		Plant* p = nullptr;
+		switch (i % 6) {
+			case 0:
+				p = new Pansy();
+				break;
+			case 1:
+				p = new Kale();
+				break;
+			case 2:
+				p = new Echeveria();
+				break;
+			case 3:
+				p = new OrangeTree();
+				break;
+			case 4:
+				p = new Cucumber();
+				break;
+			case 5:
+				p = new PeaceLily();
+				break;
+		}
+		if (p) addToNursery(p);
 	}
 }
 

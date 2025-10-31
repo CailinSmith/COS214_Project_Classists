@@ -14,6 +14,10 @@
 class Lettuce : public Vegetable {
 public:
 	Lettuce() : Vegetable(30, new HighMoisture(), new NoPrune(), "Lettuce", "Spring") {}
+	
+	string getImagePath() override {
+		return "assets/lettuce.jpg";
+	}
 };
 
 #endif
