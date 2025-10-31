@@ -29,6 +29,8 @@
 #include "CheckStockCommand.h"
 #include "RefundCommand.h"
 #include "Receipt.h"
+#include "Iterator.h"
+#include "SeasonIterator.h"
 
 // Include decorators
 #include "CeramicPot.h"
@@ -98,7 +100,9 @@ private:
     
     enum View {
         MAIN_MENU,
+        VIEW_BY_SELECTION,
         CATEGORY_SELECTION,
+        SEASON_SELECTION,
         PLANT_LIST,
         PLANT_DETAILS,
         CART_VIEW,
@@ -111,16 +115,23 @@ private:
     View currentView = MAIN_MENU;
     int cartListSelected = 0;
     int decorationMenuSelected = 0;
+    int viewBySelected = 0;
+    int seasonMenuSelected = 0;
     int currentDecoratingIndex = 0;
     bool hasPot = false;          // Track if current plant has a pot
     bool hasWrapping = false;     // Track if current plant has wrapping
     bool hasFertilizer = false;   // Track if current plant has fertilizer
+    bool viewingBySeason = false; // Track if viewing by season or category
     
     std::vector<std::string> categories = {
         "Flower", "Herb", "Fruit", "Vegetable", 
         "Succulent", "Aquatic", "Indoor", "Medicinal"
     };
+    std::vector<std::string> seasons = {
+        "Spring", "Summer", "Autumn", "Winter"
+    };
     std::string selectedCategory;
+    std::string selectedSeason;
     std::vector<Plant*> currentPlants;
     Plant* selectedPlant = nullptr;
     int selectedOrderIndex = -1;
@@ -525,8 +536,12 @@ private:
         switch (currentView) {
             case MAIN_MENU:
                 return renderMainMenu();
+            case VIEW_BY_SELECTION:
+                return renderViewBySelection();
             case CATEGORY_SELECTION:
                 return renderCategorySelection();
+            case SEASON_SELECTION:
+                return renderSeasonSelection();
             case PLANT_LIST:
                 return renderPlantList();
             case PLANT_DETAILS:
@@ -590,6 +605,55 @@ private:
             text("") | size(HEIGHT, EQUAL, 1)
         }) | border | center;
 
+    }
+    
+    Element renderViewBySelection() {
+        std::vector<std::string> options = {"Browse by Category", "Browse by Season"};
+        Elements menuItems;
+        for (size_t i = 0; i < options.size(); i++) {
+            if (static_cast<int>(i) == viewBySelected) {
+                menuItems.push_back(hbox({text("► " + options[i]) | color(Color::Green) | bold}));
+            } else {
+                menuItems.push_back(text("  " + options[i]));
+            }
+        }
+        auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | color(Color::Cyan) | dim;
+        auto seasonInfo = text("Season: " + nursery->getSeason()) | color(Color::Yellow) | dim;
+        return vbox({
+            text("🌿 How would you like to view plants? 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(menuItems),
+            text("") | size(HEIGHT, EQUAL, 1),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            text("💡 Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
+        }) | border | center;
+    }
+    
+    Element renderSeasonSelection() {
+        std::vector<std::string> seasonEmojis = {"🌸 ", "☀️  ", "🍂 ", "❄️  "};
+        Elements seasonItems;
+        for (size_t i = 0; i < seasons.size(); i++) {
+            std::string emoji = seasonEmojis[i];
+            if (static_cast<int>(i) == seasonMenuSelected) {
+                seasonItems.push_back(hbox({text("► " + emoji + seasons[i]) | color(Color::Green) | bold}));
+            } else {
+                seasonItems.push_back(text("  " + emoji + seasons[i]));
+            }
+        }
+        auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | color(Color::Cyan) | dim;
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | color(Color::Yellow) | dim;
+        return vbox({
+            text("🌿 Select Season 🌿") | bold | center | color(Color::Green),
+            separator(),
+            vbox(seasonItems),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            text("💡 Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
+        }) | border | center;
     }
     
     Element renderCategorySelection() {
@@ -1140,8 +1204,12 @@ private:
         switch (currentView) {
             case MAIN_MENU:
                 return handleMainMenuInput(event);
+            case VIEW_BY_SELECTION:
+                return handleViewByInput(event);
             case CATEGORY_SELECTION:
                 return handleCategoryInput(event);
+            case SEASON_SELECTION:
+                return handleSeasonInput(event);
             case PLANT_LIST:
                 return handlePlantListInput(event);
             case PLANT_DETAILS:
@@ -1172,8 +1240,8 @@ private:
         } else if (event == Event::Return) {
             switch (mainMenuSelected) {
                 case 0:
-                    currentView = CATEGORY_SELECTION;
-                    categoryMenuSelected = 0;
+                    currentView = VIEW_BY_SELECTION;
+                    viewBySelected = 0;
                     break;
                 case 1: 
                     currentView = CART_VIEW;
@@ -1195,6 +1263,51 @@ private:
         return false;
     }
     
+    bool handleViewByInput(Event event) {
+        if (event == Event::ArrowUp) {
+            viewBySelected = std::max(0, viewBySelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            viewBySelected = std::min(1, viewBySelected + 1);
+            return true;
+        } else if (event == Event::Return) {
+            if (viewBySelected == 0) {
+                currentView = CATEGORY_SELECTION;
+                categoryMenuSelected = 0;
+                viewingBySeason = false;
+            } else {
+                currentView = SEASON_SELECTION;
+                seasonMenuSelected = 0;
+            }
+            return true;
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = MAIN_MENU;
+            return true;
+        }
+        return false;
+    }
+    
+    bool handleSeasonInput(Event event) {
+        if (event == Event::ArrowUp) {
+            seasonMenuSelected = std::max(0, seasonMenuSelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            seasonMenuSelected = std::min(static_cast<int>(seasons.size()) - 1, seasonMenuSelected + 1);
+            return true;
+        } else if (event == Event::Return) {
+            selectedSeason = seasons[seasonMenuSelected];
+            loadPlantsForSeason(selectedSeason);
+            viewingBySeason = true;
+            currentView = PLANT_LIST;
+            plantListSelected = 0;
+            return true;
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = VIEW_BY_SELECTION;
+            return true;
+        }
+        return false;
+    }
+    
     bool handleCategoryInput(Event event) {
         if (event == Event::ArrowUp) {
             categoryMenuSelected = std::max(0, categoryMenuSelected - 1);
@@ -1205,11 +1318,12 @@ private:
         } else if (event == Event::Return) {
             selectedCategory = categories[categoryMenuSelected];
             loadPlantsForCategory(selectedCategory);
+            viewingBySeason = false;
             currentView = PLANT_LIST;
             plantListSelected = 0;
             return true;
         } else if (event == Event::Character('b') || event == Event::Character('B')) {
-            currentView = MAIN_MENU;
+            currentView = VIEW_BY_SELECTION;
             return true;
         }
         return false;
@@ -1218,7 +1332,7 @@ private:
     bool handlePlantListInput(Event event) {
         if (currentPlants.empty()) {
             if (event == Event::Character('b') || event == Event::Character('B')) {
-                currentView = CATEGORY_SELECTION;
+                currentView = viewingBySeason ? SEASON_SELECTION : CATEGORY_SELECTION;
                 return true;
             }
             return false;
@@ -1236,7 +1350,7 @@ private:
             currentView = PLANT_DETAILS;
             return true;
         } else if (event == Event::Character('b') || event == Event::Character('B')) {
-            currentView = CATEGORY_SELECTION;
+            currentView = viewingBySeason ? SEASON_SELECTION : CATEGORY_SELECTION;
             return true;
         }
         return false;
@@ -1409,6 +1523,19 @@ private:
                 currentPlants.push_back(p);
             }
         }
+    }
+    
+    void loadPlantsForSeason(const std::string& season) {
+        currentPlants.clear();
+        Iterator<Plant>* seasonIterator = inventoryManager->createSaleIterator(season);
+        
+        for (Plant* plant = seasonIterator->first(); !seasonIterator->isDone(); plant = seasonIterator->next()) {
+            if (plant != nullptr) {
+                currentPlants.push_back(plant);
+            }
+        }
+        
+        delete seasonIterator;
     }
     
     void showCart() {
