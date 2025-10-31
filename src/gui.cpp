@@ -106,7 +106,8 @@ private:
         CHECKOUT_SUMMARY,
         STOCK_CHECK,
         PAST_ORDERS,
-        REFUND_MENU
+        REFUND_SELECTION,
+        REFUND_CONFIRMATION
     };
     View currentView = MAIN_MENU;
     int cartListSelected = 0;
@@ -115,6 +116,12 @@ private:
     bool hasPot = false;          // Track if current plant has a pot
     bool hasWrapping = false;     // Track if current plant has wrapping
     bool hasFertilizer = false;   // Track if current plant has fertilizer
+    
+    // Refund state
+    std::vector<bool> refundFlags;
+    int refundListSelected = 0;
+    std::string refundResultMessage;
+    float refundTotal = 0.0f;
     
     std::vector<std::string> categories = {
         "Flower", "Herb", "Fruit", "Vegetable", 
@@ -541,8 +548,10 @@ private:
                 return renderStockCheck();
             case PAST_ORDERS:
                 return renderPastOrders();
-            case REFUND_MENU:
-                return renderRefundMenu();
+            case REFUND_SELECTION:
+                return renderRefundSelection();
+            case REFUND_CONFIRMATION:
+                return renderRefundConfirmation();
             default:
                 return renderMainMenu();
         }
@@ -588,7 +597,7 @@ private:
             text(messageBuffer) | color(Color::Yellow),
             text("💡 Use ↑↓ arrows to navigate, Enter to select") | dim,
             text("") | size(HEIGHT, EQUAL, 1)
-        }) | border | center;
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
 
     }
     
@@ -624,7 +633,7 @@ private:
             seasonInfo,
             text("💡 Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
 
-        }) | border | center;
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
     }
     
     Element renderPlantList() {
@@ -669,7 +678,7 @@ private:
             seasonInfo,
             text("💡 Use ↑↓ arrows to select plant, Enter to view details, 'b' to go back") | dim
 
-        }) | border | center;
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
     }
     
     Element renderPlantDetails() {
@@ -1042,7 +1051,7 @@ private:
             text(stockInfo),
             separator(),
             text("💡 Press 'b' to go back") | dim
-        }) | border | center;
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
     }
     
     Element renderPastOrders() {
@@ -1090,10 +1099,10 @@ private:
             text("") | size(HEIGHT, EQUAL, 1),
             text(messageBuffer) | color(Color::Yellow),
             text("💡 Use ↑↓ arrows to select order") | dim
-        }) | border | center;
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
     }
     
-    Element renderRefundMenu() {
+    Element renderRefundSelection() {
         auto& receipts = customer->getReceipts();
         
         if (selectedOrderIndex < 0 || selectedOrderIndex >= static_cast<int>(receipts.size())) {
@@ -1106,32 +1115,69 @@ private:
         Receipt* selectedReceipt = receipts[selectedOrderIndex];
         const std::vector<Product*>* plants = selectedReceipt->getPlants();
         
+        // Build plant list with checkboxes
         Elements plantElements;
+        float runningTotal = 0.0f;
+        
         for (size_t i = 0; i < plants->size(); i++) {
             Product* p = (*plants)[i];
             std::ostringstream priceStream;
             priceStream << std::fixed << std::setprecision(2) << p->getCost();
-            std::string plantInfo = std::to_string(i + 1) + ". " + p->getName() + 
-                                  " - R" + priceStream.str();
-            plantElements.push_back(text(plantInfo));
+            
+            std::string checkbox = refundFlags[i] ? "[✓] " : "[ ] ";
+            std::string plantInfo = checkbox + p->getName() + " - R" + priceStream.str();
+            
+            if (refundFlags[i]) {
+                runningTotal += p->getCost();
+            }
+            
+            if (static_cast<int>(i) == refundListSelected) {
+                plantElements.push_back(hbox({
+                    text(plantInfo) | bold | color(Color::Cyan)
+                }));
+            } else {
+                plantElements.push_back(text(plantInfo));
+            }
         }
         
         std::ostringstream totalStream;
         totalStream << std::fixed << std::setprecision(2) << selectedReceipt->getCost();
         
+        std::ostringstream selectedTotalStream;
+        selectedTotalStream << std::fixed << std::setprecision(2) << runningTotal;
+        
         return vbox({
-            text("🌿 Select Plant to Refund 🌿") | bold | center | color(Color::Green),
+            text("🌿 Select Plants to Refund 🌿") | bold | center | color(Color::Green),
             separator(),
             text("Order Date: " + selectedReceipt->getDate()) | bold,
-            text("Total: R" + totalStream.str()) | bold,
+            text("Order Total: R" + totalStream.str()) | bold,
+            text("Selected for Refund: R" + selectedTotalStream.str()) | bold | color(Color::Cyan),
             separator(),
             vbox(plantElements),
             separator(),
-            text("Enter plant number (1-" + std::to_string(plants->size()) + "): " + inputBuffer) | color(Color::Cyan),
-            text("💡 Press Enter to submit, 'b' to cancel") | dim,
+            text("Controls:") | bold,
+            text("  [↑↓] Navigate  [Space] Toggle  [Enter] Confirm  [b] Cancel") | dim,
             text("") | size(HEIGHT, EQUAL, 1),
             text(messageBuffer) | color(Color::Yellow)
-        }) | border | center;
+        }) | border | center | size(WIDTH, LESS_THAN, 100);
+    }
+    
+    Element renderRefundConfirmation() {
+        return vbox({
+            text("🌿 Refund Processed 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text(refundResultMessage) | color(Color::GreenLight),
+            separator(),
+            text("Total Refunded: R" + [this]() {
+                std::ostringstream ss;
+                ss << std::fixed << std::setprecision(2) << refundTotal;
+                return ss.str();
+            }()) | bold | color(Color::Cyan),
+            separator(),
+            text("Your receipt has been updated.") | italic,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text("💡 Press any key to return to past orders") | dim
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
     }
     
     bool handleInput(Event event) {
@@ -1156,8 +1202,10 @@ private:
                 return handleDetailsInput(event);
             case PAST_ORDERS:
                 return handlePastOrdersInput(event);
-            case REFUND_MENU:
-                return handleRefundInput(event);
+            case REFUND_SELECTION:
+                return handleRefundSelectionInput(event);
+            case REFUND_CONFIRMATION:
+                return handleRefundConfirmationInput(event);
         }
         return false;
     }
@@ -1369,8 +1417,13 @@ private:
             return true;
         } else if (event == Event::Character('r') || event == Event::Character('R')) {
             if (!receipts.empty() && selectedOrderIndex >= 0 && selectedOrderIndex < static_cast<int>(receipts.size())) {
-                currentView = REFUND_MENU;
-                inputBuffer = "";
+                // Initialize refund flags for the selected receipt
+                Receipt* selectedReceipt = receipts[selectedOrderIndex];
+                const std::vector<Product*>* plants = selectedReceipt->getPlants();
+                refundFlags.clear();
+                refundFlags.resize(plants->size(), false);
+                refundListSelected = 0;
+                currentView = REFUND_SELECTION;
                 return true;
             }
         } else if (event == Event::Character('b') || event == Event::Character('B')) {
@@ -1380,24 +1433,52 @@ private:
         return false;
     }
     
-    bool handleRefundInput(Event event) {
-        if (event == Event::Character('b') || event == Event::Character('B')) {
-            currentView = PAST_ORDERS;
-            inputBuffer = "";
+    bool handleRefundSelectionInput(Event event) {
+        auto& receipts = customer->getReceipts();
+        Receipt* selectedReceipt = receipts[selectedOrderIndex];
+        const std::vector<Product*>* plants = selectedReceipt->getPlants();
+        
+        if (event == Event::ArrowUp) {
+            refundListSelected = std::max(0, refundListSelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            refundListSelected = std::min(static_cast<int>(plants->size()) - 1, refundListSelected + 1);
+            return true;
+        } else if (event == Event::Character(' ')) {
+            // Toggle selection
+            refundFlags[refundListSelected] = !refundFlags[refundListSelected];
             return true;
         } else if (event == Event::Return) {
-            processRefund();
-            return true;
-        } else if (event == Event::Backspace) {
-            if (!inputBuffer.empty()) {
-                inputBuffer.pop_back();
+            // Check if any items selected
+            bool anySelected = false;
+            for (bool flag : refundFlags) {
+                if (flag) {
+                    anySelected = true;
+                    break;
+                }
+            }
+            
+            if (anySelected) {
+                processMultiItemRefund();
+            } else {
+                messageBuffer = "Please select at least one item to refund";
             }
             return true;
-        } else if (event.is_character() && std::isdigit(event.character()[0])) {
-            inputBuffer += event.character();
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = PAST_ORDERS;
+            refundFlags.clear();
             return true;
         }
         return false;
+    }
+    
+    bool handleRefundConfirmationInput(Event) {
+        // Any key returns to past orders
+        currentView = PAST_ORDERS;
+        refundFlags.clear();
+        refundResultMessage = "";
+        refundTotal = 0.0f;
+        return true;
     }
     
     void loadPlantsForCategory(const std::string& category) {
@@ -1445,11 +1526,11 @@ private:
             return;
         }
         
-        // Build the same options list to map selection to action
+        //Build the same options list to map selection to action
         std::vector<std::string> decorationOptions;
         decorationOptions.push_back("Done decorating - Next plant");
         
-        std::vector<int> optionTypes; // 0=done, 1=ceramic, 2=concrete, 3=clay, 4=wrapping, 5=fertilizer
+        std::vector<int> optionTypes;
         optionTypes.push_back(0);
         
         if (!hasPot) {
@@ -1560,45 +1641,66 @@ private:
         currentView = MAIN_MENU;
     }
     
-    void processRefund() {
-        if (inputBuffer.empty()) {
-            messageBuffer = "Please enter a plant number";
+    void processMultiItemRefund() {
+        auto& receipts = customer->getReceipts();
+        
+        if (selectedOrderIndex < 0 || selectedOrderIndex >= static_cast<int>(receipts.size())) {
+            messageBuffer = "Invalid order selected";
             return;
         }
         
-        try {
-            int plantNum = std::stoi(inputBuffer);
-            auto& receipts = customer->getReceipts();
-            
-            if (selectedOrderIndex < 0 || selectedOrderIndex >= static_cast<int>(receipts.size())) {
-                messageBuffer = "Invalid order selected";
-                return;
+        Receipt* selectedReceipt = receipts[selectedOrderIndex];
+        const std::vector<Product*>* plants = selectedReceipt->getPlants();
+        
+        // Create a copy of the order for the refund
+        std::vector<Product*> refundOrder = *plants;
+        
+        // Calculate total refunded BEFORE processing
+        refundTotal = 0.0f;
+        for (size_t i = 0; i < refundFlags.size(); i++) {
+            if (refundFlags[i] && i < plants->size()) {
+                refundTotal += (*plants)[i]->getCost();
             }
-            
-            Receipt* selectedReceipt = receipts[selectedOrderIndex];
-            const std::vector<Product*>* plants = selectedReceipt->getPlants();
-            
-            if (plantNum < 1 || plantNum > static_cast<int>(plants->size())) {
-                messageBuffer = "Invalid plant number";
-                return;
-            }
-            
-            // Create a vector with the selected receipt's plants and flags
-            std::vector<Product*> refundOrder = *plants;
-            std::vector<bool> flags(refundOrder.size(), false);
-            flags[plantNum - 1] = true; // Only refund the selected plant
-            
-            RefundCommand* refundCmd = new RefundCommand(salesStaff, &refundOrder, &flags);
-            auto result = customer->sendCommand(refundCmd);
-            delete refundCmd;
-            
-            messageBuffer = "Refund request sent: " + result.first;
-            inputBuffer = "";
-            currentView = PAST_ORDERS;
-            
-        } catch (const std::exception& e) {
-            messageBuffer = "Invalid input";
         }
+        
+        // Remember the receipt count before processing
+        size_t receiptCountBefore = receipts.size();
+        
+        // IMPORTANT: Remove the old receipt BEFORE calling sendCommand
+        // because sendCommand will automatically add the new receipt via addReceipt()
+        receipts.erase(receipts.begin() + selectedOrderIndex);
+        
+        // Use nurseryStaff to reach Manager (correct chain)
+        RefundCommand* refundCmd = new RefundCommand(nurseryStaff, &refundOrder, &refundFlags);
+        auto result = customer->sendCommand(refundCmd);
+        delete refundCmd;
+        
+        // Parse the result
+        std::string message = result.first;
+        
+        // sendCommand adds the new receipt to the list automatically via addReceipt()
+        // and sets result.second to nullptr (see Customer.cpp line 30)
+        // So we need to check if an empty receipt was added
+        
+        // If a new receipt was added after removing the old one
+        if (receipts.size() >= receiptCountBefore) {
+            // The new receipt would be the last one in the list
+            Receipt* lastReceipt = receipts.back();
+            if (lastReceipt != nullptr && lastReceipt->getPlants()->empty()) {
+                // Remove the empty receipt
+                receipts.pop_back();
+                delete lastReceipt;
+            }
+        }
+        
+        // Adjust selectedOrderIndex if needed
+        if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
+            selectedOrderIndex--;
+        }
+        
+        // Set result message for confirmation view
+        refundResultMessage = message;
+        currentView = REFUND_CONFIRMATION;
     }
 };
 
