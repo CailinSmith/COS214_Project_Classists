@@ -15,7 +15,6 @@
 #include "ftxui/component/screen_interactive.hpp"
 #include "ftxui/dom/elements.hpp"
 
-// Include all necessary project headers
 #include "Plant.h"
 #include "Product.h"
 #include "Customer.h"
@@ -32,14 +31,12 @@
 #include "Iterator.h"
 #include "SeasonIterator.h"
 
-// Include decorators
 #include "CeramicPot.h"
 #include "ConcretePot.h"
 #include "ClayPot.h"
 #include "KraftWrapping.h"
 #include "ExtraFertilizer.h"
 
-// Include all 32 plant types for initialization
 #include "Rose.h"
 #include "Basil.h"
 #include "Tomato.h"
@@ -86,7 +83,6 @@ private:
     Nursery* nursery;
     Customer* customer;
     
-    // Chain of Responsibility: nursery -> sales -> manager
     Staff* nurseryStaff;
     Staff* salesStaff;
     Staff* managerStaff;
@@ -119,12 +115,11 @@ private:
     int viewBySelected = 0;
     int seasonMenuSelected = 0;
     int currentDecoratingIndex = 0;
-    bool hasPot = false;          // Track if current plant has a pot
-    bool hasWrapping = false;     // Track if current plant has wrapping
-    bool hasFertilizer = false;   // Track if current plant has fertilizer
-    bool viewingBySeason = false; // Track if viewing by season or category
+    bool hasPot = false;
+    bool hasWrapping = false;
+    bool hasFertilizer = false;
+    bool viewingBySeason = false;
     
-    // Refund state
     std::vector<bool> refundFlags;
     int refundListSelected = 0;
     std::string refundResultMessage;
@@ -149,7 +144,6 @@ public:
         nursery = Nursery::getInstance(inventoryManager);
         customer = new Customer("John Doe");
         
-        // Set up Chain of Responsibility: nursery -> sales -> manager
         nurseryStaff = new NurseryStaff("Nina");
         salesStaff = new SalesStaff("Sam");
         managerStaff = new Manager("Mike");
@@ -170,13 +164,9 @@ public:
         Nursery::destroyInstance();
     }
     
-    // Initialize 2 of each of the 32 plant types with appropriate values for ReadyForSaleState state
     void initializePlants() {
-        // Get current season from nursery
         std::string currentSeason = nursery->getSeason();
         
-        // Helper lambda to set up a plant for ReadyForSaleState state
-        // Values are now decimals: height (0.8-1.0), health (0.7-1.0), waterLevel (0.9-1.0)
         auto setupPlant = [&currentSeason](Plant* p, float height, float health, float waterLevel) {
             p->setHeight(height);
             p->setHealth(health);
@@ -186,8 +176,6 @@ public:
             p->calculateCost(currentSeason);
         };
         
-        // Create 2 of each plant type with slightly different values
-        // At least one of each pair has health >= 0.9
         
         Plant* rose1 = new Rose(); setupPlant(rose1, 0.85, 0.90, 0.95);
         Plant* rose2 = new Rose(); setupPlant(rose2, 0.92, 0.88, 0.98);
@@ -285,7 +273,7 @@ public:
         Plant* ging1 = new Ginger(); setupPlant(ging1, 0.84, 0.83, 0.94);
         Plant* ging2 = new Ginger(); setupPlant(ging2, 0.88, 0.92, 0.97);
         
-        // Add all plants to inventory for sale
+        //Adds all plants to inventory for sale
         inventoryManager->addToSale(rose1); inventoryManager->addToSale(rose2);
         inventoryManager->addToSale(chrys1); inventoryManager->addToSale(chrys2);
         inventoryManager->addToSale(pansy1); inventoryManager->addToSale(pansy2);
@@ -321,14 +309,13 @@ public:
     }
     
     struct ColoredChar {
-        std::string ch;  // Changed to string to support UTF-8 multi-byte characters (blocks, etc.)
-        int fgColor; // RGB packed as int (R<<16 | G<<8 | B)
-        int bgColor; // RGB packed as int
+        std::string ch;
+        int fgColor;
+        int bgColor;
         
         ColoredChar(std::string c = " ", int fg = 0xFFFFFF, int bg = 0x000000) : ch(c), fgColor(fg), bgColor(bg) {}
     };
     
-    // Parse ANSI color codes and extract colored characters
     std::vector<std::vector<ColoredChar>> parseAnsiImage(const std::string& ansiText) {
         std::vector<std::vector<ColoredChar>> result;
         std::vector<ColoredChar> currentLine;
@@ -338,21 +325,18 @@ public:
         
         for (size_t i = 0; i < ansiText.length(); i++) {
             if (ansiText[i] == '\033' || ansiText[i] == '\x1b') {
-                // Found escape sequence, parse it
                 if (i + 1 < ansiText.length() && ansiText[i + 1] == '[') {
-                    i += 2; // Skip ESC[
+                    i += 2;
                     std::string code;
                     while (i < ansiText.length() && ansiText[i] != 'm' && ansiText[i] != 'l' && ansiText[i] != 'h') {
                         code += ansiText[i];
                         i++;
                     }
                     
-                    // Skip non-color escape sequences (like cursor hide/show)
                     if (i < ansiText.length() && (ansiText[i] == 'l' || ansiText[i] == 'h')) {
                         continue;
                     }
                     
-                    // Parse RGB color codes: 38;2;R;G;B for foreground, 48;2;R;G;B for background
                     std::vector<int> numbers;
                     std::string num;
                     for (char c : code) {
@@ -369,20 +353,16 @@ public:
                         numbers.push_back(std::stoi(num));
                     }
                     
-                    // Process the numbers
                     for (size_t j = 0; j < numbers.size(); j++) {
                         if (numbers[j] == 0) {
-                            // Reset
                             currentFgR = currentFgG = currentFgB = 255;
                             currentBgR = currentBgG = currentBgB = 0;
                         } else if (numbers[j] == 38 && j + 4 < numbers.size() && numbers[j + 1] == 2) {
-                            // Foreground RGB: 38;2;R;G;B
                             currentFgR = numbers[j + 2];
                             currentFgG = numbers[j + 3];
                             currentFgB = numbers[j + 4];
                             j += 4;
                         } else if (numbers[j] == 48 && j + 4 < numbers.size() && numbers[j + 1] == 2) {
-                            // Background RGB: 48;2;R;G;B
                             currentBgR = numbers[j + 2];
                             currentBgG = numbers[j + 3];
                             currentBgB = numbers[j + 4];
@@ -395,28 +375,22 @@ public:
                     result.push_back(currentLine);
                     currentLine.clear();
                 }
-            } else if (ansiText[i] >= 32 || (unsigned char)ansiText[i] >= 128) {  // Printable ASCII + UTF-8
-                // Handle multi-byte UTF-8 characters properly
+            } else if (ansiText[i] >= 32 || (unsigned char)ansiText[i] >= 128) {
                 std::string utf8Char;
                 unsigned char byte = ansiText[i];
                 
                 if ((byte & 0x80) == 0) {
-                    // Single-byte ASCII
                     utf8Char = ansiText[i];
                 } else if ((byte & 0xE0) == 0xC0) {
-                    // 2-byte UTF-8
                     utf8Char = ansiText.substr(i, 2);
                     i += 1;
                 } else if ((byte & 0xF0) == 0xE0) {
-                    // 3-byte UTF-8 (block characters like █ are here)
                     utf8Char = ansiText.substr(i, 3);
                     i += 2;
                 } else if ((byte & 0xF8) == 0xF0) {
-                    // 4-byte UTF-8
                     utf8Char = ansiText.substr(i, 4);
                     i += 3;
                 } else {
-                    // Invalid UTF-8, skip
                     continue;
                 }
                 
@@ -433,9 +407,7 @@ public:
         return result;
     }
     
-    // Convert RGB color (stored as int) to FTXUI Color
     Color terminalColorToFTXUI(int colorCode) {
-        // Extract RGB components from packed integer
         int r = (colorCode >> 16) & 0xFF;
         int g = (colorCode >> 8) & 0xFF;
         int b = colorCode & 0xFF;
@@ -443,9 +415,7 @@ public:
         return Color::RGB(r, g, b);
     }
     
-    // Helper function to convert image to ASCII art using chafa
     std::string convertImageToASCII(const std::string& imagePath, int width = 50, int height = 25) {
-        // Check if image file exists
         std::ifstream fileCheck(imagePath);
         if (!fileCheck.good()) {
             return "[Image not found: " + imagePath + "]";
@@ -462,7 +432,6 @@ public:
             return "[chafa not available. Install with: sudo apt-get install chafa]";
         }
         
-        // Read the generated ASCII art
         std::ifstream file(tempFile);
         if (!file.is_open()) {
             return "[Failed to generate ASCII art]";
@@ -479,16 +448,15 @@ public:
         return output;
     }
     
-    // Create a visual health bar from health value (0.0 to 1.0)
+    //Create a visual health bar from health value (0.0 to 1.0)
     Element createHealthBar(float health) {
-        // Clamp health between 0 and 1
+        //Clamp health between 0 and 1
         health = std::max(0.0f, std::min(1.0f, health));
         
         int barWidth = 20;
         int filledBars = static_cast<int>(health * barWidth);
         int emptyBars = barWidth - filledBars;
         
-        // Create filled and empty portions using Unicode block characters
         std::string filled = "";
         for (int i = 0; i < filledBars; i++) {
             filled += "█";
@@ -498,7 +466,6 @@ public:
             empty += "░";
         }
         
-        // Choose color based on health level
         Color barColor;
         if (health > 0.7f) {
             barColor = Color::Green;
@@ -508,7 +475,6 @@ public:
             barColor = Color::Red;
         }
         
-        // Create percentage text
         int percentage = static_cast<int>(health * 100);
         std::string percentText = std::to_string(percentage) + "%";
         
@@ -627,7 +593,7 @@ private:
             }
         }
         auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | color(Color::Cyan) | dim;
-        auto seasonInfo = text("Season: " + nursery->getSeason()) | color(Color::Yellow) | dim;
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | color(Color::Yellow) | dim;
         return vbox({
             text("🌿 How would you like to view plants? 🌿") | bold | center | color(Color::Green),
             separator(),
@@ -642,6 +608,7 @@ private:
     }
     
     Element renderSeasonSelection() {
+        //Don't touch the spaces for the emojis!
         std::vector<std::string> seasonEmojis = {"🌸 ", "☀️  ", "🍂 ", "❄️  "};
         Elements seasonItems;
         for (size_t i = 0; i < seasons.size(); i++) {
@@ -666,7 +633,6 @@ private:
     }
     
     Element renderCategorySelection() {
-        // Emoji for each category
         std::vector<std::string> categoryEmojis = {"🌸", "🌿", "🍎", "🥕", "🌵", "💧", "🏠", "💊"};
         
         Elements categoryItems;
@@ -685,7 +651,7 @@ private:
         
         auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
                         color(Color::Cyan) | dim;
-        auto seasonInfo = text("Season: " + nursery->getSeason()) | 
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | 
                          color(Color::Yellow) | dim;
         
         return vbox({
@@ -708,7 +674,7 @@ private:
         } else {
             for (size_t i = 0; i < currentPlants.size(); i++) {
                 Plant* p = currentPlants[i];
-                // Format price as R0.00
+                //Format price as R0.00
                 std::ostringstream priceStream;
                 priceStream << std::fixed << std::setprecision(2) << p->getCost();
                 std::string plantInfo = std::to_string(i + 1) + ". " + p->getName() + 
@@ -730,7 +696,7 @@ private:
         
         auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
                         color(Color::Cyan) | dim;
-        auto seasonInfo = text("Season: " + nursery->getSeason()) | 
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | 
                          color(Color::Yellow) | dim;
 
         return vbox({
@@ -765,7 +731,6 @@ private:
         //Size adjuster here for images, it's width (characters) x height (lines)
         std::string asciiArt = convertImageToASCII(imagePath, 30, 15);
         
-        // Parse the ANSI codes and convert to FTXUI colored elements
         auto coloredImage = parseAnsiImage(asciiArt);
         
         Elements content;
@@ -797,7 +762,6 @@ private:
         
         scrollableContent.push_back(text("Plant Information:") | bold | color(Color::Green));
         
-        // Extract health value and create health bar
         float healthValue = selectedPlant->getHealth();
         scrollableContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
         scrollableContent.push_back(createHealthBar(healthValue));
@@ -807,26 +771,21 @@ private:
         std::string line;
         while (std::getline(infoStream, line)) {
             if (!line.empty()) {
-                // Skip the health line if it exists (we're showing it as a bar instead)
                 if (line.find("Health:") != std::string::npos || line.find("health:") != std::string::npos) {
                     continue;
                 }
                 
-                // Add "R" currency symbol to price/cost lines
                 if (line.find("Price:") != std::string::npos || line.find("Cost:") != std::string::npos || line.find("price:") != std::string::npos || line.find("cost:") != std::string::npos) {
-                    // Find the number after the colon
                     size_t colonPos = line.find(':');
                     if (colonPos != std::string::npos) {
                         std::string beforeColon = line.substr(0, colonPos + 1);
                         std::string afterColon = line.substr(colonPos + 1);
                         
-                        // Trim whitespace from afterColon
                         size_t firstNonSpace = afterColon.find_first_not_of(" \t");
                         if (firstNonSpace != std::string::npos) {
                             afterColon = afterColon.substr(firstNonSpace);
                         }
                         
-                        // Add R prefix if not already there
                         if (!afterColon.empty() && afterColon[0] != 'R') {
                             line = beforeColon + " R" + afterColon;
                         }
@@ -940,7 +899,6 @@ private:
         auto& order = customer->getOrder();
         
         if (currentDecoratingIndex >= static_cast<int>(order.size())) {
-            // All plants decorated, proceed to actual checkout
             performActualCheckout();
             return renderMainMenu();
         }
@@ -948,7 +906,6 @@ private:
         Product* currentProduct = order[currentDecoratingIndex];
         std::string plantName = currentProduct->getName();
         
-        // Truncate plant name if too long to prevent GUI stretching
         const size_t MAX_NAME_LENGTH = 60;
         if (plantName.length() > MAX_NAME_LENGTH) {
             plantName = plantName.substr(0, MAX_NAME_LENGTH - 3) + "...";
@@ -960,23 +917,19 @@ private:
         std::ostringstream currentPriceStream;
         currentPriceStream << std::fixed << std::setprecision(2) << currentCost;
         
-        // Build options list dynamically based on what's already been added
         std::vector<std::string> decorationOptions;
         decorationOptions.push_back("Done decorating - Next plant");
         
-        // Only show pot options if no pot has been added yet
         if (!hasPot) {
             decorationOptions.push_back("Ceramic Pot (+R80.00)");
             decorationOptions.push_back("Concrete Pot (+R60.00)");
             decorationOptions.push_back("Clay Pot (+R50.00)");
         }
         
-        // Always show wrapping if not added
         if (!hasWrapping) {
             decorationOptions.push_back("Kraft Wrapping (+R20.00)");
         }
         
-        // Always show fertilizer if not added
         if (!hasFertilizer) {
             decorationOptions.push_back("Extra Fertilizer (+R80.00)");
         }
@@ -994,7 +947,6 @@ private:
             }
         }
         
-        // Show what's been added
         Elements addedDecorations;
         addedDecorations.push_back(text("Current decorations:") | bold);
         if (hasPot || hasWrapping || hasFertilizer) {
@@ -1052,7 +1004,6 @@ private:
             std::ostringstream priceStream;
             priceStream << std::fixed << std::setprecision(2) << itemCost;
             
-            // Truncate name if too long
             std::string itemName = p->getName();
             if (itemName.length() > 50) {
                 itemName = itemName.substr(0, 47) + "...";
@@ -1146,7 +1097,7 @@ private:
         
         auto cartInfo = text("Current cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
                         color(Color::Cyan) | dim;
-        auto seasonInfo = text("Season: " + nursery->getSeason()) | 
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | 
                          color(Color::Yellow) | dim;
         
         return vbox({
@@ -1178,8 +1129,6 @@ private:
         
         Receipt* selectedReceipt = receipts[selectedOrderIndex];
         const std::vector<Product*>* plants = selectedReceipt->getPlants();
-        
-        // Build plant list with checkboxes
         Elements plantElements;
         float runningTotal = 0.0f;
         
@@ -1484,9 +1433,8 @@ private:
     }
     
     bool handleDecorationInput(Event event) {
-        // Calculate max options dynamically
-        int maxOptions = 0; // "Done decorating"
-        if (!hasPot) maxOptions += 3; // 3 pot types
+        int maxOptions = 0;
+        if (!hasPot) maxOptions += 3;
         if (!hasWrapping) maxOptions += 1;
         if (!hasFertilizer) maxOptions += 1;
         
@@ -1507,12 +1455,10 @@ private:
     
     bool handleCheckoutSummaryInput(Event event) {
         if (event == Event::Return) {
-            // Complete the purchase
             performActualCheckout();
             return true;
         } 
         else if (event == Event::Character('b') || event == Event::Character('B')) {
-            // Cancel and return to main menu
             messageBuffer = "Checkout cancelled";
             currentView = MAIN_MENU;
             return true;
@@ -1531,7 +1477,6 @@ private:
             return true;
         } else if (event == Event::Character('r') || event == Event::Character('R')) {
             if (!receipts.empty() && selectedOrderIndex >= 0 && selectedOrderIndex < static_cast<int>(receipts.size())) {
-                // Initialize refund flags for the selected receipt
                 Receipt* selectedReceipt = receipts[selectedOrderIndex];
                 const std::vector<Product*>* plants = selectedReceipt->getPlants();
                 refundFlags.clear();
@@ -1559,11 +1504,9 @@ private:
             refundListSelected = std::min(static_cast<int>(plants->size()) - 1, refundListSelected + 1);
             return true;
         } else if (event == Event::Character(' ')) {
-            // Toggle selection
             refundFlags[refundListSelected] = !refundFlags[refundListSelected];
             return true;
         } else if (event == Event::Return) {
-            // Check if any items selected
             bool anySelected = false;
             for (bool flag : refundFlags) {
                 if (flag) {
@@ -1587,7 +1530,6 @@ private:
     }
     
     bool handleRefundConfirmationInput(Event) {
-        // Any key returns to past orders
         currentView = PAST_ORDERS;
         refundFlags.clear();
         refundResultMessage = "";
@@ -1637,7 +1579,6 @@ private:
             return;
         }
         
-        // Start the decoration flow and reset decoration flags
         currentDecoratingIndex = 0;
         decorationMenuSelected = 0;
         hasPot = false;
@@ -1679,7 +1620,6 @@ private:
             optionTypes.push_back(5);
         }
         
-        // Get the selected option type
         if (decorationMenuSelected < 0 || decorationMenuSelected >= static_cast<int>(optionTypes.size())) {
             return;
         }
@@ -1689,55 +1629,50 @@ private:
         Product* decorated = nullptr;
         
         if (selectedType == 0) {
-            // Done decorating this plant - move to next
             currentDecoratingIndex++;
             decorationMenuSelected = 0;
             hasPot = false;
             hasWrapping = false;
             hasFertilizer = false;
             messageBuffer = "Moving to next plant...";
-            
-            // If we've decorated all plants, show checkout summary
             if (currentDecoratingIndex >= static_cast<int>(order.size())) {
                 currentView = CHECKOUT_SUMMARY;
                 messageBuffer = "";
             }
         } else {
-            // Apply decoration
+            //Adding decorations
             switch (selectedType) {
-                case 1: // Ceramic Pot
+                case 1:
                     decorated = new CeramicPot(currentProduct);
                     order[currentDecoratingIndex] = decorated;
                     hasPot = true;
                     messageBuffer = "Added Ceramic Pot!";
                     break;
-                case 2: // Concrete Pot
+                case 2:
                     decorated = new ConcretePot(currentProduct);
                     order[currentDecoratingIndex] = decorated;
                     hasPot = true;
                     messageBuffer = "Added Concrete Pot!";
                     break;
-                case 3: // Clay Pot
+                case 3:
                     decorated = new ClayPot(currentProduct);
                     order[currentDecoratingIndex] = decorated;
                     hasPot = true;
                     messageBuffer = "Added Clay Pot!";
                     break;
-                case 4: // Kraft Wrapping
+                case 4:
                     decorated = new KraftWrapping(currentProduct);
                     order[currentDecoratingIndex] = decorated;
                     hasWrapping = true;
                     messageBuffer = "Added Kraft Wrapping!";
                     break;
-                case 5: // Extra Fertilizer
+                case 5:
                     decorated = new ExtraFertilizer(currentProduct);
                     order[currentDecoratingIndex] = decorated;
                     hasFertilizer = true;
                     messageBuffer = "Added Extra Fertilizer!";
                     break;
             }
-            
-            // Reset selection to top after adding decoration
             decorationMenuSelected = 0;
         }
     }
@@ -1750,7 +1685,6 @@ private:
             return;
         }
         
-        // Create flags vector (all true for successful checkout)
         std::vector<bool> flags(order.size(), true);
         
         CheckoutCommand* checkoutCmd = new CheckoutCommand(salesStaff, &order, &flags);
@@ -1778,54 +1712,39 @@ private:
         
         Receipt* selectedReceipt = receipts[selectedOrderIndex];
         const std::vector<Product*>* plants = selectedReceipt->getPlants();
-        
-        // Create a copy of the order for the refund
+
         std::vector<Product*> refundOrder = *plants;
-        
-        // Calculate total refunded BEFORE processing
         refundTotal = 0.0f;
         for (size_t i = 0; i < refundFlags.size(); i++) {
             if (refundFlags[i] && i < plants->size()) {
                 refundTotal += (*plants)[i]->getCost();
             }
         }
-        
-        // Remember the receipt count before processing
+
         size_t receiptCountBefore = receipts.size();
         
-        // IMPORTANT: Remove the old receipt BEFORE calling sendCommand
-        // because sendCommand will automatically add the new receipt via addReceipt()
+        //Remove the old receipt before calling sendCommands
         receipts.erase(receipts.begin() + selectedOrderIndex);
         
-        // Use nurseryStaff to reach Manager (correct chain)
         RefundCommand* refundCmd = new RefundCommand(nurseryStaff, &refundOrder, &refundFlags);
         auto result = customer->sendCommand(refundCmd);
         delete refundCmd;
         
-        // Parse the result
         std::string message = result.first;
         
-        // sendCommand adds the new receipt to the list automatically via addReceipt()
-        // and sets result.second to nullptr (see Customer.cpp line 30)
-        // So we need to check if an empty receipt was added
-        
-        // If a new receipt was added after removing the old one
         if (receipts.size() >= receiptCountBefore) {
-            // The new receipt would be the last one in the list
             Receipt* lastReceipt = receipts.back();
             if (lastReceipt != nullptr && lastReceipt->getPlants()->empty()) {
-                // Remove the empty receipt
+                //Remove the empty receipt
                 receipts.pop_back();
                 delete lastReceipt;
             }
         }
         
-        // Adjust selectedOrderIndex if needed
         if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
             selectedOrderIndex--;
         }
         
-        // Set result message for confirmation view
         refundResultMessage = message;
         currentView = REFUND_CONFIRMATION;
     }
