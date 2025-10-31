@@ -62,3 +62,7 @@ void Staff::registerMediator(StaffMediator* mediator) {
 void Staff::deregisterMediator(StaffMediator* mediator) {
     mediators.erase(remove(mediators.begin(), mediators.end(), mediator), mediators.end());
 }
+
+void Staff::update(const string& message) {
+    (void)message;
+}
