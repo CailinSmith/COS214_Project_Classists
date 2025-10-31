@@ -12,7 +12,6 @@ Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, Pr
 	this->height = 0.0;
 	this->currentState = new SeedState();
 	this->pruned = true; 
-	this->sold = false;
 	this->totalWater = 0;
 	this->name = name;
 	this->cost = 0.0; //ook testing purposes
@@ -154,10 +153,6 @@ void Plant::setHealth(float health) {
 
 float Plant::getHealth() {
 	return this->health;
-}
-
-void Plant::setSold(bool sold) {
-	this->sold = sold;
 }
 
 void Plant::setTotalWater(int total) {

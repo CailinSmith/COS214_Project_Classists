@@ -30,6 +30,7 @@ public:
     void setNext(Staff* nextStaff);
     void registerMediator(StaffMediator* mediator);
     void deregisterMediator(StaffMediator* mediator);
+    virtual void update(const string& message);
 protected:
     string name;
 	Staff* next;

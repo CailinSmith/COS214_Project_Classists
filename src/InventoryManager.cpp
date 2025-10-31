@@ -96,23 +96,9 @@ void InventoryManager::removeFromSale(Plant* plant) {
 void InventoryManager::notifyStaff(string message) {
     for(size_t i = 0; i < observerList.size(); i++)
 	{
-        if(observerList[i] != nullptr)
+        if(observerList[i] != nullptr && (observerList[i]->getPosition() == "Nursery staff" || observerList[i]->getPosition() == "Manager"))
 		{
-            NurseryStaff* nurseryStaff = dynamic_cast<NurseryStaff*>(observerList[i]);
-            if(nurseryStaff)
-			{
-                nurseryStaff->update(message);
-                continue;
-            }
-            
-            Manager* manager = dynamic_cast<Manager*>(observerList[i]);
-            if(manager)
-			{
-                manager->update(message);
-                continue;
-            }
-            
-            observerList[i]->receive(message);
+            observerList[i]->update(message);
         }
     }
 }
