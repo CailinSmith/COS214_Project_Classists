@@ -19,6 +19,9 @@ string Decorator::summary() {
 }
 
 string Decorator::getName() {
+    Plant* directCast = dynamic_cast<Plant*>(plant);
+    if (directCast != nullptr) 
+        return directCast->getName()+" -";  
     return plant->getName();
 }
 

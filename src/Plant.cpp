@@ -12,7 +12,6 @@ Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, Pr
 	this->height = 0.0;
 	this->currentState = new SeedState();
 	this->pruned = true; 
-	this->sold = false;
 	this->totalWater = 0;
 	this->name = name;
 	this->cost = 0.0; //ook testing purposes
@@ -121,7 +120,12 @@ float Plant::getHeight() {
 }
 
 void Plant::setHeight(float height) {
-	this->height = height;
+    if (height < 0) 
+        this->height = 0;
+    else if (height > 1) 
+        this->height = 1;
+    else
+	    this->height = height;
 }
 
 float Plant::getActualHeight() {
@@ -139,15 +143,16 @@ void Plant::setState(PlantState* state) {
 }
 
 void Plant::setHealth(float health) {
-	this->health = health;
+    if (health < 0) 
+        this->health = 0;
+    else if (health > 1) 
+        this->health = 1;
+    else
+	    this->health = health;
 }
 
 float Plant::getHealth() {
 	return this->health;
-}
-
-void Plant::setSold(bool sold) {
-	this->sold = sold;
 }
 
 void Plant::setTotalWater(int total) {
@@ -189,7 +194,8 @@ float Plant::calculateCost(string currSeason) {
 	float ncost =baseCost();
 	if (getHealth() >0.9)
 		ncost += baseCost()*(getHealth()-0.85);
-	ncost += seasonCost(currSeason);
+	if (currSeason!="")
+		ncost += seasonCost(currSeason);
 	cost=ncost;
 	return ncost;
 }

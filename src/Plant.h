@@ -29,7 +29,6 @@ private:
 	PlantState* currentState;
 	int maxHeight;
 	bool pruned;  
-	bool sold;
 	string category;
 	int totalWater;
 	string name;
@@ -74,8 +73,6 @@ public:
 	void setHealth(float health);
 
 	float getHealth();
-
-	void setSold(bool sold);
 
 	void setTotalWater(int total);
 

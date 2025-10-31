@@ -9,9 +9,14 @@ float KraftWrapping::calculateCost(string currentSeason) {
 }
 
 string KraftWrapping::summary() {
-    return Decorator::summary() + "Additional resources: Kraft Wrapping\n";
+    return Decorator::summary() + "Extra: Kraft Wrapping\n";
+
 }
 
 string KraftWrapping::getName() {
-    return Decorator::getName() + " with kraft wrapping";
+    string baseName = Decorator::getName();
+    if (!baseName.empty() && baseName.back() == '-') {
+        return baseName + " Kraft Wrapping";
+    }
+    return baseName + ", Kraft Wrapping";
 }

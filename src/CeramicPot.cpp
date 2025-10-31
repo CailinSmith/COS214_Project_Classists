@@ -9,9 +9,13 @@ float CeramicPot::calculateCost(string currentSeason) {
 }
 
 string CeramicPot::summary() {
-    return Decorator::summary() + "Pot: Ceramic Pot \n";
+    return Decorator::summary() + "Extra: Ceramic Pot \n";
 }
 
 string CeramicPot::getName() {
-    return Decorator::getName() + ", in a Ceramic Pot";
+    string baseName = Decorator::getName();
+    if (!baseName.empty() && baseName.back() == '-') {
+        return baseName + " Ceramic Pot";
+    }
+    return baseName + ", Ceramic Pot";
 }

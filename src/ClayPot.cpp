@@ -9,10 +9,15 @@ float ClayPot::calculateCost(string currentSeason) {
 }
 
 string ClayPot::summary() {
-    return Decorator::summary() + "Pot: Clay Pot \n";
+    return Decorator::summary() + "Extra: Clay Pot \n";
+
 }
 
 string ClayPot::getName() {
-    return Decorator::getName() + ", in a Clay Pot";
+    string baseName = Decorator::getName();
+    if (!baseName.empty() && baseName.back() == '-') {
+        return baseName + " Clay Pot";
+    }
+    return baseName + ", Clay Pot";
 }
 

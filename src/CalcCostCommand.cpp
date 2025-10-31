@@ -11,9 +11,12 @@ CalcCostCommand::~CalcCostCommand() {}
 void CalcCostCommand::execute() {
     if (plant == nullptr || nursery == nullptr) {
         cost = 0;
+        return;
     }
     std::string season = nursery->getSeason();
     cost = plant->calculateCost(season);
+    
+    
 }
 
 float CalcCostCommand::getCost() {

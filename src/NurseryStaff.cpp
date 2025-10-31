@@ -22,16 +22,17 @@ pair<string, Receipt*> NurseryStaff::handleRequest(const string& requestType, Pl
 			result.first = "Error: Nursery's InventoryManager is null.\n";
 			return result;
 		}
-		StaffCheckStockCommand cmd(plant, im);
-		cmd.execute();
-		int stock = cmd.getStock();
-		result.first = to_string(stock) + " units of " + plant->getName() + " are in stock.\n";
+        StaffCheckStockCommand* checkStockCommand = new StaffCheckStockCommand(plant, im);
+        setCommand(checkStockCommand); 
+		command->execute();
+		result.first = to_string(checkStockCommand->getStock()) + " units of " + plant->getName() + " are in stock.\n"; //not using command->getStock() as StaffCommand has no such method
 		return result;
 	}
 	else if(requestType == "AskInfo" && plant){
-		GetInfoCommand cmd(plant);
-		cmd.execute();
-		result.first = cmd.getInfo();
+        GetInfoCommand* getInfoCommand = new GetInfoCommand(plant);
+        setCommand(getInfoCommand);
+        command->execute();
+		result.first = getInfoCommand->getInfo();
 		return result;
 	}
 	else if(next){
