@@ -208,10 +208,11 @@ void NurseryFacade::runCustomerMenu() {
     cout << MENU_SEP << MENU_RESET << "\n";
     cout << "1) View sale plants\n";
     cout << "2) Browse by category\n";
-    cout << "3) View current order\n";
-    cout << "4) Checkout\n";
-    cout << "5) View past receipts\n";
-    cout << "6) Return\n";
+    cout << "3) View seasonal plants\n";
+    cout << "4) View current order\n";
+    cout << "5) Checkout\n";
+    cout << "6) View past receipts\n";
+    cout << "7) Return\n";
     cout << MENU_BLUE << "Choose: " << MENU_RESET;
         string line;
         if (!getline(cin, line)) break;
@@ -319,6 +320,10 @@ void NurseryFacade::runCustomerMenu() {
             }
 
         } else if (line == "3") {
+            listSeasonalPlants(true);  
+            cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
+            string cont; getline(cin, cont);
+        } else if (line == "4") {
             cout << "Current order items:\n";
             for (size_t i=0;i<currentOrder_.size();++i) {
                 cout << i+1 << ") " << currentOrder_[i]->getName() << " - R" << currentOrder_[i]->getCost() << "\n";
@@ -327,10 +332,10 @@ void NurseryFacade::runCustomerMenu() {
             cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
             string cont; getline(cin, cont);
         }
-        else if (line == "4") {
+        else if (line == "5") {
             performCheckout();
         }
-        else if (line == "5") {
+        else if (line == "6") {
             if (pastReceipts_.empty()) {
                 cout << "No past receipts available.\n";
                 continue;
@@ -394,7 +399,7 @@ void NurseryFacade::runCustomerMenu() {
                 }
             }
         }
-        else if (line == "6") break;
+        else if (line == "7") break;
         else cout << "Invalid option\n";
     }
 }
@@ -440,14 +445,15 @@ void NurseryFacade::runStaffMenu() {
                 case 8: return string("Switch staff");
                 case 9: return string("Remove plant from system");
                 case 10: return string("Add plant to nursery");
-                case 11: return string("Return");
+                case 11: return string("View seasonal plants");
+                case 12: return string("Return");
                 default: return string("");
             }
         };
 
         if (isSales) {
             // allowed actions for sales staff (omit 10 = "Add plant to nursery")
-            vector<int> allowed = {4,5,6,7,8,9,11};
+            vector<int> allowed = {4,5,6,7,8,9,11,12};
             for (size_t i = 0; i < allowed.size(); ++i) {
                 cout << i+1 << ") " << labelFor(allowed[i]) << "\n";
                 displayToActual.push_back(allowed[i]);
@@ -464,7 +470,8 @@ void NurseryFacade::runStaffMenu() {
             cout << "8) Switch staff\n";
             cout << "9) Remove plant from system\n";
             cout << "10) Add plant to nursery\n";
-            cout << "11) Return\n";
+            cout << "11) View seasonal plants\n";
+            cout << "12) Return\n";
             cout << MENU_BLUE << "Choose: " << MENU_RESET;
         }
         string line;
@@ -703,8 +710,13 @@ void NurseryFacade::runStaffMenu() {
             cout << "Notifications cleared. Press Enter to return to staff menu...";
             string tmp; getline(cin,tmp);
         }
-    else if (line == "11") break;
-    else if (line == "8") { switchRequested = true; break; }
+        else if (line == "11") {
+            listSeasonalPlants();
+            cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET;
+            string tmp; getline(cin, tmp);
+        }
+        else if (line == "12") break;
+        else if (line == "8") { switchRequested = true; break; }
         else if (line == "9") {
             cout << "Remove from (s)ale or (n)ursery? "; string which; getline(cin, which);
 
@@ -986,6 +998,75 @@ void NurseryFacade::listPlantsInCategory(const std::string &category) {
         }
         ++idx;
     }
+}
+
+void NurseryFacade::listSeasonalPlants(bool customerView) {
+    if (!nursery_) {
+        cout << "Nursery not available\n";
+        return;
+    }
+    
+    lock_guard<mutex> lk(mtx_);
+    string currentSeason = nursery_->getSeason();
+    
+    cout << endl;
+    cout << MENU_GREEN << "========================================" << MENU_RESET << endl;
+    cout << MENU_GREEN << "  SEASONAL PLANTS (" << currentSeason << ")" << MENU_RESET << endl;
+    cout << MENU_GREEN << "========================================" << MENU_RESET << endl;
+    cout << endl;
+    
+    // Create appropriate iterator based on view type
+    Iterator<Plant>* seasonalIterator = nullptr;
+    if (customerView) {
+        // Customers only see plants for sale
+        seasonalIterator = manager_->createSaleIterator(currentSeason);
+    } else {
+        // Staff see all plants (both nursery and sale)
+        seasonalIterator = manager_->createIterator(currentSeason);
+    }
+    
+    if (!seasonalIterator) {
+        cout << "Unable to create iterator for season: " << currentSeason << endl;
+        return;
+    }
+    
+    // Collect all seasonal plants
+    vector<Plant*> seasonalPlants;
+    for (Plant* plant = seasonalIterator->first(); !seasonalIterator->isDone(); plant = seasonalIterator->next()) {
+        if (plant != nullptr) {
+            seasonalPlants.push_back(plant);
+        }
+    }
+    
+    if (seasonalPlants.empty()) {
+        if (customerView) {
+            cout << "No plants for sale for the current season (" << currentSeason << ").\n";
+        } else {
+            cout << "No plants available for the current season (" << currentSeason << ").\n";
+        }
+    } else {
+        cout << "Found " << seasonalPlants.size() << " plant(s) for " << currentSeason << " season:\n";
+        cout << endl;
+        
+        int idx = 1;
+        for (Plant* plant : seasonalPlants) {
+            if (customerView) {
+                cout << idx << ") " << plant->getName() 
+                     << " - R" << plant->getCost() 
+                     << " (Category: " << plant->getCategory() << ")" << endl;
+            } else {
+                string location = manager_->isInSale(plant) ? "For Sale" : "In Nursery";
+                cout << idx << ") " << plant->getName() 
+                     << " - R" << plant->getCost() 
+                     << " [" << location << "]"
+                     << " (Category: " << plant->getCategory() << ")" << endl;
+            }
+            idx++;
+        }
+    }
+    
+    cout << endl;
+    delete seasonalIterator;
 }
 
 size_t NurseryFacade::getStockCountByName(const std::string &name) {
