@@ -134,6 +134,11 @@ private:
     std::string refundResultMessage;
     float refundTotal;
     
+    //scroll offsets
+    int plantListScrollOffset;
+    int checkoutScrollOffset;
+    int refundScrollOffset;
+    
     std::vector<std::string> categories;
     std::vector<std::string> seasons;
     std::string selectedCategory;

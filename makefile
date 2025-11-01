@@ -111,9 +111,9 @@ demo: $(CORE_OBJS) $(DEMO_OBJ)
 	$(CXX) $(CXXFLAGS) -o $(BUILD_DIR)/demo $^
 
 # =========================
-# Run demo application
+# Run CLI application
 # =========================
-rundemo: setup demo
+runcli: setup demo
 	./$(BUILD_DIR)/demo
 
 # =========================
@@ -235,7 +235,7 @@ help:
 	@echo "  make install-deps        Install FTXUI dependencies (run first!)"
 	@echo "  make rungui              Build and run the GUI application"
 	@echo "  make run                 Build and run the CLI application"
-	@echo "  make rundemo             Build and run the demo/facade application"
+	@echo "  make runcli              Build and run the command line interface"
 	@echo ""
 	@echo "----------------------------------------------------------------------------"
 	@echo "BUILD TARGETS:"
@@ -248,9 +248,8 @@ help:
 	@echo "----------------------------------------------------------------------------"
 	@echo "RUN TARGETS:"
 	@echo "----------------------------------------------------------------------------"
-	@echo "  make run                 Build and run CLI application"
 	@echo "  make rungui              Build and run GUI application"
-	@echo "  make rundemo             Build and run demo/facade application"
+	@echo "  make runcli              Build and run Command Line Interface"
 	@echo ""
 	@echo "----------------------------------------------------------------------------"
 	@echo "TESTING:"
@@ -298,8 +297,8 @@ help:
 	@echo ""
 
 # =========================
-# Phony targets, they tell the makefile these are not files
+# Phony targets- they tell the makefile these are not files
 # =========================
 
-.PHONY: default all clean clean-all test setup install-deps rungui gui check-ftxui run help demo rundemo itests val-test val-main val-all
+.PHONY: default all clean clean-all test setup install-deps rungui gui check-ftxui run help demo runcli itests val-test val-main val-all
 
