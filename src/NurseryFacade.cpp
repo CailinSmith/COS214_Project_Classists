@@ -18,6 +18,9 @@
 #include "AskInfoCommand.h"
 #include "CheckStockCommand.h"
 #include "RefundCommand.h"
+#include "WaterCommand.h"
+#include "PruneCommand.h"
+#include "FertiliseCommand.h"
 #include "Spring.h"
 #include "Summer.h"
 #include "Autumn.h"
@@ -615,7 +618,16 @@ void NurseryFacade::runStaffMenu() {
                         Plant* p = listing[idx-1];
                         cout << "Care options: 1) water 2) prune 3) fertilise\n";
                         string opt; getline(cin,opt);
-                        if (opt=="1") p->water(); else if (opt=="2") p->prune(); else if (opt=="3") p->fertilise();
+                        if (opt=="1") {
+                            WaterCommand waterCmd(p);
+                            waterCmd.execute();
+                        } else if (opt=="2") {
+                            PruneCommand pruneCmd(p);
+                            pruneCmd.execute();
+                        } else if (opt=="3") {
+                            FertiliseCommand fertiliseCmd(p);
+                            fertiliseCmd.execute();
+                        }
                         cout << "Done." << "\n";
                         break;
                     } else {
@@ -1290,9 +1302,15 @@ void NurseryFacade::automatedStaffLoop() {
 
         if (!p) continue;
 
-        p->water();
-        p->fertilise();
-        p->prune();
+        WaterCommand waterCmd(p);
+        waterCmd.execute();
+        
+        FertiliseCommand fertiliseCmd(p);
+        fertiliseCmd.execute();
+        
+        PruneCommand pruneCmd(p);
+        pruneCmd.execute();
+        
         p->changeHealth();
 
         if (p->getState() == "ReadyForSale") {
