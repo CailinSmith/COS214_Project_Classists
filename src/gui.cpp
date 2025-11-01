@@ -1676,32 +1676,38 @@ void PlantShopGUI::processMultiItemRefund() {
         Receipt* selectedReceipt = receipts[selectedOrderIndex];
         const std::vector<Product*>* plants = selectedReceipt->getPlants();
 
-        std::vector<Product*> refundOrder = *plants;
+        std::vector<Product*> toRefund;
         refundTotal = 0.0f;
-        for (size_t i = 0; i < refundFlags.size(); i++) {
-            if (refundFlags[i] && i < plants->size()) {
-                refundTotal += (*plants)[i]->getCost();
+        for (size_t i = 0; i < refundFlags.size() && i < plants->size(); i++) {
+            if (refundFlags[i]) {
+                Product* p = (*plants)[i];
+                toRefund.push_back(p);
+                refundTotal += p->getCost();
             }
         }
-        //Remove the old receipt before calling sendCommands
-        receipts.erase(receipts.begin() + selectedOrderIndex);
         
-        RefundCommand* refundCmd = new RefundCommand(nurseryStaff, &refundOrder, &refundFlags);
-        auto result = customer->sendCommand(refundCmd);
-        delete refundCmd;
-        
-        std::string message = result.first;
-        
-        //Manager now modifies refundOrder directly, keeping only remaining items
-        //Create a new receipt if there are remaining items
-        if (!refundOrder.empty()) {
-            Receipt* newReceipt = new Receipt(refundOrder);
-            receipts.insert(receipts.begin() + selectedOrderIndex, newReceipt);
-        } else if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
-            selectedOrderIndex--;
+        if (toRefund.empty()) {
+            messageBuffer = "No items selected for refund";
+            currentView = REFUND_CONFIRMATION;
+            return;
         }
         
-        refundResultMessage = message;
+        for (Product* p : toRefund) {
+            selectedReceipt->removeProduct(p); 
+            delete p;  
+        }
+        
+        if (selectedReceipt->getPlants()->empty()) {
+            receipts.erase(receipts.begin() + selectedOrderIndex);
+            delete selectedReceipt;
+            if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
+                selectedOrderIndex--;
+            }
+            refundResultMessage = "All items refunded - receipt removed.";
+        } else {
+            refundResultMessage = "Partial refund processed - receipt updated.";
+        }
+        
         currentView = REFUND_CONFIRMATION;
     }
 

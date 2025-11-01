@@ -153,8 +153,66 @@ val-main: $(TARGET)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TARGET)
 
 # =========================
+# Checkout Memory Test
+# =========================
+CHECKOUT_TEST_SRC := tests/test_checkout_memory.cpp
+CHECKOUT_TEST_OBJ := $(BUILD_DIR)/test_checkout_memory.o
+CHECKOUT_TEST_TARGET := $(BUILD_DIR)/test_checkout_memory
+
+$(CHECKOUT_TEST_TARGET): $(CORE_OBJS) $(CHECKOUT_TEST_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(CHECKOUT_TEST_OBJ): $(CHECKOUT_TEST_SRC)
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+.PHONY: test-checkout
+test-checkout: $(CHECKOUT_TEST_TARGET)
+	./$(CHECKOUT_TEST_TARGET)
+
+.PHONY: val-checkout
+val-checkout: $(CHECKOUT_TEST_TARGET)
+	@echo "Running valgrind on checkout memory test"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(CHECKOUT_TEST_TARGET)
+
+# =========================
+# Decorated Checkout Memory Test
+# =========================
+DECORATED_TEST_SRC := tests/test_decorated_checkout.cpp
+DECORATED_TEST_OBJ := $(BUILD_DIR)/test_decorated_checkout.o
+DECORATED_TEST_TARGET := $(BUILD_DIR)/test_decorated_checkout
+
+$(DECORATED_TEST_TARGET): $(CORE_OBJS) $(DECORATED_TEST_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(DECORATED_TEST_OBJ): $(DECORATED_TEST_SRC)
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+.PHONY: test-decorated
+test-decorated: $(DECORATED_TEST_TARGET)
+	./$(DECORATED_TEST_TARGET)
+
+.PHONY: val-decorated
+val-decorated: $(DECORATED_TEST_TARGET)
+	@echo "Running valgrind on decorated checkout memory test"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(DECORATED_TEST_TARGET)
+
+# Run all memory tests
+.PHONY: test-memory
+test-memory: test-checkout test-decorated
+
+.PHONY: val-memory
+val-memory: val-checkout val-decorated
+
+# =========================
 # Setup / Clean
 # =========================
+.PHONY: val-gui
+val-gui: $(GUI_TARGET)
+	@echo "Running valgrind on GUI application ($(GUI_TARGET))"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(GUI_TARGET)
+
 setup:
 	mkdir -p $(BUILD_DIR)
 

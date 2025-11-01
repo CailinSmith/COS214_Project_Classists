@@ -50,20 +50,6 @@ pair<string, Receipt*> Manager::handleRequest(const string& requestType, Plant* 
         for (auto p : remaining) order->push_back(p);
         result.second = nullptr;
 
-
-        if (nursery) {
-            InventoryManager* im = nursery->getInventoryManager();
-            if (im) {
-                for (Product* p : refundedPlants) {
-                    if (!p) continue;
-                    Plant* plantPtr = p->getBasePlant();
-                    if (plantPtr && !im->isInNursery(plantPtr)) {
-                        im->addToNursery(plantPtr);
-                    }
-                }
-            }
-        }
-
         return result;
     }
     return result;

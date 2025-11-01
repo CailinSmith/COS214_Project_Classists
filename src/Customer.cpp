@@ -17,7 +17,7 @@ Customer::~Customer(){
 }
 
 void Customer::addReceipt(Receipt* r){
-    receipts.push_back(new Receipt(*r->getPlants()));
+    receipts.push_back(r);
 }
 
 pair<string, Receipt*> Customer::sendCommand(CustomerCommand* cmd){
@@ -28,8 +28,8 @@ pair<string, Receipt*> Customer::sendCommand(CustomerCommand* cmd){
             addReceipt(res.second);
             // addReceipt copied the receipt into customer's storage. delete
             // the temporary receipt returned by the command to avoid leaking it.
-            delete res.second;
-            res.second = nullptr;
+            // delete res.second;
+            // res.second = nullptr;
             order.clear();  // Clear but don't delete products
         }
         return res;

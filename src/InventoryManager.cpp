@@ -252,7 +252,13 @@ InventoryManager::~InventoryManager() {
 		nursery->clearInventoryManager();
 	}
 
-	//dont delete plants, just clear vectors
+	for (size_t i = 0; i < forSale.size(); ++i) {
+		delete forSale[i];
+	}
+	for (size_t i = 0; i < inNursery.size(); ++i) {
+		delete inNursery[i];
+	}
+	
 	forSale.clear();
 	inNursery.clear();
 	observerList.clear();

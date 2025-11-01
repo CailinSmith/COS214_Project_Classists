@@ -103,6 +103,15 @@ NurseryFacade::NurseryFacade(InventoryManager* mgr) {
 NurseryFacade::~NurseryFacade() {
     stop();
 
+    for (Receipt* r : pastReceipts_) {
+        delete r;
+    }
+    pastReceipts_.clear();
+
+    currentOrder_.clear();
+
+    soldProducts_.clear();
+
     if (manager_) {
         delete manager_;
         manager_ = nullptr;
@@ -362,43 +371,55 @@ void NurseryFacade::runCustomerMenu() {
             if (op == "b" || op == "B") continue;
             if (op == "r" || op == "R") {
                 const std::vector<Product*>* plants = chosen->getPlants();
-                if (!plants || plants->empty()) { cout << "Nothing to refund on this receipt.\n"; continue; }
-                vector<Product*> orderCopy;
-                for (auto p : *plants) orderCopy.push_back(p);
-                vector<bool> flags(orderCopy.size(), false);
-                for (size_t i=0;i<orderCopy.size();++i) {
-                    Product* p = orderCopy[i];
+                if (!plants || plants->empty()) { 
+                    cout << "Nothing to refund on this receipt.\n"; 
+                    continue; 
+                }
+                
+                vector<Product*> plantsToCheck;
+                for (auto p : *plants) plantsToCheck.push_back(p);
+                
+                vector<Product*> toRefund;
+                for (Product* p : plantsToCheck) {
                     string pname = p ? p->getName() : string("<unknown>");
                     while (true) {
-                        cout << "Refund " << pname << "? (y/n): "; string a; if (!getline(cin,a)) break;
-                        if (a == "y" || a == "Y") { flags[i] = true; break; }
-                        if (a == "n" || a == "N") { flags[i] = false; break; }
+                        cout << "Refund " << pname << "? (y/n): "; 
+                        string a; 
+                        if (!getline(cin, a)) break;
+                        if (a == "y" || a == "Y") { 
+                            toRefund.push_back(p); 
+                            break; 
+                        }
+                        if (a == "n" || a == "N") { 
+                            break; 
+                        }
                         cout << "Please enter 'y' or 'n'.\n";
                     }
                 }
                 
-                pastReceipts_.erase(pastReceipts_.begin() + idx);
-                delete chosen;
+                if (toRefund.empty()) {
+                    cout << "No items refunded.\n";
+                    continue;
+                }
                 
-                RefundCommand cmd(managerStaff_, &orderCopy, &flags);
-                auto res = cmd.execute();
-                cout << "Refund result: " << res.first << "\n";
+                float refundTotal = 0.0f;
+                Nursery* nursery = Nursery::getInstance();
+                string season = nursery ? nursery->getSeason() : "";
                 
-                if (res.second) {
-                    const std::vector<Product*>* rp = res.second->getPlants();
-                    if (rp && !rp->empty()) {
-                        pastReceipts_.push_back(res.second);
-                        cout << "Updated receipt:\n" << res.second->toString() << "\n";
-                    } else {
-                        delete res.second;
-                        cout << "All items refunded - receipt removed.\n";
-                    }
-                } else if (!orderCopy.empty()) {
-                    Receipt* newReceipt = new Receipt(orderCopy);
-                    pastReceipts_.push_back(newReceipt);
-                    cout << "Updated receipt:\n" << newReceipt->toString() << "\n";
-                } else {
+                for (Product* p : toRefund) {
+                    refundTotal += p->calculateCost(season);
+                    chosen->removeProduct(p);  
+                    delete p; 
+                }
+                
+                cout << "Refund processed: R" << refundTotal << "\n";
+                
+                if (chosen->getPlants()->empty()) {
+                    pastReceipts_.erase(pastReceipts_.begin() + idx);
+                    delete chosen;
                     cout << "All items refunded - receipt removed.\n";
+                } else {
+                    cout << "Updated receipt:\n" << chosen->toString() << "\n";
                 }
             }
         }
