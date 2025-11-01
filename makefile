@@ -1,7 +1,7 @@
 # =========================
 # Project Configuration
 # =========================
-MAKEFLAGS += -j4 #add numeber to the j to limit the number of cores e.g. -j4
+MAKEFLAGS += -j8 #add numeber to the j to limit the number of cores e.g. -j4
 CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude -Isrc
 BUILD_DIR := build
@@ -46,10 +46,11 @@ DEMO_OBJ := $(BUILD_DIR)/demo_demo.o
 # =========================
 # Default target
 # =========================
-all: setup $(TARGET)
+# Default: build only CLI
+default: setup $(TARGET)
 
-# Build everything including GUI
-all-gui: setup $(TARGET) $(GUI_TARGET)
+# Build everything: CLI, GUI, and demo
+all: setup $(TARGET) $(GUI_TARGET) demo
 
 # =========================
 # Build main project
@@ -108,6 +109,12 @@ itests: setup $(TARGET)
 .PHONY: demo
 demo: $(CORE_OBJS) $(DEMO_OBJ)
 	$(CXX) $(CXXFLAGS) -o $(BUILD_DIR)/demo $^
+
+# =========================
+# Run demo application
+# =========================
+rundemo: setup demo
+	./$(BUILD_DIR)/demo
 
 # =========================
 # Run main binary
@@ -216,53 +223,83 @@ install-deps:
 		echo "FTXUI is already installed in $(DEPS_DIR)"; \
 	fi
 
-# Build just the GUI (without running it)
 gui: setup $(GUI_TARGET)
 
-# Build everything including GUI
-all-gui: setup $(OBJS) $(GUI_TARGET)
-
-# =========================
-# Help and Information
-# =========================
 help:
 	@echo ""
-	@echo "======================================================"
-	@echo "NURSERY MANAGEMENT SYSTEM - BUILD HELP"
-	@echo "======================================================"
+	@echo "\033[0;32m============================================================================\033[0m"
+	@echo "\033[0;32m                          🌿 GREENS ONLY\033[0m 🌿"
+	@echo "\033[0;32m============================================================================\033[0m"
 	@echo ""
 	@echo "QUICK START:"
-	@echo "  make install-deps    # Install FTXUI dependencies (run first!)"
-	@echo "  make rungui          # Build and run the GUI"
-	@echo "  make run             # Build and run the CLI application"
+	@echo "  make install-deps        Install FTXUI dependencies (run first!)"
+	@echo "  make rungui              Build and run the GUI application"
+	@echo "  make run                 Build and run the CLI application"
+	@echo "  make rundemo             Build and run the demo/facade application"
 	@echo ""
+	@echo "----------------------------------------------------------------------------"
 	@echo "BUILD TARGETS:"
-	@echo "  make                 # Build main application"
-	@echo "  make gui             # Build GUI application (no run)"
-	@echo "  make all             # Build main application"
-	@echo "  make all-gui         # Build everything including GUI"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  make                     Build CLI application only (default)"
+	@echo "  make all                 Build everything: CLI, GUI, and demo"
+	@echo "  make gui                 Build GUI application only (no run)"
+	@echo "  make demo                Build demo executable from demos/demo.cpp"
 	@echo ""
+	@echo "----------------------------------------------------------------------------"
+	@echo "RUN TARGETS:"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  make run                 Build and run CLI application"
+	@echo "  make rungui              Build and run GUI application"
+	@echo "  make rundemo             Build and run demo/facade application"
+	@echo ""
+	@echo "----------------------------------------------------------------------------"
 	@echo "TESTING:"
-	@echo "  make test            # Run unit tests"
-	@echo "  make val             # Run valgrind memory check (main + tests)"
-	@echo "  make val-test        # Run valgrind memory check (tests only)"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  make test                Build and run unit tests"
+	@echo "  make itests              Run integration tests (WSL/bash script)"
+	@echo "  make val-all             Run valgrind on both main and tests"
+	@echo "  make val-test            Run valgrind on unit tests only"
+	@echo "  make val-main            Run valgrind on main executable only"
 	@echo ""
+	@echo "----------------------------------------------------------------------------"
 	@echo "CLEANUP:"
-	@echo "  make clean           # Remove build/ directory"
-	@echo "  make clean-all       # Remove build/ and .deps/ (all dependencies)"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  make clean               Remove build/ directory"
+	@echo "  make clean-all           Remove build/ and .deps/ (all dependencies)"
 	@echo ""
+	@echo "----------------------------------------------------------------------------"
 	@echo "DEPENDENCIES:"
-	@echo "  make install-deps    # Install/build FTXUI from source"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  make install-deps        Install/build FTXUI from source (~2-3 min)"
+	@echo "  make check-ftxui         Verify FTXUI is installed correctly"
 	@echo ""
+	@echo "----------------------------------------------------------------------------"
+	@echo "SYSTEM REQUIREMENTS:"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  GUI requires:  cmake, g++, git, chafa (for image rendering)"
+	@echo "  CLI requires:  g++ only"
+	@echo "  Testing:       valgrind (optional, for memory checks)"
+	@echo ""
+	@echo "  Install on Ubuntu/Debian:"
+	@echo "    sudo apt-get install cmake g++ git build-essential chafa valgrind"
+	@echo ""
+	@echo "----------------------------------------------------------------------------"
 	@echo "NOTES:"
-	@echo "  - FTXUI setup: ~2-3 minutes (one-time only)"
-	@echo "  - GUI requires: cmake, g++, git"
-	@echo "  - Main app works without GUI"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  • FTXUI is installed locally in .deps/ (not system-wide)"
+	@echo "  • First build downloads and compiles FTXUI (~2-3 minutes)"
+	@echo "  • Use 'make clean-all' to remove all dependencies"
+	@echo "  • Parallel builds enabled with -j4 (modify MAKEFLAGS for more cores)"
+	@echo "  • Main CLI application works without GUI dependencies"
+	@echo ""
+	@echo "\033[1;32m============================================================================\033[0m"
+	@echo "\033[1;32m              Thanks for checking our project out! \033[0m"
+	@echo "\033[1;32m============================================================================\033[0m"
 	@echo ""
 
 # =========================
-# Phony targets
+# Phony targets, they tell the makefile these are not files
 # =========================
 
-.PHONY: all all-gui clean clean-all test setup val install-deps rungui gui check-ftxui run help val-test
+.PHONY: default all clean clean-all test setup install-deps rungui gui check-ftxui run help demo rundemo itests val-test val-main val-all
 
