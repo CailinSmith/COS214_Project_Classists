@@ -21,8 +21,17 @@
  */
 class SeasonIterator : public Iterator<Plant> {
 private:
+    /**
+     * @brief Vector of Plant pointers to iterate through
+     */
     std::vector<Plant*> plants;
+    /**
+     * @brief The target season to filter plants by
+     */
     std::string targetSeason;
+    /**
+     * @brief Current index in the plants vector
+     */
     size_t currentIndex;
     
     /**

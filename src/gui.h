@@ -89,26 +89,71 @@ using namespace ftxui;
  * manage their cart, make purchases, and handle refunds. It integrates with the
  * inventory management system, nursery operations, and staff members.
  * 
+ * @see InventoryManager
+ * @see Nursery
+ * @see Customer
  */
 class PlantShopGUI {
 private:
+    /**
+     * @brief FTXUI ScreenInteractive for rendering the GUI
+     */
     ScreenInteractive screen;
-    
+
+    /**
+     * @brief Inventory manager for managing plant inventory
+     */
     InventoryManager* inventoryManager;
+    /**
+     * @brief Nursery for managing nursery operations
+     */
     Nursery* nursery;
+    /**
+     * @brief Customer using the GUI
+     */
     Customer* customer;
     
+    /**
+     * @brief Staff members for handling various operations
+     */
     Staff* nurseryStaff;
+    /**
+     * @brief Staff members for handling various operations
+     */
     Staff* salesStaff;
+    /**
+     * @brief Staff members for handling various operations
+     */
     Staff* managerStaff;
     
+    /**
+     * @brief Variable for main menu navigation and selections
+     */
     int mainMenuSelected;
+    /**
+     * @brief Variable for category menu navigation and selections
+     */
     int categoryMenuSelected;
+    /**
+     * @brief Variable for plant list navigation and selections
+     */
     int plantListSelected;
+    /**
+     * @brief Variable for details view scrolling
+     */
     int detailsScrollOffset;
+    /**
+     * @brief Input buffer for text input fields
+     */
     std::string inputBuffer;
+    /**
+     * @brief Message buffer for displaying messages to the user
+     */
     std::string messageBuffer;
     
+    /**
+     * @brief Enum representing the different views in the GUI
+     */
     enum View {
         MAIN_MENU,
         VIEW_BY_SELECTION,
@@ -124,34 +169,105 @@ private:
         REFUND_SELECTION,
         REFUND_CONFIRMATION
     };
+    /**
+     * @brief Current view being displayed
+     */
     View currentView;
     
+    /**
+     * Variable for the cart list navigation and selections
+    */ 
     int cartListSelected;
+    /**
+     * Variable for the decoration menu navigation and selections
+    */
     int decorationMenuSelected;
+    /**
+     * Variable for the checkout summary navigation and selections
+    */
     int viewBySelected;
+    /**
+     * Variable for the season menu navigation and selections
+    */
     int seasonMenuSelected;
+    /**
+     * Variable for the decorating index selection
+    */
     int currentDecoratingIndex;
+    /**
+     * Flag for if pot decorations have been applied to the selected plant
+    */
     bool hasPot;
+    /**
+     * Flag for if wrapping decorations have been applied to the selected plant
+    */
     bool hasWrapping;
+    /**
+     * Flag for if fertilizer decorations have been applied to the selected plant
+    */
     bool hasFertilizer;
+    /**
+     * Flag for if viewing by season
+    */
     bool viewingBySeason;
     
+    /**
+     * Variables for refund selection
+    */
     std::vector<bool> refundFlags;
+    /**
+     * Variable for the refund list navigation and selections
+    */
     int refundListSelected;
+    /**
+     * Variable for refund result message
+    */
     std::string refundResultMessage;
+    /**
+     * Variable for refund total amount
+    */
     float refundTotal;
     
-    //scroll offsets
+    /**
+     * Scroll offsets for various views
+    */
     int plantListScrollOffset;
+    /**
+     * Scroll offset for checkout summary view
+    */
     int checkoutScrollOffset;
+    /**
+     * Scroll offset for refund confirmation view
+    */
     int refundScrollOffset;
     
+    /**
+     * @brief Lists for categories of plant types
+     */
     std::vector<std::string> categories;
+    /**
+     * @brief Lists for the different seasons
+     */
     std::vector<std::string> seasons;
+    /**
+     * @brief Currently selected category
+     */
     std::string selectedCategory;
+    /**
+     * @brief Currently selected season
+     */
     std::string selectedSeason;
+    /**
+     * @brief Currently loaded plants based on selection
+     */
     std::vector<Plant*> currentPlants;
+    /**
+     * @brief Currently selected plant
+     */
     Plant* selectedPlant;
+    /**
+     * @brief Currently selected order index for past orders
+     */
     int selectedOrderIndex;
 
     /**

@@ -36,9 +36,21 @@ using namespace std;
 class InventoryManager : public Aggregate, public Subject {
 
 private:
+    /**
+     * @brief Vectors to hold plants for sale and in the nursery
+     */
 	vector<Plant*> forSale;
+    /**
+     * @brief List of registered staff observers
+     */
 	vector<Staff*> observerList;
+    /**
+     * @brief Vectors to hold plants in nursery
+     */
 	vector<Plant*> inNursery;
+    /**
+     * @brief Priority mapping for plant categories
+     */
 	map<string, int> priority = {
 		{"Flower", 0},
 		{"Herb", 1},
@@ -49,7 +61,13 @@ private:
 		{"Indoor", 6},
 		{"Medicinal", 7}
 	};
+    /**
+     * @brief Inventory thresholds for notifications
+     */
 	size_t saleThreshold = 5;
+    /**
+     * @brief Inventory thresholds for notifications
+     */
 	size_t nurseryThreshold = 5;
 
 	/**
