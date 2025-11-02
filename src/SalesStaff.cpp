@@ -13,15 +13,8 @@ pair<string, Receipt*> SalesStaff::handleRequest(const string& requestType, Plan
         command->execute();
 		Receipt* receipt = checkoutCommand->getReceipt(); //not using command->getReceipt() as StaffCommand has no such method
 		if(receipt){
-			// Make a deep copy of the receipt to return to the caller. The
-			// StaffCheckoutCommand owns its receipt and will delete it in its
-			// destructor, so we must return an independent copy to avoid
-			// dangling pointers/use-after-free.
 			result.first = receipt->toString();
-			result.second = new Receipt(*receipt);
-			// The checkout command transferred ownership; we created a copy to
-			// return to the caller, so delete the original to avoid a leak.
-			delete receipt;
+			result.second = receipt;
 		}
 		else
 			result.first = "Error generating receipt\n";

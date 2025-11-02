@@ -41,31 +41,33 @@ TEST_CASE("Observer Pattern - Notification Triggering") {
     inventory->setSaleThreshold(2);
     inventory->setNurseryThreshold(2);
     inventory->registerObserver(staff);
-    Rose* rose = new Rose();
-    Basil* basil = new Basil();
     
     SUBCASE("Adding plants triggers notifications when below threshold") {
+        Rose* rose = new Rose();
         CHECK_NOTHROW(inventory->addToNursery(rose));
         CHECK(inventory->getNurseryCount() == 1);
     }
     
     SUBCASE("Removing plants triggers notifications when dropping below threshold") {
+        Rose* rose = new Rose();
+        Basil* basil = new Basil();
         inventory->addToNursery(rose);
         inventory->addToNursery(basil);
         CHECK(inventory->getNurseryCount() == 2);
         CHECK_NOTHROW(inventory->removeFromNursery(rose));
         CHECK(inventory->getNurseryCount() == 1);
+        delete rose;
     }
     
     SUBCASE("Moving plants between nursery and sale areas") {
+        Rose* rose = new Rose();
         inventory->addToNursery(rose);
         CHECK_NOTHROW(inventory->removeFromNursery(rose));
         CHECK_NOTHROW(inventory->addToSale(rose));
         CHECK(inventory->getSaleCount() == 1);
         CHECK(inventory->getNurseryCount() == 0);
     }
-    delete rose;
-    delete basil;
+    
     delete staff;
     delete inventory;
 }
@@ -76,21 +78,22 @@ TEST_CASE("Observer Pattern - Multiple Observers") {
     Manager* manager = new Manager("TestManager");
     inventory->setSaleThreshold(1);
     inventory->setNurseryThreshold(1);
-    Rose* rose = new Rose();
     
     SUBCASE("Multiple observers receive notifications") {
+        Rose* rose = new Rose();
         inventory->registerObserver(staff);
         inventory->registerObserver(manager);
         CHECK_NOTHROW(inventory->addToNursery(rose));
     }
     
     SUBCASE("Deregistered observer stops receiving notifications") {
+        Rose* rose = new Rose();
         inventory->registerObserver(staff);
         inventory->registerObserver(manager);
         inventory->deregisterObserver(manager);
         CHECK_NOTHROW(inventory->addToSale(rose));
     }
-    delete rose;
+    
     delete staff;
     delete manager;
     delete inventory;
@@ -110,10 +113,10 @@ TEST_CASE("Observer Pattern - Staff Response Functionality") {
 
 TEST_CASE("Observer Pattern - Inventory Access for Staff") {
     InventoryManager* inventory = new InventoryManager();
-    Rose* rose = new Rose();
-    Basil* basil = new Basil();
     
     SUBCASE("Staff can access nursery plants list") {
+        Rose* rose = new Rose();
+        Basil* basil = new Basil();
         inventory->addToNursery(rose);
         inventory->addToNursery(basil);
         const auto& nurseryPlants = inventory->getNurseryPlants();
@@ -121,6 +124,7 @@ TEST_CASE("Observer Pattern - Inventory Access for Staff") {
     }
     
     SUBCASE("Staff can access for sale plants list") {
+        Rose* rose = new Rose();
         inventory->addToSale(rose);
         const auto& salePlants = inventory->getForSalePlants();
         CHECK(salePlants.size() == 1);
@@ -132,8 +136,7 @@ TEST_CASE("Observer Pattern - Inventory Access for Staff") {
         CHECK(nurseryPlants.size() == 0);
         CHECK(salePlants.size() == 0);
     }
-    delete rose;
-    delete basil;
+    
     delete inventory;
 }
 
@@ -143,9 +146,9 @@ TEST_CASE("Observer Pattern - Integration with Existing Operations") {
     inventory->setSaleThreshold(1);
     inventory->setNurseryThreshold(1);
     inventory->registerObserver(staff);
-    Rose* rose = new Rose();
     
     SUBCASE("Observer pattern doesn't interfere with existing functionality") {
+        Rose* rose = new Rose();
         CHECK_NOTHROW(inventory->addToNursery(rose));
         CHECK(inventory->isInNursery(rose));
         CHECK_FALSE(inventory->isInSale(rose));
@@ -155,15 +158,18 @@ TEST_CASE("Observer Pattern - Integration with Existing Operations") {
         CHECK(inventory->isInSale(rose));
         CHECK_NOTHROW(inventory->removeFromSale(rose));
         CHECK_FALSE(inventory->isInSale(rose));
+        delete rose;
     }
     
     SUBCASE("Count methods work correctly with observers") {
+        Rose* rose = new Rose();
         inventory->addToNursery(rose);
         CHECK(inventory->getNurseryCount() == 1);
+        inventory->removeFromNursery(rose); 
         inventory->addToSale(rose);
         CHECK(inventory->getSaleCount() == 1);
     }
-    delete rose;
+    
     delete staff;
     delete inventory;
 }
@@ -192,9 +198,8 @@ TEST_CASE("Observer Pattern - Update Function Testing") {
         inventory->registerObserver(manager);
         Rose* rose = new Rose();
         CHECK_NOTHROW(inventory->addToNursery(rose));
-        CHECK_NOTHROW(inventory->addToSale(rose));
-        delete rose;
     }
+    
     delete staff;
     delete manager;
     delete inventory;
@@ -234,7 +239,6 @@ TEST_CASE("Observer Pattern - Update Function Integration with Notification Syst
         inventory->registerObserver(manager);
         Rose* rose = new Rose();
         CHECK_NOTHROW(inventory->addToNursery(rose));
-        delete rose;
     }
     
     SUBCASE("Update function called only for registered observers") {
@@ -242,7 +246,6 @@ TEST_CASE("Observer Pattern - Update Function Integration with Notification Syst
         inventory->registerObserver(manager);
         Basil* basil = new Basil();
         CHECK_NOTHROW(inventory->addToSale(basil));
-        delete basil;
     }
     
     SUBCASE("Deregistered observer stops receiving update calls") {
@@ -253,9 +256,8 @@ TEST_CASE("Observer Pattern - Update Function Integration with Notification Syst
         inventory->deregisterObserver(staff1);
         CHECK_NOTHROW(inventory->removeFromNursery(rose));
         CHECK_NOTHROW(inventory->addToSale(rose));
-        
-        delete rose;
     }
+    
     delete staff1;
     delete staff2;
     delete manager;

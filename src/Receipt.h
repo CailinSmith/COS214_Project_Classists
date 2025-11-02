@@ -18,6 +18,8 @@ private:
     std::string date;
     std::string receiptContent; 
     std::vector<Product*> orderPlants;
+    
+    void regenerateReceiptContent();
 
 public:
     Receipt(const std::vector<Product*>& plants);
@@ -26,6 +28,8 @@ public:
     std::string getDate() const;
     std::string toString() const;
     const std::vector<Product*>* getPlants() const;
+    
+    Product* removeProduct(Product* product);
 };
 
 #endif

@@ -22,3 +22,6 @@ jobs:
 
       - name: Run unit tests
         run: make test
+
+      - name: Run Valgrind memory check
+        run: make val-all

@@ -5,9 +5,7 @@ Decorator::Decorator(Product* plant){
 }
 
 Decorator::~Decorator() {
-    if (plant != nullptr) {
-        delete plant;
-    }
+    delete plant;
 }
 
 float Decorator::calculateCost(string currentSeason) {

@@ -37,6 +37,7 @@ public:
     void setTickInterval(std::chrono::milliseconds tps) { tickInterval_ = tps; }
     void listSaleCategories();
     void listPlantsInCategory(const std::string &category);
+    void listSeasonalPlants(bool customerView = false);
     size_t getStockCountByName(const std::string &name);
 
 private:

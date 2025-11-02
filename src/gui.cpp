@@ -1676,32 +1676,64 @@ void PlantShopGUI::processMultiItemRefund() {
         Receipt* selectedReceipt = receipts[selectedOrderIndex];
         const std::vector<Product*>* plants = selectedReceipt->getPlants();
 
-        std::vector<Product*> refundOrder = *plants;
-        refundTotal = 0.0f;
-        for (size_t i = 0; i < refundFlags.size(); i++) {
-            if (refundFlags[i] && i < plants->size()) {
-                refundTotal += (*plants)[i]->getCost();
+        // Check if any items are selected for refund
+        bool anyRefund = false;
+        for (size_t i = 0; i < refundFlags.size() && i < plants->size(); i++) {
+            if (refundFlags[i]) {
+                anyRefund = true;
+                break;
             }
         }
-        //Remove the old receipt before calling sendCommands
-        receipts.erase(receipts.begin() + selectedOrderIndex);
         
-        RefundCommand* refundCmd = new RefundCommand(nurseryStaff, &refundOrder, &refundFlags);
-        auto result = customer->sendCommand(refundCmd);
-        delete refundCmd;
-        
-        std::string message = result.first;
-        
-        //Manager now modifies refundOrder directly, keeping only remaining items
-        //Create a new receipt if there are remaining items
-        if (!refundOrder.empty()) {
-            Receipt* newReceipt = new Receipt(refundOrder);
-            receipts.insert(receipts.begin() + selectedOrderIndex, newReceipt);
-        } else if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
-            selectedOrderIndex--;
+        if (!anyRefund) {
+            messageBuffer = "No items selected for refund";
+            currentView = REFUND_CONFIRMATION;
+            refundTotal = 0.0f;
+            return;
         }
         
-        refundResultMessage = message;
+        std::vector<Product*> receiptOrder;
+        for (auto p : *plants) {
+            receiptOrder.push_back(p);
+        }
+        
+        RefundCommand refundCmd(managerStaff, &receiptOrder, &refundFlags);
+        auto [resultMsg, unusedReceipt] = customer->sendCommand(&refundCmd);
+        
+        refundTotal = 0.0f;
+        size_t lastSpace = resultMsg.rfind(' ');
+        if (lastSpace != std::string::npos) {
+            try {
+                refundTotal = std::stof(resultMsg.substr(lastSpace + 1));
+            } catch(...) { 
+                refundTotal = 0.0f; 
+            }
+        }
+        
+        std::vector<Product*> refundedItems;
+        for (size_t i = 0; i < plants->size() && i < refundFlags.size(); i++) {
+            if (refundFlags[i]) {
+                refundedItems.push_back(const_cast<Product*>((*plants)[i]));
+            }
+        }
+        
+        for (Product* p : refundedItems) {
+            selectedReceipt->removeProduct(p);
+            delete p;  // We own the memory, so we delete it
+        }
+        
+        // If receipt is now empty, remove and delete it
+        if (selectedReceipt->getPlants()->empty()) {
+            receipts.erase(receipts.begin() + selectedOrderIndex);
+            delete selectedReceipt;
+            if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
+                selectedOrderIndex--;
+            }
+            refundResultMessage = "All items refunded - receipt removed.";
+        } else {
+            refundResultMessage = "Partial refund processed - receipt updated.";
+        }
+        
         currentView = REFUND_CONFIRMATION;
     }
 
