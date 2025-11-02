@@ -79,9 +79,16 @@ using namespace ftxui;
 
 /**
  * @class PlantShopGUI
- * @brief Main GUI class for the plant shop application using FTXUI
- * @author Jordan
- * @author Alex
+ * @author Jordan Naidoo
+ * @author Alex Lange
+ * @brief
+ * Main GUI class for the plant shop application using FTXUI
+ * 
+ * This class manages the entire graphical user interface for the plant shop,
+ * providing an interactive terminal-based interface for customers to browse plants,
+ * manage their cart, make purchases, and handle refunds. It integrates with the
+ * inventory management system, nursery operations, and staff members.
+ * 
  */
 class PlantShopGUI {
 private:
@@ -147,45 +154,221 @@ private:
     Plant* selectedPlant;
     int selectedOrderIndex;
 
-    // Private helper methods
+    /**
+     * @brief Initializes the plant inventory with demo plants
+     */
     void initializePlants();
+    
+    /**
+     * @brief Loads plants matching a specific category
+     * @param category The category name to filter plants by
+     */
     void loadPlantsForCategory(const std::string& category);
+    
+    /**
+     * @brief Loads plants matching a specific season
+     * @param season The season name to filter plants by
+     */
     void loadPlantsForSeason(const std::string& season);
+    
+    /**
+     * @brief Applies decorations to the currently selected plant
+     */
     void applyDecoration();
+    
+    /**
+     * @brief Processes refund for multiple items from past orders
+     */
     void processMultiItemRefund();
+    
+    /**
+     * @brief Displays the shopping cart view
+     */
     void showCart();
+    
+    /**
+     * @brief Initiates the checkout process flow
+     */
     void startCheckoutFlow();
+    
+    /**
+     * @brief Performs the actual checkout transaction
+     */
     void performActualCheckout();
     
-    // Rendering methods
+    /**
+     * @brief Renders the current view
+     * @return Element representing the rendered UI
+     */
     Element render();
+    
+    /**
+     * @brief Renders the main menu
+     * @return Element representing the main menu UI
+     */
     Element renderMainMenu();
+    
+    /**
+     * @brief Renders the view selection menu
+     * @return Element representing the view selection UI
+     */
     Element renderViewBySelection();
+    
+    /**
+     * @brief Renders the category selection menu
+     * @return Element representing the category selection UI
+     */
     Element renderCategorySelection();
+    
+    /**
+     * @brief Renders the season selection menu
+     * @return Element representing the season selection UI
+     */
     Element renderSeasonSelection();
+    
+    /**
+     * @brief Renders the plant list view
+     * @return Element representing the plant list UI
+     */
     Element renderPlantList();
+    
+    /**
+     * @brief Renders detailed information about a selected plant
+     * @return Element representing the plant details UI
+     */
     Element renderPlantDetails();
+    
+    /**
+     * @brief Renders the shopping cart
+     * @return Element representing the cart UI
+     */
     Element renderCart();
+    
+    /**
+     * @brief Renders the decoration menu
+     * @return Element representing the decoration menu UI
+     */
     Element renderDecorationMenu();
+    
+    /**
+     * @brief Renders the checkout summary
+     * @return Element representing the checkout summary UI
+     */
     Element renderCheckoutSummary();
+    
+    /**
+     * @brief Renders the stock check view
+     * @return Element representing the stock check UI
+     */
     Element renderStockCheck();
+    
+    /**
+     * @brief Renders the past orders view
+     * @return Element representing the past orders UI
+     */
     Element renderPastOrders();
+    
+    /**
+     * @brief Renders the refund selection view
+     * @return Element representing the refund selection UI
+     */
     Element renderRefundSelection();
+    
+    /**
+     * @brief Renders the refund confirmation view
+     * @return Element representing the refund confirmation UI
+     */
     Element renderRefundConfirmation();
     
-    // Input handling methods
+    /**
+     * @brief Handles input events
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleInput(Event event);
+    
+    /**
+     * @brief Handles input for the main menu
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleMainMenuInput(Event event);
+    
+    /**
+     * @brief Handles input for the view selection menu
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleViewByInput(Event event);
+    
+    /**
+     * @brief Handles input for the category selection menu
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleCategoryInput(Event event);
+    
+    /**
+     * @brief Handles input for the season selection menu
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleSeasonInput(Event event);
+    
+    /**
+     * @brief Handles input for the plant list view
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handlePlantListInput(Event event);
+    
+    /**
+     * @brief Handles input for the plant details view
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleDetailsInput(Event event);
+    
+    /**
+     * @brief Handles input for the cart view
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleCartInput(Event event);
+    
+    /**
+     * @brief Handles input for the decoration menu
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleDecorationInput(Event event);
+    
+    /**
+     * @brief Handles input for the checkout summary
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleCheckoutSummaryInput(Event event);
+    
+    /**
+     * @brief Handles input for the past orders view
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handlePastOrdersInput(Event event);
+    
+    /**
+     * @brief Handles input for the refund selection view
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleRefundSelectionInput(Event event);
+    
+    /**
+     * @brief Handles input for the refund confirmation view
+     * @param event The input event to handle
+     * @return true if the event was handled, false otherwise
+     */
     bool handleRefundConfirmationInput(Event event);
 
 public:
