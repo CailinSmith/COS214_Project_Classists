@@ -15,6 +15,7 @@ using namespace std;
  * @class NurseryStaff
  * @author Abhay Rooplall
  * @author Edwin Kusel
+ * @author Cailin Smith
  * @brief
  * Design Pattern: Chain of Responsibility, Observer
  * Participant: Concrete Handler, Concrete Observer

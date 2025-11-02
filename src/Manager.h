@@ -14,6 +14,7 @@ using namespace std;
  * @class Manager
  * @author Abhay Rooplall
  * @author Edwin Kusel
+ * @author Cailin Smith
  * @brief
  * Design Pattern: Chain of Responsibility, Mediator, Observer, Command
  * Participant: Concrete Handler, Concrete Colleague, Concrete Observer

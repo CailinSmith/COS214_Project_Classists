@@ -21,6 +21,7 @@ using namespace std;
  * @class Staff
  * @author Edwin Kusel
  * @author Abhay Rooplall
+ * @author Cailin Smith
  * 
  * @brief
  * Design pattern: Mediator, Chain of Responsibility, Command, Observer
