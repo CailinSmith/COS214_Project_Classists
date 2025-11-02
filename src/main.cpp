@@ -2035,6 +2035,7 @@ void RefundFlowTest() {
 
     InventoryManager* inventory = new InventoryManager();
     Nursery* nur = Nursery::getInstance(inventory);
+    (void) nur; //singleton instantiation
     
     cout << "Creating staff chain..." << endl;
     NurseryStaff nursery("Alice");

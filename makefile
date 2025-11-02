@@ -135,10 +135,10 @@ rungui: setup $(GUI_TARGET)
 .PHONY: val-all
 val-all: $(TARGET) $(TEST_TARGET)
 	@echo "Running valgrind on unit tests ($(TEST_TARGET))"
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_TARGET)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 ./$(TEST_TARGET)
 	@echo ""
 	@echo "Running valgrind on main executable ($(TARGET))"
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TARGET)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 ./$(TARGET)
 
 # Run valgrind only on unit tests (test runner)
 .PHONY: val-test
