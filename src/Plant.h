@@ -16,6 +16,7 @@ class PlantState;
 /**
  * @class Plant
  * @author Cailin Smith
+ * @author Edwin Kusel
  * @brief Abstract base class representing a plant product in the nursery system.
  * Design Pattern: State, Strategy, Template Method
  * Participant: Context (State), Context (Strategy)
