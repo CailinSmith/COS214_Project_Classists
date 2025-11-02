@@ -86,8 +86,8 @@ The system provides two interactive interfaces:
 
 | Profile | Name | Student number | Role |
 |---------|------|------|------|
-| <img src="assets/jordanZoomed.jpg" width="200" height="150"/> | Jordan Naidoo | u24664155 | Group leader |
-| <img src="assets/cailinImage.jpg" width="150"/> | Cailin Smith | u24570525 | Tui Maker |
+| <img src="assets/jordanZoomed.jpg" width="220" height="150"/> | Jordan Naidoo | u24664155 | Group Dictator |
+| <img src="assets/cailinImage.jpg" width="220" height="150"/> | Cailin Smith | u24570525 | CLM (Command line master) |
 | <img src="docs/team/member3.png" width="150"/> | Alex Lange | u24587312 | [Role] |
 | <img src="docs/team/member4.png" width="150"/> | Edwin Kusel | u24670058 | [Role] |
 | <img src="docs/team/member5.png" width="150"/> | Abhay Rooplall | u24568792 | [Role] |
