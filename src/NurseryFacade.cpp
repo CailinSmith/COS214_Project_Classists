@@ -22,6 +22,7 @@
 #include "WaterCommand.h"
 #include "PruneCommand.h"
 #include "FertiliseCommand.h"
+#include "StockCommand.h"
 #include "Spring.h"
 #include "Summer.h"
 #include "Autumn.h"
@@ -905,7 +906,8 @@ void NurseryFacade::runStaffMenu() {
                 else if (plantOpt == "4") {
                     cout << "Stocking nursery with seasonal plants...\n";
                     cout << "Current season: " << nursery_->getSeason() << "\n";
-                    nursery_->stockNursery();
+                    StockCommand stockCmd;
+                    stockCmd.execute();
                     cout << "Nursery stocked successfully\n";
                     cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
                 }
