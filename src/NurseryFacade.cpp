@@ -462,22 +462,18 @@ void NurseryFacade::runStaffMenu() {
                 case 1: return string("View plants (sale)");
                 case 2: return string("View plants (nursery)");
                 case 3: return string("Care for a plant");
-                case 4: return string("Move plant between nursery/sale");
-                case 5: return string("Send message to area");
-                case 6: return string("View notifications");
-                case 7: return string("Clear notifications");
-                case 8: return string("Switch staff");
-                case 9: return string("Remove plant from system");
-                case 10: return string("Add plant to nursery");
-                case 11: return string("View seasonal plants");
-                case 12: return string("Return");
+                case 4: return string("Manage Plants");
+                case 5: return string("Manage Notifications");
+                case 6: return string("View seasonal plants");
+                case 7: return string("Switch staff");
+                case 8: return string("Return");
                 default: return string("");
             }
         };
 
         if (isSales) {
-            // allowed actions for sales staff (omit 10 = "Add plant to nursery")
-            vector<int> allowed = {4,5,6,7,8,9,11,12};
+            // allowed actions for sales staff (omit Manage Plants which includes "Add plant to nursery")
+            vector<int> allowed = {1,4,5,6,7,8};
             for (size_t i = 0; i < allowed.size(); ++i) {
                 cout << i+1 << ") " << labelFor(allowed[i]) << "\n";
                 displayToActual.push_back(allowed[i]);
@@ -487,15 +483,11 @@ void NurseryFacade::runStaffMenu() {
             cout << "1) View plants (sale)\n";
             cout << "2) View plants (nursery)\n";
             cout << "3) Care for a plant\n";
-            cout << "4) Move plant between nursery/sale\n";
-            cout << "5) Send message to area\n";
-            cout << "6) View notifications\n";
-            cout << "7) Clear notifications\n";
-            cout << "8) Switch staff\n";
-            cout << "9) Remove plant from system\n";
-            cout << "10) Add plant to nursery\n";
-            cout << "11) View seasonal plants\n";
-            cout << "12) Return\n";
+            cout << "4) Manage Plants\n";
+            cout << "5) Manage Notifications\n";
+            cout << "6) View seasonal plants\n";
+            cout << "7) Switch staff\n";
+            cout << "8) Return\n";
             cout << MENU_BLUE << "Choose: " << MENU_RESET;
         }
         string line;
@@ -659,248 +651,311 @@ void NurseryFacade::runStaffMenu() {
             }
         }
         else if (line == "4") {
-            cout << "Move from (s)ale or (n)ursery? "; string which; getline(cin,which);
-
-            //copy the chosen list under lock and show it to the user
-            vector<Plant*> listing;
-            {
-                lock_guard<mutex> lk(mtx_);
-                if (which == "s") {
-                    auto &sale = manager_->getForSalePlants();
-                    if (sale.empty()) { cout << "No plants for sale right now.\n"; cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET; string tmp; getline(cin,tmp); continue; }
-                    for (size_t i=0;i<sale.size();++i) listing.push_back(sale[i]);
-                } else {
-                    auto &nur = manager_->getNurseryPlants();
-                    if (nur.empty()) { cout << "No nursery plants right now.\n"; cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET; string tmp; getline(cin,tmp); continue; }
-                    for (size_t i=0;i<nur.size();++i) listing.push_back(nur[i]);
-                }
-            }
-
-            cout << "Listing items in source room:\n";
-            for (size_t i=0;i<listing.size();++i) {
-                cout << i+1 << ") " << listing[i]->getName() << " (" << listing[i]->getCategory() << ") - " << listing[i]->getState() << "\n";
-            }
-
-            //ask for index; perform the move while re-locking to ensure consistent state
+            // Manage Plants submenu
             while (true) {
-                cout << MENU_BLUE << "Enter index to move (or 'r' to return): " << MENU_RESET;
-                string idxs; if (!getline(cin, idxs)) break;
-                if (idxs == "r" || idxs == "R") break;
-                try {
-                    size_t idx = stoi(idxs);
-                    if (idx>=1 && idx<=listing.size()) {
-                        Plant* p = listing[idx-1];
+                cout << endl;
+                cout << MENU_BLUE << MENU_SEP << "\n";
+                cout << "--- MANAGE PLANTS ---\n";
+                cout << MENU_SEP << MENU_RESET << "\n";
+                cout << "1) Move plant between nursery/sale\n";
+                cout << "2) Remove plant from system\n";
+                cout << "3) Add plant to nursery\n";
+                cout << "4) Stock nursery\n";
+                cout << "5) Return to staff menu\n";
+                cout << MENU_BLUE << "Choose: " << MENU_RESET;
+                
+                string plantOpt;
+                if (!getline(cin, plantOpt)) break;
+                
+                if (plantOpt == "5") break; 
+                
+                // Option 4.1: Move plant between nursery/sale
+                if (plantOpt == "1") {
+                    cout << "Move from (s)ale or (n)ursery? "; string which; getline(cin,which);
+
+                    //copy the chosen list under lock and show it to the user
+                    vector<Plant*> listing;
+                    {
                         lock_guard<mutex> lk(mtx_);
-                        if (which=="s") {
-                            if (!manager_->isInSale(p)) { cout << "Item no longer in sale.\n"; break; }
-                            manager_->removeFromSale(p);
-                            manager_->addToNursery(p);
-                            cout << "Moved to nursery\n";
+                        if (which == "s") {
+                            auto &sale = manager_->getForSalePlants();
+                            if (sale.empty()) { cout << "No plants for sale right now.\n"; cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp); continue; }
+                            for (size_t i=0;i<sale.size();++i) listing.push_back(sale[i]);
                         } else {
-                            if (!manager_->isInNursery(p)) { cout << "Item no longer in nursery.\n"; break; }
-                            manager_->removeFromNursery(p);
-                            manager_->addToSale(p);
-                            cout << "Moved to sale\n";
+                            auto &nur = manager_->getNurseryPlants();
+                            if (nur.empty()) { cout << "No nursery plants right now.\n"; cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp); continue; }
+                            for (size_t i=0;i<nur.size();++i) listing.push_back(nur[i]);
                         }
-                        break;
-                    } else {
-                        cout << "Index out of range\n"; continue;
                     }
-                } catch(...) { cout << "Invalid index\n"; continue; }
-            }
-        }
-        else if (line == "5") {
-            cout << "Enter message for staff area: "; string msg; getline(cin,msg);
-            //choose room
-            if (currentStaff->getPosition() == string("Manager")) {
-                Manager* mgr = dynamic_cast<Manager*>(currentStaff);
-                if (mgr) {
-                    cout << "Send to: 1) Sales area 2) Nursery area 3) All rooms\n";
-                    cout << MENU_BLUE << "Choice: " << MENU_RESET;
-                    string dest; getline(cin, dest);
-                    if (dest == "1") mgr->setReceiver(salesArea_);
-                    else if (dest == "2") mgr->setReceiver(nurseryArea_);
-                    else mgr->setReceiver(nullptr); 
-                    mgr->setMessage(msg);
-                    mgr->send();
+
+                    cout << "Listing items in source room:\n";
+                    for (size_t i=0;i<listing.size();++i) {
+                        cout << i+1 << ") " << listing[i]->getName() << " (" << listing[i]->getCategory() << ") - " << listing[i]->getState() << "\n";
+                    }
+
+                    //ask for index; perform the move while re-locking to ensure consistent state
+                    while (true) {
+                        cout << MENU_BLUE << "Enter index to move (or 'r' to return): " << MENU_RESET;
+                        string idxs; if (!getline(cin, idxs)) break;
+                        if (idxs == "r" || idxs == "R") break;
+                        try {
+                            size_t idx = stoi(idxs);
+                            if (idx>=1 && idx<=listing.size()) {
+                                Plant* p = listing[idx-1];
+                                lock_guard<mutex> lk(mtx_);
+                                if (which=="s") {
+                                    if (!manager_->isInSale(p)) { cout << "Item no longer in sale.\n"; break; }
+                                    manager_->removeFromSale(p);
+                                    manager_->addToNursery(p);
+                                    cout << "Moved to nursery\n";
+                                } else {
+                                    if (!manager_->isInNursery(p)) { cout << "Item no longer in nursery.\n"; break; }
+                                    manager_->removeFromNursery(p);
+                                    manager_->addToSale(p);
+                                    cout << "Moved to sale\n";
+                                }
+                                break;
+                            } else {
+                                cout << "Index out of range\n"; continue;
+                            }
+                        } catch(...) { cout << "Invalid index\n"; continue; }
+                    }
                 }
-            } else {
-                currentStaff->setMessage(msg);
-                currentStaff->send();
+                // Option 4.2: Remove plant from system (will be added next)
+                else if (plantOpt == "2") {
+                    cout << "Remove from (s)ale or (n)ursery? "; string which; getline(cin, which);
+
+                    //copy and display the chosen list under lock
+                    vector<Plant*> listing;
+                    {
+                        lock_guard<mutex> lk(mtx_);
+                        if (which == "s") {
+                            auto &sale = manager_->getForSalePlants();
+                            if (sale.empty()) { cout << "No plants for sale right now.\n"; cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp); continue; }
+                            for (size_t i=0;i<sale.size();++i) {
+                                cout << i+1 << ") " << sale[i]->getName() << " (" << sale[i]->getCategory() << ")\n";
+                                listing.push_back(sale[i]);
+                            }
+                        } else {
+                            auto &nur = manager_->getNurseryPlants();
+                            if (nur.empty()) { cout << "No nursery plants right now.\n"; cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp); continue; }
+                            for (size_t i=0;i<nur.size();++i) {
+                                cout << i+1 << ") " << nur[i]->getName() << " (" << nur[i]->getCategory() << ") - " << nur[i]->getState() << "\n";
+                                listing.push_back(nur[i]);
+                            }
+                        }
+                    }
+
+                    //ask for index and confirm removal
+                    while (true) {
+                        cout << MENU_BLUE << "Enter index to remove (or 'r' to return): " << MENU_RESET;
+                        string idxs; if (!getline(cin, idxs)) break;
+                        if (idxs == "r" || idxs == "R") break;
+                        try {
+                            size_t idx = stoi(idxs);
+                            if (idx>=1 && idx<=listing.size()) {
+                                Plant* p = listing[idx-1];
+                                cout << "Are you sure you want to permanently remove '" << p->getName() << "'? (y/n): "; string conf; getline(cin, conf);
+                                if (conf == "y" || conf == "Y") {
+                                    if (which == "s") {
+                                        RemoveSaleCommand cmd(p, manager_);
+                                        cmd.execute();
+                                        cout << "Removed from sale.\n";
+                                    } else {
+                                        RemoveCommand cmd(p, manager_);
+                                        cmd.execute();
+                                        cout << "Removed from nursery.\n";
+                                    }
+                                    cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
+                                    break;
+                                } else {
+                                    cout << "Aborted removal.\n";
+                                    cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
+                                    break;
+                                }
+                            } else { cout << "Index out of range\n"; continue; }
+                        } catch(...) { cout << "Invalid index\n"; continue; }
+                    }
+                }
+                // Option 4.3: Add plant to nursery (will be added next)
+                else if (plantOpt == "3") {
+                    using Factory = std::function<Plant*()>;
+                    //list of all available plant factories
+                    vector<pair<string, Factory>> all = {
+                        {"Rose", [](){ return new Rose(); }},
+                        {"Basil", [](){ return new Basil(); }},
+                        {"Tomato", [](){ return new Tomato(); }},
+                        {"Lettuce", [](){ return new Lettuce(); }},
+                        {"JadePlant", [](){ return new JadePlant(); }},
+                        {"WaterLily", [](){ return new WaterLily(); }},
+                        {"SnakePlant", [](){ return new SnakePlant(); }},
+                        {"AloeVera", [](){ return new AloeVera(); }},
+                        {"Chrysanthemum", [](){ return new Chrysanthemum(); }},
+                        {"Lavender", [](){ return new Lavender(); }},
+                        {"AppleTree", [](){ return new AppleTree(); }},
+                        {"Pumpkin", [](){ return new Pumpkin(); }},
+                        {"BarrelCactus", [](){ return new BarrelCactus(); }},
+                        {"WaterHyacinth", [](){ return new WaterHyacinth(); }},
+                        {"RubberTree", [](){ return new RubberTree(); }},
+                        {"Coneflower", [](){ return new Coneflower(); }},
+                        {"Pansy", [](){ return new Pansy(); }},
+                        {"Thyme", [](){ return new Thyme(); }},
+                        {"Strawberry", [](){ return new Strawberry(); }},
+                        {"Kale", [](){ return new Kale(); }},
+                        {"Echeveria", [](){ return new Echeveria(); }},
+                        {"Cattails", [](){ return new Cattails(); }},
+                        {"PeaceLily", [](){ return new PeaceLily(); }},
+                        {"Chamomile", [](){ return new Chamomile(); }},
+                        {"Sunflower", [](){ return new Sunflower(); }},
+                        {"Rosemary", [](){ return new Rosemary(); }},
+                        {"OrangeTree", [](){ return new OrangeTree(); }},
+                        {"Cucumber", [](){ return new Cucumber(); }},
+                        {"ChristmasCactus", [](){ return new ChristmasCactus(); }},
+                        {"WaterLettuce", [](){ return new WaterLettuce(); }},
+                        {"Pothos", [](){ return new Pothos(); }},
+                        {"Ginger", [](){ return new Ginger(); }}
+                    };
+
+                    vector<string> categories;
+                    unordered_map<string, vector<size_t>> catToIndices;
+                    for (size_t i = 0; i < all.size(); ++i) {
+                        Plant* tmp = nullptr;
+                        try { tmp = all[i].second(); } catch(...) { tmp = nullptr; }
+                        if (!tmp) continue;
+                        string cat = tmp->getCategory();
+                        delete tmp;
+                        if (catToIndices.find(cat) == catToIndices.end()) {
+                            categories.push_back(cat);
+                        }
+                        catToIndices[cat].push_back(i);
+                    }
+
+                    cout << "==== Available categories ====\n";
+                    for (size_t i = 0; i < categories.size(); ++i) {
+                        cout << i+1 << ") " << categories[i] << " (" << catToIndices[categories[i]].size() << " plants)\n";
+                    }
+                    cout << MENU_BLUE << "Choose a category number (or 0 to return): " << MENU_RESET;
+                    string catline; if (!getline(cin, catline)) continue;
+                    int catnum = 0;
+                    try { catnum = stoi(catline); } catch(...) { catnum = -1; }
+                    if (catnum == 0) continue;
+                    if (catnum < 1 || (size_t)catnum > categories.size()) { cout << "Invalid category\n"; continue; }
+
+                    string chosenCat = categories[catnum-1];
+                    auto &indices = catToIndices[chosenCat];
+
+                    cout << "==== Plants in category '" << chosenCat << "' ====\n";
+                    for (size_t i = 0; i < indices.size(); ++i) {
+                        size_t idx = indices[i];
+                        Plant* tmp = all[idx].second();
+                        double cost = tmp ? tmp->getCost() : 0.0;
+                        string name = all[idx].first;
+                        delete tmp;
+                        cout << i+1 << ") " << name << " - R" << cost << "\n";
+                    }
+
+                    cout << MENU_BLUE << "Choose plant number to create (or 0 to cancel): " << MENU_RESET;
+                    string pick; if (!getline(cin, pick)) continue;
+                    int pnum = -1;
+                    try { pnum = stoi(pick); } catch(...) { pnum = -1; }
+                    if (pnum == 0) continue;
+                    if (pnum < 1 || (size_t)pnum > indices.size()) { cout << "Invalid plant selection\n"; continue; }
+
+                    size_t chosenIndex = indices[pnum-1];
+                    Plant* p = nullptr;
+                    try { p = all[chosenIndex].second(); } catch(...) { p = nullptr; }
+                    if (!p) { cout << "Failed to create plant\n"; continue; }
+
+                    //add to nursery under lock
+                    {
+                        lock_guard<mutex> lk(mtx_);
+                        manager_->addToNursery(p);
+                    }
+                    cout << p->getName() << " added to nursery.\n";
+                    cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
+                }
+                // Option 4.4: Stock nursery (NEW!)
+                else if (plantOpt == "4") {
+                    cout << "Stocking nursery with seasonal plants...\n";
+                    cout << "Current season: " << nursery_->getSeason() << "\n";
+                    nursery_->stockNursery();
+                    cout << "Nursery stocked successfully\n";
+                    cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
+                }
+                else {
+                    cout << "Invalid option\n";
+                }
             }
-            cout << "Message sent.\n";
         }
+        // Option 5: Manage Notifications submenu
+        else if (line == "5") {
+            while (true) {
+                cout << endl;
+                cout << MENU_BLUE << MENU_SEP << "\n";
+                cout << "--- MANAGE NOTIFICATIONS ---\n";
+                cout << MENU_SEP << MENU_RESET << "\n";
+                cout << "1) Send message to area\n";
+                cout << "2) View notifications\n";
+                cout << "3) Clear notifications\n";
+                cout << "4) Return to staff menu\n";
+                cout << MENU_BLUE << "Choose: " << MENU_RESET;
+                
+                string notifOpt;
+                if (!getline(cin, notifOpt)) break;
+                
+                if (notifOpt == "4") break;  // Return to staff menu
+                
+                // Option 5.1: Send message to area
+                if (notifOpt == "1") {
+                    cout << "Enter message for staff area: "; string msg; getline(cin,msg);
+                    //choose room
+                    if (currentStaff->getPosition() == string("Manager")) {
+                        Manager* mgr = dynamic_cast<Manager*>(currentStaff);
+                        if (mgr) {
+                            cout << "Send to: 1) Sales area 2) Nursery area 3) All rooms\n";
+                            cout << MENU_BLUE << "Choice: " << MENU_RESET;
+                            string dest; getline(cin, dest);
+                            if (dest == "1") mgr->setReceiver(salesArea_);
+                            else if (dest == "2") mgr->setReceiver(nurseryArea_);
+                            else mgr->setReceiver(nullptr); 
+                            mgr->setMessage(msg);
+                            mgr->send();
+                        }
+                    } else {
+                        currentStaff->setMessage(msg);
+                        currentStaff->send();
+                    }
+                    cout << "Message sent.\n";
+                }
+                // Option 5.2: View notifications
+                else if (notifOpt == "2") {
+                    cout << "--- Notifications (most recent last) ---\n";
+                    cout << currentStaff->getChatHistoryString();
+                    cout << "--- end notifications ---\n";
+                    cout << "Press Enter to continue...";
+                    string tmp; getline(cin,tmp);
+                }
+                // Option 5.3: Clear notifications
+                else if (notifOpt == "3") {
+                    currentStaff->clearChatHistory();
+                    cout << "Notifications cleared. Press Enter to continue...";
+                    string tmp; getline(cin,tmp);
+                }
+                else {
+                    cout << "Invalid option\n";
+                }
+            }
+        }
+        // Option 6: View seasonal plants
         else if (line == "6") {
-            cout << "--- Notifications (most recent last) ---\n";
-            cout << currentStaff->getChatHistoryString();
-            cout << "--- end notifications ---\n";
-            cout << "Press Enter to return to staff menu...";
-            string tmp; getline(cin,tmp);
-        }
-        else if (line == "7") {
-            //clear notifications
-            currentStaff->clearChatHistory();
-            cout << "Notifications cleared. Press Enter to return to staff menu...";
-            string tmp; getline(cin,tmp);
-        }
-        else if (line == "11") {
             listSeasonalPlants();
             cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET;
             string tmp; getline(cin, tmp);
         }
-        else if (line == "12") break;
-        else if (line == "8") { switchRequested = true; break; }
-        else if (line == "9") {
-            cout << "Remove from (s)ale or (n)ursery? "; string which; getline(cin, which);
-
-            //copy and display the chosen list under lock
-            vector<Plant*> listing;
-            {
-                lock_guard<mutex> lk(mtx_);
-                if (which == "s") {
-                    auto &sale = manager_->getForSalePlants();
-                    if (sale.empty()) { cout << "No plants for sale right now.\n"; cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET; string tmp; getline(cin,tmp); continue; }
-                    for (size_t i=0;i<sale.size();++i) {
-                        cout << i+1 << ") " << sale[i]->getName() << " (" << sale[i]->getCategory() << ")\n";
-                        listing.push_back(sale[i]);
-                    }
-                } else {
-                    auto &nur = manager_->getNurseryPlants();
-                    if (nur.empty()) { cout << "No nursery plants right now.\n"; cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET; string tmp; getline(cin,tmp); continue; }
-                    for (size_t i=0;i<nur.size();++i) {
-                        cout << i+1 << ") " << nur[i]->getName() << " (" << nur[i]->getCategory() << ") - " << nur[i]->getState() << "\n";
-                        listing.push_back(nur[i]);
-                    }
-                }
-            }
-
-            //ask for index and confirm removal
-            while (true) {
-                cout << MENU_BLUE << "Enter index to remove (or 'r' to return): " << MENU_RESET;
-                string idxs; if (!getline(cin, idxs)) break;
-                if (idxs == "r" || idxs == "R") break;
-                try {
-                    size_t idx = stoi(idxs);
-                    if (idx>=1 && idx<=listing.size()) {
-                        Plant* p = listing[idx-1];
-                        cout << "Are you sure you want to permanently remove '" << p->getName() << "'? (y/n): "; string conf; getline(cin, conf);
-                        if (conf == "y" || conf == "Y") {
-                            if (which == "s") {
-                                RemoveSaleCommand cmd(p, manager_);
-                                cmd.execute();
-                                cout << "Removed from sale.\n";
-                            } else {
-                                RemoveCommand cmd(p, manager_);
-                                cmd.execute();
-                                cout << "Removed from nursery.\n";
-                            }
-                            cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET; string tmp; getline(cin,tmp);
-                            break;
-                        } else {
-                            cout << "Aborted removal.\n";
-                            cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET; string tmp; getline(cin,tmp);
-                            break;
-                        }
-                    } else { cout << "Index out of range\n"; continue; }
-                } catch(...) { cout << "Invalid index\n"; continue; }
-            }
-        }
-    else if (line == "10") {
-            using Factory = std::function<Plant*()>;
-            //list of all available plant factories
-            vector<pair<string, Factory>> all = {
-                {"Rose", [](){ return new Rose(); }},
-                {"Basil", [](){ return new Basil(); }},
-                {"Tomato", [](){ return new Tomato(); }},
-                {"Lettuce", [](){ return new Lettuce(); }},
-                {"JadePlant", [](){ return new JadePlant(); }},
-                {"WaterLily", [](){ return new WaterLily(); }},
-                {"SnakePlant", [](){ return new SnakePlant(); }},
-                {"AloeVera", [](){ return new AloeVera(); }},
-                {"Chrysanthemum", [](){ return new Chrysanthemum(); }},
-                {"Lavender", [](){ return new Lavender(); }},
-                {"AppleTree", [](){ return new AppleTree(); }},
-                {"Pumpkin", [](){ return new Pumpkin(); }},
-                {"BarrelCactus", [](){ return new BarrelCactus(); }},
-                {"WaterHyacinth", [](){ return new WaterHyacinth(); }},
-                {"RubberTree", [](){ return new RubberTree(); }},
-                {"Coneflower", [](){ return new Coneflower(); }},
-                {"Pansy", [](){ return new Pansy(); }},
-                {"Thyme", [](){ return new Thyme(); }},
-                {"Strawberry", [](){ return new Strawberry(); }},
-                {"Kale", [](){ return new Kale(); }},
-                {"Echeveria", [](){ return new Echeveria(); }},
-                {"Cattails", [](){ return new Cattails(); }},
-                {"PeaceLily", [](){ return new PeaceLily(); }},
-                {"Chamomile", [](){ return new Chamomile(); }},
-                {"Sunflower", [](){ return new Sunflower(); }},
-                {"Rosemary", [](){ return new Rosemary(); }},
-                {"OrangeTree", [](){ return new OrangeTree(); }},
-                {"Cucumber", [](){ return new Cucumber(); }},
-                {"ChristmasCactus", [](){ return new ChristmasCactus(); }},
-                {"WaterLettuce", [](){ return new WaterLettuce(); }},
-                {"Pothos", [](){ return new Pothos(); }},
-                {"Ginger", [](){ return new Ginger(); }}
-            };
-
-            vector<string> categories;
-            unordered_map<string, vector<size_t>> catToIndices;
-            for (size_t i = 0; i < all.size(); ++i) {
-                Plant* tmp = nullptr;
-                try { tmp = all[i].second(); } catch(...) { tmp = nullptr; }
-                if (!tmp) continue;
-                string cat = tmp->getCategory();
-                delete tmp;
-                if (catToIndices.find(cat) == catToIndices.end()) {
-                    categories.push_back(cat);
-                }
-                catToIndices[cat].push_back(i);
-            }
-
-            cout << "==== Available categories ====\n";
-            for (size_t i = 0; i < categories.size(); ++i) {
-                cout << i+1 << ") " << categories[i] << " (" << catToIndices[categories[i]].size() << " plants)\n";
-            }
-            cout << MENU_BLUE << "Choose a category number (or 0 to return): " << MENU_RESET;
-            string catline; if (!getline(cin, catline)) continue;
-            int catnum = 0;
-            try { catnum = stoi(catline); } catch(...) { catnum = -1; }
-            if (catnum == 0) continue;
-            if (catnum < 1 || (size_t)catnum > categories.size()) { cout << "Invalid category\n"; continue; }
-
-            string chosenCat = categories[catnum-1];
-            auto &indices = catToIndices[chosenCat];
-
-            cout << "==== Plants in category '" << chosenCat << "' ====\n";
-            for (size_t i = 0; i < indices.size(); ++i) {
-                size_t idx = indices[i];
-                Plant* tmp = all[idx].second();
-                double cost = tmp ? tmp->getCost() : 0.0;
-                string name = all[idx].first;
-                delete tmp;
-                cout << i+1 << ") " << name << " - R" << cost << "\n";
-            }
-
-            cout << MENU_BLUE << "Choose plant number to create (or 0 to cancel): " << MENU_RESET;
-            string pick; if (!getline(cin, pick)) continue;
-            int pnum = -1;
-            try { pnum = stoi(pick); } catch(...) { pnum = -1; }
-            if (pnum == 0) continue;
-            if (pnum < 1 || (size_t)pnum > indices.size()) { cout << "Invalid plant selection\n"; continue; }
-
-            size_t chosenIndex = indices[pnum-1];
-            Plant* p = nullptr;
-            try { p = all[chosenIndex].second(); } catch(...) { p = nullptr; }
-            if (!p) { cout << "Failed to create plant\n"; continue; }
-
-            //add to nursery under lock
-            {
-                lock_guard<mutex> lk(mtx_);
-                manager_->addToNursery(p);
-            }
-            cout << p->getName() << " added to nursery.\n";
-            cout << MENU_BLUE << "Press ENTER to return to staff menu..." << MENU_RESET; string tmp; getline(cin,tmp);
-        }
+        // Option 7: Switch staff
+        else if (line == "7") { switchRequested = true; break; }
+        // Option 8: Return
+        else if (line == "8") break;
         else cout << "Invalid option\n";
     }
 
