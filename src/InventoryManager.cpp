@@ -4,19 +4,12 @@
 // include Nursery here so destructor can clear nursery pointer when manager is destroyed
 #include "Nursery.h"
 
-// demo helpers: plant types and strategies
-#include "Rose.h"
-#include "Basil.h"
-#include "AloeVera.h"
-#include "Cattails.h"
-#include "Pothos.h"
-#include "Chamomile.h"
-#include "Pansy.h"
-#include "Kale.h"
-#include "Echeveria.h"
-#include "OrangeTree.h"
-#include "Cucumber.h"
-#include "PeaceLily.h"
+// demo helpers: factory pattern
+#include "SpringFactory.h"
+#include "SummerFactory.h"
+#include "AutumnFactory.h"
+#include "WinterFactory.h"
+#include "ReadyForSaleState.h"
 
 Iterator<Plant>* InventoryManager::createIterator(const std::string& season) {
 	std::vector<Plant*> allPlants;
@@ -186,31 +179,49 @@ void InventoryManager::checkAndNotify() {
 }
 
 void InventoryManager::populateDemoInventory(size_t nurseryCount, size_t saleCount) {
-	// Create a small variety of plants for sale
+	SpringFactory springFactory;
+	SummerFactory summerFactory;
+	AutumnFactory autumnFactory;
+	WinterFactory winterFactory;
+	PlantFactory* factories[] = {&springFactory, &summerFactory, &autumnFactory, &winterFactory};
+	int numFactories = 4;
+	
+	enum PlantType { FLOWER, HERB, FRUIT, VEGETABLE, SUCCULENT, AQUATIC, INDOOR, MEDICINAL };
+	int numTypes = 8;
+	
 	for (size_t i = 0; i < saleCount; ++i) {
+		PlantFactory* factory = factories[i % numFactories];
+		PlantType type = static_cast<PlantType>(i % numTypes);
+		
 		Plant* p = nullptr;
-		switch (i % 6) {
-			case 0:
-				p = new Rose();
+		switch (type) {
+			case FLOWER:
+				p = factory->createFlower();
 				break;
-			case 1:
-				p = new Basil();
+			case HERB:
+				p = factory->createHerb();
 				break;
-			case 2:
-				p = new AloeVera();
+			case FRUIT:
+				p = factory->createFruit();
 				break;
-			case 3:
-				p = new Cattails();
+			case VEGETABLE:
+				p = factory->createVegetable();
 				break;
-			case 4:
-				p = new Pothos();
+			case SUCCULENT:
+				p = factory->createSucculent();
 				break;
-			case 5:
-				p = new Chamomile();
+			case AQUATIC:
+				p = factory->createAquatic();
+				break;
+			case INDOOR:
+				p = factory->createIndoor();
+				break;
+			case MEDICINAL:
+				p = factory->createMedicinal();
 				break;
 		}
+		
 		if (p) {
-			p->setHealth(0.9);
 			p->setHealth(0.9);
 			p->calculateCost("Spring");
 			p->setState(new ReadyForSaleState());
@@ -218,30 +229,41 @@ void InventoryManager::populateDemoInventory(size_t nurseryCount, size_t saleCou
 		}
 	}
 
-	// Create nursery plants
 	for (size_t i = 0; i < nurseryCount; ++i) {
+		PlantFactory* factory = factories[(i + 2) % numFactories];
+		PlantType type = static_cast<PlantType>((i + 4) % numTypes);
+		
 		Plant* p = nullptr;
-		switch (i % 6) {
-			case 0:
-				p = new Pansy();
+		switch (type) {
+			case FLOWER:
+				p = factory->createFlower();
 				break;
-			case 1:
-				p = new Kale();
+			case HERB:
+				p = factory->createHerb();
 				break;
-			case 2:
-				p = new Echeveria();
+			case FRUIT:
+				p = factory->createFruit();
 				break;
-			case 3:
-				p = new OrangeTree();
+			case VEGETABLE:
+				p = factory->createVegetable();
 				break;
-			case 4:
-				p = new Cucumber();
+			case SUCCULENT:
+				p = factory->createSucculent();
 				break;
-			case 5:
-				p = new PeaceLily();
+			case AQUATIC:
+				p = factory->createAquatic();
+				break;
+			case INDOOR:
+				p = factory->createIndoor();
+				break;
+			case MEDICINAL:
+				p = factory->createMedicinal();
 				break;
 		}
-		if (p) addToNursery(p);
+		
+		if (p) {
+			addToNursery(p);
+		}
 	}
 }
 
