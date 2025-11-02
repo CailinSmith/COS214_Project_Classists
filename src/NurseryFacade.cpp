@@ -527,7 +527,6 @@ void NurseryFacade::runStaffMenu() {
             } catch(...) { /* keep original line if not a number */ }
         }
             if (line == "1") {
-                if (currentStaff && currentStaff->getPosition() == string("Sales staff")) { cout << "Not permitted for Sales staff\n"; continue; }
                 {
                     lock_guard<mutex> lk(mtx_);
                     auto const &sale = manager_->getForSalePlants();
@@ -787,10 +786,12 @@ void NurseryFacade::runStaffMenu() {
                                         RemoveSaleCommand cmd(p, manager_);
                                         cmd.execute();
                                         cout << "Removed from sale.\n";
+                                        delete p;  
                                     } else {
                                         RemoveCommand cmd(p, manager_);
                                         cmd.execute();
                                         cout << "Removed from nursery.\n";
+                                        delete p;  
                                     }
                                     cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
                                     break;
