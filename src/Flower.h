@@ -6,9 +6,10 @@
 /**
  * @class Flower
  * @author Cailin Smith
+ * @author Jordan Naidoo
  * @brief Represents a flowering plant type in the nursery system.
- * Design Pattern: Abstract Factory
- * Participant: AbstractProduct
+ * Design Pattern: Abstract Factory, Template Method
+ * Participant: AbstractProduct (Abstract Factory), Concrete Class (Template Method)
  * 
  * This class represents ornamental flowering plants that are grown primarily for their
  * aesthetic blooms. Flowers have specific seasonal pricing and care requirements. This
@@ -37,13 +38,13 @@ public:
 	virtual ~Flower() {}
 	
 	/**
-	 * @brief Calculates the base cost of the flower plant.
+	 * @brief Calculates the base cost of the flower plant (primitive operation for Template Method).
 	 * @return float The base price of the flower before seasonal adjustments.
 	 */
 	virtual float baseCost() override;
 	
 	/**
-	 * @brief Calculates seasonal cost adjustments for the flower.
+	 * @brief Calculates seasonal cost adjustments for the flower (primitive operation for Template Method).
 	 * @param curSeason The current season affecting the pricing.
 	 * @return float The seasonally adjusted price of the flower.
 	 */

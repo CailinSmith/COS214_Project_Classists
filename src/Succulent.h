@@ -6,9 +6,10 @@
 /**
  * @class Succulent
  * @author Cailin Smith
+ * @author Jordan Naidoo
  * @brief Represents a succulent plant category.
- * Design Pattern: Abstract Factory
- * Participant: AbstractProduct
+ * Design Pattern: Abstract Factory, Template Method
+ * Participant: AbstractProduct (Abstract Factory), Concrete Class (Template Method)
  * 
  * This class serves as the base class for all succulent plants in the nursery.
  * Succulents are characterized by their thick, fleshy parts adapted to store
@@ -37,7 +38,7 @@ public:
 	Plant("Succulent", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	/**
-	 * @brief Calculates the base cost for succulent plants.
+	 * @brief Calculates the base cost for succulent plants (primitive operation for Template Method).
 	 * @return float Base cost of the succulent.
 	 */
 	virtual float baseCost() override;

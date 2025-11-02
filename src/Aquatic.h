@@ -6,9 +6,10 @@
 /**
  * @class Aquatic
  * @author Cailin Smith
+ * @author Jordan Naidoo
  * @brief Represents an aquatic plant type in the nursery system.
- * Design Pattern: Abstract Factory
- * Participant: AbstractProduct
+ * Design Pattern: Abstract Factory, Template Method
+ * Participant: AbstractProduct (Abstract Factory), Concrete Class (Template Method)
  * 
  * This class represents aquatic plants that require specific water-based growing conditions.
  * Aquatic plants are characterized by their ability to thrive in high-moisture or water
@@ -31,7 +32,7 @@ public:
 	Plant("Aquatic", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	/**
-	 * @brief Calculates the base cost of the aquatic plant.
+	 * @brief Calculates the base cost of the aquatic plant (primitive operation for Template Method).
 	 * @return float The base price of the aquatic plant before any decorators or seasonal adjustments.
 	 */
 	virtual float baseCost() override;

@@ -162,6 +162,53 @@ val-cli: setup demo
 	@echo "Running valgrind on CLI demo application ($(BUILD_DIR)/demo)"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(BUILD_DIR)/demo
 
+
+# =========================
+# Checkout Memory Test
+# =========================
+CHECKOUT_TEST_SRC := tests/test_checkout_memory.cpp
+CHECKOUT_TEST_OBJ := $(BUILD_DIR)/test_checkout_memory.o
+CHECKOUT_TEST_TARGET := $(BUILD_DIR)/test_checkout_memory
+
+$(CHECKOUT_TEST_TARGET): $(CORE_OBJS) $(CHECKOUT_TEST_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(CHECKOUT_TEST_OBJ): $(CHECKOUT_TEST_SRC)
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+.PHONY: test-checkout
+test-checkout: $(CHECKOUT_TEST_TARGET)
+	./$(CHECKOUT_TEST_TARGET)
+
+.PHONY: val-checkout
+val-checkout: $(CHECKOUT_TEST_TARGET)
+	@echo "Running valgrind on checkout memory test"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(CHECKOUT_TEST_TARGET)
+
+# =========================
+# Decorated Checkout Memory Test
+# =========================
+DECORATED_TEST_SRC := tests/test_decorated_checkout.cpp
+DECORATED_TEST_OBJ := $(BUILD_DIR)/test_decorated_checkout.o
+DECORATED_TEST_TARGET := $(BUILD_DIR)/test_decorated_checkout
+
+$(DECORATED_TEST_TARGET): $(CORE_OBJS) $(DECORATED_TEST_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(DECORATED_TEST_OBJ): $(DECORATED_TEST_SRC)
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+.PHONY: test-decorated
+test-decorated: $(DECORATED_TEST_TARGET)
+	./$(DECORATED_TEST_TARGET)
+
+.PHONY: val-decorated
+val-decorated: $(DECORATED_TEST_TARGET)
+	@echo "Running valgrind on decorated checkout memory test"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(DECORATED_TEST_TARGET)
+
 # Run all memory tests
 .PHONY: test-memory
 test-memory: test-checkout test-decorated
@@ -180,6 +227,56 @@ clean:
 
 clean-all: clean
 	rm -rf "$(DEPS_DIR)"
+
+# =========================
+# Doxygen Documentation
+# =========================
+DOCS_DIR := doxygen
+
+# Install Doxygen
+install-doxygen:
+	@if ! command -v doxygen >/dev/null 2>&1; then \
+		echo "Installing Doxygen..."; \
+		if command -v apt-get >/dev/null 2>&1; then \
+			sudo apt-get update && sudo apt-get install -y doxygen graphviz; \
+		elif command -v dnf >/dev/null 2>&1; then \
+			sudo dnf install -y doxygen graphviz; \
+		elif command -v brew >/dev/null 2>&1; then \
+			brew install doxygen graphviz; \
+		elif command -v pacman >/dev/null 2>&1; then \
+			sudo pacman -S doxygen graphviz; \
+		else \
+			echo "ERROR: Unable to detect package manager!"; \
+			echo "Please install doxygen and graphviz manually:"; \
+			echo "  Ubuntu/Debian: sudo apt-get install doxygen graphviz"; \
+			echo "  Fedora/RHEL:   sudo dnf install doxygen graphviz"; \
+			echo "  macOS:         brew install doxygen graphviz"; \
+			echo "  Arch Linux:    sudo pacman -S doxygen graphviz"; \
+			exit 1; \
+		fi; \
+		echo "Doxygen installed successfully!"; \
+	else \
+		echo "Doxygen is already installed."; \
+	fi
+
+# Generate Doxygen documentation
+doxygen:
+	@if ! command -v doxygen >/dev/null 2>&1; then \
+		echo "ERROR: Doxygen is not installed!"; \
+		echo "Run: make install-doxygen"; \
+		exit 1; \
+	fi
+	@echo "Generating Doxygen documentation..."
+	@mkdir -p $(DOCS_DIR)
+	doxygen Doxyfile
+	@echo "Documentation generated in $(DOCS_DIR)/html/"
+	@echo "Open $(DOCS_DIR)/html/index.html in your browser to view."
+
+# Clean Doxygen documentation
+clean-doxygen:
+	@echo "Removing Doxygen documentation..."
+	rm -rf $(DOCS_DIR)
+	@echo "Documentation removed."
 
 # =========================
 # Install Dependencies
@@ -285,6 +382,14 @@ help:
 	@echo "----------------------------------------------------------------------------"
 	@echo "  make clean               Remove build/ directory"
 	@echo "  make clean-all           Remove build/ and .deps/ (all dependencies)"
+	@echo "  make clean-doxygen       Remove generated Doxygen documentation"
+	@echo ""
+	@echo "----------------------------------------------------------------------------"
+	@echo "DOCUMENTATION:"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  make install-doxygen     Install Doxygen and Graphviz"
+	@echo "  make doxygen             Generate HTML documentation from code comments"
+	@echo "  make clean-doxygen       Remove all generated documentation"
 	@echo ""
 	@echo "----------------------------------------------------------------------------"
 	@echo "DEPENDENCIES:"
@@ -320,4 +425,4 @@ help:
 # Phony targets- they tell the makefile these are not files
 # =========================
 
-.PHONY: default all clean clean-all test setup install-deps gui check-ftxui run runcli rungui help demo itests val-test val-main val-all val-gui val-cli
+.PHONY: default all clean clean-all test setup install-deps gui check-ftxui run runcli rungui help demo itests val-test val-main val-all val-gui val-cli install-doxygen doxygen clean-doxygen view-docs

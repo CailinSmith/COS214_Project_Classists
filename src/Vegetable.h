@@ -6,9 +6,10 @@
 /**
  * @class Vegetable
  * @author Cailin Smith
+ * @author Jordan Naidoo
  * @brief Represents a vegetable plant category.
- * Design Pattern: Abstract Factory
- * Participant: AbstractProduct
+ * Design Pattern: Abstract Factory, Template Method
+ * Participant: AbstractProduct (Abstract Factory), Concrete Class (Template Method)
  * 
  * This class serves as the base class for all vegetable plants in the nursery.
  * Vegetables are plants cultivated for their edible parts and typically have
@@ -35,13 +36,13 @@ public:
 	Plant("Vegetable", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	/**
-	 * @brief Calculates the base cost for vegetable plants.
+	 * @brief Calculates the base cost for vegetable plants (primitive operation for Template Method).
 	 * @return float Base cost of the vegetable.
 	 */
 	virtual float baseCost() override;
 	
 	/**
-	 * @brief Calculates the seasonal cost adjustment for vegetables.
+	 * @brief Calculates the seasonal cost adjustment for vegetables (primitive operation for Template Method).
 	 * @param curSeason The current season.
 	 * @return float Seasonal cost multiplier or adjustment.
 	 */

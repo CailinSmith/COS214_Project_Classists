@@ -6,9 +6,10 @@
 /**
  * @class Medicinal
  * @author Cailin Smith
+ * @author Jordan Naidoo
  * @brief Represents a medicinal plant type in the nursery system.
- * Design Pattern: Abstract Factory
- * Participant: AbstractProduct
+ * Design Pattern: Abstract Factory, Template Method
+ * Participant: AbstractProduct (Abstract Factory), Concrete Class (Template Method)
  * 
  * This class represents plants that have medicinal properties and therapeutic uses.
  * Medicinal plants are valued for their health benefits and are often used in
@@ -32,7 +33,7 @@ public:
 	Plant("Medicinal", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	/**
-	 * @brief Calculates the base cost of the medicinal plant.
+	 * @brief Calculates the base cost of the medicinal plant (primitive operation for Template Method).
 	 * @return float The base price of the medicinal plant before any adjustments.
 	 */
 	virtual float baseCost() override;

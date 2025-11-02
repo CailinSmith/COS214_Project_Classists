@@ -6,9 +6,10 @@
 /**
  * @class Indoor
  * @author Cailin Smith
+ * @author Jordan Naidoo
  * @brief Represents an indoor plant type in the nursery system.
- * Design Pattern: Abstract Factory
- * Participant: AbstractProduct
+ * Design Pattern: Abstract Factory, Template Method
+ * Participant: AbstractProduct (Abstract Factory), Concrete Class (Template Method)
  * 
  * This class represents plants that are specifically suited for growing indoors,
  * typically requiring lower light conditions and controlled environments. Indoor
@@ -32,7 +33,7 @@ public:
 	Plant("Indoor", maxHeight, wateringStrat, pruningStrat, name, sellSeason) {}
 
 	/**
-	 * @brief Calculates the base cost of the indoor plant.
+	 * @brief Calculates the base cost of the indoor plant (primitive operation for Template Method).
 	 * @return float The base price of the indoor plant before any adjustments.
 	 */
 	virtual float baseCost() override;

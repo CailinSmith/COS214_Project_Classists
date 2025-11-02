@@ -6,9 +6,10 @@
 /**
  * @class Fruit
  * @author Cailin Smith
+ * @author Jordan Naidoo
  * @brief Represents a fruit-bearing plant type in the nursery system.
- * Design Pattern: Abstract Factory
- * Participant: AbstractProduct
+ * Design Pattern: Abstract Factory, Template Method
+ * Participant: AbstractProduct (Abstract Factory), Concrete Class (Template Method)
  * 
  * This class represents fruit-producing plants such as trees and vines that bear
  * edible fruits. Fruit plants typically require specific care and have longer growth
@@ -37,13 +38,13 @@ public:
 	virtual ~Fruit() {}
 	
 	/**
-	 * @brief Calculates the base cost of the fruit plant.
+	 * @brief Calculates the base cost of the fruit plant (primitive operation for Template Method).
 	 * @return float The base price of the fruit plant before seasonal adjustments.
 	 */
 	virtual float baseCost() override;
 	
 	/**
-	 * @brief Calculates seasonal cost adjustments for the fruit plant.
+	 * @brief Calculates seasonal cost adjustments for the fruit plant (primitive operation for Template Method).
 	 * @param curSeason The current season affecting the pricing.
 	 * @return float The seasonally adjusted price of the fruit plant.
 	 */

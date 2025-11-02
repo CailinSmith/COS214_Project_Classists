@@ -17,9 +17,10 @@ class PlantState;
  * @class Plant
  * @author Cailin Smith
  * @author Edwin Kusel
+ * @author Jordan Naidoo
  * @brief Abstract base class representing a plant product in the nursery system.
- * Design Pattern: State, Strategy, Template Method
- * Participant: Context (State), Context (Strategy)
+ * Design Pattern: State, Strategy, Template Method, Decorator
+ * Participant: Context (State), Context (Strategy), Concrete Component (Decorator)
  * 
  * This class serves as the foundation for all plant types in the nursery management system.
  * It implements the State pattern to manage plant growth states (Seed, Growing, Mature, etc.),
@@ -263,6 +264,8 @@ public:
 
 	/**
 	 * @brief Calculates the cost based on the current season.
+	 * 
+	 * This method implements the Template Method design pattern by defining the skeleton of the cost calculation algorithm.
 	 * @param currSeason The current season affecting pricing.
 	 * @return float The calculated cost of the plant.
 	 */
@@ -270,12 +273,16 @@ public:
 	
 	/**
 	 * @brief Calculates the base cost of the plant.
+	 * 
+	 * This is a primitive operation in the Template Method pattern.
 	 * @return float The base cost before seasonal or decorator adjustments.
 	 */
 	virtual float baseCost() = 0;
 	
 	/**
 	 * @brief Calculates seasonal cost adjustments.
+	 * 
+	 * This is a primitive operation in the Template Method pattern.
 	 * @param curSeason The current season.
 	 * @return float The seasonally adjusted cost.
 	 */

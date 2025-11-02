@@ -6,9 +6,10 @@
 /**
  * @class Herb
  * @author Cailin Smith
+ * @author Jordan Naidoo
  * @brief Represents an herb plant type in the nursery system.
- * Design Pattern: Abstract Factory
- * Participant: AbstractProduct
+ * Design Pattern: Abstract Factory, Template Method
+ * Participant: AbstractProduct (Abstract Factory), Concrete Class (Template Method)
  * 
  * This class represents culinary and aromatic herb plants that are typically grown
  * for their leaves, which are used in cooking, medicine, or fragrance. Herbs generally
@@ -35,7 +36,7 @@ public:
 	virtual ~Herb() {}
 	
 	/**
-	 * @brief Calculates the base cost of the herb plant.
+	 * @brief Calculates the base cost of the herb plant (primitive operation for Template Method).
 	 * @return float The base price of the herb before any adjustments.
 	 */
 	virtual float baseCost() override;
