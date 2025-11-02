@@ -1,6 +1,7 @@
 #include "NurseryFacade.h"
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 #include <random>
 #include <map>
 #include <functional>
@@ -376,43 +377,68 @@ void NurseryFacade::runCustomerMenu() {
                     continue; 
                 }
                 
-                vector<Product*> plantsToCheck;
-                for (auto p : *plants) plantsToCheck.push_back(p);
+                vector<bool> refundFlags;
+                refundFlags.reserve(plants->size());
                 
-                vector<Product*> toRefund;
-                for (Product* p : plantsToCheck) {
+                for (Product* p : *plants) {
                     string pname = p ? p->getName() : string("<unknown>");
                     while (true) {
                         cout << "Refund " << pname << "? (y/n): "; 
                         string a; 
                         if (!getline(cin, a)) break;
                         if (a == "y" || a == "Y") { 
-                            toRefund.push_back(p); 
+                            refundFlags.push_back(true);
                             break; 
                         }
                         if (a == "n" || a == "N") { 
+                            refundFlags.push_back(false);
                             break; 
                         }
                         cout << "Please enter 'y' or 'n'.\n";
                     }
                 }
                 
-                if (toRefund.empty()) {
+                bool anyRefund = false;
+                for (bool flag : refundFlags) {
+                    if (flag) {
+                        anyRefund = true;
+                        break;
+                    }
+                }
+                
+                if (!anyRefund) {
                     cout << "No items refunded.\n";
                     continue;
                 }
                 
-                float refundTotal = 0.0f;
-                Nursery* nursery = Nursery::getInstance();
-                string season = nursery ? nursery->getSeason() : "";
+                vector<Product*> receiptOrder;
+                for (auto p : *plants) receiptOrder.push_back(p);
                 
-                for (Product* p : toRefund) {
-                    refundTotal += p->calculateCost(season);
-                    chosen->removeProduct(p);  
-                    delete p; 
+                Customer tempCustomer("RefundCustomer");
+                RefundCommand refundCmd(managerStaff_, &receiptOrder, &refundFlags);
+                auto [resultMsg, unusedReceipt] = tempCustomer.sendCommand(&refundCmd);
+                
+                float refundTotal = 0.0f;
+                size_t lastSpace = resultMsg.rfind(' ');
+                if (lastSpace != string::npos) {
+                    try {
+                        refundTotal = stof(resultMsg.substr(lastSpace + 1));
+                    } catch(...) { refundTotal = 0.0f; }
                 }
                 
-                cout << "Refund processed: R" << refundTotal << "\n";
+                vector<Product*> refundedItems;
+                for (size_t i = 0; i < plants->size() && i < refundFlags.size(); ++i) {
+                    if (refundFlags[i]) {
+                        refundedItems.push_back(const_cast<Product*>((*plants)[i]));
+                    }
+                }
+                
+                for (Product* p : refundedItems) {
+                    chosen->removeProduct(p);
+                    delete p;  
+                }
+                
+                cout << "Refund processed: R" << fixed << setprecision(2) << refundTotal << "\n";
                 
                 if (chosen->getPlants()->empty()) {
                     pastReceipts_.erase(pastReceipts_.begin() + idx);
