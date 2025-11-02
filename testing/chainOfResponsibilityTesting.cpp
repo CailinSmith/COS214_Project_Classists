@@ -61,8 +61,8 @@ TEST_CASE("CoR + Command: CheckStock") {
 TEST_CASE("CoR + Command: Checkout") {
     SalesStaff sales("Alice");
     Customer customer("Bob");
-    Rose rose;
-    customer.addToCart(&rose);
+    Rose* rose = new Rose(); 
+    customer.addToCart(rose);
     CheckoutCommand cmd(&sales, &customer.getOrder(), nullptr);
     pair<string, Receipt*> p = customer.sendCommand(&cmd);
     string result = p.first;
@@ -87,8 +87,6 @@ TEST_CASE("CoR + Command: Refund") {
     CHECK(result.first.find("Tomato") != string::npos);
     CHECK(customer.getOrder().empty());
 
-    // Both plants refunded and returned to nursery
-    // Clean them up by removing from nursery and deleting
     Nursery* nursery = Nursery::getInstance();
     InventoryManager* im = nursery ? nursery->getInventoryManager() : nullptr;
     if (im) {
@@ -107,14 +105,12 @@ TEST_CASE("CoR + Command: Full Chain Flow") {
     sales.setNext(&manager);
 
     Customer customer("Don");
-    Rose rose;
-    customer.addToCart(&rose);
+    Rose* rose = new Rose(); 
+    customer.addToCart(rose);
 
     // AskInfo
-    AskInfoCommand ask(&nursery, &rose);
+    AskInfoCommand ask(&nursery, rose);
     CHECK(customer.sendCommand(&ask).first.find("Rose") != string::npos);
-
-    // Checkout
     CheckoutCommand checkout(&nursery, &customer.getOrder(), nullptr);
     CHECK(customer.sendCommand(&checkout).first.find("Rose") != string::npos);
 }
@@ -161,11 +157,11 @@ TEST_CASE("CoR + Command: Empty Cart Checkout") {
 TEST_CASE("CoR + Command: Checkout - SalesStaff generates receipt") {
     SalesStaff sales("Sam");
     Customer customer("Bob");
-    Rose rose;
-    Tomato tomato;
+    Rose* rose = new Rose();  
+    Tomato* tomato = new Tomato();  
 
-    customer.addToCart(&rose);
-    customer.addToCart(&tomato);
+    customer.addToCart(rose);
+    customer.addToCart(tomato);
 
     CheckoutCommand cmd(&sales, &customer.getOrder(), nullptr);
     auto [result, receipt] = customer.sendCommand(&cmd);

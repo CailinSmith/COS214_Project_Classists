@@ -32,10 +32,10 @@ TEST_CASE("InventoryManager - Constructor and Initial State") {
 TEST_CASE("InventoryManager - Add Plants to Nursery") {
     InventoryManager* manager = new InventoryManager();
     
-    Plant* rose = new Rose();
-    Plant* sunflower = new Sunflower();
-    
     SUBCASE("Add valid plants to nursery") {
+        Plant* rose = new Rose();
+        Plant* sunflower = new Sunflower();
+        
         CHECK_NOTHROW(manager->addToNursery(rose));
         CHECK(manager->getNurseryCount() == 1);
         CHECK(manager->isInNursery(rose));
@@ -52,23 +52,27 @@ TEST_CASE("InventoryManager - Add Plants to Nursery") {
     }
     
     SUBCASE("Add same plant multiple times") {
+        Plant* rose = new Rose();
         manager->addToNursery(rose);
+        size_t countAfterFirst = manager->getNurseryCount();
         manager->addToNursery(rose);
-        CHECK(manager->getNurseryCount() == 2);
+        CHECK(manager->getNurseryCount() == countAfterFirst + 1);
+        
+        // WARNING: Adding same plant twice will cause double-delete in destructor
+        // So we remove one instance before manager is deleted
+        manager->removeFromNursery(rose);
     }
     
-    delete rose;
-    delete sunflower;
     delete manager;
 }
 
 TEST_CASE("InventoryManager - Add Plants to Sale") {
     InventoryManager* manager = new InventoryManager();
     
-    Plant* tomato = new Tomato();
-    Plant* rose = new Rose();
-    
     SUBCASE("Add valid plants to sale") {
+        Plant* tomato = new Tomato();
+        Plant* rose = new Rose();
+        
         CHECK_NOTHROW(manager->addToSale(tomato));
         CHECK(manager->getSaleCount() == 1);
         CHECK(manager->isInSale(tomato));
@@ -85,103 +89,138 @@ TEST_CASE("InventoryManager - Add Plants to Sale") {
     }
     
     SUBCASE("Add same plant multiple times") {
+        Plant* tomato = new Tomato();
         manager->addToSale(tomato);
+        size_t countAfterFirst = manager->getSaleCount();
         manager->addToSale(tomato);
-        CHECK(manager->getSaleCount() == 2);
+        CHECK(manager->getSaleCount() == countAfterFirst + 1);
+        
+        manager->removeFromSale(tomato);
     }
     
-    delete tomato;
-    delete rose;
     delete manager;
 }
 
 TEST_CASE("InventoryManager - Remove Plants from Nursery") {
     InventoryManager* manager = new InventoryManager();
     
-    Plant* rose = new Rose();
-    Plant* sunflower = new Sunflower();
-    Plant* tomato = new Tomato();
-    
-    manager->addToNursery(rose);
-    manager->addToNursery(sunflower);
-    manager->addToNursery(tomato);
-    
     SUBCASE("Remove existing plant from nursery") {
+        Plant* rose = new Rose();
+        Plant* sunflower = new Sunflower();
+        Plant* tomato = new Tomato();
+        
+        manager->addToNursery(rose);
+        manager->addToNursery(sunflower);
+        manager->addToNursery(tomato);
+        
         CHECK(manager->getNurseryCount() == 3);
         CHECK_NOTHROW(manager->removeFromNursery(sunflower));
         CHECK(manager->getNurseryCount() == 2);
         CHECK_FALSE(manager->isInNursery(sunflower));
         CHECK(manager->isInNursery(rose));
         CHECK(manager->isInNursery(tomato));
+        delete sunflower;
     }
     
     SUBCASE("Remove non-existing plant from nursery") {
+        Plant* rose = new Rose();
+        manager->addToNursery(rose);
+        
         Plant* notInNursery = new Rose();
         CHECK_NOTHROW(manager->removeFromNursery(notInNursery));
-        CHECK(manager->getNurseryCount() == 3);
+        CHECK(manager->getNurseryCount() == 1);
         delete notInNursery;
     }
     
     SUBCASE("Remove null plant from nursery") {
+        Plant* rose = new Rose();
+        manager->addToNursery(rose);
+        
         CHECK_NOTHROW(manager->removeFromNursery(nullptr));
-        CHECK(manager->getNurseryCount() == 3);
+        CHECK(manager->getNurseryCount() == 1);
     }
     
     SUBCASE("Remove all plants from nursery") {
+        Plant* rose = new Rose();
+        Plant* sunflower = new Sunflower();
+        Plant* tomato = new Tomato();
+        
+        manager->addToNursery(rose);
+        manager->addToNursery(sunflower);
+        manager->addToNursery(tomato);
+        
         manager->removeFromNursery(rose);
         manager->removeFromNursery(sunflower);
         manager->removeFromNursery(tomato);
         CHECK(manager->getNurseryCount() == 0);
+        
+        delete rose;
+        delete sunflower;
+        delete tomato;
     }
     
-    delete rose;
-    delete sunflower;
-    delete tomato;
     delete manager;
 }
 
 TEST_CASE("InventoryManager - Remove Plants from Sale") {
     InventoryManager* manager = new InventoryManager();
     
-    Plant* rose = new Rose();
-    Plant* sunflower = new Sunflower();
-    Plant* tomato = new Tomato();
-    
-    manager->addToSale(rose);
-    manager->addToSale(sunflower);
-    manager->addToSale(tomato);
-    
     SUBCASE("Remove existing plant from sale") {
+        Plant* rose = new Rose();
+        Plant* sunflower = new Sunflower();
+        Plant* tomato = new Tomato();
+        
+        manager->addToSale(rose);
+        manager->addToSale(sunflower);
+        manager->addToSale(tomato);
+        
         CHECK(manager->getSaleCount() == 3);
         CHECK_NOTHROW(manager->removeFromSale(sunflower));
         CHECK(manager->getSaleCount() == 2);
         CHECK_FALSE(manager->isInSale(sunflower));
         CHECK(manager->isInSale(rose));
         CHECK(manager->isInSale(tomato));
+        
+        delete sunflower;
     }
     
     SUBCASE("Remove non-existing plant from sale") {
+        Plant* rose = new Rose();
+        manager->addToSale(rose);
+        
         Plant* notInSale = new Rose();
         CHECK_NOTHROW(manager->removeFromSale(notInSale));
-        CHECK(manager->getSaleCount() == 3);
+        CHECK(manager->getSaleCount() == 1);
         delete notInSale;
     }
     
     SUBCASE("Remove null plant from sale") {
+        Plant* rose = new Rose();
+        manager->addToSale(rose);
+        
         CHECK_NOTHROW(manager->removeFromSale(nullptr));
-        CHECK(manager->getSaleCount() == 3);
+        CHECK(manager->getSaleCount() == 1);
     }
     
     SUBCASE("Remove all plants from sale") {
+        Plant* rose = new Rose();
+        Plant* sunflower = new Sunflower();
+        Plant* tomato = new Tomato();
+        
+        manager->addToSale(rose);
+        manager->addToSale(sunflower);
+        manager->addToSale(tomato);
+        
         manager->removeFromSale(rose);
         manager->removeFromSale(sunflower);
         manager->removeFromSale(tomato);
         CHECK(manager->getSaleCount() == 0);
+        
+        delete rose;
+        delete sunflower;
+        delete tomato;
     }
     
-    delete rose;
-    delete sunflower;
-    delete tomato;
     delete manager;
 }
 
@@ -283,6 +322,24 @@ TEST_CASE("InventoryManager - Sorted Insertion by Category and Name") {
         CHECK(nurseryPlants[16]->getName() == "Ginger");
     }
     
+    manager->removeFromNursery(&rose);
+    manager->removeFromNursery(&basil);
+    manager->removeFromNursery(&lavender);
+    manager->removeFromNursery(&thyme);
+    manager->removeFromNursery(&rubberTree);
+    manager->removeFromNursery(&ginger);
+    manager->removeFromNursery(&chamomile);
+    manager->removeFromNursery(&tomato);
+    manager->removeFromNursery(&appleTree);
+    manager->removeFromNursery(&orangeTree);
+    manager->removeFromNursery(&lettuce);
+    manager->removeFromNursery(&pumpkin);
+    manager->removeFromNursery(&cattails);
+    manager->removeFromNursery(&snakePlant);
+    manager->removeFromNursery(&chris);
+    manager->removeFromNursery(&pansy);
+    manager->removeFromNursery(&sunflower);
+    
     delete manager;
 }
 
@@ -371,6 +428,24 @@ TEST_CASE("InventoryManager - Sorted Insertion to Sale by Category and Name") {
         CHECK(salePlants[15]->getName() == "Chamomile");
         CHECK(salePlants[16]->getName() == "Ginger");
     }
+    
+    manager->removeFromSale(&rose);
+    manager->removeFromSale(&basil);
+    manager->removeFromSale(&lavender);
+    manager->removeFromSale(&thyme);
+    manager->removeFromSale(&rubberTree);
+    manager->removeFromSale(&ginger);
+    manager->removeFromSale(&chamomile);
+    manager->removeFromSale(&tomato);
+    manager->removeFromSale(&appleTree);
+    manager->removeFromSale(&orangeTree);
+    manager->removeFromSale(&lettuce);
+    manager->removeFromSale(&pumpkin);
+    manager->removeFromSale(&cattails);
+    manager->removeFromSale(&snakePlant);
+    manager->removeFromSale(&chris);
+    manager->removeFromSale(&pansy);
+    manager->removeFromSale(&sunflower);
     
     delete manager;
 }
