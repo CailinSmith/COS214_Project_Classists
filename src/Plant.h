@@ -19,6 +19,10 @@ using namespace std;
 // Forward declaration to break circular include
 class PlantState;
 
+/**
+ * @class Plant
+ * @author Edwin Kusel
+ */
 class Plant : public Product {
 private:
 	WateringStrategy* wateringStrat;
