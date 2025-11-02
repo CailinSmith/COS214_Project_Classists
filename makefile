@@ -152,6 +152,17 @@ val-main: $(TARGET)
 	@echo "Running valgrind on main executable ($(TARGET))"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TARGET)
 
+.PHONY: val-gui
+val-gui: $(GUI_TARGET)
+	@echo "Running valgrind on GUI application ($(GUI_TARGET))"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(GUI_TARGET)
+
+.PHONY: val-cli
+val-cli: setup demo
+	@echo "Running valgrind on CLI demo application ($(BUILD_DIR)/demo)"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(BUILD_DIR)/demo
+
+
 # =========================
 # Checkout Memory Test
 # =========================
@@ -208,11 +219,6 @@ val-memory: val-checkout val-decorated
 # =========================
 # Setup / Clean
 # =========================
-.PHONY: val-gui
-val-gui: $(GUI_TARGET)
-	@echo "Running valgrind on GUI application ($(GUI_TARGET))"
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(GUI_TARGET)
-
 setup:
 	mkdir -p $(BUILD_DIR)
 
@@ -290,10 +296,9 @@ help:
 	@echo "\033[0;32m============================================================================\033[0m"
 	@echo ""
 	@echo "QUICK START:"
-	@echo "  make install-deps        Install FTXUI dependencies (run first!)"
-	@echo "  make rungui              Build and run the GUI application"
-	@echo "  make run                 Build and run the CLI application"
+	@echo "  make install-deps        Install FTXUI dependencies, only needed for the GUI(run first!)"
 	@echo "  make runcli              Build and run the command line interface"
+	@echo "  make rungui              Build and run the GUI application"
 	@echo ""
 	@echo "----------------------------------------------------------------------------"
 	@echo "BUILD TARGETS:"
@@ -314,9 +319,13 @@ help:
 	@echo "----------------------------------------------------------------------------"
 	@echo "  make test                Build and run unit tests"
 	@echo "  make itests              Run integration tests (WSL/bash script)"
-	@echo "  make val-all             Run valgrind on both main and tests"
+	@echo ""
+	@echo "  Memory Testing (Valgrind):"
+	@echo "  make val-all             Run valgrind on main executable and unit tests"
 	@echo "  make val-test            Run valgrind on unit tests only"
 	@echo "  make val-main            Run valgrind on main executable only"
+	@echo "  make val-gui             Run valgrind on GUI application"
+	@echo "  make val-cli             Run valgrind on CLI demo application"
 	@echo ""
 	@echo "----------------------------------------------------------------------------"
 	@echo "CLEANUP:"
@@ -358,5 +367,4 @@ help:
 # Phony targets- they tell the makefile these are not files
 # =========================
 
-.PHONY: default all clean clean-all test setup install-deps rungui gui check-ftxui run help demo runcli itests val-test val-main val-all
-
+.PHONY: default all clean clean-all test setup install-deps gui check-ftxui run runcli rungui help demo itests val-test val-main val-all val-gui val-cli
