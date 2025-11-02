@@ -1676,27 +1676,53 @@ void PlantShopGUI::processMultiItemRefund() {
         Receipt* selectedReceipt = receipts[selectedOrderIndex];
         const std::vector<Product*>* plants = selectedReceipt->getPlants();
 
-        std::vector<Product*> toRefund;
-        refundTotal = 0.0f;
+        // Check if any items are selected for refund
+        bool anyRefund = false;
         for (size_t i = 0; i < refundFlags.size() && i < plants->size(); i++) {
             if (refundFlags[i]) {
-                Product* p = (*plants)[i];
-                toRefund.push_back(p);
-                refundTotal += p->getCost();
+                anyRefund = true;
+                break;
             }
         }
         
-        if (toRefund.empty()) {
+        if (!anyRefund) {
             messageBuffer = "No items selected for refund";
             currentView = REFUND_CONFIRMATION;
+            refundTotal = 0.0f;
             return;
         }
         
-        for (Product* p : toRefund) {
-            selectedReceipt->removeProduct(p); 
-            delete p;  
+        std::vector<Product*> receiptOrder;
+        for (auto p : *plants) {
+            receiptOrder.push_back(p);
         }
         
+        RefundCommand refundCmd(managerStaff, &receiptOrder, &refundFlags);
+        auto [resultMsg, unusedReceipt] = customer->sendCommand(&refundCmd);
+        
+        refundTotal = 0.0f;
+        size_t lastSpace = resultMsg.rfind(' ');
+        if (lastSpace != std::string::npos) {
+            try {
+                refundTotal = std::stof(resultMsg.substr(lastSpace + 1));
+            } catch(...) { 
+                refundTotal = 0.0f; 
+            }
+        }
+        
+        std::vector<Product*> refundedItems;
+        for (size_t i = 0; i < plants->size() && i < refundFlags.size(); i++) {
+            if (refundFlags[i]) {
+                refundedItems.push_back(const_cast<Product*>((*plants)[i]));
+            }
+        }
+        
+        for (Product* p : refundedItems) {
+            selectedReceipt->removeProduct(p);
+            delete p;  // We own the memory, so we delete it
+        }
+        
+        // If receipt is now empty, remove and delete it
         if (selectedReceipt->getPlants()->empty()) {
             receipts.erase(receipts.begin() + selectedOrderIndex);
             delete selectedReceipt;
