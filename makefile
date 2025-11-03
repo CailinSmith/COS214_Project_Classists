@@ -101,7 +101,7 @@ test: $(TEST_TARGET)
 
 # Integration tests (WSL-friendly runner)
 .PHONY: itests
-itests: setup $(TARGET)
+itests: setup demo
 	# Run the integration test for case2 (WSL / bash runner)
 	./tests/run_and_check.sh case2
 

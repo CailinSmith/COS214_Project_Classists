@@ -224,6 +224,7 @@ void InventoryManager::populateDemoInventory(size_t nurseryCount, size_t saleCou
 		if (p) {
 			p->setHealth(0.9);
 			p->calculateCost("Spring");
+			p->setHeight(0.9);
 			p->setState(new ReadyForSaleState());
 			addToSale(p);
 		}

@@ -20,7 +20,7 @@ if [ ! -f "$expected" ]; then
   exit 2
 fi
 
-exe="$root/build/main"
+exe="$root/build/demo"
 if [ ! -x "$exe" ]; then
   echo "Executable $exe not found or not executable" >&2
   exit 3
