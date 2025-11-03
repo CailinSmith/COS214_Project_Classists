@@ -1,0 +1,14 @@
+<map id="Nursery" name="Nursery">
+<area shape="rect" id="Node000001" title="Central management system for the nursery operations. Design Pattern: Singleton, State Participant: S..." alt="" coords="220,168,293,193"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="308,171,316,174,320,181,311,189,294,191,293,186,309,184,315,180,313,178,306,176"/>
+<area shape="rect" id="Node000002" href="$classInventoryManager.html" title="Design Pattern: Iterator, Observer Participant: Concrete Aggregate, Concrete Subject." alt="" coords="31,80,173,105"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="112,117,119,131,129,142,150,155,174,165,220,175,219,180,172,170,148,160,126,146,115,134,107,120"/>
+<area shape="rect" id="Node000003" href="$classAggregate.html" title="Design Pattern: Iterator Participant: Aggregate." alt="" coords="5,5,95,31"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="69,41,96,78,91,81,64,44"/>
+<area shape="rect" id="Node000004" href="$classSubject.html" title="Design pattern: Observer Participant: Subject." alt="" coords="119,5,189,31"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="140,44,113,81,108,78,135,41"/>
+<area shape="rect" id="Node000005" href="$classSeasonState.html" title="Design pattern: State Participant: State." alt="" coords="205,80,308,105"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="259,119,259,167,254,167,254,119"/>
+<area shape="rect" id="Node000006" href="$classPlantFactory.html" title="Abstract factory for creating different types of plants. Design Pattern: Abstract Factory Participant..." alt="" coords="333,80,436,105"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="377,120,357,146,326,164,294,175,293,170,324,159,354,142,373,116"/>
+</map>

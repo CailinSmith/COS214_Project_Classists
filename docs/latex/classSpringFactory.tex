@@ -1,0 +1,227 @@
+\doxysection{Spring\+Factory Class Reference}
+\hypertarget{classSpringFactory}{}\label{classSpringFactory}\index{SpringFactory@{SpringFactory}}
+
+
+Concrete factory for creating spring-\/season plants. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Factory.  
+
+
+
+
+{\ttfamily \#include $<$Spring\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Spring\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classSpringFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Spring\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classSpringFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSpringFactory_acc90e8ec1aa0aaa0a499311390920c8c}{create\+Flower}} ()
+\begin{DoxyCompactList}\small\item\em Creates a spring flower. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSpringFactory_a494c5d3430d38898a8467ce642faf5cf}{create\+Herb}} ()
+\begin{DoxyCompactList}\small\item\em Creates a spring herb. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSpringFactory_a218fac1ad5b0be54882c73d326f88919}{create\+Fruit}} ()
+\begin{DoxyCompactList}\small\item\em Creates a spring fruit. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSpringFactory_afbc0bc4ed8070603b375908cb41da1d9}{create\+Vegetable}} ()
+\begin{DoxyCompactList}\small\item\em Creates a spring vegetable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSpringFactory_ad074a54f7c34941df4a77116128e2134}{create\+Succulent}} ()
+\begin{DoxyCompactList}\small\item\em Creates a spring succulent. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSpringFactory_a977774941d7f6f241dec1e43566ec2dc}{create\+Aquatic}} ()
+\begin{DoxyCompactList}\small\item\em Creates a spring aquatic plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSpringFactory_af609b1753d2f64628a11c7ed9e9bc266}{create\+Indoor}} ()
+\begin{DoxyCompactList}\small\item\em Creates a spring indoor plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSpringFactory_a7fa8134c6c3ed4f7f234373a174df1e7}{create\+Medicinal}} ()
+\begin{DoxyCompactList}\small\item\em Creates a spring medicinal plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantFactory}{Plant\+Factory}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantFactory_aaa9e963946bd91314941d259f7eec9bd}{\texorpdfstring{$\sim$}{\string~}\+Plant\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPlantFactory}{Plant\+Factory}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete factory for creating spring-\/season plants. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Factory. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements the \doxylink{classPlantFactory}{Plant\+Factory} interface to create plants that are appropriate for the spring season. Each creation method returns a specific spring plant variety (\doxylink{classRose}{Rose}, \doxylink{classBasil}{Basil}, \doxylink{classTomato}{Tomato}, \doxylink{classLettuce}{Lettuce}, Jade \doxylink{classPlant}{Plant}, Water Lily, Snake \doxylink{classPlant}{Plant}, Aloe Vera).
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantFactory}{Plant\+Factory} 
+
+\doxylink{classRose}{Rose} 
+
+\doxylink{classBasil}{Basil} 
+
+\doxylink{classTomato}{Tomato} 
+
+\doxylink{classLettuce}{Lettuce} 
+
+\doxylink{classJadePlant}{Jade\+Plant} 
+
+\doxylink{classWaterLily}{Water\+Lily} 
+
+\doxylink{classSnakePlant}{Snake\+Plant} 
+
+\doxylink{classAloeVera}{Aloe\+Vera} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSpringFactory_a977774941d7f6f241dec1e43566ec2dc}\label{classSpringFactory_a977774941d7f6f241dec1e43566ec2dc} 
+\index{SpringFactory@{SpringFactory}!createAquatic@{createAquatic}}
+\index{createAquatic@{createAquatic}!SpringFactory@{SpringFactory}}
+\doxysubsubsection{\texorpdfstring{createAquatic()}{createAquatic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Spring\+Factory\+::create\+Aquatic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a spring aquatic plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Water Lily. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a0f9190403dc92ed675e33f582112b717}{Plant\+Factory}}.
+
+\Hypertarget{classSpringFactory_acc90e8ec1aa0aaa0a499311390920c8c}\label{classSpringFactory_acc90e8ec1aa0aaa0a499311390920c8c} 
+\index{SpringFactory@{SpringFactory}!createFlower@{createFlower}}
+\index{createFlower@{createFlower}!SpringFactory@{SpringFactory}}
+\doxysubsubsection{\texorpdfstring{createFlower()}{createFlower()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Spring\+Factory\+::create\+Flower (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a spring flower. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classRose}{Rose}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_af0d074fa394a24f7168de8e07b446c3e}{Plant\+Factory}}.
+
+\Hypertarget{classSpringFactory_a218fac1ad5b0be54882c73d326f88919}\label{classSpringFactory_a218fac1ad5b0be54882c73d326f88919} 
+\index{SpringFactory@{SpringFactory}!createFruit@{createFruit}}
+\index{createFruit@{createFruit}!SpringFactory@{SpringFactory}}
+\doxysubsubsection{\texorpdfstring{createFruit()}{createFruit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Spring\+Factory\+::create\+Fruit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a spring fruit. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classTomato}{Tomato} plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_aa80395495862c2c47c6238af81e15168}{Plant\+Factory}}.
+
+\Hypertarget{classSpringFactory_a494c5d3430d38898a8467ce642faf5cf}\label{classSpringFactory_a494c5d3430d38898a8467ce642faf5cf} 
+\index{SpringFactory@{SpringFactory}!createHerb@{createHerb}}
+\index{createHerb@{createHerb}!SpringFactory@{SpringFactory}}
+\doxysubsubsection{\texorpdfstring{createHerb()}{createHerb()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Spring\+Factory\+::create\+Herb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a spring herb. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classBasil}{Basil} plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a91ce9b32dc561b9fcf6d275784e2ef99}{Plant\+Factory}}.
+
+\Hypertarget{classSpringFactory_af609b1753d2f64628a11c7ed9e9bc266}\label{classSpringFactory_af609b1753d2f64628a11c7ed9e9bc266} 
+\index{SpringFactory@{SpringFactory}!createIndoor@{createIndoor}}
+\index{createIndoor@{createIndoor}!SpringFactory@{SpringFactory}}
+\doxysubsubsection{\texorpdfstring{createIndoor()}{createIndoor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Spring\+Factory\+::create\+Indoor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a spring indoor plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Snake \doxylink{classPlant}{Plant}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_ae717d4a9732ff9cff0b38d51d8e0e45c}{Plant\+Factory}}.
+
+\Hypertarget{classSpringFactory_a7fa8134c6c3ed4f7f234373a174df1e7}\label{classSpringFactory_a7fa8134c6c3ed4f7f234373a174df1e7} 
+\index{SpringFactory@{SpringFactory}!createMedicinal@{createMedicinal}}
+\index{createMedicinal@{createMedicinal}!SpringFactory@{SpringFactory}}
+\doxysubsubsection{\texorpdfstring{createMedicinal()}{createMedicinal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Spring\+Factory\+::create\+Medicinal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a spring medicinal plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Aloe Vera. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a6c29e0e6b4a1dbba6c747121fb26b7e4}{Plant\+Factory}}.
+
+\Hypertarget{classSpringFactory_ad074a54f7c34941df4a77116128e2134}\label{classSpringFactory_ad074a54f7c34941df4a77116128e2134} 
+\index{SpringFactory@{SpringFactory}!createSucculent@{createSucculent}}
+\index{createSucculent@{createSucculent}!SpringFactory@{SpringFactory}}
+\doxysubsubsection{\texorpdfstring{createSucculent()}{createSucculent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Spring\+Factory\+::create\+Succulent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a spring succulent. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Jade \doxylink{classPlant}{Plant}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_af1bb9fedebdfa41aa26eb3fea971efc7}{Plant\+Factory}}.
+
+\Hypertarget{classSpringFactory_afbc0bc4ed8070603b375908cb41da1d9}\label{classSpringFactory_afbc0bc4ed8070603b375908cb41da1d9} 
+\index{SpringFactory@{SpringFactory}!createVegetable@{createVegetable}}
+\index{createVegetable@{createVegetable}!SpringFactory@{SpringFactory}}
+\doxysubsubsection{\texorpdfstring{createVegetable()}{createVegetable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Spring\+Factory\+::create\+Vegetable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a spring vegetable. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classLettuce}{Lettuce} plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_aa29c0d000bf65fa78cd2bc34dc11c3fe}{Plant\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{SpringFactory_8h}{Spring\+Factory.\+h}}\item 
+src/\mbox{\hyperlink{SpringFactory_8cpp}{Spring\+Factory.\+cpp}}\end{DoxyCompactItemize}

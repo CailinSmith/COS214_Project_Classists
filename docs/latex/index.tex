@@ -1,0 +1,111 @@
+\chapter{Classists}
+\hypertarget{index}{}\label{index}\index{Classists@{Classists}}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+   \hypertarget{index_autotoc_md0}{}\doxysubsection{\texorpdfstring{📖 Description}{📖 Description}}\label{index_autotoc_md0}
+Greens\+Only is a C++ design pattern orientated system designed and built to simulate the different roles and activies in a nursery. You are able to participate as a customer, staff memebr or manager in our interactive system.\hypertarget{index_autotoc_md1}{}\doxysubsection{\texorpdfstring{🚀 Getting Started}{🚀 Getting Started}}\label{index_autotoc_md1}
+\hypertarget{index_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{index_autotoc_md2}
+Before you begin, ensure you have the following installed\+:
+\begin{DoxyItemize}
+\item {\bfseries{g++}} (C++17 compatible compiler)
+\item {\bfseries{cmake}} (for building FTXUI)
+\item {\bfseries{git}}
+\item {\bfseries{chafa}} (for GUI image rendering)
+\item {\bfseries{valgrind}} (optional, for memory checking)
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxyparagraph{\texorpdfstring{Install on Ubuntu/\+Debian\+:}{Install on Ubuntu/Debian:}}\label{index_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ apt-\/get\ install\ cmake\ g++\ git\ build-\/essential\ chafa\ valgrind}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Installation}{Installation}}\label{index_autotoc_md4}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Clone the repository\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/CailinSmith/COS214\_Project\_Classists.git}
+\DoxyCodeLine{cd\ COS214\_Project\_Classists}
+
+\end{DoxyCode}
+
+\item {\bfseries{Install dependencies (for GUI)\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ install-\/deps}
+
+\end{DoxyCode}
+ {\itshape Note\+: This step is only required if you want to run the GUI interface. The CLI works without these dependencies.}
+\item {\bfseries{Build the project\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ all}
+
+\end{DoxyCode}
+ Or build only the CLI\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Running the Application}{Running the Application}}\label{index_autotoc_md5}
+The system provides two interactive interfaces\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{CLI (Command Line Interface)\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ runcli}
+
+\end{DoxyCode}
+ Text-\/based command-\/line interaction {\itshape Requires\+: g++ only}
+\item {\bfseries{GUI (Terminal-\/\+Based Graphical Interface)\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ rungui}
+
+\end{DoxyCode}
+ Visual terminal interface with interactive menus and graphics powered by FTXUI ~\newline
+ {\itshape Requires\+: FTXUI dependencies (run {\ttfamily make install-\/deps} first)}
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{Additional Commands}{Additional Commands}}\label{index_autotoc_md6}
+{\bfseries{Building\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily make} -\/ Build CLI only (default, no FTXUI needed)
+\item {\ttfamily make all} -\/ Build everything\+: CLI and GUI
+\item {\ttfamily make gui} -\/ Build GUI only (without running)
+\end{DoxyItemize}
+
+{\bfseries{Testing\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily make test} -\/ Run unit tests
+\item {\ttfamily make itests} -\/ Run integration tests
+\end{DoxyItemize}
+
+{\bfseries{Cleanup\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily make clean} -\/ Remove build files
+\item {\ttfamily make clean-\/all} -\/ Remove build files and dependencies
+\end{DoxyItemize}
+
+{\bfseries{Help\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily make help} -\/ Show all available commands with detailed information
+\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{The Team\+: Classists}{The Team: Classists}}\label{index_autotoc_md7}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Profile   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Student number   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Role    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Profile   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Student number   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Role    }\\\cline{1-4}
+\endhead
+   &Jordan Naidoo   &u24664155   &Group Dictator    \\\cline{1-4}
+   &Cailin Smith   &u24570525   &CLM (Command line master)    \\\cline{1-4}
+   &Alex Lange   &u24587312   &Mr. Worldwide    \\\cline{1-4}
+   &Edwin Kusel   &u24670058   &SDA (Senior Diagram Architect)    \\\cline{1-4}
+   &Abhay Rooplall   &u24568792   &The Commander   \\\cline{1-4}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{🌱 Thanks for checking our project out! 🌱}}  

@@ -1,0 +1,24 @@
+\doxysection{Sales\+Staff.\+h}
+\hypertarget{SalesStaff_8h_source}{}\label{SalesStaff_8h_source}\index{src/SalesStaff.h@{src/SalesStaff.h}}
+\mbox{\hyperlink{SalesStaff_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SALESSTAFF\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SALESSTAFF\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Staff_8h}{Staff.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Receipt_8h}{Receipt.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSalesStaff}{SalesStaff}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaff}{Staff}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classSalesStaff}{SalesStaff}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{classStaff_a59cef245384e229b7cc793d772385256}{name}});}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ pair<string,\ Receipt*>\ \mbox{\hyperlink{classSalesStaff_adeb9ab13569620b8510e98582c56b947}{handleRequest}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ requestType,\ \mbox{\hyperlink{classPlant}{Plant}}*\ plant,\ vector<Product*>*\ order,\ vector<bool>*\ flags);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classSalesStaff_a7b666919ee230b95cdf964e3dd15992c}{getPosition}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

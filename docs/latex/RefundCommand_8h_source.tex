@@ -1,0 +1,18 @@
+\doxysection{Refund\+Command.\+h}
+\hypertarget{RefundCommand_8h_source}{}\label{RefundCommand_8h_source}\index{src/RefundCommand.h@{src/RefundCommand.h}}
+\mbox{\hyperlink{RefundCommand_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ REFUNDCOMMAND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ REFUNDCOMMAND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CustomerCommand_8h}{CustomerCommand.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRefundCommand}{RefundCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCustomerCommand}{CustomerCommand}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classRefundCommand}{RefundCommand}}(\mbox{\hyperlink{classStaff}{Staff}}*\ s,\ std::vector<Product*>*\ o,\ vector<bool>*\ \mbox{\hyperlink{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d}{flags}});}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ pair<string,\ Receipt*>\ \mbox{\hyperlink{classRefundCommand_a700665c1efa0741b908064841556cea7}{execute}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

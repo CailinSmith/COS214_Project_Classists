@@ -1,0 +1,130 @@
+\doxysection{Sales\+Area Class Reference}
+\hypertarget{classSalesArea}{}\label{classSalesArea}\index{SalesArea@{SalesArea}}
+
+
+Design pattern\+: Mediator Participant\+: Concrete\+Mediator.  
+
+
+
+
+{\ttfamily \#include $<$Sales\+Area.\+h$>$}
+
+
+
+Inheritance diagram for Sales\+Area\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classSalesArea__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sales\+Area\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classSalesArea__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classSalesArea_a270ba629161eeffe9fe032b14aec5f88}{notify}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}originator) override
+\begin{DoxyCompactList}\small\item\em Notifies colleagues in the sales area. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSalesArea_a2d5a6d07a54a30615e08c18cf8c83281}{register\+Colleague}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}colleague) override
+\begin{DoxyCompactList}\small\item\em Registers a colleague in the sales area. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSalesArea_ac43f5cf87d85c2f3795580b7e0c3a354}{unregister\+Colleague}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}colleague) override
+\begin{DoxyCompactList}\small\item\em Unregisters a colleague from the sales area. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classStaffMediator_a98afc24783231cf34a2951d1150d403d}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Mediator}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}}}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classStaffMediator_aacd096db5d7de35283d47fad6cb0eaf5}{colleagues}}
+\begin{DoxyCompactList}\small\item\em A list of colleagues registered with the mediator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: Mediator Participant\+: Concrete\+Mediator. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel
+\end{DoxyAuthor}
+
+
+This class is a concrete mediator for the sales area.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffMediator}{Staff\+Mediator} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSalesArea_a270ba629161eeffe9fe032b14aec5f88}\label{classSalesArea_a270ba629161eeffe9fe032b14aec5f88} 
+\index{SalesArea@{SalesArea}!notify@{notify}}
+\index{notify@{notify}!SalesArea@{SalesArea}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily void Sales\+Area\+::notify (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{originator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Notifies colleagues in the sales area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em originator} & The staff member sending the notification. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classStaffMediator_a3b5f2fd54df7bf2399d6f64e120ac985}{Staff\+Mediator}}.
+
+\Hypertarget{classSalesArea_a2d5a6d07a54a30615e08c18cf8c83281}\label{classSalesArea_a2d5a6d07a54a30615e08c18cf8c83281} 
+\index{SalesArea@{SalesArea}!registerColleague@{registerColleague}}
+\index{registerColleague@{registerColleague}!SalesArea@{SalesArea}}
+\doxysubsubsection{\texorpdfstring{registerColleague()}{registerColleague()}}
+{\footnotesize\ttfamily void Sales\+Area\+::register\+Colleague (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{colleague }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Registers a colleague in the sales area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colleague} & The staff member to register. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classStaffMediator_a229ca9d1032144d49cbd2d409614f0e5}{Staff\+Mediator}}.
+
+\Hypertarget{classSalesArea_ac43f5cf87d85c2f3795580b7e0c3a354}\label{classSalesArea_ac43f5cf87d85c2f3795580b7e0c3a354} 
+\index{SalesArea@{SalesArea}!unregisterColleague@{unregisterColleague}}
+\index{unregisterColleague@{unregisterColleague}!SalesArea@{SalesArea}}
+\doxysubsubsection{\texorpdfstring{unregisterColleague()}{unregisterColleague()}}
+{\footnotesize\ttfamily void Sales\+Area\+::unregister\+Colleague (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{colleague }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Unregisters a colleague from the sales area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colleague} & The staff member to unregister. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classStaffMediator_a26361ae5606c3c87a3e84d2949c58182}{Staff\+Mediator}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{SalesArea_8h}{Sales\+Area.\+h}}\item 
+src/\mbox{\hyperlink{SalesArea_8cpp}{Sales\+Area.\+cpp}}\end{DoxyCompactItemize}

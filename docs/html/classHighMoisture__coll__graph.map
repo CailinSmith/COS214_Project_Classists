@@ -1,0 +1,5 @@
+<map id="HighMoisture" name="HighMoisture">
+<area shape="rect" id="Node000001" title="Implements high moisture watering strategy for plants. Design Pattern: Strategy Participant: Concrete..." alt="" coords="18,79,127,104"/>
+<area shape="rect" id="Node000002" href="$classWateringStrategy.html" title="Abstract strategy for watering plants. Design Pattern: Strategy Participant: Strategy." alt="" coords="5,5,140,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,44,75,79,70,79,70,44"/>
+</map>

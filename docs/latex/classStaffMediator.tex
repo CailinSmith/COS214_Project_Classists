@@ -1,0 +1,142 @@
+\doxysection{Staff\+Mediator Class Reference}
+\hypertarget{classStaffMediator}{}\label{classStaffMediator}\index{StaffMediator@{StaffMediator}}
+
+
+Design pattern\+: Mediator Participant\+: Mediator.  
+
+
+
+
+{\ttfamily \#include $<$Staff\+Mediator.\+h$>$}
+
+
+
+Inheritance diagram for Staff\+Mediator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{classStaffMediator__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classStaffMediator_a98afc24783231cf34a2951d1150d403d}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Mediator}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStaffMediator_a3b5f2fd54df7bf2399d6f64e120ac985}{notify}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}originator)=0
+\begin{DoxyCompactList}\small\item\em Notifies colleagues of a message from an originator. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStaffMediator_a229ca9d1032144d49cbd2d409614f0e5}{register\+Colleague}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}colleague)=0
+\begin{DoxyCompactList}\small\item\em Registers a colleague with the mediator. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStaffMediator_a26361ae5606c3c87a3e84d2949c58182}{unregister\+Colleague}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}colleague)=0
+\begin{DoxyCompactList}\small\item\em Unregisters a colleague from the mediator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classStaffMediator_aacd096db5d7de35283d47fad6cb0eaf5}{colleagues}}
+\begin{DoxyCompactList}\small\item\em A list of colleagues registered with the mediator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: Mediator Participant\+: Mediator. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel
+\end{DoxyAuthor}
+
+
+This class is the mediator interface for communication between \doxylink{classStaff}{Staff} objects.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaff}{Staff} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classStaffMediator_a98afc24783231cf34a2951d1150d403d}\label{classStaffMediator_a98afc24783231cf34a2951d1150d403d} 
+\index{StaffMediator@{StaffMediator}!````~StaffMediator@{\texorpdfstring{$\sim$}{\string~}StaffMediator}}
+\index{````~StaffMediator@{\texorpdfstring{$\sim$}{\string~}StaffMediator}!StaffMediator@{StaffMediator}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StaffMediator()}{\string~StaffMediator()}}
+{\footnotesize\ttfamily virtual Staff\+Mediator\+::\texorpdfstring{$\sim$}{\string~}\+Staff\+Mediator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStaffMediator_a3b5f2fd54df7bf2399d6f64e120ac985}\label{classStaffMediator_a3b5f2fd54df7bf2399d6f64e120ac985} 
+\index{StaffMediator@{StaffMediator}!notify@{notify}}
+\index{notify@{notify}!StaffMediator@{StaffMediator}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily virtual void Staff\+Mediator\+::notify (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{originator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Notifies colleagues of a message from an originator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em originator} & The staff member sending the message. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classNurseryArea_a4410a202ae2c3ab1f433f5d7805bedfe}{Nursery\+Area}}, and \mbox{\hyperlink{classSalesArea_a270ba629161eeffe9fe032b14aec5f88}{Sales\+Area}}.
+
+\Hypertarget{classStaffMediator_a229ca9d1032144d49cbd2d409614f0e5}\label{classStaffMediator_a229ca9d1032144d49cbd2d409614f0e5} 
+\index{StaffMediator@{StaffMediator}!registerColleague@{registerColleague}}
+\index{registerColleague@{registerColleague}!StaffMediator@{StaffMediator}}
+\doxysubsubsection{\texorpdfstring{registerColleague()}{registerColleague()}}
+{\footnotesize\ttfamily virtual void Staff\+Mediator\+::register\+Colleague (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{colleague }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Registers a colleague with the mediator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colleague} & The staff member to register. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classNurseryArea_a7bca4d206523e69a613fbe0a8ee174b8}{Nursery\+Area}}, and \mbox{\hyperlink{classSalesArea_a2d5a6d07a54a30615e08c18cf8c83281}{Sales\+Area}}.
+
+\Hypertarget{classStaffMediator_a26361ae5606c3c87a3e84d2949c58182}\label{classStaffMediator_a26361ae5606c3c87a3e84d2949c58182} 
+\index{StaffMediator@{StaffMediator}!unregisterColleague@{unregisterColleague}}
+\index{unregisterColleague@{unregisterColleague}!StaffMediator@{StaffMediator}}
+\doxysubsubsection{\texorpdfstring{unregisterColleague()}{unregisterColleague()}}
+{\footnotesize\ttfamily virtual void Staff\+Mediator\+::unregister\+Colleague (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{colleague }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Unregisters a colleague from the mediator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colleague} & The staff member to unregister. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classNurseryArea_a683ff5ece0fd005ab2b239ff6a291863}{Nursery\+Area}}, and \mbox{\hyperlink{classSalesArea_ac43f5cf87d85c2f3795580b7e0c3a354}{Sales\+Area}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classStaffMediator_aacd096db5d7de35283d47fad6cb0eaf5}\label{classStaffMediator_aacd096db5d7de35283d47fad6cb0eaf5} 
+\index{StaffMediator@{StaffMediator}!colleagues@{colleagues}}
+\index{colleagues@{colleagues}!StaffMediator@{StaffMediator}}
+\doxysubsubsection{\texorpdfstring{colleagues}{colleagues}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*}$>$ Staff\+Mediator\+::colleagues\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A list of colleagues registered with the mediator. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{StaffMediator_8h}{Staff\+Mediator.\+h}}\end{DoxyCompactItemize}

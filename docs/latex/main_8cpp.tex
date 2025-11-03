@@ -1,0 +1,266 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Product.\+h"{}}\newline
+{\ttfamily \#include "{}Flower.\+h"{}}\newline
+{\ttfamily \#include "{}Herb.\+h"{}}\newline
+{\ttfamily \#include "{}Fruit.\+h"{}}\newline
+{\ttfamily \#include "{}Vegetable.\+h"{}}\newline
+{\ttfamily \#include "{}Succulent.\+h"{}}\newline
+{\ttfamily \#include "{}Aquatic.\+h"{}}\newline
+{\ttfamily \#include "{}Indoor.\+h"{}}\newline
+{\ttfamily \#include "{}Medicinal.\+h"{}}\newline
+{\ttfamily \#include "{}Plant\+Factory.\+h"{}}\newline
+{\ttfamily \#include "{}Spring\+Factory.\+h"{}}\newline
+{\ttfamily \#include "{}Summer\+Factory.\+h"{}}\newline
+{\ttfamily \#include "{}Autumn\+Factory.\+h"{}}\newline
+{\ttfamily \#include "{}Winter\+Factory.\+h"{}}\newline
+{\ttfamily \#include "{}Rose.\+h"{}}\newline
+{\ttfamily \#include "{}Basil.\+h"{}}\newline
+{\ttfamily \#include "{}Tomato.\+h"{}}\newline
+{\ttfamily \#include "{}Lettuce.\+h"{}}\newline
+{\ttfamily \#include "{}Jade\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Lily.\+h"{}}\newline
+{\ttfamily \#include "{}Snake\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Aloe\+Vera.\+h"{}}\newline
+{\ttfamily \#include "{}Chrysanthemum.\+h"{}}\newline
+{\ttfamily \#include "{}Lavender.\+h"{}}\newline
+{\ttfamily \#include "{}Apple\+Tree.\+h"{}}\newline
+{\ttfamily \#include "{}Pumpkin.\+h"{}}\newline
+{\ttfamily \#include "{}Barrel\+Cactus.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Hyacinth.\+h"{}}\newline
+{\ttfamily \#include "{}Rubber\+Tree.\+h"{}}\newline
+{\ttfamily \#include "{}Coneflower.\+h"{}}\newline
+{\ttfamily \#include "{}Pansy.\+h"{}}\newline
+{\ttfamily \#include "{}Thyme.\+h"{}}\newline
+{\ttfamily \#include "{}Strawberry.\+h"{}}\newline
+{\ttfamily \#include "{}Kale.\+h"{}}\newline
+{\ttfamily \#include "{}Echeveria.\+h"{}}\newline
+{\ttfamily \#include "{}Cattails.\+h"{}}\newline
+{\ttfamily \#include "{}Peace\+Lily.\+h"{}}\newline
+{\ttfamily \#include "{}Chamomile.\+h"{}}\newline
+{\ttfamily \#include "{}Sunflower.\+h"{}}\newline
+{\ttfamily \#include "{}Rosemary.\+h"{}}\newline
+{\ttfamily \#include "{}Orange\+Tree.\+h"{}}\newline
+{\ttfamily \#include "{}Cucumber.\+h"{}}\newline
+{\ttfamily \#include "{}Christmas\+Cactus.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Lettuce.\+h"{}}\newline
+{\ttfamily \#include "{}Pothos.\+h"{}}\newline
+{\ttfamily \#include "{}Ginger.\+h"{}}\newline
+{\ttfamily \#include "{}Staff\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Stock\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Plant\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Make\+Sellable\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Remove\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Remove\+Sale\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Prune\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Fertilise\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Calc\+Cost\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Get\+Info\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Staff\+Checkout\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Receipt.\+h"{}}\newline
+{\ttfamily \#include "{}Staff\+Check\+Stock\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Inventory\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery.\+h"{}}\newline
+{\ttfamily \#include "{}Season\+State.\+h"{}}\newline
+{\ttfamily \#include "{}Spring.\+h"{}}\newline
+{\ttfamily \#include "{}Summer.\+h"{}}\newline
+{\ttfamily \#include "{}Autumn.\+h"{}}\newline
+{\ttfamily \#include "{}Winter.\+h"{}}\newline
+{\ttfamily \#include "{}Season\+Iterator.\+h"{}}\newline
+{\ttfamily \#include "{}Iterator.\+h"{}}\newline
+{\ttfamily \#include "{}Staff\+Mediator.\+h"{}}\newline
+{\ttfamily \#include "{}Customer.\+h"{}}\newline
+{\ttfamily \#include "{}Ask\+Info\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Checkout\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Check\+Stock\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Staff.\+h"{}}\newline
+{\ttfamily \#include "{}Manager.\+h"{}}\newline
+{\ttfamily \#include "{}Sales\+Staff.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery\+Staff.\+h"{}}\newline
+{\ttfamily \#include "{}Sales\+Area.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery\+Area.\+h"{}}\newline
+{\ttfamily \#include "{}Decorator.\+h"{}}\newline
+{\ttfamily \#include "{}Clay\+Pot.\+h"{}}\newline
+{\ttfamily \#include "{}Concrete\+Pot.\+h"{}}\newline
+{\ttfamily \#include "{}Ceramic\+Pot.\+h"{}}\newline
+{\ttfamily \#include "{}Extra\+Fertilizer.\+h"{}}\newline
+{\ttfamily \#include "{}Kraft\+Wrapping.\+h"{}}\newline
+{\ttfamily \#include "{}Refund\+Command.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a9b619f852ca661647a29925d4a2dc160}{print\+Separator}} (string title)
+\item 
+void \mbox{\hyperlink{main_8cpp_ad03f8d69c05467f09f89c979cfbd04fb}{Mediator\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a97bbc76c504b2b86829b97c63e9d4d5a}{test\+Plant\+Categories}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_acad8061db9e7d75c699ab2d304b8b3f3}{test\+All\+Factories}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_af7e480371ff1aeaffecb8dede6b5c62d}{test\+Plant\+Statistics}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_ac83a42f6b2a847dc8b2c1ee0c81dd4c6}{test\+Every\+Plant\+From\+Factories}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a2d91b485d40551bb07b9b6524270215a}{test\+All\+Strategies}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a94bc6e811175f0d2fe866d892d39dbfc}{Abstract\+Strategy\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_aed5f98d819b1fea32a3f07b52d3e9256}{Command\+Staff\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a5fd190fbf05a314770e28ae0524f58e9}{Plant\+State\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a987a1a1409bbeb9dd1568311c3e6057c}{Inventory\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a64c2279f299b81944601d1f3a184bf9d}{Template\+Method\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_ac9150184223b6676046c3bd2be90904a}{Season\+State\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_af134ce5789d630230065ab626bb3db2b}{Decorator\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_ab5ee0dd3c8099106b012502a05f02549}{Observer\+Tesing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a257598ee89d1fec6467a79183249cad9}{New\+Staff\+Commands\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_aebc75d91e4864588adb0fce178afd300}{Iterator\+Testing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a4046543d4c1f905b520d4d7ee98b8221}{Chain\+Of\+Responsibility\+And\+Command}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_af87c21a034c8c3f1944fdc1fd38fb359}{Dynamic\+Cast\+Decorator\+Test}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a7a82d62461d6b6f0b9d35faf3331ff28}{Refund\+Flow\+Test}} ()
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a94bc6e811175f0d2fe866d892d39dbfc}\label{main_8cpp_a94bc6e811175f0d2fe866d892d39dbfc} 
+\index{main.cpp@{main.cpp}!AbstractStrategyTesting@{AbstractStrategyTesting}}
+\index{AbstractStrategyTesting@{AbstractStrategyTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{AbstractStrategyTesting()}{AbstractStrategyTesting()}}
+{\footnotesize\ttfamily void Abstract\+Strategy\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a4046543d4c1f905b520d4d7ee98b8221}\label{main_8cpp_a4046543d4c1f905b520d4d7ee98b8221} 
+\index{main.cpp@{main.cpp}!ChainOfResponsibilityAndCommand@{ChainOfResponsibilityAndCommand}}
+\index{ChainOfResponsibilityAndCommand@{ChainOfResponsibilityAndCommand}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ChainOfResponsibilityAndCommand()}{ChainOfResponsibilityAndCommand()}}
+{\footnotesize\ttfamily void Chain\+Of\+Responsibility\+And\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_aed5f98d819b1fea32a3f07b52d3e9256}\label{main_8cpp_aed5f98d819b1fea32a3f07b52d3e9256} 
+\index{main.cpp@{main.cpp}!CommandStaffTesting@{CommandStaffTesting}}
+\index{CommandStaffTesting@{CommandStaffTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{CommandStaffTesting()}{CommandStaffTesting()}}
+{\footnotesize\ttfamily void Command\+Staff\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_af134ce5789d630230065ab626bb3db2b}\label{main_8cpp_af134ce5789d630230065ab626bb3db2b} 
+\index{main.cpp@{main.cpp}!DecoratorTesting@{DecoratorTesting}}
+\index{DecoratorTesting@{DecoratorTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{DecoratorTesting()}{DecoratorTesting()}}
+{\footnotesize\ttfamily void Decorator\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_af87c21a034c8c3f1944fdc1fd38fb359}\label{main_8cpp_af87c21a034c8c3f1944fdc1fd38fb359} 
+\index{main.cpp@{main.cpp}!DynamicCastDecoratorTest@{DynamicCastDecoratorTest}}
+\index{DynamicCastDecoratorTest@{DynamicCastDecoratorTest}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{DynamicCastDecoratorTest()}{DynamicCastDecoratorTest()}}
+{\footnotesize\ttfamily void Dynamic\+Cast\+Decorator\+Test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a987a1a1409bbeb9dd1568311c3e6057c}\label{main_8cpp_a987a1a1409bbeb9dd1568311c3e6057c} 
+\index{main.cpp@{main.cpp}!InventoryTesting@{InventoryTesting}}
+\index{InventoryTesting@{InventoryTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{InventoryTesting()}{InventoryTesting()}}
+{\footnotesize\ttfamily void Inventory\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_aebc75d91e4864588adb0fce178afd300}\label{main_8cpp_aebc75d91e4864588adb0fce178afd300} 
+\index{main.cpp@{main.cpp}!IteratorTesting@{IteratorTesting}}
+\index{IteratorTesting@{IteratorTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{IteratorTesting()}{IteratorTesting()}}
+{\footnotesize\ttfamily void Iterator\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ad03f8d69c05467f09f89c979cfbd04fb}\label{main_8cpp_ad03f8d69c05467f09f89c979cfbd04fb} 
+\index{main.cpp@{main.cpp}!MediatorTesting@{MediatorTesting}}
+\index{MediatorTesting@{MediatorTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MediatorTesting()}{MediatorTesting()}}
+{\footnotesize\ttfamily void Mediator\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a257598ee89d1fec6467a79183249cad9}\label{main_8cpp_a257598ee89d1fec6467a79183249cad9} 
+\index{main.cpp@{main.cpp}!NewStaffCommandsTesting@{NewStaffCommandsTesting}}
+\index{NewStaffCommandsTesting@{NewStaffCommandsTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{NewStaffCommandsTesting()}{NewStaffCommandsTesting()}}
+{\footnotesize\ttfamily void New\+Staff\+Commands\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ab5ee0dd3c8099106b012502a05f02549}\label{main_8cpp_ab5ee0dd3c8099106b012502a05f02549} 
+\index{main.cpp@{main.cpp}!ObserverTesing@{ObserverTesing}}
+\index{ObserverTesing@{ObserverTesing}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ObserverTesing()}{ObserverTesing()}}
+{\footnotesize\ttfamily void Observer\+Tesing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a5fd190fbf05a314770e28ae0524f58e9}\label{main_8cpp_a5fd190fbf05a314770e28ae0524f58e9} 
+\index{main.cpp@{main.cpp}!PlantStateTesting@{PlantStateTesting}}
+\index{PlantStateTesting@{PlantStateTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{PlantStateTesting()}{PlantStateTesting()}}
+{\footnotesize\ttfamily void Plant\+State\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a9b619f852ca661647a29925d4a2dc160}\label{main_8cpp_a9b619f852ca661647a29925d4a2dc160} 
+\index{main.cpp@{main.cpp}!printSeparator@{printSeparator}}
+\index{printSeparator@{printSeparator}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{printSeparator()}{printSeparator()}}
+{\footnotesize\ttfamily void print\+Separator (\begin{DoxyParamCaption}\item[{string}]{title }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a7a82d62461d6b6f0b9d35faf3331ff28}\label{main_8cpp_a7a82d62461d6b6f0b9d35faf3331ff28} 
+\index{main.cpp@{main.cpp}!RefundFlowTest@{RefundFlowTest}}
+\index{RefundFlowTest@{RefundFlowTest}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{RefundFlowTest()}{RefundFlowTest()}}
+{\footnotesize\ttfamily void Refund\+Flow\+Test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ac9150184223b6676046c3bd2be90904a}\label{main_8cpp_ac9150184223b6676046c3bd2be90904a} 
+\index{main.cpp@{main.cpp}!SeasonStateTesting@{SeasonStateTesting}}
+\index{SeasonStateTesting@{SeasonStateTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SeasonStateTesting()}{SeasonStateTesting()}}
+{\footnotesize\ttfamily void Season\+State\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a64c2279f299b81944601d1f3a184bf9d}\label{main_8cpp_a64c2279f299b81944601d1f3a184bf9d} 
+\index{main.cpp@{main.cpp}!TemplateMethodTesting@{TemplateMethodTesting}}
+\index{TemplateMethodTesting@{TemplateMethodTesting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{TemplateMethodTesting()}{TemplateMethodTesting()}}
+{\footnotesize\ttfamily void Template\+Method\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_acad8061db9e7d75c699ab2d304b8b3f3}\label{main_8cpp_acad8061db9e7d75c699ab2d304b8b3f3} 
+\index{main.cpp@{main.cpp}!testAllFactories@{testAllFactories}}
+\index{testAllFactories@{testAllFactories}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{testAllFactories()}{testAllFactories()}}
+{\footnotesize\ttfamily void test\+All\+Factories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a2d91b485d40551bb07b9b6524270215a}\label{main_8cpp_a2d91b485d40551bb07b9b6524270215a} 
+\index{main.cpp@{main.cpp}!testAllStrategies@{testAllStrategies}}
+\index{testAllStrategies@{testAllStrategies}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{testAllStrategies()}{testAllStrategies()}}
+{\footnotesize\ttfamily void test\+All\+Strategies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ac83a42f6b2a847dc8b2c1ee0c81dd4c6}\label{main_8cpp_ac83a42f6b2a847dc8b2c1ee0c81dd4c6} 
+\index{main.cpp@{main.cpp}!testEveryPlantFromFactories@{testEveryPlantFromFactories}}
+\index{testEveryPlantFromFactories@{testEveryPlantFromFactories}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{testEveryPlantFromFactories()}{testEveryPlantFromFactories()}}
+{\footnotesize\ttfamily void test\+Every\+Plant\+From\+Factories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a97bbc76c504b2b86829b97c63e9d4d5a}\label{main_8cpp_a97bbc76c504b2b86829b97c63e9d4d5a} 
+\index{main.cpp@{main.cpp}!testPlantCategories@{testPlantCategories}}
+\index{testPlantCategories@{testPlantCategories}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{testPlantCategories()}{testPlantCategories()}}
+{\footnotesize\ttfamily void test\+Plant\+Categories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_af7e480371ff1aeaffecb8dede6b5c62d}\label{main_8cpp_af7e480371ff1aeaffecb8dede6b5c62d} 
+\index{main.cpp@{main.cpp}!testPlantStatistics@{testPlantStatistics}}
+\index{testPlantStatistics@{testPlantStatistics}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{testPlantStatistics()}{testPlantStatistics()}}
+{\footnotesize\ttfamily void test\+Plant\+Statistics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

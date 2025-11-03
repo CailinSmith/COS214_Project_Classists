@@ -1,0 +1,101 @@
+\doxysection{Dead\+State Class Reference}
+\hypertarget{classDeadState}{}\label{classDeadState}\index{DeadState@{DeadState}}
+
+
+Design pattern\+: State Participant\+: Concrete\+State.  
+
+
+
+
+{\ttfamily \#include $<$Dead\+State.\+h$>$}
+
+
+
+Inheritance diagram for Dead\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{classDeadState__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Dead\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{classDeadState__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDeadState_a6b87e50d165a5dd05b564c12f5a2de57}{change}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant) override
+\begin{DoxyCompactList}\small\item\em Changes the state of the plant. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classDeadState_a21340663c870e017bb9e8f14777f567b}{print}} () override
+\begin{DoxyCompactList}\small\item\em Returns the name of the state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: State Participant\+: Concrete\+State. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel
+\end{DoxyAuthor}
+
+
+This class is a concrete state for when a plant is dead.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantState}{Plant\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDeadState_a6b87e50d165a5dd05b564c12f5a2de57}\label{classDeadState_a6b87e50d165a5dd05b564c12f5a2de57} 
+\index{DeadState@{DeadState}!change@{change}}
+\index{change@{change}!DeadState@{DeadState}}
+\doxysubsubsection{\texorpdfstring{change()}{change()}}
+{\footnotesize\ttfamily void Dead\+State\+::change (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Changes the state of the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & The plant to change the state of. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classPlantState_ae929dd4c55fc527ca58b9f85dcaf90fe}{Plant\+State}}.
+
+\Hypertarget{classDeadState_a21340663c870e017bb9e8f14777f567b}\label{classDeadState_a21340663c870e017bb9e8f14777f567b} 
+\index{DeadState@{DeadState}!print@{print}}
+\index{print@{print}!DeadState@{DeadState}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string Dead\+State\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the name of the state. 
+
+\begin{DoxyReturn}{Returns}
+The name of the state. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantState_ae26f80b79106927035bfac09f5c4830b}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{DeadState_8h}{Dead\+State.\+h}}\item 
+src/\mbox{\hyperlink{DeadState_8cpp}{Dead\+State.\+cpp}}\end{DoxyCompactItemize}

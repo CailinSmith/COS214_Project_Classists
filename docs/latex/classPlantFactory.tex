@@ -1,0 +1,219 @@
+\doxysection{Plant\+Factory Class Reference}
+\hypertarget{classPlantFactory}{}\label{classPlantFactory}\index{PlantFactory@{PlantFactory}}
+
+
+Abstract factory for creating different types of plants. Design Pattern\+: Abstract Factory Participant\+: Abstract\+Factory.  
+
+
+
+
+{\ttfamily \#include $<$Plant\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPlantFactory__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantFactory_aaa9e963946bd91314941d259f7eec9bd}{\texorpdfstring{$\sim$}{\string~}\+Plant\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPlantFactory}{Plant\+Factory}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantFactory_af0d074fa394a24f7168de8e07b446c3e}{create\+Flower}} ()=0
+\begin{DoxyCompactList}\small\item\em Creates a flower plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantFactory_a91ce9b32dc561b9fcf6d275784e2ef99}{create\+Herb}} ()=0
+\begin{DoxyCompactList}\small\item\em Creates an herb plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantFactory_aa80395495862c2c47c6238af81e15168}{create\+Fruit}} ()=0
+\begin{DoxyCompactList}\small\item\em Creates a fruit plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantFactory_aa29c0d000bf65fa78cd2bc34dc11c3fe}{create\+Vegetable}} ()=0
+\begin{DoxyCompactList}\small\item\em Creates a vegetable plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantFactory_af1bb9fedebdfa41aa26eb3fea971efc7}{create\+Succulent}} ()=0
+\begin{DoxyCompactList}\small\item\em Creates a succulent plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantFactory_a0f9190403dc92ed675e33f582112b717}{create\+Aquatic}} ()=0
+\begin{DoxyCompactList}\small\item\em Creates an aquatic plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantFactory_ae717d4a9732ff9cff0b38d51d8e0e45c}{create\+Indoor}} ()=0
+\begin{DoxyCompactList}\small\item\em Creates an indoor plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantFactory_a6c29e0e6b4a1dbba6c747121fb26b7e4}{create\+Medicinal}} ()=0
+\begin{DoxyCompactList}\small\item\em Creates a medicinal plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract factory for creating different types of plants. Design Pattern\+: Abstract Factory Participant\+: Abstract\+Factory. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This abstract class defines the interface for creating various plant types. Concrete factory subclasses (\doxylink{classSpringFactory}{Spring\+Factory}, \doxylink{classSummerFactory}{Summer\+Factory}, etc.) implement these methods to create season-\/specific plant varieties. Each factory method creates a different category of plant.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classSpringFactory}{Spring\+Factory} 
+
+\doxylink{classSummerFactory}{Summer\+Factory} 
+
+\doxylink{classAutumnFactory}{Autumn\+Factory} 
+
+\doxylink{classWinterFactory}{Winter\+Factory} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlantFactory_aaa9e963946bd91314941d259f7eec9bd}\label{classPlantFactory_aaa9e963946bd91314941d259f7eec9bd} 
+\index{PlantFactory@{PlantFactory}!````~PlantFactory@{\texorpdfstring{$\sim$}{\string~}PlantFactory}}
+\index{````~PlantFactory@{\texorpdfstring{$\sim$}{\string~}PlantFactory}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PlantFactory()}{\string~PlantFactory()}}
+{\footnotesize\ttfamily virtual Plant\+Factory\+::\texorpdfstring{$\sim$}{\string~}\+Plant\+Factory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor for the \doxylink{classPlantFactory}{Plant\+Factory}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlantFactory_a0f9190403dc92ed675e33f582112b717}\label{classPlantFactory_a0f9190403dc92ed675e33f582112b717} 
+\index{PlantFactory@{PlantFactory}!createAquatic@{createAquatic}}
+\index{createAquatic@{createAquatic}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{createAquatic()}{createAquatic()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+Factory\+::create\+Aquatic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates an aquatic plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created aquatic plant. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumnFactory_ae3467ae3ea668469d0d7ef4667bc365f}{Autumn\+Factory}}, \mbox{\hyperlink{classSpringFactory_a977774941d7f6f241dec1e43566ec2dc}{Spring\+Factory}}, \mbox{\hyperlink{classSummerFactory_a88e30aae855e666342a298730de8851f}{Summer\+Factory}}, and \mbox{\hyperlink{classWinterFactory_a00a67baa58633a38ab29a1434aaee144}{Winter\+Factory}}.
+
+\Hypertarget{classPlantFactory_af0d074fa394a24f7168de8e07b446c3e}\label{classPlantFactory_af0d074fa394a24f7168de8e07b446c3e} 
+\index{PlantFactory@{PlantFactory}!createFlower@{createFlower}}
+\index{createFlower@{createFlower}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{createFlower()}{createFlower()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+Factory\+::create\+Flower (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a flower plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created flower plant. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumnFactory_a8c47bf5ec7a5d53335f5ae05016a9040}{Autumn\+Factory}}, \mbox{\hyperlink{classSpringFactory_acc90e8ec1aa0aaa0a499311390920c8c}{Spring\+Factory}}, \mbox{\hyperlink{classSummerFactory_a0aa7bd07ace64895379d2035efe7cc0f}{Summer\+Factory}}, and \mbox{\hyperlink{classWinterFactory_a15d07bbe72fa96458a3bcbd27ffcde39}{Winter\+Factory}}.
+
+\Hypertarget{classPlantFactory_aa80395495862c2c47c6238af81e15168}\label{classPlantFactory_aa80395495862c2c47c6238af81e15168} 
+\index{PlantFactory@{PlantFactory}!createFruit@{createFruit}}
+\index{createFruit@{createFruit}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{createFruit()}{createFruit()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+Factory\+::create\+Fruit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a fruit plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created fruit plant. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumnFactory_ad9a78c79e84aeecc73e7328c58c7abdf}{Autumn\+Factory}}, \mbox{\hyperlink{classSpringFactory_a218fac1ad5b0be54882c73d326f88919}{Spring\+Factory}}, \mbox{\hyperlink{classSummerFactory_ad84980f622b17c893f5abbcf5be097dc}{Summer\+Factory}}, and \mbox{\hyperlink{classWinterFactory_a1d5e97bfdb0f8cd6cbc5bbe9eb5c97ad}{Winter\+Factory}}.
+
+\Hypertarget{classPlantFactory_a91ce9b32dc561b9fcf6d275784e2ef99}\label{classPlantFactory_a91ce9b32dc561b9fcf6d275784e2ef99} 
+\index{PlantFactory@{PlantFactory}!createHerb@{createHerb}}
+\index{createHerb@{createHerb}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{createHerb()}{createHerb()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+Factory\+::create\+Herb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates an herb plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created herb plant. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumnFactory_a1b29ee3d40d3dca655f836dde39f4a5c}{Autumn\+Factory}}, \mbox{\hyperlink{classSpringFactory_a494c5d3430d38898a8467ce642faf5cf}{Spring\+Factory}}, \mbox{\hyperlink{classSummerFactory_a9b180e03cab4f9c3aba56d5651305725}{Summer\+Factory}}, and \mbox{\hyperlink{classWinterFactory_a2167f6e997d166f6221425c870c1038f}{Winter\+Factory}}.
+
+\Hypertarget{classPlantFactory_ae717d4a9732ff9cff0b38d51d8e0e45c}\label{classPlantFactory_ae717d4a9732ff9cff0b38d51d8e0e45c} 
+\index{PlantFactory@{PlantFactory}!createIndoor@{createIndoor}}
+\index{createIndoor@{createIndoor}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{createIndoor()}{createIndoor()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+Factory\+::create\+Indoor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates an indoor plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created indoor plant. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumnFactory_a7fda46e9c156afbe84b315ebb393be61}{Autumn\+Factory}}, \mbox{\hyperlink{classSpringFactory_af609b1753d2f64628a11c7ed9e9bc266}{Spring\+Factory}}, \mbox{\hyperlink{classSummerFactory_a6da58c7c74c6a32e1add19bbaf9e3996}{Summer\+Factory}}, and \mbox{\hyperlink{classWinterFactory_a3e7932c98fcefcb62bf27ced2733db17}{Winter\+Factory}}.
+
+\Hypertarget{classPlantFactory_a6c29e0e6b4a1dbba6c747121fb26b7e4}\label{classPlantFactory_a6c29e0e6b4a1dbba6c747121fb26b7e4} 
+\index{PlantFactory@{PlantFactory}!createMedicinal@{createMedicinal}}
+\index{createMedicinal@{createMedicinal}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{createMedicinal()}{createMedicinal()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+Factory\+::create\+Medicinal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a medicinal plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created medicinal plant. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumnFactory_a6e752d3f7cbdebbc920502ad481f43ab}{Autumn\+Factory}}, \mbox{\hyperlink{classSpringFactory_a7fa8134c6c3ed4f7f234373a174df1e7}{Spring\+Factory}}, \mbox{\hyperlink{classSummerFactory_ab13e5537fd1cf75d56cd06d12c00aa55}{Summer\+Factory}}, and \mbox{\hyperlink{classWinterFactory_a32a47fb0a27c169479c36948eb4ba569}{Winter\+Factory}}.
+
+\Hypertarget{classPlantFactory_af1bb9fedebdfa41aa26eb3fea971efc7}\label{classPlantFactory_af1bb9fedebdfa41aa26eb3fea971efc7} 
+\index{PlantFactory@{PlantFactory}!createSucculent@{createSucculent}}
+\index{createSucculent@{createSucculent}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{createSucculent()}{createSucculent()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+Factory\+::create\+Succulent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a succulent plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created succulent plant. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumnFactory_a46417ede247445403f4e5b1b4756730e}{Autumn\+Factory}}, \mbox{\hyperlink{classSpringFactory_ad074a54f7c34941df4a77116128e2134}{Spring\+Factory}}, \mbox{\hyperlink{classSummerFactory_ad5248424b31723478a484baedb1cf7ca}{Summer\+Factory}}, and \mbox{\hyperlink{classWinterFactory_a8e4b4b96ca9ed225b44d5abd8589ffdb}{Winter\+Factory}}.
+
+\Hypertarget{classPlantFactory_aa29c0d000bf65fa78cd2bc34dc11c3fe}\label{classPlantFactory_aa29c0d000bf65fa78cd2bc34dc11c3fe} 
+\index{PlantFactory@{PlantFactory}!createVegetable@{createVegetable}}
+\index{createVegetable@{createVegetable}!PlantFactory@{PlantFactory}}
+\doxysubsubsection{\texorpdfstring{createVegetable()}{createVegetable()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+Factory\+::create\+Vegetable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a vegetable plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created vegetable plant. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumnFactory_a07497c8c2f11114266a5fcaae5e2abd9}{Autumn\+Factory}}, \mbox{\hyperlink{classSpringFactory_afbc0bc4ed8070603b375908cb41da1d9}{Spring\+Factory}}, \mbox{\hyperlink{classSummerFactory_ab2ca78f9bb5380651ce8a5220501d6ed}{Summer\+Factory}}, and \mbox{\hyperlink{classWinterFactory_ac3f0ae3d38f2dbff05f0590a68ccfe4a}{Winter\+Factory}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{PlantFactory_8h}{Plant\+Factory.\+h}}\end{DoxyCompactItemize}

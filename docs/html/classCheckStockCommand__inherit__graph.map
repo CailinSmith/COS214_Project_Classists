@@ -1,0 +1,5 @@
+<map id="CheckStockCommand" name="CheckStockCommand">
+<area shape="rect" id="Node000001" title="Design Pattern: Command Participant: Concrete Command." alt="" coords="5,79,171,104"/>
+<area shape="rect" id="Node000002" href="$classCustomerCommand.html" title="Design Pattern: Command Participant: Command Interface." alt="" coords="12,5,164,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,44,91,79,85,79,85,44"/>
+</map>

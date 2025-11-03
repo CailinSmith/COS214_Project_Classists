@@ -1,0 +1,158 @@
+\doxysection{Staff\+Check\+Stock\+Command Class Reference}
+\hypertarget{classStaffCheckStockCommand}{}\label{classStaffCheckStockCommand}\index{StaffCheckStockCommand@{StaffCheckStockCommand}}
+
+
+Command for checking plant stock levels. Design Pattern\+: Command Participant\+: Concrete\+Command.  
+
+
+
+
+{\ttfamily \#include $<$Staff\+Check\+Stock\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Staff\+Check\+Stock\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classStaffCheckStockCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Staff\+Check\+Stock\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classStaffCheckStockCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCheckStockCommand_ab3650b331af228d14daffcba6fa76236}{Staff\+Check\+Stock\+Command}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}p, \mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}im)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classStaffCheckStockCommand}{Staff\+Check\+Stock\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCheckStockCommand_a4c4f5e9791396b81cc4a038643a78cc8}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Check\+Stock\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classStaffCheckStockCommand}{Staff\+Check\+Stock\+Command}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaffCheckStockCommand_ad3854e5f9fde52c6b43a137020e7f6b6}{execute}} () override
+\begin{DoxyCompactList}\small\item\em Executes the check stock command. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classStaffCheckStockCommand_a9c9618aade0e065ce6707191b838e380}{get\+Stock}} ()
+\begin{DoxyCompactList}\small\item\em Gets the stock level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCommand_abe8268d554fd49c6892942356dc33144}{Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classStaffCheckStockCommand_abffa25526b86574c8a19d7abeac3b587}{stock}}
+\begin{DoxyCompactList}\small\item\em The stock level retrieved from inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant associated with this command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}{nursery}}
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command for checking plant stock levels. Design Pattern\+: Command Participant\+: Concrete\+Command. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class encapsulates a stock check request as a command object. It allows staff to query the inventory for the quantity of a specific plant type currently in stock.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffCommand}{Staff\+Command} 
+
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classInventoryManager}{Inventory\+Manager} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classStaffCheckStockCommand_ab3650b331af228d14daffcba6fa76236}\label{classStaffCheckStockCommand_ab3650b331af228d14daffcba6fa76236} 
+\index{StaffCheckStockCommand@{StaffCheckStockCommand}!StaffCheckStockCommand@{StaffCheckStockCommand}}
+\index{StaffCheckStockCommand@{StaffCheckStockCommand}!StaffCheckStockCommand@{StaffCheckStockCommand}}
+\doxysubsubsection{\texorpdfstring{StaffCheckStockCommand()}{StaffCheckStockCommand()}}
+{\footnotesize\ttfamily Staff\+Check\+Stock\+Command\+::\+Staff\+Check\+Stock\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{p,  }\item[{\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}}]{im }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classStaffCheckStockCommand}{Staff\+Check\+Stock\+Command}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to the plant to check stock for. \\
+\hline
+{\em im} & Pointer to the inventory manager. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaffCheckStockCommand_a4c4f5e9791396b81cc4a038643a78cc8}\label{classStaffCheckStockCommand_a4c4f5e9791396b81cc4a038643a78cc8} 
+\index{StaffCheckStockCommand@{StaffCheckStockCommand}!````~StaffCheckStockCommand@{\texorpdfstring{$\sim$}{\string~}StaffCheckStockCommand}}
+\index{````~StaffCheckStockCommand@{\texorpdfstring{$\sim$}{\string~}StaffCheckStockCommand}!StaffCheckStockCommand@{StaffCheckStockCommand}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StaffCheckStockCommand()}{\string~StaffCheckStockCommand()}}
+{\footnotesize\ttfamily Staff\+Check\+Stock\+Command\+::\texorpdfstring{$\sim$}{\string~}\+Staff\+Check\+Stock\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor for the \doxylink{classStaffCheckStockCommand}{Staff\+Check\+Stock\+Command}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStaffCheckStockCommand_ad3854e5f9fde52c6b43a137020e7f6b6}\label{classStaffCheckStockCommand_ad3854e5f9fde52c6b43a137020e7f6b6} 
+\index{StaffCheckStockCommand@{StaffCheckStockCommand}!execute@{execute}}
+\index{execute@{execute}!StaffCheckStockCommand@{StaffCheckStockCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Staff\+Check\+Stock\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Executes the check stock command. 
+
+Queries the inventory manager for the stock level of the plant. 
+
+Reimplemented from \mbox{\hyperlink{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}{Staff\+Command}}.
+
+\Hypertarget{classStaffCheckStockCommand_a9c9618aade0e065ce6707191b838e380}\label{classStaffCheckStockCommand_a9c9618aade0e065ce6707191b838e380} 
+\index{StaffCheckStockCommand@{StaffCheckStockCommand}!getStock@{getStock}}
+\index{getStock@{getStock}!StaffCheckStockCommand@{StaffCheckStockCommand}}
+\doxysubsubsection{\texorpdfstring{getStock()}{getStock()}}
+{\footnotesize\ttfamily int Staff\+Check\+Stock\+Command\+::get\+Stock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the stock level. 
+
+\begin{DoxyReturn}{Returns}
+int The quantity of the plant in stock. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classStaffCheckStockCommand_abffa25526b86574c8a19d7abeac3b587}\label{classStaffCheckStockCommand_abffa25526b86574c8a19d7abeac3b587} 
+\index{StaffCheckStockCommand@{StaffCheckStockCommand}!stock@{stock}}
+\index{stock@{stock}!StaffCheckStockCommand@{StaffCheckStockCommand}}
+\doxysubsubsection{\texorpdfstring{stock}{stock}}
+{\footnotesize\ttfamily int Staff\+Check\+Stock\+Command\+::stock\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The stock level retrieved from inventory. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{StaffCheckStockCommand_8h}{Staff\+Check\+Stock\+Command.\+h}}\item 
+src/\mbox{\hyperlink{StaffCheckStockCommand_8cpp}{Staff\+Check\+Stock\+Command.\+cpp}}\end{DoxyCompactItemize}

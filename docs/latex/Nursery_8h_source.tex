@@ -1,0 +1,61 @@
+\doxysection{Nursery.\+h}
+\hypertarget{Nursery_8h_source}{}\label{Nursery_8h_source}\index{src/Nursery.h@{src/Nursery.h}}
+\mbox{\hyperlink{Nursery_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ NURSERY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ NURSERY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SeasonState_8h}{SeasonState.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlantFactory_8h}{PlantFactory.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{InventoryManager_8h}{InventoryManager.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Staff_8h}{Staff.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Forward\ declarations}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSpring}{Spring}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSpringFactory}{SpringFactory}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNursery}{Nursery}}\ \{}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classNursery}{Nursery}}*\ \mbox{\hyperlink{classNursery_a815fa88b2f1a22b6c20268db067ceaa2}{instance}};}
+\DoxyCodeLine{00051\ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classInventoryManager}{InventoryManager}}*\ \mbox{\hyperlink{classNursery_af392488a3a4f997238303b3a1d002c5e}{inventoryManager}};}
+\DoxyCodeLine{00056\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classSeasonState}{SeasonState}}*\ \mbox{\hyperlink{classNursery_a2b29486a890a09fee10ad2ef5717e639}{currentSeason}};}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classPlantFactory}{PlantFactory}}*\ \mbox{\hyperlink{classNursery_acf7ddec38834cc58a3fb96b5fbd35cb2}{currentFactory}};}
+\DoxyCodeLine{00066\ \ \ \ \ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classNursery}{Nursery}}(\mbox{\hyperlink{classInventoryManager}{InventoryManager}}*\ manager);}
+\DoxyCodeLine{00073\ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classNursery_a2f2de151d7165db976fc89b4271c09d9}{Nursery}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classNursery}{Nursery}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00078\ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classNursery}{Nursery}}\&\ \mbox{\hyperlink{classNursery_a4ef687ef8ea785e711d4fdf1f41c8473}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classNursery}{Nursery}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00083\ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classNursery_a14147229d47eb7fefc609f4105a97b40}{\string~Nursery}}();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classNursery}{Nursery}}*\ \mbox{\hyperlink{classNursery_aa505ab6f44e8ad2b358d73b0df29a4e3}{getInstance}}(\mbox{\hyperlink{classInventoryManager}{InventoryManager}}*\ manager\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00096\ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNursery_a245953484f70d554392e47ffc50c1e99}{destroyInstance}}();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classInventoryManager}{InventoryManager}}*\ \mbox{\hyperlink{classNursery_a5e7e42da5e8be1f5aa7769c64b5e3ce4}{getInventoryManager}}();}
+\DoxyCodeLine{00109\ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNursery_a8c4bc8a343eb69b5b0f7ffec560530ea}{clearInventoryManager}}();}
+\DoxyCodeLine{00116\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNursery_a4e149a713ebe47ad2001b31eb208fea8}{setSeason}}(\mbox{\hyperlink{classSeasonState}{SeasonState}}*\ season);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classNursery_a83ba8e21f0167644ada1345d449652af}{getSeason}}();}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNursery_a4fedd0eabcf8ec4553aa21fbe00f0a0d}{setFactory}}(\mbox{\hyperlink{classPlantFactory}{PlantFactory}}*\ factory);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNursery_a9f9fbe5e8d09c7ebb26e84c869a6112e}{changeSeason}}();}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNursery_a6714698a25b587d4051866dadb1b514a}{stockNursery}}();}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

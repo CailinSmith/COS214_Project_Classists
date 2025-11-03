@@ -1,0 +1,9 @@
+<map id="WaterLettuce" name="WaterLettuce">
+<area shape="rect" id="Node000001" title="Represents a water lettuce aquatic plant. Design Pattern: Abstract Factory Participant: ConcreteProdu..." alt="" coords="5,225,113,251"/>
+<area shape="rect" id="Node000002" href="$classAquatic.html" title="Represents an aquatic plant type in the nursery system. Design Pattern: Abstract Factory,..." alt="" coords="24,152,95,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,191,62,225,57,225,57,191"/>
+<area shape="rect" id="Node000003" href="$classPlant.html" title="Abstract base class representing a plant product in the nursery system. Design Pattern: State,..." alt="" coords="32,79,87,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,118,62,152,57,152,57,118"/>
+<area shape="rect" id="Node000004" href="$classProduct.html" title="Design Pattern: Decorator Participant: Component." alt="" coords="24,5,95,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="62,44,62,79,57,79,57,44"/>
+</map>

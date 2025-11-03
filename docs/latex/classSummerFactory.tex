@@ -1,0 +1,227 @@
+\doxysection{Summer\+Factory Class Reference}
+\hypertarget{classSummerFactory}{}\label{classSummerFactory}\index{SummerFactory@{SummerFactory}}
+
+
+Concrete factory for creating summer-\/season plants. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Factory.  
+
+
+
+
+{\ttfamily \#include $<$Summer\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Summer\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classSummerFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Summer\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classSummerFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSummerFactory_a0aa7bd07ace64895379d2035efe7cc0f}{create\+Flower}} ()
+\begin{DoxyCompactList}\small\item\em Creates a summer flower. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSummerFactory_a9b180e03cab4f9c3aba56d5651305725}{create\+Herb}} ()
+\begin{DoxyCompactList}\small\item\em Creates a summer herb. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSummerFactory_ad84980f622b17c893f5abbcf5be097dc}{create\+Fruit}} ()
+\begin{DoxyCompactList}\small\item\em Creates a summer fruit. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSummerFactory_ab2ca78f9bb5380651ce8a5220501d6ed}{create\+Vegetable}} ()
+\begin{DoxyCompactList}\small\item\em Creates a summer vegetable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSummerFactory_ad5248424b31723478a484baedb1cf7ca}{create\+Succulent}} ()
+\begin{DoxyCompactList}\small\item\em Creates a summer succulent. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSummerFactory_a88e30aae855e666342a298730de8851f}{create\+Aquatic}} ()
+\begin{DoxyCompactList}\small\item\em Creates a summer aquatic plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSummerFactory_a6da58c7c74c6a32e1add19bbaf9e3996}{create\+Indoor}} ()
+\begin{DoxyCompactList}\small\item\em Creates a summer indoor plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSummerFactory_ab13e5537fd1cf75d56cd06d12c00aa55}{create\+Medicinal}} ()
+\begin{DoxyCompactList}\small\item\em Creates a summer medicinal plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantFactory}{Plant\+Factory}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantFactory_aaa9e963946bd91314941d259f7eec9bd}{\texorpdfstring{$\sim$}{\string~}\+Plant\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPlantFactory}{Plant\+Factory}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete factory for creating summer-\/season plants. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Factory. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements the \doxylink{classPlantFactory}{Plant\+Factory} interface to create plants that are appropriate for the summer season. Each creation method returns a specific summer plant variety (\doxylink{classChrysanthemum}{Chrysanthemum}, \doxylink{classLavender}{Lavender}, Apple Tree, \doxylink{classPumpkin}{Pumpkin}, Barrel Cactus, Water Hyacinth, Rubber Tree, \doxylink{classConeflower}{Coneflower}).
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantFactory}{Plant\+Factory} 
+
+\doxylink{classChrysanthemum}{Chrysanthemum} 
+
+\doxylink{classLavender}{Lavender} 
+
+\doxylink{classAppleTree}{Apple\+Tree} 
+
+\doxylink{classPumpkin}{Pumpkin} 
+
+\doxylink{classBarrelCactus}{Barrel\+Cactus} 
+
+\doxylink{classWaterHyacinth}{Water\+Hyacinth} 
+
+\doxylink{classRubberTree}{Rubber\+Tree} 
+
+\doxylink{classConeflower}{Coneflower} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSummerFactory_a88e30aae855e666342a298730de8851f}\label{classSummerFactory_a88e30aae855e666342a298730de8851f} 
+\index{SummerFactory@{SummerFactory}!createAquatic@{createAquatic}}
+\index{createAquatic@{createAquatic}!SummerFactory@{SummerFactory}}
+\doxysubsubsection{\texorpdfstring{createAquatic()}{createAquatic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Summer\+Factory\+::create\+Aquatic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a summer aquatic plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Water Hyacinth. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a0f9190403dc92ed675e33f582112b717}{Plant\+Factory}}.
+
+\Hypertarget{classSummerFactory_a0aa7bd07ace64895379d2035efe7cc0f}\label{classSummerFactory_a0aa7bd07ace64895379d2035efe7cc0f} 
+\index{SummerFactory@{SummerFactory}!createFlower@{createFlower}}
+\index{createFlower@{createFlower}!SummerFactory@{SummerFactory}}
+\doxysubsubsection{\texorpdfstring{createFlower()}{createFlower()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Summer\+Factory\+::create\+Flower (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a summer flower. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classChrysanthemum}{Chrysanthemum}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_af0d074fa394a24f7168de8e07b446c3e}{Plant\+Factory}}.
+
+\Hypertarget{classSummerFactory_ad84980f622b17c893f5abbcf5be097dc}\label{classSummerFactory_ad84980f622b17c893f5abbcf5be097dc} 
+\index{SummerFactory@{SummerFactory}!createFruit@{createFruit}}
+\index{createFruit@{createFruit}!SummerFactory@{SummerFactory}}
+\doxysubsubsection{\texorpdfstring{createFruit()}{createFruit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Summer\+Factory\+::create\+Fruit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a summer fruit. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Apple Tree. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_aa80395495862c2c47c6238af81e15168}{Plant\+Factory}}.
+
+\Hypertarget{classSummerFactory_a9b180e03cab4f9c3aba56d5651305725}\label{classSummerFactory_a9b180e03cab4f9c3aba56d5651305725} 
+\index{SummerFactory@{SummerFactory}!createHerb@{createHerb}}
+\index{createHerb@{createHerb}!SummerFactory@{SummerFactory}}
+\doxysubsubsection{\texorpdfstring{createHerb()}{createHerb()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Summer\+Factory\+::create\+Herb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a summer herb. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classLavender}{Lavender} plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a91ce9b32dc561b9fcf6d275784e2ef99}{Plant\+Factory}}.
+
+\Hypertarget{classSummerFactory_a6da58c7c74c6a32e1add19bbaf9e3996}\label{classSummerFactory_a6da58c7c74c6a32e1add19bbaf9e3996} 
+\index{SummerFactory@{SummerFactory}!createIndoor@{createIndoor}}
+\index{createIndoor@{createIndoor}!SummerFactory@{SummerFactory}}
+\doxysubsubsection{\texorpdfstring{createIndoor()}{createIndoor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Summer\+Factory\+::create\+Indoor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a summer indoor plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Rubber Tree. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_ae717d4a9732ff9cff0b38d51d8e0e45c}{Plant\+Factory}}.
+
+\Hypertarget{classSummerFactory_ab13e5537fd1cf75d56cd06d12c00aa55}\label{classSummerFactory_ab13e5537fd1cf75d56cd06d12c00aa55} 
+\index{SummerFactory@{SummerFactory}!createMedicinal@{createMedicinal}}
+\index{createMedicinal@{createMedicinal}!SummerFactory@{SummerFactory}}
+\doxysubsubsection{\texorpdfstring{createMedicinal()}{createMedicinal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Summer\+Factory\+::create\+Medicinal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a summer medicinal plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classConeflower}{Coneflower}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a6c29e0e6b4a1dbba6c747121fb26b7e4}{Plant\+Factory}}.
+
+\Hypertarget{classSummerFactory_ad5248424b31723478a484baedb1cf7ca}\label{classSummerFactory_ad5248424b31723478a484baedb1cf7ca} 
+\index{SummerFactory@{SummerFactory}!createSucculent@{createSucculent}}
+\index{createSucculent@{createSucculent}!SummerFactory@{SummerFactory}}
+\doxysubsubsection{\texorpdfstring{createSucculent()}{createSucculent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Summer\+Factory\+::create\+Succulent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a summer succulent. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Barrel Cactus. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_af1bb9fedebdfa41aa26eb3fea971efc7}{Plant\+Factory}}.
+
+\Hypertarget{classSummerFactory_ab2ca78f9bb5380651ce8a5220501d6ed}\label{classSummerFactory_ab2ca78f9bb5380651ce8a5220501d6ed} 
+\index{SummerFactory@{SummerFactory}!createVegetable@{createVegetable}}
+\index{createVegetable@{createVegetable}!SummerFactory@{SummerFactory}}
+\doxysubsubsection{\texorpdfstring{createVegetable()}{createVegetable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Summer\+Factory\+::create\+Vegetable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a summer vegetable. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classPumpkin}{Pumpkin} plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_aa29c0d000bf65fa78cd2bc34dc11c3fe}{Plant\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{SummerFactory_8h}{Summer\+Factory.\+h}}\item 
+src/\mbox{\hyperlink{SummerFactory_8cpp}{Summer\+Factory.\+cpp}}\end{DoxyCompactItemize}

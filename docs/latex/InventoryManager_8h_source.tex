@@ -1,0 +1,91 @@
+\doxysection{Inventory\+Manager.\+h}
+\hypertarget{InventoryManager_8h_source}{}\label{InventoryManager_8h_source}\index{src/InventoryManager.h@{src/InventoryManager.h}}
+\mbox{\hyperlink{InventoryManager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INVENTORYMANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INVENTORYMANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Aggregate_8h}{Aggregate.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Subject_8h}{Subject.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SeasonIterator_8h}{SeasonIterator.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStaff}{Staff}};}
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classInventoryManager}{InventoryManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classAggregate}{Aggregate}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSubject}{Subject}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ vector<Plant*>\ \mbox{\hyperlink{classInventoryManager_aa59c4a31d3c12fd3971c773e4bbd41ab}{forSale}};}
+\DoxyCodeLine{00046\ \ \ \ \ vector<Staff*>\ \mbox{\hyperlink{classInventoryManager_a423353f7262c6c009f210a9a618dab60}{observerList}};}
+\DoxyCodeLine{00050\ \ \ \ \ vector<Plant*>\ \mbox{\hyperlink{classInventoryManager_abfb82377172ad333885852708c350576}{inNursery}};}
+\DoxyCodeLine{00054\ \ \ \ \ map<string,\ int>\ \mbox{\hyperlink{classInventoryManager_a3a87364a21dd3c5a953d51be3513ddc2}{priority}}\ =\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Flower"{}},\ 0\},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Herb"{}},\ 1\},}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Fruit"{}},\ 2\},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Vegetable"{}},\ 3\},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Succulent"{}},\ 4\},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Aquatic"{}},\ 5\},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Indoor"{}},\ 6\},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Medicinal"{}},\ 7\}}
+\DoxyCodeLine{00063\ \ \ \ \ \};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classInventoryManager_ab7aaed6939c0d6a292a722a5d89497ab}{saleThreshold}}\ =\ 5;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classInventoryManager_a742d4ea4b9af5332424a4d52e401e194}{nurseryThreshold}}\ =\ 5;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_a457d7f208bbf1187353a2bea9ed263b6}{checkAndNotify}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classInventoryManager_a762f9944114edab7d20b0c6abbc3f98e}{InventoryManager}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00084\ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classInventoryManager_a512a0bfc118080463aabc42267b28036}{\string~InventoryManager}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classIterator}{Iterator<Plant>}}*\ \mbox{\hyperlink{classInventoryManager_a401fdd0d1c318b906b143c69f1745f09}{createIterator}}(\textcolor{keyword}{const}\ std::string\&\ season)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00096\ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classIterator}{Iterator<Plant>}}*\ \mbox{\hyperlink{classInventoryManager_a89428263425084be3fc95a2d150724ca}{createSaleIterator}}(\textcolor{keyword}{const}\ std::string\&\ season);}
+\DoxyCodeLine{00103\ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classIterator}{Iterator<Plant>}}*\ \mbox{\hyperlink{classInventoryManager_a033c5a4517bc73035964ce682b9925d6}{createNurseryIterator}}(\textcolor{keyword}{const}\ std::string\&\ season);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_ab42eecb8b8395c81e3d2693e41ce1c13}{addToSale}}(\mbox{\hyperlink{classPlant}{Plant}}*\ plant);}
+\DoxyCodeLine{00116\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_a5c83248546cdfccfcaccf83f9637e1f6}{addToNursery}}(\mbox{\hyperlink{classPlant}{Plant}}*\ plant);}
+\DoxyCodeLine{00122\ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_aedba1565f96f14ac46652cf6ad222ff2}{removeFromNursery}}(\mbox{\hyperlink{classPlant}{Plant}}*\ plant);}
+\DoxyCodeLine{00128\ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_ad29995a3a278f00540fcbfdd7f5e60ed}{removeFromSale}}(\mbox{\hyperlink{classPlant}{Plant}}*\ plant);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_a0daea71051aee72ae3cf97eadc4d7e0e}{notifyStaff}}(\textcolor{keywordtype}{string}\ message)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_a94e1cdec2dbe5b97019e9470a82740b8}{registerObserver}}(\mbox{\hyperlink{classStaff}{Staff}}*\ staff);}
+\DoxyCodeLine{00146\ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_a1cdf55ec22cdcd8bbb2d336106f0b88f}{deregisterObserver}}(\mbox{\hyperlink{classStaff}{Staff}}*\ staff);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classInventoryManager_acc4ab48e35668a9d03f70f2d0d4848fd}{getSaleCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00158\ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classInventoryManager_a740ac2be461919889568c19d1c0ba6d4}{getNurseryCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00164\ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInventoryManager_a3ca44cd03eb149be1880e7347268702c}{isInSale}}(\mbox{\hyperlink{classPlant}{Plant}}*\ plant)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00171\ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInventoryManager_a375c5bd36d3768b2a6b014fb4f3be543}{isInNursery}}(\mbox{\hyperlink{classPlant}{Plant}}*\ plant)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{const}\ vector<Plant*>\&\ \mbox{\hyperlink{classInventoryManager_a9e544aaf12772aa8f23926e88837819d}{getForSalePlants}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classInventoryManager_aa59c4a31d3c12fd3971c773e4bbd41ab}{forSale}};\ \}}
+\DoxyCodeLine{00184\ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{const}\ vector<Plant*>\&\ \mbox{\hyperlink{classInventoryManager_ab5d4b9b42fd1576b01f0d22f152a85d6}{getNurseryPlants}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classInventoryManager_abfb82377172ad333885852708c350576}{inNursery}};\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_ae9fe22e6efdfee7ca24c69ffef2c7f60}{populateDemoInventory}}(\textcolor{keywordtype}{size\_t}\ nurseryCount,\ \textcolor{keywordtype}{size\_t}\ saleCount);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_a7114e8a080d65942d2387eedf5b83b76}{setSaleThreshold}}(\textcolor{keywordtype}{size\_t}\ t)\ \{\ \mbox{\hyperlink{classInventoryManager_ab7aaed6939c0d6a292a722a5d89497ab}{saleThreshold}}\ =\ t;\ \}}
+\DoxyCodeLine{00203\ \ \ \ \ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInventoryManager_acfaf41f9a4c0cad8e0aae762023f5e5c}{setNurseryThreshold}}(\textcolor{keywordtype}{size\_t}\ t)\ \{\ \mbox{\hyperlink{classInventoryManager_a742d4ea4b9af5332424a4d52e401e194}{nurseryThreshold}}\ =\ t;\ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,26 @@
+\doxysection{Staff\+Mediator.\+h}
+\hypertarget{StaffMediator_8h_source}{}\label{StaffMediator_8h_source}\index{src/StaffMediator.h@{src/StaffMediator.h}}
+\mbox{\hyperlink{StaffMediator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STAFFMEDIATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STAFFMEDIATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Staff_8h}{Staff.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStaffMediator}{StaffMediator}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classStaffMediator_a98afc24783231cf34a2951d1150d403d}{\string~StaffMediator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStaffMediator_a3b5f2fd54df7bf2399d6f64e120ac985}{notify}}(\mbox{\hyperlink{classStaff}{Staff}}*\ originator)\ =\ 0;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStaffMediator_a229ca9d1032144d49cbd2d409614f0e5}{registerColleague}}(\mbox{\hyperlink{classStaff}{Staff}}*\ colleague)\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStaffMediator_a26361ae5606c3c87a3e84d2949c58182}{unregisterColleague}}(\mbox{\hyperlink{classStaff}{Staff}}*\ colleague)\ =\ 0;}
+\DoxyCodeLine{00043\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00047\ \ \ \ \ vector<Staff*>\ \mbox{\hyperlink{classStaffMediator_aacd096db5d7de35283d47fad6cb0eaf5}{colleagues}};}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

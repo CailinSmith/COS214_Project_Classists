@@ -1,0 +1,5 @@
+<map id="MakeSellableCommand" name="MakeSellableCommand">
+<area shape="rect" id="Node000001" title="Command for making a plant ready for sale. Design Pattern: Command Participant: ConcreteCommand." alt="" coords="5,79,181,104"/>
+<area shape="rect" id="Node000002" href="$classStaffCommand.html" title="Abstract base class for staff commands. Design Pattern: Command Participant: Command." alt="" coords="34,5,153,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,44,96,79,91,79,91,44"/>
+</map>

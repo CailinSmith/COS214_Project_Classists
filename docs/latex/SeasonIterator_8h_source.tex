@@ -1,0 +1,35 @@
+\doxysection{Season\+Iterator.\+h}
+\hypertarget{SeasonIterator_8h_source}{}\label{SeasonIterator_8h_source}\index{src/SeasonIterator.h@{src/SeasonIterator.h}}
+\mbox{\hyperlink{SeasonIterator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SEASONITERATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SEASONITERATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Iterator_8h}{Iterator.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSeasonIterator}{SeasonIterator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classIterator}{Iterator}}<Plant>\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ std::vector<Plant*>\ \mbox{\hyperlink{classSeasonIterator_ad6093ea4845c6809df90c3a836e2beac}{plants}};}
+\DoxyCodeLine{00031\ \ \ \ \ std::string\ \mbox{\hyperlink{classSeasonIterator_a7279f01aef921b3be1caa5667f7ac582}{targetSeason}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classSeasonIterator_a5ce0aa4af7ca695b1e1e4a4d9ee0f0a0}{currentIndex}};}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSeasonIterator_a33b2004243d249bb43abf45711d4a1d6}{findNextSeasonMatch}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classSeasonIterator}{SeasonIterator}}(\textcolor{keyword}{const}\ std::vector<Plant*>\&\ plantList,\ \textcolor{keyword}{const}\ std::string\&\ season);}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlant}{Plant}}*\ \mbox{\hyperlink{classSeasonIterator_ae9cac1e5711ff40d7ab0f51cb48ce53a}{first}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlant}{Plant}}*\ \mbox{\hyperlink{classSeasonIterator_a1545eceaa23b8da8fa7017e3534dd4ed}{next}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSeasonIterator_a1b40d9ed4970b022d786e93b02957dfc}{isDone}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlant}{Plant}}*\ \mbox{\hyperlink{classSeasonIterator_a206ad8b4bead714252abfbca4e221521}{currentItem}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

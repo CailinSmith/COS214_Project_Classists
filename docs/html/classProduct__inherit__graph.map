@@ -1,0 +1,97 @@
+<map id="Product" name="Product">
+<area shape="rect" id="Node000001" title="Design Pattern: Decorator Participant: Component." alt="" coords="5,497,76,523"/>
+<area shape="rect" id="Node000002" href="$classDecorator.html" title="Design Pattern: Decorator Participant: Decorator." alt="" coords="124,129,211,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="48,484,159,154,164,156,53,485"/>
+<area shape="rect" id="Node000008" href="$classPlant.html" title="Abstract base class representing a plant product in the nursery system. Design Pattern: State,..." alt="" coords="140,793,195,819"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="55,534,163,792,158,794,50,536"/>
+<area shape="rect" id="Node000003" href="$classCeramicPot.html" title="Design Pattern: Decorator Participant: Concrete Decorator." alt="" coords="267,5,365,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="183,117,215,78,257,40,277,28,280,33,260,44,219,82,187,120"/>
+<area shape="rect" id="Node000004" href="$classClayPot.html" title="Design Pattern: Decorator Participant: Concrete Decorator." alt="" coords="280,55,352,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="200,120,257,89,282,78,284,83,260,94,203,125"/>
+<area shape="rect" id="Node000005" href="$classConcretePot.html" title="Design Pattern: Decorator Participant: Concrete Decorator." alt="" coords="265,104,367,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="224,130,265,123,266,128,225,135"/>
+<area shape="rect" id="Node000006" href="$classExtraFertilizer.html" title="Design Pattern: Decorator Participant: Concrete Decorator." alt="" coords="259,153,373,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="225,149,259,154,259,159,224,154"/>
+<area shape="rect" id="Node000007" href="$classKraftWrapping.html" title="Design Pattern: Decorator Participant: Concrete Decorator." alt="" coords="259,203,373,228"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="205,159,260,188,287,200,284,205,257,192,202,164"/>
+<area shape="rect" id="Node000009" href="$classAquatic.html" title="Represents an aquatic plant type in the nursery system. Design Pattern: Abstract Factory,..." alt="" coords="281,252,351,277"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="171,779,202,622,227,517,256,411,283,334,307,276,312,278,288,336,261,412,232,518,207,624,176,781"/>
+<area shape="rect" id="Node000014" href="$classFlower.html" title="Represents a flowering plant type in the nursery system. Design Pattern: Abstract Factory,..." alt="" coords="283,424,349,449"/>
+<area shape="poly" id="edge13_Node000008_Node000014" title=" " alt="" coords="176,780,307,449,312,451,181,782"/>
+<area shape="rect" id="Node000019" href="$classFruit.html" title="Represents a fruit&#45;bearing plant type in the nursery system. Design Pattern: Abstract Factory,..." alt="" coords="291,621,341,647"/>
+<area shape="poly" id="edge18_Node000008_Node000019" title=" " alt="" coords="186,781,302,645,306,649,190,785"/>
+<area shape="rect" id="Node000024" href="$classHerb.html" title="Represents an herb plant type in the nursery system. Design Pattern: Abstract Factory,..." alt="" coords="289,793,343,819"/>
+<area shape="poly" id="edge23_Node000008_Node000024" title=" " alt="" coords="208,803,289,803,289,809,208,809"/>
+<area shape="rect" id="Node000029" href="$classIndoor.html" title="Represents an indoor plant type in the nursery system. Design Pattern: Abstract Factory,..." alt="" coords="285,967,347,992"/>
+<area shape="poly" id="edge28_Node000008_Node000029" title=" " alt="" coords="190,828,306,965,302,968,186,831"/>
+<area shape="rect" id="Node000034" href="$classMedicinal.html" title="Represents a medicinal plant type in the nursery system. Design Pattern: Abstract Factory,..." alt="" coords="273,1164,359,1189"/>
+<area shape="poly" id="edge33_Node000008_Node000034" title=" " alt="" coords="181,830,312,1163,307,1165,176,832"/>
+<area shape="rect" id="Node000039" href="$classSucculent.html" title="Represents a succulent plant category. Design Pattern: Abstract Factory, Template Method Participant:..." alt="" coords="273,1361,359,1387"/>
+<area shape="poly" id="edge38_Node000008_Node000039" title=" " alt="" coords="176,831,209,988,261,1200,313,1360,308,1362,256,1201,204,989,171,832"/>
+<area shape="rect" id="Node000044" href="$classVegetable.html" title="Represents a vegetable plant category. Design Pattern: Abstract Factory, Template Method Participant:..." alt="" coords="273,1559,359,1584"/>
+<area shape="poly" id="edge43_Node000008_Node000044" title=" " alt="" coords="174,832,202,1066,227,1230,261,1397,288,1490,312,1558,307,1559,283,1491,256,1399,222,1231,196,1066,169,833"/>
+<area shape="rect" id="Node000010" href="$classCattails.html" title="Represents a Cattails aquatic plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="451,128,523,153"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="362,244,372,237,387,219,395,201,403,182,420,163,450,147,453,151,423,167,407,185,399,203,391,222,375,241,365,249"/>
+<area shape="rect" id="Node000011" href="$classWaterHyacinth.html" title="Represents a water hyacinth aquatic plant. Design Pattern: Abstract Factory Participant: ConcreteProd..." alt="" coords="428,177,547,203"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="358,244,372,237,420,212,448,200,450,205,422,216,375,242,360,249"/>
+<area shape="rect" id="Node000012" href="$classWaterLettuce.html" title="Represents a water lettuce aquatic plant. Design Pattern: Abstract Factory Participant: ConcreteProdu..." alt="" coords="433,227,541,252"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="364,255,433,245,434,250,365,260"/>
+<area shape="rect" id="Node000013" href="$classWaterLily.html" title="Represents a water lily aquatic plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="446,276,529,301"/>
+<area shape="poly" id="edge12_Node000009_Node000013" title=" " alt="" coords="365,269,446,280,446,286,365,274"/>
+<area shape="rect" id="Node000015" href="$classChrysanthemum.html" title="Represents a Chrysanthemum flower plant. Design Pattern: Abstract Factory Participant: ConcreteProduc..." alt="" coords="422,325,553,351"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="342,413,378,386,420,360,446,348,448,353,423,364,381,390,345,417"/>
+<area shape="rect" id="Node000016" href="$classPansy.html" title="Represents a Pansy flower plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="457,375,517,400"/>
+<area shape="poly" id="edge15_Node000014_Node000016" title=" " alt="" coords="362,421,456,393,458,398,363,426"/>
+<area shape="rect" id="Node000017" href="$classRose.html" title="Represents a rose flower plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="460,424,515,449"/>
+<area shape="poly" id="edge16_Node000014_Node000017" title=" " alt="" coords="363,434,460,434,460,439,363,439"/>
+<area shape="rect" id="Node000018" href="$classSunflower.html" title="Represents a sunflower plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="444,473,531,499"/>
+<area shape="poly" id="edge17_Node000014_Node000018" title=" " alt="" coords="363,447,445,471,443,476,362,452"/>
+<area shape="rect" id="Node000020" href="$classAppleTree.html" title="Represents an Apple Tree fruit plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="444,523,531,548"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="342,610,378,583,420,557,446,546,448,550,423,562,381,588,345,615"/>
+<area shape="rect" id="Node000021" href="$classOrangeTree.html" title="Represents an Orange Tree fruit plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="439,572,535,597"/>
+<area shape="poly" id="edge20_Node000019_Node000021" title=" " alt="" coords="354,621,442,595,443,600,355,626"/>
+<area shape="rect" id="Node000022" href="$classStrawberry.html" title="Represents a strawberry fruit plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="441,621,534,647"/>
+<area shape="poly" id="edge21_Node000019_Node000022" title=" " alt="" coords="355,631,441,631,441,637,355,637"/>
+<area shape="rect" id="Node000023" href="$classTomato.html" title="Represents a tomato fruit plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="452,671,523,696"/>
+<area shape="poly" id="edge22_Node000019_Node000023" title=" " alt="" coords="355,642,453,671,451,676,354,647"/>
+<area shape="rect" id="Node000025" href="$classBasil.html" title="Represents a Basil herb plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="460,720,515,745"/>
+<area shape="poly" id="edge24_Node000024_Node000025" title=" " alt="" coords="354,785,420,754,459,739,461,744,422,759,356,790"/>
+<area shape="rect" id="Node000026" href="$classLavender.html" title="Represents a Lavender herb plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="446,769,529,795"/>
+<area shape="poly" id="edge25_Node000024_Node000026" title=" " alt="" coords="356,798,445,785,446,790,357,803"/>
+<area shape="rect" id="Node000027" href="$classRosemary.html" title="Represents a rosemary herb plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="443,819,531,844"/>
+<area shape="poly" id="edge26_Node000024_Node000027" title=" " alt="" coords="357,809,443,822,443,828,356,815"/>
+<area shape="rect" id="Node000028" href="$classThyme.html" title="Represents a thyme herb plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="454,868,521,893"/>
+<area shape="poly" id="edge27_Node000024_Node000028" title=" " alt="" coords="356,822,422,853,455,866,453,871,420,858,354,827"/>
+<area shape="rect" id="Node000030" href="$classPeaceLily.html" title="Represents a Peace Lily indoor plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="445,917,529,943"/>
+<area shape="poly" id="edge29_Node000029_Node000030" title=" " alt="" coords="360,964,445,939,446,944,361,969"/>
+<area shape="rect" id="Node000031" href="$classPothos.html" title="Represents a Pothos indoor plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="454,967,521,992"/>
+<area shape="poly" id="edge30_Node000029_Node000031" title=" " alt="" coords="361,977,454,977,454,982,361,982"/>
+<area shape="rect" id="Node000032" href="$classRubberTree.html" title="Represents a rubber tree indoor plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="440,1016,535,1041"/>
+<area shape="poly" id="edge31_Node000029_Node000032" title=" " alt="" coords="361,989,443,1013,441,1018,360,994"/>
+<area shape="rect" id="Node000033" href="$classSnakePlant.html" title="Represents a snake plant indoor plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="440,1065,535,1091"/>
+<area shape="poly" id="edge32_Node000029_Node000033" title=" " alt="" coords="345,998,381,1025,423,1050,450,1063,448,1068,420,1055,378,1029,342,1003"/>
+<area shape="rect" id="Node000035" href="$classAloeVera.html" title="Represents an Aloe Vera medicinal plant. Design Pattern: Abstract Factory Participant: ConcreteProduc..." alt="" coords="447,1115,527,1140"/>
+<area shape="poly" id="edge34_Node000034_Node000035" title=" " alt="" coords="371,1158,446,1136,448,1141,373,1163"/>
+<area shape="rect" id="Node000036" href="$classChamomile.html" title="Represents a Chamomile medicinal plant. Design Pattern: Abstract Factory Participant: ConcreteProduct..." alt="" coords="439,1164,536,1189"/>
+<area shape="poly" id="edge35_Node000034_Node000036" title=" " alt="" coords="373,1174,438,1174,438,1179,373,1179"/>
+<area shape="rect" id="Node000037" href="$classConeflower.html" title="Represents a Coneflower medicinal plant. Design Pattern: Abstract Factory Participant: ConcreteProduc..." alt="" coords="440,1213,535,1239"/>
+<area shape="poly" id="edge36_Node000034_Node000037" title=" " alt="" coords="373,1190,443,1211,442,1216,371,1195"/>
+<area shape="rect" id="Node000038" href="$classGinger.html" title="Represents a Ginger medicinal plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="455,1263,520,1288"/>
+<area shape="poly" id="edge37_Node000034_Node000038" title=" " alt="" coords="345,1196,381,1222,423,1248,455,1262,453,1267,420,1252,378,1226,342,1200"/>
+<area shape="rect" id="Node000040" href="$classBarrelCactus.html" title="Represents a Barrel Cactus succulent plant. Design Pattern: Abstract Factory Participant: ConcretePro..." alt="" coords="435,1312,540,1337"/>
+<area shape="poly" id="edge39_Node000039_Node000040" title=" " alt="" coords="371,1355,442,1335,443,1340,373,1361"/>
+<area shape="rect" id="Node000041" href="$classChristmasCactus.html" title="Represents a Christmas Cactus succulent plant. Design Pattern: Abstract Factory Participant: Concrete..." alt="" coords="421,1361,553,1387"/>
+<area shape="poly" id="edge40_Node000039_Node000041" title=" " alt="" coords="373,1371,421,1371,421,1377,373,1377"/>
+<area shape="rect" id="Node000042" href="$classEcheveria.html" title="Represents an Echeveria succulent plant. Design Pattern: Abstract Factory Participant: ConcreteProduc..." alt="" coords="444,1411,531,1436"/>
+<area shape="poly" id="edge41_Node000039_Node000042" title=" " alt="" coords="373,1387,444,1408,443,1413,371,1393"/>
+<area shape="rect" id="Node000043" href="$classJadePlant.html" title="Represents a Jade Plant succulent. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="446,1460,529,1485"/>
+<area shape="poly" id="edge42_Node000039_Node000043" title=" " alt="" coords="345,1393,381,1419,423,1445,450,1458,448,1462,420,1450,378,1424,342,1397"/>
+<area shape="rect" id="Node000045" href="$classCucumber.html" title="Represents a Cucumber vegetable plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="443,1509,531,1535"/>
+<area shape="poly" id="edge44_Node000044_Node000045" title=" " alt="" coords="372,1553,442,1532,444,1537,373,1558"/>
+<area shape="rect" id="Node000046" href="$classKale.html" title="Represents a Kale vegetable plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="462,1559,513,1584"/>
+<area shape="poly" id="edge45_Node000044_Node000046" title=" " alt="" coords="373,1569,462,1569,462,1574,373,1574"/>
+<area shape="rect" id="Node000047" href="$classLettuce.html" title="Represents a Lettuce vegetable plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="452,1608,523,1633"/>
+<area shape="poly" id="edge46_Node000044_Node000047" title=" " alt="" coords="373,1585,453,1608,451,1613,372,1590"/>
+<area shape="rect" id="Node000048" href="$classPumpkin.html" title="Represents a pumpkin vegetable plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="448,1657,527,1683"/>
+<area shape="poly" id="edge47_Node000044_Node000048" title=" " alt="" coords="345,1590,381,1617,423,1642,450,1655,448,1660,420,1647,378,1621,342,1595"/>
+</map>

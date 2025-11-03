@@ -1,0 +1,101 @@
+\doxysection{Ready\+For\+Sale\+State Class Reference}
+\hypertarget{classReadyForSaleState}{}\label{classReadyForSaleState}\index{ReadyForSaleState@{ReadyForSaleState}}
+
+
+Design pattern\+: State Participant\+: Concrete\+State.  
+
+
+
+
+{\ttfamily \#include $<$Ready\+For\+Sale\+State.\+h$>$}
+
+
+
+Inheritance diagram for Ready\+For\+Sale\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classReadyForSaleState__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ready\+For\+Sale\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classReadyForSaleState__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classReadyForSaleState_a5b6c2f23d0ad12a0a6454f4352d451ca}{change}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant) override
+\begin{DoxyCompactList}\small\item\em Changes the state of the plant. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classReadyForSaleState_a8844b4edb9e2671d309d077d57d473d1}{print}} () override
+\begin{DoxyCompactList}\small\item\em Returns the name of the state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: State Participant\+: Concrete\+State. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel
+\end{DoxyAuthor}
+
+
+This class is a concrete state for when a plant is ready for sale.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantState}{Plant\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classReadyForSaleState_a5b6c2f23d0ad12a0a6454f4352d451ca}\label{classReadyForSaleState_a5b6c2f23d0ad12a0a6454f4352d451ca} 
+\index{ReadyForSaleState@{ReadyForSaleState}!change@{change}}
+\index{change@{change}!ReadyForSaleState@{ReadyForSaleState}}
+\doxysubsubsection{\texorpdfstring{change()}{change()}}
+{\footnotesize\ttfamily void Ready\+For\+Sale\+State\+::change (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Changes the state of the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & The plant to change the state of. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classPlantState_ae929dd4c55fc527ca58b9f85dcaf90fe}{Plant\+State}}.
+
+\Hypertarget{classReadyForSaleState_a8844b4edb9e2671d309d077d57d473d1}\label{classReadyForSaleState_a8844b4edb9e2671d309d077d57d473d1} 
+\index{ReadyForSaleState@{ReadyForSaleState}!print@{print}}
+\index{print@{print}!ReadyForSaleState@{ReadyForSaleState}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string Ready\+For\+Sale\+State\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the name of the state. 
+
+\begin{DoxyReturn}{Returns}
+The name of the state. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantState_ae26f80b79106927035bfac09f5c4830b}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{ReadyForSaleState_8h}{Ready\+For\+Sale\+State.\+h}}\item 
+src/\mbox{\hyperlink{ReadyForSaleState_8cpp}{Ready\+For\+Sale\+State.\+cpp}}\end{DoxyCompactItemize}

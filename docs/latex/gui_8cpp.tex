@@ -1,0 +1,61 @@
+\doxysection{src/gui.cpp File Reference}
+\hypertarget{gui_8cpp}{}\label{gui_8cpp}\index{src/gui.cpp@{src/gui.cpp}}
+{\ttfamily \#include "{}gui.\+h"{}}\newline
+Include dependency graph for gui.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gui_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structColoredChar}{Colored\+Char}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{structColoredChar}{Colored\+Char}} $>$ $>$ \mbox{\hyperlink{gui_8cpp_a4543a19a077e1afc18dbb83a61f2a3c0}{parse\+Ansi\+Image}} (const std\+::string \&ansi\+Text)
+\item 
+Color \mbox{\hyperlink{gui_8cpp_ace18fccb4266115795bbf1bab2ccb24e}{terminal\+Color\+To\+FTXUI}} (int color\+Code)
+\item 
+std\+::string \mbox{\hyperlink{gui_8cpp_af55bc26fe39bffc777523757713e4cef}{convert\+Image\+To\+ASCII}} (const std\+::string \&image\+Path, int width=50, int height=25)
+\item 
+Element \mbox{\hyperlink{gui_8cpp_ac01675bfbab451e678b7073391a670f4}{create\+Health\+Bar}} (float health)
+\item 
+int \mbox{\hyperlink{gui_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{gui_8cpp_af55bc26fe39bffc777523757713e4cef}\label{gui_8cpp_af55bc26fe39bffc777523757713e4cef} 
+\index{gui.cpp@{gui.cpp}!convertImageToASCII@{convertImageToASCII}}
+\index{convertImageToASCII@{convertImageToASCII}!gui.cpp@{gui.cpp}}
+\doxysubsubsection{\texorpdfstring{convertImageToASCII()}{convertImageToASCII()}}
+{\footnotesize\ttfamily std\+::string convert\+Image\+To\+ASCII (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{image\+Path,  }\item[{int}]{width = {\ttfamily 50},  }\item[{int}]{height = {\ttfamily 25} }\end{DoxyParamCaption})}
+
+\Hypertarget{gui_8cpp_ac01675bfbab451e678b7073391a670f4}\label{gui_8cpp_ac01675bfbab451e678b7073391a670f4} 
+\index{gui.cpp@{gui.cpp}!createHealthBar@{createHealthBar}}
+\index{createHealthBar@{createHealthBar}!gui.cpp@{gui.cpp}}
+\doxysubsubsection{\texorpdfstring{createHealthBar()}{createHealthBar()}}
+{\footnotesize\ttfamily Element create\+Health\+Bar (\begin{DoxyParamCaption}\item[{float}]{health }\end{DoxyParamCaption})}
+
+\Hypertarget{gui_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{gui_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{gui.cpp@{gui.cpp}!main@{main}}
+\index{main@{main}!gui.cpp@{gui.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{gui_8cpp_a4543a19a077e1afc18dbb83a61f2a3c0}\label{gui_8cpp_a4543a19a077e1afc18dbb83a61f2a3c0} 
+\index{gui.cpp@{gui.cpp}!parseAnsiImage@{parseAnsiImage}}
+\index{parseAnsiImage@{parseAnsiImage}!gui.cpp@{gui.cpp}}
+\doxysubsubsection{\texorpdfstring{parseAnsiImage()}{parseAnsiImage()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{structColoredChar}{Colored\+Char}} $>$ $>$ parse\+Ansi\+Image (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ansi\+Text }\end{DoxyParamCaption})}
+
+\Hypertarget{gui_8cpp_ace18fccb4266115795bbf1bab2ccb24e}\label{gui_8cpp_ace18fccb4266115795bbf1bab2ccb24e} 
+\index{gui.cpp@{gui.cpp}!terminalColorToFTXUI@{terminalColorToFTXUI}}
+\index{terminalColorToFTXUI@{terminalColorToFTXUI}!gui.cpp@{gui.cpp}}
+\doxysubsubsection{\texorpdfstring{terminalColorToFTXUI()}{terminalColorToFTXUI()}}
+{\footnotesize\ttfamily Color terminal\+Color\+To\+FTXUI (\begin{DoxyParamCaption}\item[{int}]{color\+Code }\end{DoxyParamCaption})}
+

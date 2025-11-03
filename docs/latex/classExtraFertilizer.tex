@@ -1,0 +1,168 @@
+\doxysection{Extra\+Fertilizer Class Reference}
+\hypertarget{classExtraFertilizer}{}\label{classExtraFertilizer}\index{ExtraFertilizer@{ExtraFertilizer}}
+
+
+Design Pattern\+: \doxylink{classDecorator}{Decorator} Participant\+: Concrete \doxylink{classDecorator}{Decorator}.  
+
+
+
+
+{\ttfamily \#include $<$Extra\+Fertilizer.\+h$>$}
+
+
+
+Inheritance diagram for Extra\+Fertilizer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{classExtraFertilizer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Extra\+Fertilizer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{classExtraFertilizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classExtraFertilizer_a695a7614f778fcd33dc0b50667add0e9}{Extra\+Fertilizer}} (\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classDecorator_aee2b0b6a617142e0f117c404ee0256ce}{plant}})
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classExtraFertilizer}{Extra\+Fertilizer} decorator wrapping the specified product. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classExtraFertilizer_a03a76882a4fc4fa16517900a80d52e52}{\texorpdfstring{$\sim$}{\string~}\+Extra\+Fertilizer}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classExtraFertilizer}{Extra\+Fertilizer} decorator. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classExtraFertilizer_a2001b29706fae72371cc1a838b8d79cf}{calculate\+Cost}} (string current\+Season)
+\begin{DoxyCompactList}\small\item\em Calculates the total cost of the decorated product including the extra fertilizer surcharge. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classExtraFertilizer_ab7eff78228a23a1fbf84644440c12d75}{summary}} ()
+\begin{DoxyCompactList}\small\item\em Generates a detailed description of the decorated product including extra fertilizer details. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classExtraFertilizer_a069765008cad4f703d25d636c297333a}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the decorated product with extra fertilizer designation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classDecorator}{Decorator}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDecorator_a163e9ff94a5bf5a0047022421baece6e}{Decorator}} (\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classDecorator_aee2b0b6a617142e0f117c404ee0256ce}{plant}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classDecorator}{Decorator} wrapping the specified product. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDecorator_a3c67f74c83d839f2fd631e9bc44486bc}{\texorpdfstring{$\sim$}{\string~}\+Decorator}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDecorator_aab194c66646f5ac22a34d8951b340b51}{remove\+Decorator}} ()
+\begin{DoxyCompactList}\small\item\em Removes this decorator and returns the wrapped product. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDecorator_a9aabfbf824159608ec9c3276560b3f22}{get\+Base\+Plant}} () override
+\begin{DoxyCompactList}\small\item\em Retrieves the base plant object from the decorator chain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classProduct}{Product}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classProduct_a18f26095e25405579968c6ede367484f}{\texorpdfstring{$\sim$}{\string~}\+Product}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classProduct_a867d6377f83e2baac15d0afcb1e79bf6}{get\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves additional information about the product. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classProduct_aa1432fef1d1bf11ba7b2324f34796aee}{get\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Gets the cost of the product without season consideration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: \doxylink{classDecorator}{Decorator} Participant\+: Concrete \doxylink{classDecorator}{Decorator}. 
+
+\begin{DoxyAuthor}{Author}
+Jordan Naidoo 
+\end{DoxyAuthor}
+Adds extra fertilizer to plant products that customers purchase which modifies its behaviour. This impacts the price as well as the appearance of the plants in the nursery (via the get\+Name and summary methods). Extra fertilizer enhances plant health and growth potential, providing added value to customers.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDecorator}{Decorator} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classExtraFertilizer_a695a7614f778fcd33dc0b50667add0e9}\label{classExtraFertilizer_a695a7614f778fcd33dc0b50667add0e9} 
+\index{ExtraFertilizer@{ExtraFertilizer}!ExtraFertilizer@{ExtraFertilizer}}
+\index{ExtraFertilizer@{ExtraFertilizer}!ExtraFertilizer@{ExtraFertilizer}}
+\doxysubsubsection{\texorpdfstring{ExtraFertilizer()}{ExtraFertilizer()}}
+{\footnotesize\ttfamily Extra\+Fertilizer\+::\+Extra\+Fertilizer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})}
+
+
+
+Constructs an \doxylink{classExtraFertilizer}{Extra\+Fertilizer} decorator wrapping the specified product. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the \doxylink{classProduct}{Product} (plant or other decorator) to be decorated with extra fertilizer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classExtraFertilizer_a03a76882a4fc4fa16517900a80d52e52}\label{classExtraFertilizer_a03a76882a4fc4fa16517900a80d52e52} 
+\index{ExtraFertilizer@{ExtraFertilizer}!````~ExtraFertilizer@{\texorpdfstring{$\sim$}{\string~}ExtraFertilizer}}
+\index{````~ExtraFertilizer@{\texorpdfstring{$\sim$}{\string~}ExtraFertilizer}!ExtraFertilizer@{ExtraFertilizer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ExtraFertilizer()}{\string~ExtraFertilizer()}}
+{\footnotesize\ttfamily Extra\+Fertilizer\+::\texorpdfstring{$\sim$}{\string~}\+Extra\+Fertilizer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classExtraFertilizer}{Extra\+Fertilizer} decorator. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classExtraFertilizer_a2001b29706fae72371cc1a838b8d79cf}\label{classExtraFertilizer_a2001b29706fae72371cc1a838b8d79cf} 
+\index{ExtraFertilizer@{ExtraFertilizer}!calculateCost@{calculateCost}}
+\index{calculateCost@{calculateCost}!ExtraFertilizer@{ExtraFertilizer}}
+\doxysubsubsection{\texorpdfstring{calculateCost()}{calculateCost()}}
+{\footnotesize\ttfamily float Extra\+Fertilizer\+::calculate\+Cost (\begin{DoxyParamCaption}\item[{string}]{current\+Season }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Calculates the total cost of the decorated product including the extra fertilizer surcharge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Season} & The current season which affects plant pricing. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float The total cost of the plant product with the extra fertilizer enhancement applied. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classDecorator_ad47827375b71fe491345a10500f9dc2d}{Decorator}}.
+
+\Hypertarget{classExtraFertilizer_a069765008cad4f703d25d636c297333a}\label{classExtraFertilizer_a069765008cad4f703d25d636c297333a} 
+\index{ExtraFertilizer@{ExtraFertilizer}!getName@{getName}}
+\index{getName@{getName}!ExtraFertilizer@{ExtraFertilizer}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Extra\+Fertilizer\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Retrieves the name of the decorated product with extra fertilizer designation. 
+
+\begin{DoxyReturn}{Returns}
+string The name of the product including extra fertilizer designation. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classDecorator_a158af0ff4428a18587297a534912c205}{Decorator}}.
+
+\Hypertarget{classExtraFertilizer_ab7eff78228a23a1fbf84644440c12d75}\label{classExtraFertilizer_ab7eff78228a23a1fbf84644440c12d75} 
+\index{ExtraFertilizer@{ExtraFertilizer}!summary@{summary}}
+\index{summary@{summary}!ExtraFertilizer@{ExtraFertilizer}}
+\doxysubsubsection{\texorpdfstring{summary()}{summary()}}
+{\footnotesize\ttfamily string Extra\+Fertilizer\+::summary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Generates a detailed description of the decorated product including extra fertilizer details. 
+
+\begin{DoxyReturn}{Returns}
+string A formatted string describing the complete decorated product with extra fertilizer details. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classDecorator_a6e7369cc889d396238a3e49551a84e07}{Decorator}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{ExtraFertilizer_8h}{Extra\+Fertilizer.\+h}}\item 
+src/\mbox{\hyperlink{ExtraFertilizer_8cpp}{Extra\+Fertilizer.\+cpp}}\end{DoxyCompactItemize}

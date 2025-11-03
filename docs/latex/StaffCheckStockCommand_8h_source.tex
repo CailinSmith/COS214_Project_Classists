@@ -1,0 +1,28 @@
+\doxysection{Staff\+Check\+Stock\+Command.\+h}
+\hypertarget{StaffCheckStockCommand_8h_source}{}\label{StaffCheckStockCommand_8h_source}\index{src/StaffCheckStockCommand.h@{src/StaffCheckStockCommand.h}}
+\mbox{\hyperlink{StaffCheckStockCommand_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STAFFCHECKSTOCKCOMMAND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STAFFCHECKSTOCKCOMMAND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{StaffCommand_8h}{StaffCommand.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{InventoryManager_8h}{InventoryManager.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStaffCheckStockCommand}{StaffCheckStockCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaffCommand}{StaffCommand}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaffCheckStockCommand_abffa25526b86574c8a19d7abeac3b587}{stock}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classStaffCheckStockCommand}{StaffCheckStockCommand}}(\mbox{\hyperlink{classPlant}{Plant}}*\ p,\ \mbox{\hyperlink{classInventoryManager}{InventoryManager}}*\ im);}
+\DoxyCodeLine{00037\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classStaffCheckStockCommand_a4c4f5e9791396b81cc4a038643a78cc8}{\string~StaffCheckStockCommand}}();}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStaffCheckStockCommand_ad3854e5f9fde52c6b43a137020e7f6b6}{execute}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaffCheckStockCommand_a9c9618aade0e065ce6707191b838e380}{getStock}}();}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

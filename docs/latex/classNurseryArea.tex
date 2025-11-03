@@ -1,0 +1,130 @@
+\doxysection{Nursery\+Area Class Reference}
+\hypertarget{classNurseryArea}{}\label{classNurseryArea}\index{NurseryArea@{NurseryArea}}
+
+
+Design pattern\+: Mediator Participant\+: Concrete\+Mediator.  
+
+
+
+
+{\ttfamily \#include $<$Nursery\+Area.\+h$>$}
+
+
+
+Inheritance diagram for Nursery\+Area\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classNurseryArea__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Nursery\+Area\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classNurseryArea__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classNurseryArea_a4410a202ae2c3ab1f433f5d7805bedfe}{notify}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}originator) override
+\begin{DoxyCompactList}\small\item\em Notifies colleagues in the nursery area. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classNurseryArea_a7bca4d206523e69a613fbe0a8ee174b8}{register\+Colleague}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}colleague) override
+\begin{DoxyCompactList}\small\item\em Registers a colleague in the nursery area. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classNurseryArea_a683ff5ece0fd005ab2b239ff6a291863}{unregister\+Colleague}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}colleague) override
+\begin{DoxyCompactList}\small\item\em Unregisters a colleague from the nursery area. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classStaffMediator_a98afc24783231cf34a2951d1150d403d}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Mediator}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}}}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classStaffMediator_aacd096db5d7de35283d47fad6cb0eaf5}{colleagues}}
+\begin{DoxyCompactList}\small\item\em A list of colleagues registered with the mediator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: Mediator Participant\+: Concrete\+Mediator. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel
+\end{DoxyAuthor}
+
+
+This class is a concrete mediator for the nursery area.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffMediator}{Staff\+Mediator} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classNurseryArea_a4410a202ae2c3ab1f433f5d7805bedfe}\label{classNurseryArea_a4410a202ae2c3ab1f433f5d7805bedfe} 
+\index{NurseryArea@{NurseryArea}!notify@{notify}}
+\index{notify@{notify}!NurseryArea@{NurseryArea}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily void Nursery\+Area\+::notify (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{originator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Notifies colleagues in the nursery area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em originator} & The staff member sending the notification. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classStaffMediator_a3b5f2fd54df7bf2399d6f64e120ac985}{Staff\+Mediator}}.
+
+\Hypertarget{classNurseryArea_a7bca4d206523e69a613fbe0a8ee174b8}\label{classNurseryArea_a7bca4d206523e69a613fbe0a8ee174b8} 
+\index{NurseryArea@{NurseryArea}!registerColleague@{registerColleague}}
+\index{registerColleague@{registerColleague}!NurseryArea@{NurseryArea}}
+\doxysubsubsection{\texorpdfstring{registerColleague()}{registerColleague()}}
+{\footnotesize\ttfamily void Nursery\+Area\+::register\+Colleague (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{colleague }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Registers a colleague in the nursery area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colleague} & The staff member to register. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classStaffMediator_a229ca9d1032144d49cbd2d409614f0e5}{Staff\+Mediator}}.
+
+\Hypertarget{classNurseryArea_a683ff5ece0fd005ab2b239ff6a291863}\label{classNurseryArea_a683ff5ece0fd005ab2b239ff6a291863} 
+\index{NurseryArea@{NurseryArea}!unregisterColleague@{unregisterColleague}}
+\index{unregisterColleague@{unregisterColleague}!NurseryArea@{NurseryArea}}
+\doxysubsubsection{\texorpdfstring{unregisterColleague()}{unregisterColleague()}}
+{\footnotesize\ttfamily void Nursery\+Area\+::unregister\+Colleague (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{colleague }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Unregisters a colleague from the nursery area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colleague} & The staff member to unregister. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classStaffMediator_a26361ae5606c3c87a3e84d2949c58182}{Staff\+Mediator}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{NurseryArea_8h}{Nursery\+Area.\+h}}\item 
+src/\mbox{\hyperlink{NurseryArea_8cpp}{Nursery\+Area.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\doxysection{Remove\+Command Class Reference}
+\hypertarget{classRemoveCommand}{}\label{classRemoveCommand}\index{RemoveCommand@{RemoveCommand}}
+
+
+Command for removing a plant from inventory. Design Pattern\+: Command Participant\+: Concrete\+Command.  
+
+
+
+
+{\ttfamily \#include $<$Remove\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Remove\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classRemoveCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Remove\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRemoveCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRemoveCommand_a693edea7ac3c697b23e0168ea82f0208}{Remove\+Command}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}, \mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}im)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classRemoveCommand}{Remove\+Command}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRemoveCommand_a493b0a9fe7f2c917189b67e8d79d5029}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Executes the remove command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCommand_abe8268d554fd49c6892942356dc33144}{Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant associated with this command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}{nursery}}
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command for removing a plant from inventory. Design Pattern\+: Command Participant\+: Concrete\+Command. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class encapsulates a request to remove a plant from the nursery inventory. It allows staff members to remove plants that are damaged, dead, or no longer needed.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffCommand}{Staff\+Command} 
+
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classInventoryManager}{Inventory\+Manager} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classRemoveCommand_a693edea7ac3c697b23e0168ea82f0208}\label{classRemoveCommand_a693edea7ac3c697b23e0168ea82f0208} 
+\index{RemoveCommand@{RemoveCommand}!RemoveCommand@{RemoveCommand}}
+\index{RemoveCommand@{RemoveCommand}!RemoveCommand@{RemoveCommand}}
+\doxysubsubsection{\texorpdfstring{RemoveCommand()}{RemoveCommand()}}
+{\footnotesize\ttfamily Remove\+Command\+::\+Remove\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant,  }\item[{\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}}]{im }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classRemoveCommand}{Remove\+Command}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to remove. \\
+\hline
+{\em im} & Pointer to the inventory manager. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRemoveCommand_a493b0a9fe7f2c917189b67e8d79d5029}\label{classRemoveCommand_a493b0a9fe7f2c917189b67e8d79d5029} 
+\index{RemoveCommand@{RemoveCommand}!execute@{execute}}
+\index{execute@{execute}!RemoveCommand@{RemoveCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Remove\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the remove command. 
+
+Removes the specified plant from the inventory. 
+
+Reimplemented from \mbox{\hyperlink{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}{Staff\+Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{RemoveCommand_8h}{Remove\+Command.\+h}}\item 
+src/\mbox{\hyperlink{RemoveCommand_8cpp}{Remove\+Command.\+cpp}}\end{DoxyCompactItemize}

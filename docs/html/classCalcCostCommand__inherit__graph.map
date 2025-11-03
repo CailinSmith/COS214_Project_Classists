@@ -1,0 +1,5 @@
+<map id="CalcCostCommand" name="CalcCostCommand">
+<area shape="rect" id="Node000001" title="Command for calculating the cost of a plant. Design Pattern: Command Participant: ConcreteCommand." alt="" coords="5,79,152,104"/>
+<area shape="rect" id="Node000002" href="$classStaffCommand.html" title="Abstract base class for staff commands. Design Pattern: Command Participant: Command." alt="" coords="19,5,138,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,44,81,79,76,79,76,44"/>
+</map>

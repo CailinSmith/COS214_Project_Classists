@@ -1,0 +1,83 @@
+\doxysection{Aggregate Class Reference}
+\hypertarget{classAggregate}{}\label{classAggregate}\index{Aggregate@{Aggregate}}
+
+
+Design Pattern\+: \doxylink{classIterator}{Iterator} Participant\+: \doxylink{classAggregate}{Aggregate}.  
+
+
+
+
+{\ttfamily \#include $<$Aggregate.\+h$>$}
+
+
+
+Inheritance diagram for Aggregate\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{classAggregate__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classAggregate_aa59597e202b5ddea69919ca733579ecf}{\texorpdfstring{$\sim$}{\string~}\+Aggregate}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classPlant}{Plant}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAggregate_ac9b651f11e323e3aa58cb2a24fb7414f}{create\+Iterator}} (const std\+::string \&season)=0
+\begin{DoxyCompactList}\small\item\em Creates an iterator for traversing plants by season. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: \doxylink{classIterator}{Iterator} Participant\+: \doxylink{classAggregate}{Aggregate}. 
+
+\begin{DoxyAuthor}{Author}
+Alex Lange 
+\end{DoxyAuthor}
+This abstract class defines the interface for creating iterators. Classes that implement this interface can provide different types of iterators to traverse their collections in various ways (e.\+g., by season, type, etc.).
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classIterator}{Iterator} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classAggregate_aa59597e202b5ddea69919ca733579ecf}\label{classAggregate_aa59597e202b5ddea69919ca733579ecf} 
+\index{Aggregate@{Aggregate}!````~Aggregate@{\texorpdfstring{$\sim$}{\string~}Aggregate}}
+\index{````~Aggregate@{\texorpdfstring{$\sim$}{\string~}Aggregate}!Aggregate@{Aggregate}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Aggregate()}{\string~Aggregate()}}
+{\footnotesize\ttfamily virtual Aggregate\+::\texorpdfstring{$\sim$}{\string~}\+Aggregate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Virtual destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAggregate_ac9b651f11e323e3aa58cb2a24fb7414f}\label{classAggregate_ac9b651f11e323e3aa58cb2a24fb7414f} 
+\index{Aggregate@{Aggregate}!createIterator@{createIterator}}
+\index{createIterator@{createIterator}!Aggregate@{Aggregate}}
+\doxysubsubsection{\texorpdfstring{createIterator()}{createIterator()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classPlant}{Plant}} $>$ \texorpdfstring{$\ast$}{*} Aggregate\+::create\+Iterator (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{season }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates an iterator for traversing plants by season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season} & The season string to filter plants by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a new \doxylink{classIterator}{Iterator} object 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classInventoryManager_a401fdd0d1c318b906b143c69f1745f09}{Inventory\+Manager}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Aggregate_8h}{Aggregate.\+h}}\end{DoxyCompactItemize}

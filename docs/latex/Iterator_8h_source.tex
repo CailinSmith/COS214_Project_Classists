@@ -1,0 +1,26 @@
+\doxysection{Iterator.\+h}
+\hypertarget{Iterator_8h_source}{}\label{Iterator_8h_source}\index{src/Iterator.h@{src/Iterator.h}}
+\mbox{\hyperlink{Iterator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ITERATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ITERATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlant}{Plant}};}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIterator}{Iterator}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classIterator_ace58b658db7a3023dd07ffc5e66d992f}{\string~Iterator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ T*\ \mbox{\hyperlink{classIterator_a641f2afbeea6a7ff398a1b0f874527cb}{first}}()\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ T*\ \mbox{\hyperlink{classIterator_adf9ba8b17aac2687e0ea891cb39c350b}{next}}()\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIterator_a9be4cac2471ddcf68a75c12088498d5f}{isDone}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ T*\ \mbox{\hyperlink{classIterator_acad9c06946a2270609570be40ac0c235}{currentItem}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
