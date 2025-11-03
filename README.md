@@ -6,6 +6,9 @@
 
 GreensOnly is a C++ design pattern orientated system designed and built to simulate the different roles and activies in a nursery. You are able to participate as a customer, staff memebr or manager in our interactive system.
 
+## System report
+https://docs.google.com/document/d/1TVBaclArVAIFwFhHV6DCYrGhV-Evjj8llirglfBl5co/edit?usp=sharing
+
 
 ## 🚀 Getting Started
 
