@@ -1,0 +1,5 @@
+<map id="FertiliseCommand" name="FertiliseCommand">
+<area shape="rect" id="Node000001" title="Command for fertilising a plant. Design Pattern: Command Participant: ConcreteCommand." alt="" coords="5,79,147,104"/>
+<area shape="rect" id="Node000002" href="$classStaffCommand.html" title="Abstract base class for staff commands. Design Pattern: Command Participant: Command." alt="" coords="17,5,135,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,44,79,79,73,79,73,44"/>
+</map>

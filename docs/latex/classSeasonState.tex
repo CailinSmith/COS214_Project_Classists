@@ -1,0 +1,99 @@
+\doxysection{Season\+State Class Reference}
+\hypertarget{classSeasonState}{}\label{classSeasonState}\index{SeasonState@{SeasonState}}
+
+
+Design pattern\+: State Participant\+: State.  
+
+
+
+
+{\ttfamily \#include $<$Season\+State.\+h$>$}
+
+
+
+Inheritance diagram for Season\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{classSeasonState__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classSeasonState_af4555f2670a9274ded61b90e98daec84}{\texorpdfstring{$\sim$}{\string~}\+Season\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classSeasonState}{Season\+State}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSeasonState_a25546bda284fb8db12ae54dda2bd9407}{change}} (\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*}nursery)=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function to change the season in the nursery. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classSeasonState_af7625449001a8a3232928a7cafe1c68d}{print}} ()=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function to print the current season. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: State Participant\+: State. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel 
+\end{DoxyAuthor}
+This class is an abstract base class for the different seasons in the nursery. It defines the interface for changing seasons.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classNursery}{Nursery} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSeasonState_af4555f2670a9274ded61b90e98daec84}\label{classSeasonState_af4555f2670a9274ded61b90e98daec84} 
+\index{SeasonState@{SeasonState}!````~SeasonState@{\texorpdfstring{$\sim$}{\string~}SeasonState}}
+\index{````~SeasonState@{\texorpdfstring{$\sim$}{\string~}SeasonState}!SeasonState@{SeasonState}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SeasonState()}{\string~SeasonState()}}
+{\footnotesize\ttfamily virtual Season\+State\+::\texorpdfstring{$\sim$}{\string~}\+Season\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor for \doxylink{classSeasonState}{Season\+State}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSeasonState_a25546bda284fb8db12ae54dda2bd9407}\label{classSeasonState_a25546bda284fb8db12ae54dda2bd9407} 
+\index{SeasonState@{SeasonState}!change@{change}}
+\index{change@{change}!SeasonState@{SeasonState}}
+\doxysubsubsection{\texorpdfstring{change()}{change()}}
+{\footnotesize\ttfamily virtual void Season\+State\+::change (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*}}]{nursery }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Pure virtual function to change the season in the nursery. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nursery} & Pointer to the \doxylink{classNursery}{Nursery} context. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classAutumn_a29373c14a1b123472523d0c0e0864fb4}{Autumn}}, \mbox{\hyperlink{classSpring_a1c2972ab0302a01650e557981348943a}{Spring}}, \mbox{\hyperlink{classSummer_ad5e21fc2f61f789a4f33bf189d628322}{Summer}}, and \mbox{\hyperlink{classWinter_a12c3d2b90d0b5069135b9719513b9b8a}{Winter}}.
+
+\Hypertarget{classSeasonState_af7625449001a8a3232928a7cafe1c68d}\label{classSeasonState_af7625449001a8a3232928a7cafe1c68d} 
+\index{SeasonState@{SeasonState}!print@{print}}
+\index{print@{print}!SeasonState@{SeasonState}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual std\+::string Season\+State\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Pure virtual function to print the current season. 
+
+\begin{DoxyReturn}{Returns}
+The name of the season as a string. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAutumn_a497969adb0e1d428ea1da26d95186bae}{Autumn}}, \mbox{\hyperlink{classSpring_a92906e4960e0f06a2bf8091830fd0eaa}{Spring}}, \mbox{\hyperlink{classSummer_a2f7c7d2ec50eb2c8fcca6e51e48b0231}{Summer}}, and \mbox{\hyperlink{classWinter_aadbdb2e7ccec348c426138bd9eaca50f}{Winter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{SeasonState_8h}{Season\+State.\+h}}\end{DoxyCompactItemize}

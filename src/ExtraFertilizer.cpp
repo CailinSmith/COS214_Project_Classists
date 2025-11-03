@@ -8,10 +8,15 @@ float ExtraFertilizer::calculateCost(string currentSeason) {
     return Decorator::calculateCost(currentSeason) + 80.00;
 }
 
-string ExtraFertilizer::getSummary() {
-    return Decorator::getSummary() + "Additional resources: Extra Fertilizer\n";
+string ExtraFertilizer::summary() {
+    return Decorator::summary() + "Extra: Extra Fertilizer\n";
+
 }
 
 string ExtraFertilizer::getName() {
-    return Decorator::getName() + ", with extra fertilizer";
+    string baseName = Decorator::getName();
+    if (!baseName.empty() && baseName.back() == '-') {
+        return baseName + " Extra Fertilizer";
+    }
+    return baseName + ", Extra Fertilizer";
 }

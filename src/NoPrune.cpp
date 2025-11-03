@@ -3,7 +3,7 @@
 
 void NoPrune::prune(Plant* plant) {
     plant->setPruned(true);
-    std::cout << "No pruning performed on " << plant->getName() << "." << std::endl;
+    // std::cout << "No pruning performed on " << plant->getName() << "." << std::endl;
 }
 
 string NoPrune::print() {

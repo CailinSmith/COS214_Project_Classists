@@ -1,0 +1,9 @@
+<map id="Staff" name="Staff">
+<area shape="rect" id="Node000001" title="Design pattern: Mediator, Chain of Responsibility, Command, Observer Participant: Colleague,..." alt="" coords="133,5,185,31"/>
+<area shape="rect" id="Node000002" href="$classManager.html" title="Design Pattern: Chain of Responsibility, Mediator, Observer, Command Participant: Concrete Handler,..." alt="" coords="5,79,84,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,40,65,81,62,76,128,35"/>
+<area shape="rect" id="Node000003" href="$classNurseryStaff.html" title="Design Pattern: Chain of Responsibility, Observer Participant: Concrete Handler, Concrete Observer." alt="" coords="108,79,211,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="162,44,162,79,157,79,157,44"/>
+<area shape="rect" id="Node000004" href="$classSalesStaff.html" title="Design Pattern: Chain of Responsibility Participant: Concrete Handler." alt="" coords="235,79,321,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="192,35,260,76,257,81,189,40"/>
+</map>

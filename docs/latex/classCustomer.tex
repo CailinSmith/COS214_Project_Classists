@@ -1,0 +1,273 @@
+\doxysection{Customer Class Reference}
+\hypertarget{classCustomer}{}\label{classCustomer}\index{Customer@{Customer}}
+
+
+Design Pattern\+: Command Participant\+: Client/\+Invoker.  
+
+
+
+
+{\ttfamily \#include $<$Customer.\+h$>$}
+
+
+
+Collaboration diagram for Customer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCustomer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCustomer_ae59e4c50758e094b8447e1a859e15025}{Customer}} (string n)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classCustomer}{Customer}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCustomer_ab93fb14683b0393b9c900109f77c2629}{\texorpdfstring{$\sim$}{\string~}\+Customer}} ()
+\begin{DoxyCompactList}\small\item\em Destructor -\/ cleans up allocated resources. \end{DoxyCompactList}\item 
+pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classCustomer_a7e177c8cc4e8a01b649bac55de0da57d}{send\+Command}} (\mbox{\hyperlink{classCustomerCommand}{Customer\+Command}} \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Sends a command to be executed by staff. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCustomer_a7807ed122087460ddded5d150458a4f1}{add\+To\+Cart}} (\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*}p)
+\begin{DoxyCompactList}\small\item\em Adds a product to the shopping cart. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCustomer_a5d5384b8a31fcc3efbabb98f313ee0e4}{clear\+Order}} ()
+\begin{DoxyCompactList}\small\item\em Clears all items from the shopping cart. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classCustomer_aa0f840cf94b6f61a4c2b692dfd3f7e52}{total\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the total cost of items in the cart. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCustomer_a1dcad61e6d466f53743c2710d8311884}{add\+Receipt}} (\mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*}r)
+\begin{DoxyCompactList}\small\item\em Adds a receipt to the customer\textquotesingle{}s purchase history. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCustomer_ac987a032179493e7a75b3dbdc32c1cf9}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the customer\textquotesingle{}s name. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classCustomer_ac1f09589b2f089178d52a0ea81b30b82}{get\+Order}} ()
+\begin{DoxyCompactList}\small\item\em Gets the customer\textquotesingle{}s current order. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classCustomer_a5c68cbb4debd4e117e0c572ac6b11e7e}{get\+Receipts}} ()
+\begin{DoxyCompactList}\small\item\em Gets the customer\textquotesingle{}s receipt history. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classCustomer_a81a6059d952434e15b961742119f4936}{total}}
+\begin{DoxyCompactList}\small\item\em Total cost of the current order. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCustomer_a42c1c948fa0121c82b2725826d9f8300}{name}}
+\begin{DoxyCompactList}\small\item\em Name of the customer. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classCustomer_a62a579ebb5085c2c0ac69c71e9eaa6c2}{order}}
+\begin{DoxyCompactList}\small\item\em Current order (shopping cart) of products. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCustomerCommand}{Customer\+Command}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomer_a8c3e115cf6dede4db3aa37b4eb7f0589}{command}}
+\begin{DoxyCompactList}\small\item\em The command to be executed. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classCustomer_aa071394d630c3432b3d3d560f7ee12c0}{receipts}}
+\begin{DoxyCompactList}\small\item\em History of receipts for completed purchases. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: Command Participant\+: Client/\+Invoker. 
+
+\begin{DoxyAuthor}{Author}
+Abhay Rooplall 
+\end{DoxyAuthor}
+This class represents a customer in the plant shop system. It acts as the invoker in the Command pattern, sending commands to staff members to perform various operations such as checking out, checking stock, or requesting refunds. The customer maintains their shopping cart and purchase history.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classCustomerCommand}{Customer\+Command} 
+
+\doxylink{classProduct}{Product} 
+
+\doxylink{classReceipt}{Receipt} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCustomer_ae59e4c50758e094b8447e1a859e15025}\label{classCustomer_ae59e4c50758e094b8447e1a859e15025} 
+\index{Customer@{Customer}!Customer@{Customer}}
+\index{Customer@{Customer}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{Customer()}{Customer()}}
+{\footnotesize\ttfamily Customer\+::\+Customer (\begin{DoxyParamCaption}\item[{string}]{n }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classCustomer}{Customer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The name of the customer \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classCustomer_ab93fb14683b0393b9c900109f77c2629}\label{classCustomer_ab93fb14683b0393b9c900109f77c2629} 
+\index{Customer@{Customer}!````~Customer@{\texorpdfstring{$\sim$}{\string~}Customer}}
+\index{````~Customer@{\texorpdfstring{$\sim$}{\string~}Customer}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Customer()}{\string~Customer()}}
+{\footnotesize\ttfamily Customer\+::\texorpdfstring{$\sim$}{\string~}\+Customer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor -\/ cleans up allocated resources. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCustomer_a1dcad61e6d466f53743c2710d8311884}\label{classCustomer_a1dcad61e6d466f53743c2710d8311884} 
+\index{Customer@{Customer}!addReceipt@{addReceipt}}
+\index{addReceipt@{addReceipt}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{addReceipt()}{addReceipt()}}
+{\footnotesize\ttfamily void Customer\+::add\+Receipt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*}}]{r }\end{DoxyParamCaption})}
+
+
+
+Adds a receipt to the customer\textquotesingle{}s purchase history. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Pointer to the receipt to add \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classCustomer_a7807ed122087460ddded5d150458a4f1}\label{classCustomer_a7807ed122087460ddded5d150458a4f1} 
+\index{Customer@{Customer}!addToCart@{addToCart}}
+\index{addToCart@{addToCart}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{addToCart()}{addToCart()}}
+{\footnotesize\ttfamily void Customer\+::add\+To\+Cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*}}]{p }\end{DoxyParamCaption})}
+
+
+
+Adds a product to the shopping cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to the product to add \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classCustomer_a5d5384b8a31fcc3efbabb98f313ee0e4}\label{classCustomer_a5d5384b8a31fcc3efbabb98f313ee0e4} 
+\index{Customer@{Customer}!clearOrder@{clearOrder}}
+\index{clearOrder@{clearOrder}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{clearOrder()}{clearOrder()}}
+{\footnotesize\ttfamily void Customer\+::clear\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears all items from the shopping cart. 
+
+\Hypertarget{classCustomer_ac987a032179493e7a75b3dbdc32c1cf9}\label{classCustomer_ac987a032179493e7a75b3dbdc32c1cf9} 
+\index{Customer@{Customer}!getName@{getName}}
+\index{getName@{getName}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Customer\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the customer\textquotesingle{}s name. 
+
+\begin{DoxyReturn}{Returns}
+The customer\textquotesingle{}s name as a string 
+\end{DoxyReturn}
+\Hypertarget{classCustomer_ac1f09589b2f089178d52a0ea81b30b82}\label{classCustomer_ac1f09589b2f089178d52a0ea81b30b82} 
+\index{Customer@{Customer}!getOrder@{getOrder}}
+\index{getOrder@{getOrder}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{getOrder()}{getOrder()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \& Customer\+::get\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the customer\textquotesingle{}s current order. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the order vector 
+\end{DoxyReturn}
+\Hypertarget{classCustomer_a5c68cbb4debd4e117e0c572ac6b11e7e}\label{classCustomer_a5c68cbb4debd4e117e0c572ac6b11e7e} 
+\index{Customer@{Customer}!getReceipts@{getReceipts}}
+\index{getReceipts@{getReceipts}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{getReceipts()}{getReceipts()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \& Customer\+::get\+Receipts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the customer\textquotesingle{}s receipt history. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the receipts vector 
+\end{DoxyReturn}
+\Hypertarget{classCustomer_a7e177c8cc4e8a01b649bac55de0da57d}\label{classCustomer_a7e177c8cc4e8a01b649bac55de0da57d} 
+\index{Customer@{Customer}!sendCommand@{sendCommand}}
+\index{sendCommand@{sendCommand}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{sendCommand()}{sendCommand()}}
+{\footnotesize\ttfamily pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ Customer\+::send\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCustomerCommand}{Customer\+Command}} \texorpdfstring{$\ast$}{*}}]{cmd }\end{DoxyParamCaption})}
+
+
+
+Sends a command to be executed by staff. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & Pointer to the \doxylink{classCustomerCommand}{Customer\+Command} to execute \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair containing response message and receipt pointer 
+\end{DoxyReturn}
+\Hypertarget{classCustomer_aa0f840cf94b6f61a4c2b692dfd3f7e52}\label{classCustomer_aa0f840cf94b6f61a4c2b692dfd3f7e52} 
+\index{Customer@{Customer}!totalCost@{totalCost}}
+\index{totalCost@{totalCost}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{totalCost()}{totalCost()}}
+{\footnotesize\ttfamily float Customer\+::total\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the total cost of items in the cart. 
+
+\begin{DoxyReturn}{Returns}
+The total cost as a float 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCustomer_a8c3e115cf6dede4db3aa37b4eb7f0589}\label{classCustomer_a8c3e115cf6dede4db3aa37b4eb7f0589} 
+\index{Customer@{Customer}!command@{command}}
+\index{command@{command}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{command}{command}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCustomerCommand}{Customer\+Command}}\texorpdfstring{$\ast$}{*} Customer\+::command\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The command to be executed. 
+
+\Hypertarget{classCustomer_a42c1c948fa0121c82b2725826d9f8300}\label{classCustomer_a42c1c948fa0121c82b2725826d9f8300} 
+\index{Customer@{Customer}!name@{name}}
+\index{name@{name}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Customer\+::name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Name of the customer. 
+
+\Hypertarget{classCustomer_a62a579ebb5085c2c0ac69c71e9eaa6c2}\label{classCustomer_a62a579ebb5085c2c0ac69c71e9eaa6c2} 
+\index{Customer@{Customer}!order@{order}}
+\index{order@{order}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{order}{order}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classProduct}{Product}}\texorpdfstring{$\ast$}{*}$>$ Customer\+::order\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current order (shopping cart) of products. 
+
+\Hypertarget{classCustomer_aa071394d630c3432b3d3d560f7ee12c0}\label{classCustomer_aa071394d630c3432b3d3d560f7ee12c0} 
+\index{Customer@{Customer}!receipts@{receipts}}
+\index{receipts@{receipts}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{receipts}{receipts}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classReceipt}{Receipt}}\texorpdfstring{$\ast$}{*}$>$ Customer\+::receipts\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+History of receipts for completed purchases. 
+
+\Hypertarget{classCustomer_a81a6059d952434e15b961742119f4936}\label{classCustomer_a81a6059d952434e15b961742119f4936} 
+\index{Customer@{Customer}!total@{total}}
+\index{total@{total}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{total}{total}}
+{\footnotesize\ttfamily float Customer\+::total\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Total cost of the current order. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Customer_8h}{Customer.\+h}}\item 
+src/\mbox{\hyperlink{Customer_8cpp}{Customer.\+cpp}}\end{DoxyCompactItemize}

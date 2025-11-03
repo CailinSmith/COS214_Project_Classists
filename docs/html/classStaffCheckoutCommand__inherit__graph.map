@@ -1,0 +1,5 @@
+<map id="StaffCheckoutCommand" name="StaffCheckoutCommand">
+<area shape="rect" id="Node000001" title="Command for processing customer checkout. Design Pattern: Command Participant: ConcreteCommand." alt="" coords="5,79,184,104"/>
+<area shape="rect" id="Node000002" href="$classStaffCommand.html" title="Abstract base class for staff commands. Design Pattern: Command Participant: Command." alt="" coords="35,5,154,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,44,97,79,92,79,92,44"/>
+</map>

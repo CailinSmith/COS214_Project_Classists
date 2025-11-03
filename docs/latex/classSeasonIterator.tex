@@ -1,0 +1,214 @@
+\doxysection{Season\+Iterator Class Reference}
+\hypertarget{classSeasonIterator}{}\label{classSeasonIterator}\index{SeasonIterator@{SeasonIterator}}
+
+
+Design Pattern\+: \doxylink{classIterator}{Iterator} Participant\+: Concrete \doxylink{classIterator}{Iterator}.  
+
+
+
+
+{\ttfamily \#include $<$Season\+Iterator.\+h$>$}
+
+
+
+Inheritance diagram for Season\+Iterator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classSeasonIterator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Season\+Iterator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classSeasonIterator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSeasonIterator_a585234babc81287083ded3e0eb094bfb}{Season\+Iterator}} (const std\+::vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \&plant\+List, const std\+::string \&season)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSeasonIterator}{Season\+Iterator} with a list of plants and target season. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSeasonIterator_ae9cac1e5711ff40d7ab0f51cb48ce53a}{first}} () override
+\begin{DoxyCompactList}\small\item\em Returns the first plant matching the target season. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSeasonIterator_a1545eceaa23b8da8fa7017e3534dd4ed}{next}} () override
+\begin{DoxyCompactList}\small\item\em Advances to and returns the next plant matching the target season. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classSeasonIterator_a1b40d9ed4970b022d786e93b02957dfc}{is\+Done}} () const override
+\begin{DoxyCompactList}\small\item\em Checks if the iteration has completed. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSeasonIterator_a206ad8b4bead714252abfbca4e221521}{current\+Item}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the current plant in the iteration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIterator}{Iterator$<$ Plant $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classIterator_ace58b658db7a3023dd07ffc5e66d992f}{\texorpdfstring{$\sim$}{\string~}\+Iterator}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSeasonIterator_a33b2004243d249bb43abf45711d4a1d6}{find\+Next\+Season\+Match}} ()
+\begin{DoxyCompactList}\small\item\em Finds the next plant that matches the target season. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classSeasonIterator_ad6093ea4845c6809df90c3a836e2beac}{plants}}
+\begin{DoxyCompactList}\small\item\em Vector of \doxylink{classPlant}{Plant} pointers to iterate through. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSeasonIterator_a7279f01aef921b3be1caa5667f7ac582}{target\+Season}}
+\begin{DoxyCompactList}\small\item\em The target season to filter plants by. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classSeasonIterator_a5ce0aa4af7ca695b1e1e4a4d9ee0f0a0}{current\+Index}}
+\begin{DoxyCompactList}\small\item\em Current index in the plants vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: \doxylink{classIterator}{Iterator} Participant\+: Concrete \doxylink{classIterator}{Iterator}. 
+
+\begin{DoxyAuthor}{Author}
+Alex Lange 
+\end{DoxyAuthor}
+This class implements the \doxylink{classIterator}{Iterator} pattern to provide sequential access to \doxylink{classPlant}{Plant} objects that match a specific season. It filters plants from a collection and allows iteration over only those plants that are associated with the target season.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classIterator}{Iterator} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSeasonIterator_a585234babc81287083ded3e0eb094bfb}\label{classSeasonIterator_a585234babc81287083ded3e0eb094bfb} 
+\index{SeasonIterator@{SeasonIterator}!SeasonIterator@{SeasonIterator}}
+\index{SeasonIterator@{SeasonIterator}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{SeasonIterator()}{SeasonIterator()}}
+{\footnotesize\ttfamily Season\+Iterator\+::\+Season\+Iterator (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \&}]{plant\+List,  }\item[{const std\+::string \&}]{season }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classSeasonIterator}{Season\+Iterator} with a list of plants and target season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant\+List} & Vector of \doxylink{classPlant}{Plant} pointers to iterate through \\
+\hline
+{\em season} & The season string to filter plants by \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSeasonIterator_a206ad8b4bead714252abfbca4e221521}\label{classSeasonIterator_a206ad8b4bead714252abfbca4e221521} 
+\index{SeasonIterator@{SeasonIterator}!currentItem@{currentItem}}
+\index{currentItem@{currentItem}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{currentItem()}{currentItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Season\+Iterator\+::current\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the current plant in the iteration. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the current \doxylink{classPlant}{Plant}, or nullptr if invalid position 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIterator_acad9c06946a2270609570be40ac0c235}{Iterator$<$ Plant $>$}}.
+
+\Hypertarget{classSeasonIterator_a33b2004243d249bb43abf45711d4a1d6}\label{classSeasonIterator_a33b2004243d249bb43abf45711d4a1d6} 
+\index{SeasonIterator@{SeasonIterator}!findNextSeasonMatch@{findNextSeasonMatch}}
+\index{findNextSeasonMatch@{findNextSeasonMatch}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{findNextSeasonMatch()}{findNextSeasonMatch()}}
+{\footnotesize\ttfamily void Season\+Iterator\+::find\+Next\+Season\+Match (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds the next plant that matches the target season. 
+
+\Hypertarget{classSeasonIterator_ae9cac1e5711ff40d7ab0f51cb48ce53a}\label{classSeasonIterator_ae9cac1e5711ff40d7ab0f51cb48ce53a} 
+\index{SeasonIterator@{SeasonIterator}!first@{first}}
+\index{first@{first}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{first()}{first()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Season\+Iterator\+::first (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the first plant matching the target season. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the first matching \doxylink{classPlant}{Plant}, or nullptr if none found 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIterator_a641f2afbeea6a7ff398a1b0f874527cb}{Iterator$<$ Plant $>$}}.
+
+\Hypertarget{classSeasonIterator_a1b40d9ed4970b022d786e93b02957dfc}\label{classSeasonIterator_a1b40d9ed4970b022d786e93b02957dfc} 
+\index{SeasonIterator@{SeasonIterator}!isDone@{isDone}}
+\index{isDone@{isDone}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{isDone()}{isDone()}}
+{\footnotesize\ttfamily bool Season\+Iterator\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Checks if the iteration has completed. 
+
+\begin{DoxyReturn}{Returns}
+true if iteration is complete, false otherwise 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIterator_a9be4cac2471ddcf68a75c12088498d5f}{Iterator$<$ Plant $>$}}.
+
+\Hypertarget{classSeasonIterator_a1545eceaa23b8da8fa7017e3534dd4ed}\label{classSeasonIterator_a1545eceaa23b8da8fa7017e3534dd4ed} 
+\index{SeasonIterator@{SeasonIterator}!next@{next}}
+\index{next@{next}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Season\+Iterator\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Advances to and returns the next plant matching the target season. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the next matching \doxylink{classPlant}{Plant}, or nullptr if iteration is complete 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIterator_adf9ba8b17aac2687e0ea891cb39c350b}{Iterator$<$ Plant $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSeasonIterator_a5ce0aa4af7ca695b1e1e4a4d9ee0f0a0}\label{classSeasonIterator_a5ce0aa4af7ca695b1e1e4a4d9ee0f0a0} 
+\index{SeasonIterator@{SeasonIterator}!currentIndex@{currentIndex}}
+\index{currentIndex@{currentIndex}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{currentIndex}{currentIndex}}
+{\footnotesize\ttfamily size\+\_\+t Season\+Iterator\+::current\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current index in the plants vector. 
+
+\Hypertarget{classSeasonIterator_ad6093ea4845c6809df90c3a836e2beac}\label{classSeasonIterator_ad6093ea4845c6809df90c3a836e2beac} 
+\index{SeasonIterator@{SeasonIterator}!plants@{plants}}
+\index{plants@{plants}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{plants}{plants}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classPlant}{Plant}}\texorpdfstring{$\ast$}{*}$>$ Season\+Iterator\+::plants\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector of \doxylink{classPlant}{Plant} pointers to iterate through. 
+
+\Hypertarget{classSeasonIterator_a7279f01aef921b3be1caa5667f7ac582}\label{classSeasonIterator_a7279f01aef921b3be1caa5667f7ac582} 
+\index{SeasonIterator@{SeasonIterator}!targetSeason@{targetSeason}}
+\index{targetSeason@{targetSeason}!SeasonIterator@{SeasonIterator}}
+\doxysubsubsection{\texorpdfstring{targetSeason}{targetSeason}}
+{\footnotesize\ttfamily std\+::string Season\+Iterator\+::target\+Season\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The target season to filter plants by. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{SeasonIterator_8h}{Season\+Iterator.\+h}}\item 
+src/\mbox{\hyperlink{SeasonIterator_8cpp}{Season\+Iterator.\+cpp}}\end{DoxyCompactItemize}

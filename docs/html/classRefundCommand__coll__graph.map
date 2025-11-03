@@ -1,0 +1,35 @@
+<map id="RefundCommand" name="RefundCommand">
+<area shape="rect" id="Node000001" title="Design Pattern: Command Participant: Concrete Command." alt="" coords="1253,173,1388,199"/>
+<area shape="rect" id="Node000002" href="$classCustomerCommand.html" title="Design Pattern: Command Participant: Command Interface." alt="" coords="1052,173,1204,199"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1218,183,1253,183,1253,189,1218,189"/>
+<area shape="rect" id="Node000003" href="$classStaff.html" title="Design pattern: Mediator, Chain of Responsibility, Command, Observer Participant: Colleague,..." alt="" coords="919,220,971,245"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="983,220,1077,196,1078,201,985,225"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="930,205,935,197,945,193,953,196,959,203,958,220,952,220,954,204,950,200,945,199,938,201,935,208"/>
+<area shape="rect" id="Node000004" href="$classStaffCommand.html" title="Abstract base class for staff commands. Design Pattern: Command Participant: Command." alt="" coords="683,229,801,255"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="815,236,918,231,918,236,815,241"/>
+<area shape="rect" id="Node000005" href="$classPlant.html" title="Abstract base class representing a plant product in the nursery system. Design Pattern: State,..." alt="" coords="492,129,547,155"/>
+<area shape="poly" id="edge18_Node000002_Node000005" title=" " alt="" coords="561,141,739,150,971,166,1052,174,1051,180,970,171,738,155,560,146"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="561,157,714,227,711,232,558,162"/>
+<area shape="rect" id="Node000006" href="$classProduct.html" title="Design Pattern: Decorator Participant: Component." alt="" coords="179,5,250,31"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="264,17,346,28,391,40,435,58,458,74,480,93,511,127,507,131,476,96,455,78,432,63,390,45,345,34,263,22"/>
+<area shape="rect" id="Node000007" href="$classWateringStrategy.html" title="Abstract strategy for watering plants. Design Pattern: Strategy Participant: Strategy." alt="" coords="147,55,282,80"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="296,74,364,86,434,103,493,127,491,132,433,109,363,92,295,80"/>
+<area shape="rect" id="Node000008" href="$classPruningStrategy.html" title="Abstract strategy for pruning plants. Design Pattern: Strategy Participant: Strategy." alt="" coords="151,104,278,129"/>
+<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="292,120,492,137,492,142,292,126"/>
+<area shape="rect" id="Node000009" href="$classPlantState.html" title="Design pattern: State Participant: State." alt="" coords="170,153,259,179"/>
+<area shape="poly" id="edge9_Node000005_Node000009" title=" " alt="" coords="273,165,349,164,433,158,491,147,492,152,434,163,350,169,273,170"/>
+<area shape="rect" id="Node000010" href="$classInventoryManager.html" title="Design Pattern: Iterator, Observer Participant: Concrete Aggregate, Concrete Subject." alt="" coords="144,319,285,344"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="299,326,433,317,507,306,581,290,704,252,706,257,582,295,508,312,434,322,299,332"/>
+<area shape="rect" id="Node000013" href="$classNursery.html" title="Central management system for the nursery operations. Design Pattern: Singleton, State Participant: S..." alt="" coords="483,241,556,267"/>
+<area shape="poly" id="edge15_Node000013_Node000010" title=" " alt="" coords="296,313,433,281,483,264,485,269,434,286,297,318"/>
+<area shape="rect" id="Node000011" href="$classAggregate.html" title="Design Pattern: Iterator Participant: Aggregate." alt="" coords="5,293,95,319"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="109,312,144,318,143,323,108,318"/>
+<area shape="rect" id="Node000012" href="$classSubject.html" title="Design pattern: Observer Participant: Subject." alt="" coords="15,343,85,368"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="99,346,143,339,144,344,99,351"/>
+<area shape="poly" id="edge13_Node000004_Node000013" title=" " alt="" coords="569,249,683,243,683,248,570,254"/>
+<area shape="poly" id="edge14_Node000013_Node000013" title=" " alt="" coords="497,226,504,218,519,215,533,217,541,224,543,233,539,242,534,240,538,232,536,226,531,222,519,220,506,223,501,230"/>
+<area shape="rect" id="Node000014" href="$classSeasonState.html" title="Design pattern: State Participant: State." alt="" coords="163,203,266,228"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="280,221,483,247,482,252,279,226"/>
+<area shape="rect" id="Node000015" href="$classPlantFactory.html" title="Abstract factory for creating different types of plants. Design Pattern: Abstract Factory Participant..." alt="" coords="163,252,266,277"/>
+<area shape="poly" id="edge17_Node000013_Node000015" title=" " alt="" coords="280,261,433,257,482,254,483,259,433,262,280,266"/>
+</map>

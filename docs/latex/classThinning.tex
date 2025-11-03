@@ -1,0 +1,101 @@
+\doxysection{Thinning Class Reference}
+\hypertarget{classThinning}{}\label{classThinning}\index{Thinning@{Thinning}}
+
+
+Concrete pruning strategy for thinning. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy.  
+
+
+
+
+{\ttfamily \#include $<$Thinning.\+h$>$}
+
+
+
+Inheritance diagram for Thinning\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classThinning__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Thinning\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classThinning__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classThinning_a4810ce2ef2df08b53276753ebaf3561b}{prune}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Performs thinning pruning on the given plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classThinning_a8f572caaea75b5e1d783a068a049886c}{print}} ()
+\begin{DoxyCompactList}\small\item\em Gets a string representation of this strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPruningStrategy_a0d3ed13b6816f882662303df634ed345}{\texorpdfstring{$\sim$}{\string~}\+Pruning\+Strategy}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPruningStrategy}{Pruning\+Strategy}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete pruning strategy for thinning. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements a thinning pruning strategy, which involves selectively removing branches, stems, or foliage to improve air circulation and light penetration. This technique helps promote healthier growth and better plant structure.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPruningStrategy}{Pruning\+Strategy} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classThinning_a8f572caaea75b5e1d783a068a049886c}\label{classThinning_a8f572caaea75b5e1d783a068a049886c} 
+\index{Thinning@{Thinning}!print@{print}}
+\index{print@{print}!Thinning@{Thinning}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string Thinning\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets a string representation of this strategy. 
+
+\begin{DoxyReturn}{Returns}
+string Description of the thinning pruning strategy. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPruningStrategy_a64bca15bc6390b0602e17709c217877a}{Pruning\+Strategy}}.
+
+\Hypertarget{classThinning_a4810ce2ef2df08b53276753ebaf3561b}\label{classThinning_a4810ce2ef2df08b53276753ebaf3561b} 
+\index{Thinning@{Thinning}!prune@{prune}}
+\index{prune@{prune}!Thinning@{Thinning}}
+\doxysubsubsection{\texorpdfstring{prune()}{prune()}}
+{\footnotesize\ttfamily void Thinning\+::prune (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Performs thinning pruning on the given plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be pruned. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classPruningStrategy_afde6df8bffa1c15e9c87f965fdd6ba3d}{Pruning\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Thinning_8h}{Thinning.\+h}}\item 
+src/\mbox{\hyperlink{Thinning_8cpp}{Thinning.\+cpp}}\end{DoxyCompactItemize}

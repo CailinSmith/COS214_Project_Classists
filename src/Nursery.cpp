@@ -48,6 +48,12 @@ void Nursery::setSeason(SeasonState* season) {
 	if (currentSeason) 
 		delete currentSeason;
 	currentSeason = season;
+	if (inventoryManager){
+		for (Plant *p : inventoryManager->getForSalePlants()){
+			if (p)
+				p->calculateCost(getSeason());
+		}
+	}
 }
 
 string Nursery::getSeason() {
@@ -63,8 +69,15 @@ void Nursery::setFactory(PlantFactory* factory) {
 }
 
 void Nursery::changeSeason() {
-	if (currentSeason) 
+	if (currentSeason) {
 		currentSeason->change(this);
+
+		if (inventoryManager) {
+			for (Plant* p : inventoryManager->getForSalePlants()) {
+				if (p) p->calculateCost(getSeason());
+			}
+		}
+	}
 }
 
 void Nursery::stockNursery() {
@@ -72,12 +85,12 @@ void Nursery::stockNursery() {
 		std::cout << "currentFactory is null" << std::endl;
 		return;
 	}
-	// inventoryManager->addToNursery(currentFactory->createFlower());
-	// inventoryManager->addToNursery(currentFactory->createHerb());
-	// inventoryManager->addToNursery(currentFactory->createVegetable());
-	// inventoryManager->addToNursery(currentFactory->createFruit());
-	// inventoryManager->addToNursery(currentFactory->createSucculent());
-	// inventoryManager->addToNursery(currentFactory->createAquatic());
-	// inventoryManager->addToNursery(currentFactory->createIndoor());
-	// inventoryManager->addToNursery(currentFactory->createMedicinal());
+	inventoryManager->addToNursery(currentFactory->createFlower());
+	inventoryManager->addToNursery(currentFactory->createHerb());
+	inventoryManager->addToNursery(currentFactory->createVegetable());
+	inventoryManager->addToNursery(currentFactory->createFruit());
+	inventoryManager->addToNursery(currentFactory->createSucculent());
+	inventoryManager->addToNursery(currentFactory->createAquatic());
+	inventoryManager->addToNursery(currentFactory->createIndoor());
+	inventoryManager->addToNursery(currentFactory->createMedicinal());
 }

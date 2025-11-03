@@ -1,0 +1,101 @@
+\doxysection{High\+Moisture Class Reference}
+\hypertarget{classHighMoisture}{}\label{classHighMoisture}\index{HighMoisture@{HighMoisture}}
+
+
+Implements high moisture watering strategy for plants. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy.  
+
+
+
+
+{\ttfamily \#include $<$High\+Moisture.\+h$>$}
+
+
+
+Inheritance diagram for High\+Moisture\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classHighMoisture__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for High\+Moisture\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classHighMoisture__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classHighMoisture_ad43e5707a98345ed88b9cfa6d204a154}{water}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Applies high moisture watering to the specified plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classHighMoisture_aa5cc77e6151e97813a4a681bd81ca4e2}{print}} ()
+\begin{DoxyCompactList}\small\item\em Returns a string description of this watering strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classWateringStrategy}{Watering\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classWateringStrategy_a2004c5310932d79086114b14a13a9680}{\texorpdfstring{$\sim$}{\string~}\+Watering\+Strategy}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classWateringStrategy}{Watering\+Strategy}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements high moisture watering strategy for plants. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements a watering strategy for plants that require frequent watering and consistently moist soil. This strategy is typically used for water-\/loving plants such as certain vegetables, aquatic plants, and tropical species.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classWateringStrategy}{Watering\+Strategy} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classHighMoisture_aa5cc77e6151e97813a4a681bd81ca4e2}\label{classHighMoisture_aa5cc77e6151e97813a4a681bd81ca4e2} 
+\index{HighMoisture@{HighMoisture}!print@{print}}
+\index{print@{print}!HighMoisture@{HighMoisture}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string High\+Moisture\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns a string description of this watering strategy. 
+
+\begin{DoxyReturn}{Returns}
+string A text description of the high moisture watering method. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classWateringStrategy_aa95f409545500b3a5323f82d741d8212}{Watering\+Strategy}}.
+
+\Hypertarget{classHighMoisture_ad43e5707a98345ed88b9cfa6d204a154}\label{classHighMoisture_ad43e5707a98345ed88b9cfa6d204a154} 
+\index{HighMoisture@{HighMoisture}!water@{water}}
+\index{water@{water}!HighMoisture@{HighMoisture}}
+\doxysubsubsection{\texorpdfstring{water()}{water()}}
+{\footnotesize\ttfamily void High\+Moisture\+::water (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Applies high moisture watering to the specified plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the \doxylink{classPlant}{Plant} object to be watered with high moisture technique. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classWateringStrategy_a219b80c1132ecee9d2a87391f37c9f7e}{Watering\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{HighMoisture_8h}{High\+Moisture.\+h}}\item 
+src/\mbox{\hyperlink{HighMoisture_8cpp}{High\+Moisture.\+cpp}}\end{DoxyCompactItemize}

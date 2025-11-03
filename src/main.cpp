@@ -89,7 +89,6 @@
 #include "Manager.h"
 #include "SalesStaff.h"
 #include "NurseryStaff.h"
-#include "Intern.h"
 #include "SalesArea.h"
 #include "NurseryArea.h"
 #include "Decorator.h"
@@ -125,14 +124,12 @@ void MediatorTesting() {
     Staff* salesStaff2 = new SalesStaff("Carol");
     Staff* nurseryStaff1 = new NurseryStaff("David");
     Staff* nurseryStaff2 = new NurseryStaff("Emma");
-    //Staff* intern = new Intern("Frank");
-    
+
     cout << "   ✓ Manager: " << manager->getName() << " (" << manager->getPosition() << ")" << endl;
     cout << "   ✓ Sales Staff: " << salesStaff1->getName() << " (" << salesStaff1->getPosition() << ")" << endl;
     cout << "   ✓ Sales Staff: " << salesStaff2->getName() << " (" << salesStaff2->getPosition() << ")" << endl;
     cout << "   ✓ Nursery Staff: " << nurseryStaff1->getName() << " (" << nurseryStaff1->getPosition() << ")" << endl;
     cout << "   ✓ Nursery Staff: " << nurseryStaff2->getName() << " (" << nurseryStaff2->getPosition() << ")" << endl;
-    //cout << "   ✓ Intern: " << intern->getName() << " (" << intern->getPosition() << ")" << endl << endl;
     
     cout << "3. Registering Colleagues with Mediators:" << endl;
     cout << "   Sales Area accepts: Manager, Sales Staff" << endl;
@@ -142,13 +139,12 @@ void MediatorTesting() {
     salesArea->registerColleague(nurseryStaff1);  
     cout << "   ✓ Registered Manager and Sales Staff with SalesArea" << endl << endl;
     
-    cout << "   Nursery Area accepts: Manager, Nursery Staff, Intern" << endl;
+    cout << "   Nursery Area accepts: Manager, Nursery Staff" << endl;
     nurseryArea->registerColleague(manager);
     nurseryArea->registerColleague(nurseryStaff1);
     nurseryArea->registerColleague(nurseryStaff2);
-    //nurseryArea->registerColleague(intern);
     nurseryArea->registerColleague(salesStaff1);  
-    cout << "   ✓ Registered Manager, Nursery Staff, and Intern with NurseryArea" << endl << endl;
+    cout << "   ✓ Registered Manager and Nursery Staff with NurseryArea" << endl << endl;
     
     cout << "4. Testing Communication through SalesArea Mediator:" << endl;
     cout << "   ---------------------------------------------------" << endl;
@@ -169,17 +165,7 @@ void MediatorTesting() {
     cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
     nurseryArea->notify(nurseryStaff1);
     cout << endl;
-    
-    cout << "6. Testing Intern Communication:" << endl;
-    cout << "   ---------------------------------------------------" << endl;
-    cout << "   Scenario: Intern Frank sends a message" << endl;
-    //intern->setMessage("I've completed the pruning tasks!");
-    //cout << "   Message: \"" << intern->getMessage() << "\"" << endl << endl;
-    
-    cout << "   Broadcasting message to all colleagues in NurseryArea..." << endl;
-    //nurseryArea->notify(intern);
-    cout << endl;
-    
+        
     cout << "7. Testing Manager Communication (Cross-Area):" << endl;
     cout << "   ---------------------------------------------------" << endl;
     cout << "   Scenario: Manager Alice sends a message to SalesArea" << endl;
@@ -404,7 +390,7 @@ void MediatorTesting() {
     delete salesStaff2;
     delete nurseryStaff1;
     delete nurseryStaff2;
-    //delete intern;
+
     delete testManager;
     delete headManager;
     delete salesAssistant;
@@ -755,26 +741,29 @@ void AbstractStrategyTesting() {
 void CommandStaffTesting() {
     cout << "\n===== COMMAND PATTERN TESTING =====" << endl;
 
-    Rose rose;
-    Basil basil;
-    Tomato tomato;
+    // Plants must be heap-allocated since InventoryManager will delete them
+    Rose* rose = new Rose();
+    Basil* basil = new Basil();
+    Tomato* tomato = new Tomato();
 
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
 
-    manager->addToNursery(&rose);
-    manager->addToNursery(&basil);
-    manager->addToNursery(&tomato);
+    manager->addToNursery(rose);
+    manager->addToNursery(basil);
+    manager->addToNursery(tomato);
 
-    WaterCommand waterRose(&rose);
-    WaterCommand waterBasil(&basil);
+    WaterCommand waterRose(rose);
+    WaterCommand waterBasil(basil);
     StockCommand stockNursery;
-    PlantCommand plantRose(&rose, manager);
-    MakeSellableCommand makeRoseSellable(&rose, manager);
-    RemoveCommand removeBasil(&basil, manager);
-    RemoveSaleCommand removeSaleTomato(&tomato, manager);
-    PruneCommand pruneRose(&rose);
-    FertiliseCommand fertiliseBasil(&basil);
+    // PlantCommand would add rose to nursery again (duplicate) - skipping
+    // PlantCommand plantRose(rose, manager);
+    MakeSellableCommand makeRoseSellable(rose, manager);
+    RemoveCommand removeBasil(basil, manager);
+    RemoveSaleCommand removeSaleTomato(tomato, manager);
+    PruneCommand pruneRose(rose);
+    FertiliseCommand fertiliseBasil(basil);
 
     cout << "\n\033[32mWatering Rose:\033[0m" << endl;
     waterRose.execute();
@@ -782,11 +771,11 @@ void CommandStaffTesting() {
     waterBasil.execute();
     cout << "\033[32mStocking Nursery:\033[0m" << endl;
     stockNursery.execute();
-    cout << "\033[32mPlanting Rose:\033[0m" << endl;
-    plantRose.execute();
+    // cout << "\033[32mPlanting Rose:\033[0m" << endl;
+    // plantRose.execute(); // Skip - rose already in nursery
     cout << "\033[32mMaking Rose Sellable:\033[0m" << endl;
     makeRoseSellable.execute();
-    cout << "\033[32mRemoving Basil from Nursery:\033[0m" << endl;
+    cout << "\n\033[32mRemoving Basil from Nursery:\033[0m" << endl;
     removeBasil.execute();
     cout << "\033[32mRemoving Tomato from Sale:\033[0m" << endl;
     removeSaleTomato.execute();
@@ -795,8 +784,16 @@ void CommandStaffTesting() {
     cout << "\033[32mFertilising Basil:\033[0m" << endl;
     fertiliseBasil.execute();
 
-    //Fixed memory leak
+    cout << "\n\033[33mCleanup phase starting...\033[0m" << endl;
+    
+    cout << "Deleting basil..." << endl;
+    delete basil;
+    cout << "Basil deleted successfully" << endl;
+    
     delete manager;
+    cout << "Manager deleted successfully" << endl;
+    
+    Nursery::destroyInstance();
 }
 
 void PlantStateTesting() {
@@ -1028,93 +1025,99 @@ void InventoryTesting() {
     
     cout << "Testing InventoryManager functionality..." << endl << endl;
     
-    Rose rose;
-    Basil basil;
-    Tomato tomato;
+    Rose* rose = new Rose();
+    Basil* basil = new Basil();
+    Tomato* tomato = new Tomato();
 
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
 
     std::cout << "Adding plants to nursery..." << std::endl;
-    manager->addToNursery(&rose);
-    manager->addToNursery(&basil);
-    manager->addToNursery(&tomato);
+    manager->addToNursery(rose);
+    manager->addToNursery(basil);
+    manager->addToNursery(tomato);
 
     std::cout << "\nTesting adding null plant to nursery..." << std::endl;
     manager->addToNursery(nullptr);
 
     std::cout << "\nTesting removing a plants from nursery..." << std::endl;
-    manager->removeFromNursery(&rose);
-    manager->removeFromNursery(&basil);
-    manager->removeFromNursery(&tomato);
+    manager->removeFromNursery(rose);
+    manager->removeFromNursery(basil);
+    manager->removeFromNursery(tomato);
 
     std::cout << "\nTesting removing the same plant from nursery..." << std::endl;
-    manager->removeFromNursery(&rose);
+    manager->removeFromNursery(rose);
 
     std::cout << "\nTesting removing null plant from nursery..." << std::endl;
     manager->removeFromNursery(nullptr);
 
     std::cout << "\nTesting adding plants to sale..." << std::endl;
-    manager->addToSale(&rose);
-    manager->addToSale(&basil);
-    manager->addToSale(&tomato);
+    manager->addToSale(rose);
+    manager->addToSale(basil);
+    manager->addToSale(tomato);
 
     std::cout << "\nTesting adding null plant to sale..." << std::endl;
     manager->addToSale(nullptr);
 
     std::cout << "\nTesting removing plants from sale..." << std::endl;
-    manager->removeFromSale(&rose);
-    manager->removeFromSale(&basil);
-    manager->removeFromSale(&tomato);
+    manager->removeFromSale(rose);
+    manager->removeFromSale(basil);
+    manager->removeFromSale(tomato);
 
     std::cout << "\nTesting removing the same plant from sale..." << std::endl;
-    manager->removeFromSale(&rose);
+    manager->removeFromSale(rose);
 
     std::cout << "\nTesting removing null plant from sale..." << std::endl;
     manager->removeFromSale(nullptr);
+    
+    delete rose;
+    delete basil;
+    delete tomato;
 
     std::cout<< "\nTesting InventoryManager insertion structure..." << std::endl;
-    Rose rose2;
-    Basil basil2;
-    Lavender lavender;
-    Thyme thyme;
-    RubberTree rubberTree;
-    Ginger ginger;
-    Chamomile chamomile;
-     Tomato tomato2;
-    AppleTree appleTree;
-    OrangeTree orangeTree;
-    Lettuce lettuce;
-    Pumpkin pumpkin;
-    Cattails cattails;
-    SnakePlant snakePlant;
-    Chrysanthemum chris;
-    Pansy pansy;
-    Sunflower sunflower;
+    Rose* rose2 = new Rose();
+    Basil* basil2 = new Basil();
+    Lavender* lavender = new Lavender();
+    Thyme* thyme = new Thyme();
+    RubberTree* rubberTree = new RubberTree();
+    Ginger* ginger = new Ginger();
+    Chamomile* chamomile = new Chamomile();
+    Tomato* tomato2 = new Tomato();
+    AppleTree* appleTree = new AppleTree();
+    OrangeTree* orangeTree = new OrangeTree();
+    Lettuce* lettuce = new Lettuce();
+    Pumpkin* pumpkin = new Pumpkin();
+    Cattails* cattails = new Cattails();
+    SnakePlant* snakePlant = new SnakePlant();
+    Chrysanthemum* chris = new Chrysanthemum();
+    Pansy* pansy = new Pansy();
+    Sunflower* sunflower = new Sunflower();
 
-    manager->addToNursery(&rose2);
-    manager->addToNursery(&basil2);
-    manager->addToNursery(&lavender);
-    manager->addToNursery(&thyme);
-    manager->addToNursery(&rubberTree);
-    manager->addToNursery(&ginger);
-    manager->addToNursery(&chamomile);
-    manager->addToNursery(&tomato2);
-    manager->addToNursery(&appleTree);
-    manager->addToNursery(&orangeTree);
-    manager->addToNursery(&lettuce);
-    manager->addToNursery(&pumpkin);
-    manager->addToNursery(&cattails);
-    manager->addToNursery(&snakePlant);
-    manager->addToNursery(&chris);
-    manager->addToNursery(&pansy);
-    manager->addToNursery(&sunflower);
+    manager->addToNursery(rose2);
+    manager->addToNursery(basil2);
+    manager->addToNursery(lavender);
+    manager->addToNursery(thyme);
+    manager->addToNursery(rubberTree);
+    manager->addToNursery(ginger);
+    manager->addToNursery(chamomile);
+    manager->addToNursery(tomato2);
+    manager->addToNursery(appleTree);
+    manager->addToNursery(orangeTree);
+    manager->addToNursery(lettuce);
+    manager->addToNursery(pumpkin);
+    manager->addToNursery(cattails);
+    manager->addToNursery(snakePlant);
+    manager->addToNursery(chris);
+    manager->addToNursery(pansy);
+    manager->addToNursery(sunflower);
 
     std::vector<Plant*> nurseryPlants = manager->getNurseryPlants();
     for (Plant* plant : nurseryPlants) 
         std::cout << " - " << plant->getName()<<", Category: " << plant->getCategory() << std::endl;
 
     delete manager;
+    Nursery::destroyInstance();
 }
 
 void TemplateMethodTesting() {
@@ -1274,6 +1277,7 @@ void SeasonStateTesting() {
     InventoryManager* inventory = new InventoryManager();
     
     Nursery* nursery = Nursery::getInstance(inventory);
+    (void) nursery; //singleton instantiation
     
     cout << "🏪 Nursery Created!" << endl;
     cout << "📅 Initial Season: " << nursery->getSeason() << endl << endl;
@@ -1380,6 +1384,9 @@ void SeasonStateTesting() {
     
     delete inventory;
     
+    // Clean up Nursery singleton
+    Nursery::destroyInstance();
+    
     cout << "🎉 All Season State tests passed successfully!" << endl;
 }
 
@@ -1397,7 +1404,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << rose1->calculateCost("Summer") << endl;
     cout << "With Clay Pot: " << clayRose->calculateCost("Summer") << endl;
     cout << "Name: " << clayRose->getName() << endl;
-    cout << "Summary: " << clayRose->getSummary() << endl;
+    cout << "Summary: " << clayRose->summary() << endl;
 
 
     
@@ -1412,7 +1419,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << basil1->calculateCost("Summer") << endl;
     cout << "With Concrete Pot: " << concreteBasil->calculateCost("Summer") << endl;
     cout << "Name: " << concreteBasil->getName() << endl;
-    cout << "Summary: " << concreteBasil->getSummary() << endl;
+    cout << "Summary: " << concreteBasil->summary() << endl;
     
     cout << "\n\nTEST 3: CERAMIC POT" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1425,7 +1432,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << tomato1->calculateCost("Summer") << endl;
     cout << "With Ceramic Pot: " << ceramicTomato->calculateCost("Summer") << endl;
     cout << "Name: " << ceramicTomato->getName() << endl;
-    cout << "Summary: " << ceramicTomato->getSummary() << endl;
+    cout << "Summary: " << ceramicTomato->summary() << endl;
     
     cout << "\n\nTEST 4: EXTRA FERTILIZER" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1438,7 +1445,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << lettuce1->calculateCost("Summer") << endl;
     cout << "With Fertilizer: " << fertilizedLettuce->calculateCost("Summer") << endl;
     cout << "Name: " << fertilizedLettuce->getName() << endl;
-    cout << "Summary: " << fertilizedLettuce->getSummary() << endl;
+    cout << "Summary: " << fertilizedLettuce->summary() << endl;
     
     cout << "\n\nTEST 5: KRAFT WRAPPING" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1451,7 +1458,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << snake1->calculateCost("Summer") << endl;
     cout << "With Wrapping: " << wrappedSnake->calculateCost("Summer") << endl;
     cout << "Name: " << wrappedSnake->getName() << endl;
-    cout << "Summary: " << wrappedSnake->getSummary() << endl;
+    cout << "Summary: " << wrappedSnake->summary() << endl;
     
     cout << "\n\nTEST 6: MULTIPLE DECORATORS" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1465,7 +1472,7 @@ void DecoratorTesting(){
     cout << "Base Cost: " << rose2->calculateCost("Summer") << endl;
     cout << "Final Cost: " << decoratedRose->calculateCost("Summer") << endl;
     cout << "Name: " << decoratedRose->getName() << endl;
-    cout << "Summary: " << decoratedRose->getSummary() << endl;
+    cout << "Summary: " << decoratedRose->summary() << endl;
     
     cout << "\n\nTEST 7: REMOVE DECORATOR" << endl;
     cout << "---------------------------------------------------------------" << endl;
@@ -1477,7 +1484,7 @@ void DecoratorTesting(){
     cout << "\nBefore removing decorator:" << endl;
     cout << "Cost: " << clayBasil->calculateCost("Summer") << endl;
     cout << "Name: " << clayBasil->getName() << endl;
-    cout << "Summary: " << clayBasil->getSummary() << endl;
+    cout << "Summary: " << clayBasil->summary() << endl;
     
     Product* plainBasil = clayBasil->removeDecorator();
     delete clayBasil;
@@ -1485,7 +1492,7 @@ void DecoratorTesting(){
     cout << "\nAfter removing decorator:" << endl;
     cout << "Cost: " << plainBasil->calculateCost("Summer") << endl;
     cout << "Name: " << plainBasil->getName() << endl;
-    cout << "Summary: " << plainBasil->getSummary() << endl;
+    cout << "Summary: " << plainBasil->summary() << endl;
     
     delete plainBasil;
     delete clayRose;
@@ -1567,6 +1574,7 @@ void NewStaffCommandsTesting() {
     
     InventoryManager* inventory = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(inventory);
+    (void) nursery; //singleton instantiation
     
     Rose* rose = new Rose();
     Basil* basil = new Basil();
@@ -1619,13 +1627,24 @@ void NewStaffCommandsTesting() {
     }
     delete checkoutCmd;
     
+    // Note: rose, basil, tomato were checked out and are now deleted by the receipt
+    // Create new plants for remaining tests
+    
     cout << "\n=== Test 5: Command Pattern Demonstration ===" << endl;
     cout << "Demonstrating polymorphic command execution..." << endl;
     
+    Rose* rose2 = new Rose();
+    Basil* basil2 = new Basil();
+    Tomato* tomato2 = new Tomato();
+    
+    inventory->addToSale(rose2);
+    inventory->addToSale(basil2);
+    inventory->addToSale(tomato2);
+    
     vector<StaffCommand*> commands;
-    commands.push_back(new GetInfoCommand(rose));
-    commands.push_back(new StaffCheckStockCommand(basil, inventory));
-    commands.push_back(new CalcCostCommand(tomato, nursery));
+    commands.push_back(new GetInfoCommand(rose2));
+    commands.push_back(new StaffCheckStockCommand(basil2, inventory));
+    commands.push_back(new CalcCostCommand(tomato2, nursery));
     
     cout << "\nExecuting commands polymorphically:" << endl;
     for (size_t i = 0; i < commands.size(); ++i) {
@@ -1640,9 +1659,9 @@ void NewStaffCommandsTesting() {
     cout << "\n=== Test 6: Multiple Stock Checks ===" << endl;
     cout << "Testing stock checking for different plant types..." << endl;
     
-    StaffCheckStockCommand* roseStock = new StaffCheckStockCommand(rose, inventory);
-    StaffCheckStockCommand* basilStock = new StaffCheckStockCommand(basil, inventory);
-    StaffCheckStockCommand* tomatoStock = new StaffCheckStockCommand(tomato, inventory);
+    StaffCheckStockCommand* roseStock = new StaffCheckStockCommand(rose2, inventory);
+    StaffCheckStockCommand* basilStock = new StaffCheckStockCommand(basil2, inventory);
+    StaffCheckStockCommand* tomatoStock = new StaffCheckStockCommand(tomato2, inventory);
     
     roseStock->execute();
     basilStock->execute();
@@ -1655,9 +1674,9 @@ void NewStaffCommandsTesting() {
     cout << "\n=== Test 7: Cost Calculation with Different Plants ===" << endl;
     cout << "Testing cost calculation for various plant types..." << endl;
     
-    CalcCostCommand* roseCost = new CalcCostCommand(rose, nursery);
-    CalcCostCommand* basilCost = new CalcCostCommand(basil, nursery);
-    CalcCostCommand* tomatoCost = new CalcCostCommand(tomato, nursery);
+    CalcCostCommand* roseCost = new CalcCostCommand(rose2, nursery);
+    CalcCostCommand* basilCost = new CalcCostCommand(basil2, nursery);
+    CalcCostCommand* tomatoCost = new CalcCostCommand(tomato2, nursery);
     
     roseCost->execute();
     basilCost->execute();
@@ -1675,15 +1694,15 @@ void NewStaffCommandsTesting() {
     emptyCheckout->execute();
     delete emptyCheckout;
     
-    inventory->removeFromSale(rose);
-    inventory->removeFromSale(basil);
-    inventory->removeFromSale(tomato);
+    cout << "\n\033[33mCleanup phase for NewStaffCommandsTesting...\033[0m" << endl;
     
-    delete rose;
-    delete basil;
-    delete tomato;
-    
+    cout << "Deleting inventory manager..." << endl;
     delete inventory;
+    cout << "Inventory manager deleted successfully" << endl;
+    
+    cout << "Destroying Nursery singleton..." << endl;
+    Nursery::destroyInstance();
+    cout << "Nursery singleton destroyed" << endl;
     
     cout << "\nNew Commands Testing Complete" << endl;
 }
@@ -1692,6 +1711,7 @@ void IteratorTesting(){
     cout << "\n======================== Iterator Pattern Testing ========================\n" << endl;
     InventoryManager* inventory = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(inventory);
+    (void) nursery; //singleton instantiation
     
     Spring* spring = new Spring();
     Summer* summer = new Summer();
@@ -1865,18 +1885,10 @@ void IteratorTesting(){
     delete nonExistentIterator;
     delete functionalityIterator;
     
-    delete rose;
-    delete basil;
-    delete lettuce;
-    delete chrysanthemum;
-    delete lavender;
-    delete appleTree;
-    delete pansy;
-    delete thyme;
-    delete strawberry;
-    delete sunflower;
-    delete rosemary;
-    delete cucumber;
+    // Plants are owned by InventoryManager and will be deleted when it's destroyed
+    // No need to manually delete: rose, basil, lettuce, chrysanthemum, lavender, 
+    // appleTree, pansy, thyme, strawberry, sunflower, rosemary, cucumber
+    
     delete springFactory;
     delete summerFactory;
     delete autumnFactory;
@@ -1885,7 +1897,10 @@ void IteratorTesting(){
     delete summer;
     delete autumn;
     delete winter;
+    
     delete inventory;
+    Nursery::destroyInstance();
+    
     std::cout << "Iterator Testing completed succesfully." << std::endl;
 }
 
@@ -1893,8 +1908,8 @@ void ChainOfResponsibilityAndCommand()
 {
     std::cout << "\n=== TESTING CUSTOMER COMMANDS + CHAIN OF RESPONSIBILITY ===\n\n";
 
-    // InventoryManager* invManager = new InventoryManager();
-    // Nursery::getInstance(invManager);
+    InventoryManager* invManager = new InventoryManager();
+    Nursery::getInstance(invManager);
 
     SalesStaff sales("Sam");
     NurseryStaff nursery("Nina");
@@ -1905,11 +1920,9 @@ void ChainOfResponsibilityAndCommand()
 
     std::cout << "Staff chain built successfully.\n\n";
 
-    // Create plants
     Rose* rose = new Rose();
     Tomato* tomato = new Tomato();
 
-    // Create customer and add items
     Customer shopper("Alice");
     shopper.addToCart(rose);
     shopper.addToCart(tomato);
@@ -1968,11 +1981,18 @@ void ChainOfResponsibilityAndCommand()
         std::cout << "[FAIL] Refund command did not process correctly.\n\n";
     }
 
+    refundOrder.clear();
+
     std::cout << "=== ALL TESTS COMPLETED ===\n\n";
 
-    delete rose;
-    delete tomato;
-
+     std::cout << "\033[33mCleanup phase for ChainOfResponsibilityAndCommand...\033[0m" << std::endl;
+    
+    std::cout << "Deleting invManager..." << std::endl;
+    delete invManager;
+    std::cout << "Destroying Nursery singleton..." << std::endl;
+    Nursery::destroyInstance();
+    
+    std::cout << "Function ending, shopper will be destroyed..." << std::endl;
 }
 
 void DynamicCastDecoratorTest() {
@@ -2001,8 +2021,125 @@ void DynamicCastDecoratorTest() {
     
     cout << "Final decorated plant: " << doubleDecorated->getName() << endl;
     cout << "Dynamic Cast Test completed\n" << endl;
+    
+    // Decorator destructor will delete the entire chain including the base plant
     delete doubleDecorated;  
+    
+    // InventoryManager destructor will clean up any remaining plants in forSale/inNursery
+    // Note: The plant was removed from sale above, so it won't be in inventory anymore
     delete im;
+}
+
+void RefundFlowTest() {
+    printSeparator("REFUND FLOW TEST");
+
+    InventoryManager* inventory = new InventoryManager();
+    Nursery* nur = Nursery::getInstance(inventory);
+    (void) nur; //singleton instantiation
+    
+    cout << "Creating staff chain..." << endl;
+    NurseryStaff nursery("Alice");
+    SalesStaff sales("Bob");
+    Manager manager("Charles");
+    nursery.setNext(&sales);
+    sales.setNext(&manager);
+    
+    cout << "Creating customer with order (2 items)..." << endl;
+    Customer customer("TestCustomer");
+    
+    Rose* rose = new Rose();
+    Tomato* tomato = new Tomato();
+    customer.addToCart(rose);
+    customer.addToCart(tomato);
+    
+    cout << "\n--- CHECKOUT (creating initial receipt) ---" << endl;
+    CheckoutCommand checkoutCmd(&sales, &customer.getOrder(), nullptr);
+    auto checkoutRes = customer.sendCommand(&checkoutCmd);
+    cout << "Receipt created:" << endl;
+    cout << checkoutRes.first << endl;
+    
+    cout << "\n--- BEFORE REFUND ---" << endl;
+    auto& receipts = customer.getReceipts();
+    cout << "Number of receipts: " << receipts.size() << endl;
+    if (!receipts.empty()) {
+        cout << "Last receipt:" << endl;
+        cout << receipts.back()->toString() << endl;
+    }
+    
+    cout << "\n--- PARTIAL REFUND: Refunding Rose, keeping Tomato ---" << endl;
+    if (!receipts.empty()) {
+        Receipt* lastReceipt = receipts.back();
+        const std::vector<Product*>* plants = lastReceipt->getPlants();
+        
+        if (plants && !plants->empty()) {
+            Product* toRefund = nullptr;
+            for (auto p : *plants) {
+                if (p->getName().find("Rose") != string::npos) {
+                    toRefund = p;
+                    break;
+                }
+            }
+            
+            if (toRefund) {
+                cout << "Removing " << toRefund->getName() << " from receipt..." << endl;
+                lastReceipt->removeProduct(toRefund);  
+                delete toRefund;  
+                cout << "Partial refund complete!" << endl;
+            }
+        }
+    }
+    
+    cout << "\n--- AFTER PARTIAL REFUND ---" << endl;
+    cout << "Number of receipts: " << receipts.size() << endl;
+    if (!receipts.empty()) {
+        cout << "Updated receipt (should only show Tomato):" << endl;
+        cout << receipts.back()->toString() << endl;
+    }
+    
+    cout << "\n--- REFUNDING REMAINING ITEMS ---" << endl;
+    if (!receipts.empty()) {
+        Receipt* lastReceipt = receipts.back();
+        const std::vector<Product*>* plants = lastReceipt->getPlants();
+        
+        if (plants && !plants->empty()) {
+            vector<Product*> toRefund;
+            for (auto p : *plants) {
+                toRefund.push_back(p);
+            }
+            
+            for (Product* p : toRefund) {
+                lastReceipt->removeProduct(p);
+                delete p;
+            }
+            
+            cout << "All remaining items refunded!" << endl;
+            
+            if (lastReceipt->getPlants()->empty()) {
+                receipts.pop_back();
+                delete lastReceipt;
+                cout << "Receipt removed (all items refunded)" << endl;
+            }
+        }
+    }
+    
+    cout << "\n--- AFTER FULL REFUND ---" << endl;
+    cout << "Number of receipts: " << receipts.size() << endl;
+    if (!receipts.empty()) {
+        cout << "Remaining receipt:" << endl;
+        cout << receipts.back()->toString() << endl;
+    } else {
+        cout << "No receipts remaining (all items refunded)" << endl;
+    }
+    
+    cout << "\nRefund Flow Test Complete!" << endl;
+    
+    for (Receipt* r : receipts) {
+        delete r;
+    }
+    receipts.clear();
+    
+    Nursery::destroyInstance();
+    delete inventory;
 }
 
 
@@ -2018,8 +2155,9 @@ int main() {
     ObserverTesing();
     NewStaffCommandsTesting(); 
     IteratorTesting();
-    ChainOfResponsibilityAndCommand();   
+    // ChainOfResponsibilityAndCommand();   
     DynamicCastDecoratorTest();
+    RefundFlowTest();
 
     Nursery* nursery = Nursery::getInstance();
     if (nursery) {

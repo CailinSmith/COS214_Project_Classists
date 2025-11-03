@@ -1,0 +1,115 @@
+# Expected output patterns for case2 - Comprehensive Customer Flow Test
+# Tests: viewing plants, adding to cart, browsing categories, checkout with decoration, refunds
+# The checker matches these regexes in order against program stdout (ANSI stripped).
+
+# Main menu
+WELCOME TO GREENSONLY
+
+# Customer menu
+CUSTOMER MENU
+
+# View sale plants
+Sale plants
+Rose.*Flower.*R110
+Lavender.*Herb
+Strawberry.*Fruit
+Cucumber.*Vegetable
+JadePlant.*Succulent
+Water Hyacinth.*Aquatic
+Peace Lily.*Indoor
+Ginger.*Medicinal
+
+# Info command (i1)
+Plant Information:
+Plant Name: Rose
+Category: Flower
+Health: 0\.9
+
+# Add to cart (a1)
+Rose added to current order
+
+# Invalid add (a9) - out of range
+Index out of range
+
+# Add cucumber (a4)
+Cucumber added to current order
+
+# Browse by category
+Available categories
+Aquatic.*1 plants
+Flower.*1 plants
+
+# Choose Aquatic category
+Plants in category 'Aquatic'
+Water Hyacinth.*R180
+
+# Add Water Hyacinth
+Water Hyacinth added to current order
+
+# View seasonal plants
+SEASONAL PLANTS.*Spring
+Found 4 plant.*for Spring season
+Rose.*R110.*Flower
+Strawberry.*R230.*Fruit
+JadePlant.*R60.*Succulent
+Peace Lily.*R120.*Indoor
+
+# Browse Flower category
+Plants in category 'Flower'
+Rose.*R110
+
+# Try to add duplicate
+Rose is already in the current order
+
+# View current order
+Current order items:
+1\) Rose.*R110
+2\) Cucumber.*R80
+3\) Water Hyacinth.*R180
+Total items: 3
+
+# Checkout with decoration - prompts appear on same line due to fast input
+Decorate Rose.*\(y\/n\):
+Decoration options:
+1\) Ceramic pot
+2\) Concrete pot
+3\) Clay pot
+4\) Kraft wrapping
+5\) Extra fertilizer
+Choose:.*Decorate Cucumber.*\(y\/n\):.*Decorate Water Hyacinth.*\(y\/n\):
+
+# Receipt
+GreensOnly
+Rose.*Concrete Pot.*R170
+Cucumber.*R80
+Water Hyacinth.*R180
+TOTAL: R430
+
+# View past receipts
+Past receipts:
+1\).*R430
+
+# View specific receipt
+Rose.*Concrete Pot.*R170
+TOTAL: R430
+
+# Refund flow - all prompts appear on same line due to fast input
+Refund Rose.*Concrete Pot.*\(y\/n\):.*Refund Cucumber.*\(y\/n\):.*Refund Water Hyacinth.*\(y\/n\):.*Refund processed: R170
+
+# Updated receipt after partial refund
+Cucumber.*R80
+Water Hyacinth.*R180
+TOTAL: R260
+
+# Invalid receipt number validation
+Invalid receipt.*Please enter a number between 0 and 1
+
+# Full refund - all prompts on same line
+Refund Cucumber.*\(y\/n\):.*Refund Water Hyacinth.*\(y\/n\):.*Refund processed: R260
+All items refunded.*receipt removed
+
+# No receipts left
+No past receipts available
+
+# Exit
+Exiting demo

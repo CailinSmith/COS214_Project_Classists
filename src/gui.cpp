@@ -1,0 +1,1744 @@
+#include "gui.h"
+
+using namespace ftxui;
+
+PlantShopGUI::PlantShopGUI() : screen(ScreenInteractive::Fullscreen()), 
+                                mainMenuSelected(0), categoryMenuSelected(0), 
+                                plantListSelected(0), detailsScrollOffset(0),
+                                currentView(MAIN_MENU), cartListSelected(0),
+                                decorationMenuSelected(0), viewBySelected(0),
+                                seasonMenuSelected(0), currentDecoratingIndex(0),
+                                hasPot(false), hasWrapping(false), hasFertilizer(false),
+                                viewingBySeason(false), refundListSelected(0), refundTotal(0.0f),
+                                plantListScrollOffset(0), checkoutScrollOffset(0), refundScrollOffset(0),
+                                selectedPlant(nullptr), selectedOrderIndex(-1) {
+    categories = {
+        "Flower", "Herb", "Fruit", "Vegetable", 
+        "Succulent", "Aquatic", "Indoor", "Medicinal"
+    };
+    seasons = {
+        "Spring", "Summer", "Autumn", "Winter"
+    };
+    
+    inventoryManager = new InventoryManager();
+    nursery = Nursery::getInstance(inventoryManager);
+    customer = new Customer("John Doe");
+    
+    nurseryStaff = new NurseryStaff("Nina");
+    salesStaff = new SalesStaff("Sam");
+    managerStaff = new Manager("Mike");
+    nurseryStaff->setNext(salesStaff);
+    salesStaff->setNext(managerStaff);
+
+    nursery->setSeason(new Summer());
+    
+    initializePlants();
+}
+
+PlantShopGUI::~PlantShopGUI() {
+    delete customer;
+    delete nurseryStaff;
+    delete salesStaff;
+    delete managerStaff;
+    delete inventoryManager;
+    Nursery::destroyInstance();
+}
+
+void PlantShopGUI::initializePlants() {
+        std::string currentSeason = nursery->getSeason();
+        
+        auto setupPlant = [&currentSeason](Plant* p, float height, float health, float waterLevel) {
+            p->setHeight(height);
+            p->setHealth(health);
+            p->setWaterLevel(waterLevel);
+            p->setPruned(true);
+            p->setState(new ReadyForSaleState());
+            p->calculateCost(currentSeason);
+        };
+        
+        
+        Plant* rose1 = new Rose(); setupPlant(rose1, 0.85, 0.90, 0.95);
+        Plant* rose2 = new Rose(); setupPlant(rose2, 0.92, 0.88, 0.98);
+        
+        Plant* chrys1 = new Chrysanthemum(); setupPlant(chrys1, 0.83, 0.92, 0.93);
+        Plant* chrys2 = new Chrysanthemum(); setupPlant(chrys2, 0.89, 0.86, 0.96);
+        
+        Plant* pansy1 = new Pansy(); setupPlant(pansy1, 0.81, 0.80, 0.91);
+        Plant* pansy2 = new Pansy(); setupPlant(pansy2, 0.87, 0.93, 0.94);
+        
+        Plant* cone1 = new Coneflower(); setupPlant(cone1, 0.90, 0.87, 0.97);
+        Plant* cone2 = new Coneflower(); setupPlant(cone2, 0.95, 0.91, 0.99);
+        
+        Plant* sun1 = new Sunflower(); setupPlant(sun1, 0.94, 0.89, 0.95);
+        Plant* sun2 = new Sunflower(); setupPlant(sun2, 0.98, 0.92, 0.98);
+        
+        Plant* basil1 = new Basil(); setupPlant(basil1, 0.82, 0.90, 0.92);
+        Plant* basil2 = new Basil(); setupPlant(basil2, 0.86, 0.85, 0.95);
+        
+        Plant* lav1 = new Lavender(); setupPlant(lav1, 0.84, 0.91, 0.94);
+        Plant* lav2 = new Lavender(); setupPlant(lav2, 0.88, 0.87, 0.97);
+        
+        Plant* thyme1 = new Thyme(); setupPlant(thyme1, 0.80, 0.81, 0.91);
+        Plant* thyme2 = new Thyme(); setupPlant(thyme2, 0.85, 0.92, 0.93);
+        
+        Plant* rose_m1 = new Rosemary(); setupPlant(rose_m1, 0.83, 0.82, 0.92);
+        Plant* rose_m2 = new Rosemary(); setupPlant(rose_m2, 0.87, 0.93, 0.95);
+        
+        Plant* tom1 = new Tomato(); setupPlant(tom1, 0.86, 0.85, 0.94);
+        Plant* tom2 = new Tomato(); setupPlant(tom2, 0.91, 0.90, 0.97);
+        
+        Plant* let1 = new Lettuce(); setupPlant(let1, 0.81, 0.80, 0.91);
+        Plant* let2 = new Lettuce(); setupPlant(let2, 0.84, 0.91, 0.93);
+        
+        Plant* kale1 = new Kale(); setupPlant(kale1, 0.82, 0.92, 0.92);
+        Plant* kale2 = new Kale(); setupPlant(kale2, 0.86, 0.84, 0.95);
+        
+        Plant* cuc1 = new Cucumber(); setupPlant(cuc1, 0.84, 0.83, 0.93);
+        Plant* cuc2 = new Cucumber(); setupPlant(cuc2, 0.88, 0.91, 0.96);
+        
+        Plant* apple1 = new AppleTree(); setupPlant(apple1, 0.93, 0.88, 0.96);
+        Plant* apple2 = new AppleTree(); setupPlant(apple2, 0.97, 0.92, 0.99);
+        
+        Plant* pump1 = new Pumpkin(); setupPlant(pump1, 0.87, 0.84, 0.94);
+        Plant* pump2 = new Pumpkin(); setupPlant(pump2, 0.91, 0.90, 0.97);
+        
+        Plant* straw1 = new Strawberry(); setupPlant(straw1, 0.82, 0.81, 0.91);
+        Plant* straw2 = new Strawberry(); setupPlant(straw2, 0.86, 0.92, 0.94);
+        
+        Plant* orange1 = new OrangeTree(); setupPlant(orange1, 0.96, 0.93, 0.97);
+        Plant* orange2 = new OrangeTree(); setupPlant(orange2, 0.99, 0.95, 0.99);
+        
+        Plant* jade1 = new JadePlant(); setupPlant(jade1, 0.83, 0.90, 0.92);
+        Plant* jade2 = new JadePlant(); setupPlant(jade2, 0.87, 0.86, 0.95);
+        
+        Plant* cact1 = new BarrelCactus(); setupPlant(cact1, 0.84, 0.91, 0.91);
+        Plant* cact2 = new BarrelCactus(); setupPlant(cact2, 0.88, 0.87, 0.94);
+        
+        Plant* echev1 = new Echeveria(); setupPlant(echev1, 0.80, 0.80, 0.90);
+        Plant* echev2 = new Echeveria(); setupPlant(echev2, 0.83, 0.92, 0.93);
+        
+        Plant* xmas1 = new ChristmasCactus(); setupPlant(xmas1, 0.82, 0.82, 0.91);
+        Plant* xmas2 = new ChristmasCactus(); setupPlant(xmas2, 0.86, 0.93, 0.94);
+        
+        Plant* wlily1 = new WaterLily(); setupPlant(wlily1, 0.81, 0.85, 0.95);
+        Plant* wlily2 = new WaterLily(); setupPlant(wlily2, 0.85, 0.91, 0.98);
+        
+        Plant* whya1 = new WaterHyacinth(); setupPlant(whya1, 0.83, 0.86, 0.96);
+        Plant* whya2 = new WaterHyacinth(); setupPlant(whya2, 0.87, 0.92, 0.99);
+        
+        Plant* cat1 = new Cattails(); setupPlant(cat1, 0.91, 0.87, 0.97);
+        Plant* cat2 = new Cattails(); setupPlant(cat2, 0.95, 0.93, 0.99);
+        
+        Plant* wlet1 = new WaterLettuce(); setupPlant(wlet1, 0.81, 0.84, 0.95);
+        Plant* wlet2 = new WaterLettuce(); setupPlant(wlet2, 0.84, 0.91, 0.98);
+        
+        Plant* snake1 = new SnakePlant(); setupPlant(snake1, 0.85, 0.83, 0.92);
+        Plant* snake2 = new SnakePlant(); setupPlant(snake2, 0.89, 0.90, 0.95);
+        
+        Plant* rubber1 = new RubberTree(); setupPlant(rubber1, 0.92, 0.88, 0.94);
+        Plant* rubber2 = new RubberTree(); setupPlant(rubber2, 0.96, 0.92, 0.97);
+        
+        Plant* peace1 = new PeaceLily(); setupPlant(peace1, 0.83, 0.84, 0.96);
+        Plant* peace2 = new PeaceLily(); setupPlant(peace2, 0.87, 0.91, 0.99);
+        
+        Plant* pothos1 = new Pothos(); setupPlant(pothos1, 0.86, 0.85, 0.93);
+        Plant* pothos2 = new Pothos(); setupPlant(pothos2, 0.90, 0.92, 0.96);
+        
+        Plant* aloe1 = new AloeVera(); setupPlant(aloe1, 0.82, 0.82, 0.92);
+        Plant* aloe2 = new AloeVera(); setupPlant(aloe2, 0.86, 0.91, 0.95);
+        
+        Plant* cham1 = new Chamomile(); setupPlant(cham1, 0.81, 0.81, 0.91);
+        Plant* cham2 = new Chamomile(); setupPlant(cham2, 0.85, 0.93, 0.94);
+        
+        Plant* ging1 = new Ginger(); setupPlant(ging1, 0.84, 0.83, 0.94);
+        Plant* ging2 = new Ginger(); setupPlant(ging2, 0.88, 0.92, 0.97);
+        
+        //Adds all plants to inventory for sale
+        inventoryManager->addToSale(rose1); inventoryManager->addToSale(rose2);
+        inventoryManager->addToSale(chrys1); inventoryManager->addToSale(chrys2);
+        inventoryManager->addToSale(pansy1); inventoryManager->addToSale(pansy2);
+        inventoryManager->addToSale(cone1); inventoryManager->addToSale(cone2);
+        inventoryManager->addToSale(sun1); inventoryManager->addToSale(sun2);
+        inventoryManager->addToSale(basil1); inventoryManager->addToSale(basil2);
+        inventoryManager->addToSale(lav1); inventoryManager->addToSale(lav2);
+        inventoryManager->addToSale(thyme1); inventoryManager->addToSale(thyme2);
+        inventoryManager->addToSale(rose_m1); inventoryManager->addToSale(rose_m2);
+        inventoryManager->addToSale(tom1); inventoryManager->addToSale(tom2);
+        inventoryManager->addToSale(let1); inventoryManager->addToSale(let2);
+        inventoryManager->addToSale(kale1); inventoryManager->addToSale(kale2);
+        inventoryManager->addToSale(cuc1); inventoryManager->addToSale(cuc2);
+        inventoryManager->addToSale(apple1); inventoryManager->addToSale(apple2);
+        inventoryManager->addToSale(pump1); inventoryManager->addToSale(pump2);
+        inventoryManager->addToSale(straw1); inventoryManager->addToSale(straw2);
+        inventoryManager->addToSale(orange1); inventoryManager->addToSale(orange2);
+        inventoryManager->addToSale(jade1); inventoryManager->addToSale(jade2);
+        inventoryManager->addToSale(cact1); inventoryManager->addToSale(cact2);
+        inventoryManager->addToSale(echev1); inventoryManager->addToSale(echev2);
+        inventoryManager->addToSale(xmas1); inventoryManager->addToSale(xmas2);
+        inventoryManager->addToSale(wlily1); inventoryManager->addToSale(wlily2);
+        inventoryManager->addToSale(whya1); inventoryManager->addToSale(whya2);
+        inventoryManager->addToSale(cat1); inventoryManager->addToSale(cat2);
+        inventoryManager->addToSale(wlet1); inventoryManager->addToSale(wlet2);
+        inventoryManager->addToSale(snake1); inventoryManager->addToSale(snake2);
+        inventoryManager->addToSale(rubber1); inventoryManager->addToSale(rubber2);
+        inventoryManager->addToSale(peace1); inventoryManager->addToSale(peace2);
+        inventoryManager->addToSale(pothos1); inventoryManager->addToSale(pothos2);
+        inventoryManager->addToSale(aloe1); inventoryManager->addToSale(aloe2);
+        inventoryManager->addToSale(cham1); inventoryManager->addToSale(cham2);
+        inventoryManager->addToSale(ging1); inventoryManager->addToSale(ging2);
+    }
+    
+    struct ColoredChar {
+        std::string ch;
+        int fgColor;
+        int bgColor;
+        
+        ColoredChar(std::string c = " ", int fg = 0xFFFFFF, int bg = 0x000000) : ch(c), fgColor(fg), bgColor(bg) {}
+    };
+    
+    std::vector<std::vector<ColoredChar>> parseAnsiImage(const std::string& ansiText) {
+        std::vector<std::vector<ColoredChar>> result;
+        std::vector<ColoredChar> currentLine;
+        
+        int currentFgR = 255, currentFgG = 255, currentFgB = 255;
+        int currentBgR = 0, currentBgG = 0, currentBgB = 0;
+        
+        for (size_t i = 0; i < ansiText.length(); i++) {
+            if (ansiText[i] == '\033' || ansiText[i] == '\x1b') {
+                if (i + 1 < ansiText.length() && ansiText[i + 1] == '[') {
+                    i += 2;
+                    std::string code;
+                    while (i < ansiText.length() && ansiText[i] != 'm' && ansiText[i] != 'l' && ansiText[i] != 'h') {
+                        code += ansiText[i];
+                        i++;
+                    }
+                    
+                    if (i < ansiText.length() && (ansiText[i] == 'l' || ansiText[i] == 'h')) {
+                        continue;
+                    }
+                    
+                    std::vector<int> numbers;
+                    std::string num;
+                    for (char c : code) {
+                        if (c == ';') {
+                            if (!num.empty()) {
+                                numbers.push_back(std::stoi(num));
+                                num.clear();
+                            }
+                        } else if (std::isdigit(c)) {
+                            num += c;
+                        }
+                    }
+                    if (!num.empty()) {
+                        numbers.push_back(std::stoi(num));
+                    }
+                    
+                    for (size_t j = 0; j < numbers.size(); j++) {
+                        if (numbers[j] == 0) {
+                            currentFgR = currentFgG = currentFgB = 255;
+                            currentBgR = currentBgG = currentBgB = 0;
+                        } else if (numbers[j] == 38 && j + 4 < numbers.size() && numbers[j + 1] == 2) {
+                            currentFgR = numbers[j + 2];
+                            currentFgG = numbers[j + 3];
+                            currentFgB = numbers[j + 4];
+                            j += 4;
+                        } else if (numbers[j] == 48 && j + 4 < numbers.size() && numbers[j + 1] == 2) {
+                            currentBgR = numbers[j + 2];
+                            currentBgG = numbers[j + 3];
+                            currentBgB = numbers[j + 4];
+                            j += 4;
+                        }
+                    }
+                }
+            } else if (ansiText[i] == '\n') {
+                if (!currentLine.empty()) {
+                    result.push_back(currentLine);
+                    currentLine.clear();
+                }
+            } else if (ansiText[i] >= 32 || (unsigned char)ansiText[i] >= 128) {
+                std::string utf8Char;
+                unsigned char byte = ansiText[i];
+                
+                if ((byte & 0x80) == 0) {
+                    utf8Char = ansiText[i];
+                } else if ((byte & 0xE0) == 0xC0) {
+                    utf8Char = ansiText.substr(i, 2);
+                    i += 1;
+                } else if ((byte & 0xF0) == 0xE0) {
+                    utf8Char = ansiText.substr(i, 3);
+                    i += 2;
+                } else if ((byte & 0xF8) == 0xF0) {
+                    utf8Char = ansiText.substr(i, 4);
+                    i += 3;
+                } else {
+                    continue;
+                }
+                
+                int fgColor = (currentFgR << 16) | (currentFgG << 8) | currentFgB;
+                int bgColor = (currentBgR << 16) | (currentBgG << 8) | currentBgB;
+                currentLine.push_back(ColoredChar(utf8Char, fgColor, bgColor));
+            }
+        }
+        
+        if (!currentLine.empty()) {
+            result.push_back(currentLine);
+        }
+        
+        return result;
+    }
+    
+    Color terminalColorToFTXUI(int colorCode) {
+        int r = (colorCode >> 16) & 0xFF;
+        int g = (colorCode >> 8) & 0xFF;
+        int b = colorCode & 0xFF;
+        
+        return Color::RGB(r, g, b);
+    }
+    
+    std::string convertImageToASCII(const std::string& imagePath, int width = 50, int height = 25) {
+        std::ifstream fileCheck(imagePath);
+        if (!fileCheck.good()) {
+            return "[Image not found: " + imagePath + "]";
+        }
+        fileCheck.close();
+        
+        std::string tempFile = "/tmp/ascii_temp.txt";
+        std::string command = "chafa --size " + std::to_string(width) + "x" + std::to_string(height) + 
+                             " --symbols block --color-space rgb --dither none --fill all \"" + imagePath + "\" > " + tempFile + " 2>&1";
+        
+        int result = system(command.c_str());
+        
+        if (result != 0) {
+            return "[chafa not available. Install with: sudo apt-get install chafa]";
+        }
+        
+        std::ifstream file(tempFile);
+        if (!file.is_open()) {
+            return "[Failed to generate ASCII art]";
+        }
+        
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+        file.close();
+        
+        std::string output = buffer.str();
+        
+        remove(tempFile.c_str());
+        
+        return output;
+    }
+    
+    //Create a visual health bar from health value (0.0 to 1.0)
+    Element createHealthBar(float health) {
+        //Clamp health between 0 and 1
+        health = std::max(0.0f, std::min(1.0f, health));
+        
+        int barWidth = 20;
+        int filledBars = static_cast<int>(health * barWidth);
+        int emptyBars = barWidth - filledBars;
+        
+        std::string filled = "";
+        for (int i = 0; i < filledBars; i++) {
+            filled += "█";
+        }
+        std::string empty = "";
+        for (int i = 0; i < emptyBars; i++) {
+            empty += "░";
+        }
+        
+        Color barColor;
+        if (health > 0.7f) {
+            barColor = Color::Green;
+        } else if (health > 0.4f) {
+            barColor = Color::Yellow;
+        } else {
+            barColor = Color::Red;
+        }
+        
+        int percentage = static_cast<int>(health * 100);
+        std::string percentText = std::to_string(percentage) + "%";
+        
+        return hbox({
+            text("Health: ") | color(Color::White),
+            text("[") | color(Color::White),
+            text(filled) | color(barColor) | bold,
+            text(empty) | color(Color::GrayDark),
+            text("]") | color(Color::White),
+            text(" " + percentText) | color(barColor) | bold
+        });
+    }
+    
+void PlantShopGUI::run() {
+    auto mainComponent = Renderer([&] {
+        return render();
+    });
+    
+    auto componentWithExit = CatchEvent(mainComponent, [&](Event event) {
+        if (event == Event::Character('q') || event == Event::Escape) {
+            screen.ExitLoopClosure()();
+            return true;
+        }
+        return handleInput(event);
+    });
+    
+    screen.Loop(componentWithExit);
+}
+
+Element PlantShopGUI::render() {
+    switch (currentView) {
+        case MAIN_MENU:
+            return renderMainMenu();
+        case VIEW_BY_SELECTION:
+            return renderViewBySelection();
+        case CATEGORY_SELECTION:
+            return renderCategorySelection();
+        case SEASON_SELECTION:
+            return renderSeasonSelection();
+        case PLANT_LIST:
+            return renderPlantList();
+        case PLANT_DETAILS:
+            return renderPlantDetails();
+        case CART_VIEW:
+            return renderCart();
+        case DECORATION_MENU:
+            return renderDecorationMenu();
+        case CHECKOUT_SUMMARY:
+            return renderCheckoutSummary();
+        case STOCK_CHECK:
+            return renderStockCheck();
+        case PAST_ORDERS:
+            return renderPastOrders();
+            case REFUND_SELECTION:
+                return renderRefundSelection();
+            case REFUND_CONFIRMATION:
+                return renderRefundConfirmation();
+            default:
+                return renderMainMenu();
+        }
+    }
+    
+Element PlantShopGUI::renderMainMenu() {
+        std::vector<std::string> options = {
+            "View Plants",
+            "My Cart",
+            "Refunds",
+            "Checkout",
+            "Exit"
+        };
+        
+        Elements menuItems;
+        for (size_t i = 0; i < options.size(); i++) {
+            if (static_cast<int>(i) == mainMenuSelected) {
+                menuItems.push_back(
+                    hbox({
+                        text("► " + options[i]) | color(Color::Green) | bold
+                    })
+                );
+            } else {
+                menuItems.push_back(text("  " + options[i]));
+            }
+        }
+        
+        auto cartInfo = text("Current cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
+                        color(Color::Cyan);
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | 
+                         color(Color::Yellow) | dim;
+        
+        return vbox({
+            text("🌿 GreensOnly Plant Shop 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(menuItems),
+            text("") | size(HEIGHT, EQUAL, 1),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow),
+            text("💡 Use ↑↓ arrows to navigate, Enter to select") | dim,
+            text("") | size(HEIGHT, EQUAL, 1)
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+
+    }
+    
+Element PlantShopGUI::renderViewBySelection() {
+        std::vector<std::string> options = {"Browse by Category", "Browse by Season"};
+        Elements menuItems;
+        for (size_t i = 0; i < options.size(); i++) {
+            if (static_cast<int>(i) == viewBySelected) {
+                menuItems.push_back(hbox({text("► " + options[i]) | color(Color::Green) | bold}));
+            } else {
+                menuItems.push_back(text("  " + options[i]));
+            }
+        }
+        auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | color(Color::Cyan) | dim;
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | color(Color::Yellow) | dim;
+        return vbox({
+            text("🌿 How would you like to view plants? 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(menuItems),
+            text("") | size(HEIGHT, EQUAL, 1),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            text("💡 Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
+        }) | border | center;
+    }
+    
+Element PlantShopGUI::renderSeasonSelection() {
+        //Don't touch the spaces for the emojis!
+        std::vector<std::string> seasonEmojis = {"🌸 ", "☀️  ", "🍂 ", "❄️  "};
+        Elements seasonItems;
+        for (size_t i = 0; i < seasons.size(); i++) {
+            std::string emoji = seasonEmojis[i];
+            if (static_cast<int>(i) == seasonMenuSelected) {
+                seasonItems.push_back(hbox({text("► " + emoji + seasons[i]) | color(Color::Green) | bold}));
+            } else {
+                seasonItems.push_back(text("  " + emoji + seasons[i]));
+            }
+        }
+        auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | color(Color::Cyan) | dim;
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | color(Color::Yellow) | dim;
+        return vbox({
+            text("🌿 Select Season 🌿") | bold | center | color(Color::Green),
+            separator(),
+            vbox(seasonItems),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            text("💡 Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
+        }) | border | center;
+    }
+    
+Element PlantShopGUI::renderCategorySelection() {
+        std::vector<std::string> categoryEmojis = {"🌸", "🌿", "🍎", "🥕", "🌵", "💧", "🏠", "💊"};
+        
+        Elements categoryItems;
+        for (size_t i = 0; i < categories.size(); i++) {
+            std::string emoji = (i < categoryEmojis.size()) ? categoryEmojis[i] + " " : "";
+            if (static_cast<int>(i) == categoryMenuSelected) {
+                categoryItems.push_back(
+                    hbox({
+                        text("► " + emoji + categories[i]) | color(Color::Green) | bold
+                    })
+                );
+            } else {
+                categoryItems.push_back(text("  " + emoji + categories[i]));
+            }
+        }
+        
+        auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
+                        color(Color::Cyan) | dim;
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | 
+                         color(Color::Yellow) | dim;
+        
+        return vbox({
+            text("🌿 Select Plant Category 🌿") | bold | center | color(Color::Green),
+            separator(),
+            vbox(categoryItems),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            text("💡 Use ↑↓ arrows to navigate, Enter to select, 'b' to go back") | dim
+
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+Element PlantShopGUI::renderPlantList() {
+        Elements plantItems;
+        
+        if (currentPlants.empty()) {
+            plantItems.push_back(text("No plants available in this category") | color(Color::Red));
+        } else {
+            const int maxVisibleItems = 15;
+            int totalItems = static_cast<int>(currentPlants.size());
+            
+            if (plantListSelected < plantListScrollOffset) {
+                plantListScrollOffset = plantListSelected;
+            } else if (plantListSelected >= plantListScrollOffset + maxVisibleItems) {
+                plantListScrollOffset = plantListSelected - maxVisibleItems + 1;
+            }
+            
+            plantListScrollOffset = std::max(0, std::min(plantListScrollOffset, std::max(0, totalItems - maxVisibleItems)));
+            
+            if (plantListScrollOffset > 0) {
+                plantItems.push_back(text("▲ More above ▲") | center | color(Color::Yellow) | dim);
+                plantItems.push_back(separator());
+            }
+            
+            int startIdx = plantListScrollOffset;
+            int endIdx = std::min(totalItems, plantListScrollOffset + maxVisibleItems);
+            
+            for (int i = startIdx; i < endIdx; i++) {
+                Plant* p = currentPlants[i];
+                //Format price as R0.00
+                std::ostringstream priceStream;
+                priceStream << std::fixed << std::setprecision(2) << p->getCost();
+                std::string plantInfo = std::to_string(i + 1) + ". " + p->getName() + 
+                                      " - R" + priceStream.str();
+                
+                if (i == plantListSelected) {
+                    plantItems.push_back(
+                        hbox({
+                            text("► " + plantInfo) | color(Color::Green) | bold
+                        })
+                    );
+                } else {
+                    plantItems.push_back(text("  " + plantInfo));
+                }
+            }
+            if (endIdx < totalItems) {
+                plantItems.push_back(separator());
+                plantItems.push_back(text("▼ More below ▼") | center | color(Color::Yellow) | dim);
+            }
+        }
+        
+        std::string header = (selectedCategory == "All Plants") ? "All Plants" : (selectedCategory + " Plants");
+        
+        auto cartInfo = text("Cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
+                        color(Color::Cyan) | dim;
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | 
+                         color(Color::Yellow) | dim;
+
+        return vbox({
+            text("🌿 " + header + " 🌿") | bold | center | color(Color::Green),
+            separator(),
+            vbox(plantItems),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            text("💡 Use ↑↓ arrows to select plant, Enter to view details, 'b' to go back") | dim
+
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+Element PlantShopGUI::renderPlantDetails() {
+        if (!selectedPlant) {
+            return text("No plant selected") | center;
+        }
+        
+        //Check if plant is already in cart
+        auto& order = customer->getOrder();
+        Plant* base = selectedPlant->getBasePlant();
+        bool alreadyInCart = std::any_of(order.begin(), order.end(), 
+            [&](Product* q){ return q->getBasePlant() == base; });
+        
+        AskInfoCommand* infoCmd = new AskInfoCommand(nurseryStaff, selectedPlant);
+        auto result = customer->sendCommand(infoCmd);
+        delete infoCmd;     
+        std::string info = result.first;
+        
+        std::string imagePath = selectedPlant->getImagePath();
+        //Size adjuster here for images, it's width (characters) x height (lines)
+        std::string asciiArt = convertImageToASCII(imagePath, 30, 15);
+        
+        auto coloredImage = parseAnsiImage(asciiArt);
+        
+        Elements content;
+        
+        content.push_back(text("🌿 " + selectedPlant->getName() + " 🌿") | bold | center | color(Color::Green));
+        content.push_back(separator());
+        Elements scrollableContent;
+        
+        if (!coloredImage.empty() && coloredImage[0].size() > 0) {
+            Elements asciiLines;
+            for (const auto& line : coloredImage) {
+                Elements lineChars;
+                for (const auto& coloredChar : line) {
+                    auto elem = text(coloredChar.ch) | 
+                               color(terminalColorToFTXUI(coloredChar.fgColor)) |
+                               bgcolor(terminalColorToFTXUI(coloredChar.bgColor));
+                    lineChars.push_back(elem);
+                }
+                if (!lineChars.empty()) {
+                    asciiLines.push_back(hbox(lineChars));
+                }
+            }
+            
+            if (!asciiLines.empty()) {
+                scrollableContent.push_back(vbox(asciiLines) | center);
+                scrollableContent.push_back(separator());
+            }
+        }
+        
+        scrollableContent.push_back(text("Plant Information:") | bold | color(Color::Green));
+        
+        float healthValue = selectedPlant->getHealth();
+        scrollableContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        scrollableContent.push_back(createHealthBar(healthValue));
+        scrollableContent.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        
+        std::istringstream infoStream(info);
+        std::string line;
+        while (std::getline(infoStream, line)) {
+            if (!line.empty()) {
+                if (line.find("Health:") != std::string::npos || line.find("health:") != std::string::npos) {
+                    continue;
+                }
+                
+                if (line.find("Price:") != std::string::npos || line.find("Cost:") != std::string::npos || line.find("price:") != std::string::npos || line.find("cost:") != std::string::npos) {
+                    size_t colonPos = line.find(':');
+                    if (colonPos != std::string::npos) {
+                        std::string beforeColon = line.substr(0, colonPos + 1);
+                        std::string afterColon = line.substr(colonPos + 1);
+                        
+                        size_t firstNonSpace = afterColon.find_first_not_of(" \t");
+                        if (firstNonSpace != std::string::npos) {
+                            afterColon = afterColon.substr(firstNonSpace);
+                        }
+                        
+                        if (!afterColon.empty() && afterColon[0] != 'R') {
+                            line = beforeColon + " R" + afterColon;
+                        }
+                    }
+                }
+                
+                scrollableContent.push_back(text("  " + line));
+            }
+        }
+        
+        scrollableContent.push_back(text("") | size(HEIGHT, EQUAL, 1));      
+        content.push_back(vbox(scrollableContent) | flex_shrink);
+        
+        content.push_back(separator());
+        if (alreadyInCart) {
+            content.push_back(
+                hbox({
+                    filler(),
+                    text(" Already in Cart ✓ ") | bgcolor(Color::GrayDark) | color(Color::White) | bold | center,
+                    filler()
+                })
+            );
+            content.push_back(text("") | size(HEIGHT, EQUAL, 1));
+            content.push_back(text("This plant is already in your cart! Press 'b' to go back") | dim | center | color(Color::Yellow));
+        } else {
+            content.push_back(
+                hbox({
+                    filler(),
+                    text(" [A] Add to Cart ") | bgcolor(Color::Green) | color(Color::White) | bold | center,
+                    filler()
+                })
+            );
+            content.push_back(text("") | size(HEIGHT, EQUAL, 1));
+            content.push_back(text("Press 'a' to add to cart, 'b' to go back") | dim | center);
+        }
+        
+        return vbox(content) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+Element PlantShopGUI::renderCart() {
+        auto& order = customer->getOrder();
+        
+        if (order.empty()) {
+            return vbox({
+                text("🌿 My Cart 🌿") | bold | center | color(Color::Green),
+                separator(),
+                text("") | size(HEIGHT, EQUAL, 1),
+                text("Your cart is empty!") | center | color(Color::Yellow),
+                text("") | size(HEIGHT, EQUAL, 1),
+                separator(),
+                text("Press 'b' to go back to main menu") | dim | center
+            }) | border | center;
+        }
+        
+        Elements cartItems;
+        std::string season = nursery->getSeason();
+        float total = 0.0f;
+        
+        for (size_t i = 0; i < order.size(); i++) {
+            Product* p = order[i];
+            float cost = p->calculateCost(season);
+            total += cost;
+            
+            std::ostringstream priceStream;
+            priceStream << std::fixed << std::setprecision(2) << cost;
+            
+            Element item;
+            if (static_cast<int>(i) == cartListSelected) {
+                item = hbox({
+                    text("► ") | color(Color::Green) | bold,
+                    text(std::to_string(i + 1) + ". " + p->getName()) | color(Color::Green) | bold | flex,
+                    text(" R" + priceStream.str()) | color(Color::Green) | bold
+                });
+            } else {
+                item = hbox({
+                    text("  "),
+                    text(std::to_string(i + 1) + ". " + p->getName()) | flex,
+                    text(" R" + priceStream.str())
+                });
+            }
+            cartItems.push_back(item);
+        }
+        
+        std::ostringstream totalStream;
+        totalStream << std::fixed << std::setprecision(2) << total;
+        
+        return vbox({
+            text("🌿 My Cart 🌿") | bold | center | color(Color::Green),
+            separator(),
+            vbox(cartItems),
+            separator(),
+            hbox({
+                text("TOTAL: ") | bold,
+                filler(),
+                text("R" + totalStream.str()) | bold | color(Color::Green)
+            }),
+            separator(),
+            text("Options:") | bold,
+            text("  [Enter] - View selected plant details"),
+            text("  [d]     - Remove selected plant from cart"),
+            text("  [c]     - Clear entire cart"),
+            text("  [b]     - Back to main menu"),
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow),
+            text("Use ↑↓ arrows to select item") | dim
+        }) | border | center;
+
+    }
+    
+Element PlantShopGUI::renderDecorationMenu() {
+        auto& order = customer->getOrder();
+        
+        if (currentDecoratingIndex >= static_cast<int>(order.size())) {
+            performActualCheckout();
+            return renderMainMenu();
+        }
+        
+        Product* currentProduct = order[currentDecoratingIndex];
+        std::string plantName = currentProduct->getName();
+        
+        const size_t MAX_NAME_LENGTH = 60;
+        if (plantName.length() > MAX_NAME_LENGTH) {
+            plantName = plantName.substr(0, MAX_NAME_LENGTH - 3) + "...";
+        }
+        
+        std::string season = nursery->getSeason();
+        float currentCost = currentProduct->calculateCost(season);
+        
+        std::ostringstream currentPriceStream;
+        currentPriceStream << std::fixed << std::setprecision(2) << currentCost;
+        
+        std::vector<std::string> decorationOptions;
+        decorationOptions.push_back("Done decorating - Next plant");
+        
+        if (!hasPot) {
+            decorationOptions.push_back("Ceramic Pot (+R80.00)");
+            decorationOptions.push_back("Concrete Pot (+R60.00)");
+            decorationOptions.push_back("Clay Pot (+R50.00)");
+        }
+        
+        if (!hasWrapping) {
+            decorationOptions.push_back("Kraft Wrapping (+R20.00)");
+        }
+        
+        if (!hasFertilizer) {
+            decorationOptions.push_back("Extra Fertilizer (+R80.00)");
+        }
+        
+        Elements decorationItems;
+        for (size_t i = 0; i < decorationOptions.size(); i++) {
+            if (static_cast<int>(i) == decorationMenuSelected) {
+                decorationItems.push_back(
+                    hbox({
+                        text("► " + decorationOptions[i]) | color(Color::Green) | bold
+                    })
+                );
+            } else {
+                decorationItems.push_back(text("  " + decorationOptions[i]));
+            }
+        }
+        
+        Elements addedDecorations;
+        addedDecorations.push_back(text("Current decorations:") | bold);
+        if (hasPot || hasWrapping || hasFertilizer) {
+            if (hasPot) addedDecorations.push_back(text("  ✓ Pot") | color(Color::Green));
+            if (hasWrapping) addedDecorations.push_back(text("  ✓ Kraft Wrapping") | color(Color::Green));
+            if (hasFertilizer) addedDecorations.push_back(text("  ✓ Extra Fertilizer") | color(Color::Green));
+        } else {
+            addedDecorations.push_back(text("  None yet") | dim);
+        }
+        
+        return vbox({
+            text("🌿 Decorate Plant 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
+            hbox({
+                text("Plant: ") | bold,
+                text(plantName) | color(Color::Cyan) | flex_shrink
+            }),
+            hbox({
+                text("Current Price: ") | bold,
+                text("R" + currentPriceStream.str()) | color(Color::Yellow)
+            }),
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(addedDecorations),
+            text("") | size(HEIGHT, EQUAL, 1),
+            text("Progress: " + std::to_string(currentDecoratingIndex + 1) + " / " + 
+                 std::to_string(order.size())) | dim | center,
+            text("") | size(HEIGHT, EQUAL, 1),
+            separator(),
+            text("Select decoration to add:") | bold,
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(decorationItems),
+            separator(),
+            text("💡 Use ↑↓ arrows to select, Enter to add/continue") | dim | center,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow)
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+Element PlantShopGUI::renderCheckoutSummary() {
+        auto& order = customer->getOrder();
+        std::string season = nursery->getSeason();
+        
+        Elements summaryItems;
+        float total = 0.0f;
+        
+        summaryItems.push_back(text("Items in your order:") | bold);
+        summaryItems.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        const int maxVisibleItems = 10;
+        int totalItems = static_cast<int>(order.size());
+        
+        checkoutScrollOffset = std::max(0, std::min(checkoutScrollOffset, std::max(0, totalItems - maxVisibleItems)));
+        
+        if (checkoutScrollOffset > 0) {
+            summaryItems.push_back(text("▲ Scroll up for more ▲") | center | color(Color::Yellow) | dim);
+            summaryItems.push_back(separator());
+        }
+        
+        for (size_t i = 0; i < order.size(); i++) {
+            Product* p = order[i];
+            total += p->calculateCost(season);
+        }
+        
+        int startIdx = checkoutScrollOffset;
+        int endIdx = std::min(totalItems, checkoutScrollOffset + maxVisibleItems);
+        
+        for (int i = startIdx; i < endIdx; i++) {
+            Product* p = order[i];
+            float itemCost = p->calculateCost(season);
+            
+            std::ostringstream priceStream;
+            priceStream << std::fixed << std::setprecision(2) << itemCost;
+            
+            std::string itemName = p->getName();
+            if (itemName.length() > 50) {
+                itemName = itemName.substr(0, 47) + "...";
+            }
+            
+            summaryItems.push_back(hbox({
+                text(std::to_string(i + 1) + ". "),
+                text(itemName) | flex,
+                text(" R" + priceStream.str()) | color(Color::Yellow) | bold
+            }));
+        }
+        if (endIdx < totalItems) {
+            summaryItems.push_back(separator());
+            summaryItems.push_back(text("▼ Scroll down for more ▼") | center | color(Color::Yellow) | dim);
+        }
+        
+        summaryItems.push_back(text("") | size(HEIGHT, EQUAL, 1));
+        summaryItems.push_back(separator());
+        
+        std::ostringstream totalStream;
+        totalStream << std::fixed << std::setprecision(2) << total;
+        
+        summaryItems.push_back(hbox({
+            text("TOTAL: ") | bold | color(Color::White),
+            filler(),
+            text("R" + totalStream.str()) | bold | color(Color::Green) | 
+                 size(HEIGHT, EQUAL, 2)
+        }));
+        summaryItems.push_back(separator());
+        
+        return vbox({
+            text("🌿 Checkout Summary 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("") | size(HEIGHT, EQUAL, 1),
+            vbox(summaryItems) | flex_shrink,
+            text("") | size(HEIGHT, EQUAL, 1),
+            separator(),
+            text("Options:") | bold,
+            text("  [↑↓]   - Scroll through items") | color(Color::Cyan),
+            text("  [Enter] - Complete purchase") | color(Color::Green),
+            text("  [b]     - Cancel and return to main menu") | color(Color::Red),
+            text("") | size(HEIGHT, EQUAL, 1),
+            text("💡 Review your order before completing purchase") | dim | center,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow)
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+Element PlantShopGUI::renderStockCheck() {
+        if (!selectedPlant) {
+            return text("No plant selected") | center;
+        }
+        
+        CheckStockCommand* stockCmd = new CheckStockCommand(salesStaff, selectedPlant);
+        auto result = customer->sendCommand(stockCmd);
+        delete stockCmd;
+        
+        std::string stockInfo = result.first;
+        
+        return vbox({
+            text("🌿 Stock Check 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("Plant: " + selectedPlant->getName()) | bold,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(stockInfo),
+            separator(),
+            text("💡 Press 'b' to go back") | dim
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+Element PlantShopGUI::renderPastOrders() {
+        Elements orderElements;
+        auto& receipts = customer->getReceipts();
+        
+        if (receipts.empty()) {
+            orderElements.push_back(text("No past orders") | color(Color::Yellow));
+        } else {
+            for (size_t i = 0; i < receipts.size(); i++) {
+                Receipt* r = receipts[i];
+                std::ostringstream priceStream;
+                priceStream << std::fixed << std::setprecision(2) << r->getCost();
+                std::string orderInfo = "Order " + std::to_string(i + 1) + ": " + 
+                                       r->getDate() + " - R" + priceStream.str();
+                
+                if (static_cast<int>(i) == selectedOrderIndex) {
+                    orderElements.push_back(
+                        hbox({
+                            text("► " + orderInfo) | color(Color::Green) | bold
+                        })
+                    );
+                } else {
+                    orderElements.push_back(text("  " + orderInfo));
+                }
+            }
+        }
+        
+        auto cartInfo = text("Current cart: " + std::to_string(customer->getOrder().size()) + " item(s)") | 
+                        color(Color::Cyan) | dim;
+        auto seasonInfo = text("Current Season: " + nursery->getSeason()) | 
+                         color(Color::Yellow) | dim;
+        
+        return vbox({
+            text("🌿 Past Orders 🌿") | bold | center | color(Color::Green),
+            separator(),
+            vbox(orderElements),
+            separator(),
+            cartInfo,
+            seasonInfo,
+            separator(),
+            text("Options:") | bold,
+            text("  [r] - Request refund for selected order"),
+            text("  [b] - Back to main menu"),
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow),
+            text("💡 Use ↑↓ arrows to select order") | dim
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+Element PlantShopGUI::renderRefundSelection() {
+        auto& receipts = customer->getReceipts();
+        
+        if (selectedOrderIndex < 0 || selectedOrderIndex >= static_cast<int>(receipts.size())) {
+            return vbox({
+                text("Invalid order selected") | color(Color::Red),
+                text("💡 Press 'b' to go back") | dim
+            }) | border | center;
+        }
+        
+        Receipt* selectedReceipt = receipts[selectedOrderIndex];
+        const std::vector<Product*>* plants = selectedReceipt->getPlants();
+        
+        float runningTotal = 0.0f;
+        for (size_t i = 0; i < plants->size(); i++) {
+            if (refundFlags[i]) {
+                runningTotal += (*plants)[i]->getCost();
+            }
+        }
+        
+        const int maxVisibleItems = 10;
+        int totalItems = static_cast<int>(plants->size());
+        
+        if (refundListSelected < refundScrollOffset) {
+            refundScrollOffset = refundListSelected;
+        } else if (refundListSelected >= refundScrollOffset + maxVisibleItems) {
+            refundScrollOffset = refundListSelected - maxVisibleItems + 1;
+        }
+        
+        refundScrollOffset = std::max(0, std::min(refundScrollOffset, std::max(0, totalItems - maxVisibleItems)));
+        
+        Elements plantElements;
+        
+        if (refundScrollOffset > 0) {
+            plantElements.push_back(text("▲ Scroll up for more ▲") | center | color(Color::Yellow) | dim);
+            plantElements.push_back(separator());
+        }
+        
+        int startIdx = refundScrollOffset;
+        int endIdx = std::min(totalItems, refundScrollOffset + maxVisibleItems);
+        
+        for (int i = startIdx; i < endIdx; i++) {
+            Product* p = (*plants)[i];
+            std::ostringstream priceStream;
+            priceStream << std::fixed << std::setprecision(2) << p->getCost();
+            
+            std::string checkbox = refundFlags[i] ? "[✓] " : "[ ] ";
+            std::string plantInfo = checkbox + p->getName() + " - R" + priceStream.str();
+            
+            if (i == refundListSelected) {
+                plantElements.push_back(hbox({
+                    text(plantInfo) | bold | color(Color::Cyan)
+                }));
+            } else {
+                plantElements.push_back(text(plantInfo));
+            }
+        }
+
+        if (endIdx < totalItems) {
+            plantElements.push_back(separator());
+            plantElements.push_back(text("▼ Scroll down for more ▼") | center | color(Color::Yellow) | dim);
+        }
+        
+        std::ostringstream totalStream;
+        totalStream << std::fixed << std::setprecision(2) << selectedReceipt->getCost();
+        
+        std::ostringstream selectedTotalStream;
+        selectedTotalStream << std::fixed << std::setprecision(2) << runningTotal;
+        
+        return vbox({
+            text("🌿 Select Plants to Refund 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text("Order Date: " + selectedReceipt->getDate()) | bold,
+            text("Order Total: R" + totalStream.str()) | bold,
+            text("Selected for Refund: R" + selectedTotalStream.str()) | bold | color(Color::Cyan),
+            separator(),
+            vbox(plantElements),
+            separator(),
+            text("Controls:") | bold,
+            text("  [↑↓] Navigate  [Space] Toggle  [Enter] Confirm  [b] Cancel") | dim,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text(messageBuffer) | color(Color::Yellow)
+        }) | border | center | size(WIDTH, LESS_THAN, 100);
+    }
+    
+Element PlantShopGUI::renderRefundConfirmation() {
+        return vbox({
+            text("🌿 Refund Processed 🌿") | bold | center | color(Color::Green),
+            separator(),
+            text(refundResultMessage) | color(Color::GreenLight),
+            separator(),
+            text("Total Refunded: R" + [this]() {
+                std::ostringstream ss;
+                ss << std::fixed << std::setprecision(2) << refundTotal;
+                return ss.str();
+            }()) | bold | color(Color::Cyan),
+            separator(),
+            text("Your receipt has been updated.") | italic,
+            text("") | size(HEIGHT, EQUAL, 1),
+            text("💡 Press any key to return to past orders") | dim
+        }) | border | size(WIDTH, LESS_THAN, 100) | center;
+    }
+    
+bool PlantShopGUI::handleInput(Event event) {
+        messageBuffer = "";
+        
+        switch (currentView) {
+            case MAIN_MENU:
+                return handleMainMenuInput(event);
+            case VIEW_BY_SELECTION:
+                return handleViewByInput(event);
+            case CATEGORY_SELECTION:
+                return handleCategoryInput(event);
+            case SEASON_SELECTION:
+                return handleSeasonInput(event);
+            case PLANT_LIST:
+                return handlePlantListInput(event);
+            case PLANT_DETAILS:
+                return handleDetailsInput(event);
+            case CART_VIEW:
+                return handleCartInput(event);
+            case DECORATION_MENU:
+                return handleDecorationInput(event);
+            case CHECKOUT_SUMMARY:
+                return handleCheckoutSummaryInput(event);
+            case STOCK_CHECK:
+                return handleDetailsInput(event);
+            case PAST_ORDERS:
+                return handlePastOrdersInput(event);
+            case REFUND_SELECTION:
+                return handleRefundSelectionInput(event);
+            case REFUND_CONFIRMATION:
+                return handleRefundConfirmationInput(event);
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleMainMenuInput(Event event) {
+        if (event == Event::ArrowUp) {
+            mainMenuSelected = std::max(0, mainMenuSelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            mainMenuSelected = std::min(4, mainMenuSelected + 1);
+            return true;
+        } else if (event == Event::Return) {
+            switch (mainMenuSelected) {
+                case 0:
+                    currentView = VIEW_BY_SELECTION;
+                    viewBySelected = 0;
+                    break;
+                case 1: 
+                    currentView = CART_VIEW;
+                    cartListSelected = 0;
+                    break;
+                case 2:
+                    currentView = PAST_ORDERS;
+                    selectedOrderIndex = 0;
+                    break;
+                case 3: 
+                    startCheckoutFlow();
+                    break;
+                case 4:
+                    screen.ExitLoopClosure()();
+                    break;
+            }
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleViewByInput(Event event) {
+        if (event == Event::ArrowUp) {
+            viewBySelected = std::max(0, viewBySelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            viewBySelected = std::min(1, viewBySelected + 1);
+            return true;
+        } else if (event == Event::Return) {
+            if (viewBySelected == 0) {
+                currentView = CATEGORY_SELECTION;
+                categoryMenuSelected = 0;
+                viewingBySeason = false;
+            } else {
+                currentView = SEASON_SELECTION;
+                seasonMenuSelected = 0;
+            }
+            return true;
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = MAIN_MENU;
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleSeasonInput(Event event) {
+        if (event == Event::ArrowUp) {
+            seasonMenuSelected = std::max(0, seasonMenuSelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            seasonMenuSelected = std::min(static_cast<int>(seasons.size()) - 1, seasonMenuSelected + 1);
+            return true;
+        } else if (event == Event::Return) {
+            selectedSeason = seasons[seasonMenuSelected];
+            loadPlantsForSeason(selectedSeason);
+            viewingBySeason = true;
+            currentView = PLANT_LIST;
+            plantListSelected = 0;
+            return true;
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = VIEW_BY_SELECTION;
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleCategoryInput(Event event) {
+        if (event == Event::ArrowUp) {
+            categoryMenuSelected = std::max(0, categoryMenuSelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            categoryMenuSelected = std::min(static_cast<int>(categories.size()) - 1, categoryMenuSelected + 1);
+            return true;
+        } else if (event == Event::Return) {
+            selectedCategory = categories[categoryMenuSelected];
+            loadPlantsForCategory(selectedCategory);
+            viewingBySeason = false;
+            currentView = PLANT_LIST;
+            plantListSelected = 0;
+            return true;
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = VIEW_BY_SELECTION;
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handlePlantListInput(Event event) {
+        if (currentPlants.empty()) {
+            if (event == Event::Character('b') || event == Event::Character('B')) {
+                currentView = viewingBySeason ? SEASON_SELECTION : CATEGORY_SELECTION;
+                return true;
+            }
+            return false;
+        }
+        
+        if (event == Event::ArrowUp) {
+            plantListSelected = std::max(0, plantListSelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            plantListSelected = std::min(static_cast<int>(currentPlants.size()) - 1, plantListSelected + 1);
+            return true;
+        } else if (event == Event::Return) {
+            //View plant details
+            selectedPlant = currentPlants[plantListSelected];
+            currentView = PLANT_DETAILS;
+            return true;
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = viewingBySeason ? SEASON_SELECTION : CATEGORY_SELECTION;
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleDetailsInput(Event event) {
+        if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = PLANT_LIST;
+            return true;
+        } 
+        else if (event == Event::Character('a') || event == Event::Character('A')) {
+            //Check in cart before adding to cart
+            auto& order = customer->getOrder();
+            Plant* base = selectedPlant->getBasePlant();
+
+            if (std::any_of(order.begin(), order.end(), 
+                [&](Product* q){ return q->getBasePlant() == base; })) 
+            {
+                messageBuffer = selectedPlant->getName() + " is already in your cart!";
+            } else {
+                customer->addToCart(selectedPlant);
+                messageBuffer = selectedPlant->getName() + " added to cart!";
+                currentView = PLANT_LIST;  
+            }
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleCartInput(Event event) {
+        auto& order = customer->getOrder();
+        
+        if (order.empty()) {
+            if (event == Event::Character('b') || event == Event::Character('B')) {
+                currentView = MAIN_MENU;
+                return true;
+            }
+            return false;
+        }
+        
+        if (event == Event::ArrowUp) {
+            cartListSelected = std::max(0, cartListSelected - 1);
+            return true;
+        } 
+        else if (event == Event::ArrowDown) {
+            cartListSelected = std::min(static_cast<int>(order.size()) - 1, cartListSelected + 1);
+            return true;
+        } 
+        else if (event == Event::Return) {
+            //View platn details from cart
+            Product* product = order[cartListSelected];
+            selectedPlant = product->getBasePlant();
+            if (selectedPlant) {
+                currentView = PLANT_DETAILS;
+            } else {
+                messageBuffer = "Cannot view details for this item";
+            }
+            return true;
+        }
+        else if (event == Event::Character('d') || event == Event::Character('D')) {
+            //Remove item from cart
+            if (cartListSelected >= 0 && cartListSelected < static_cast<int>(order.size())) {
+                std::string removedName = order[cartListSelected]->getName();
+                order.erase(order.begin() + cartListSelected);
+                messageBuffer = removedName + " removed from cart";
+                if (cartListSelected >= static_cast<int>(order.size()) && !order.empty()) {
+                    cartListSelected = static_cast<int>(order.size()) - 1;
+                }
+            }
+            return true;
+        }
+        else if (event == Event::Character('c') || event == Event::Character('C')) {
+            order.clear();
+            cartListSelected = 0;
+            messageBuffer = "Cart cleared!";
+            return true;
+        }
+        else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = MAIN_MENU;
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleDecorationInput(Event event) {
+        int maxOptions = 0;
+        if (!hasPot) maxOptions += 3;
+        if (!hasWrapping) maxOptions += 1;
+        if (!hasFertilizer) maxOptions += 1;
+        
+        if (event == Event::ArrowUp) {
+            decorationMenuSelected = std::max(0, decorationMenuSelected - 1);
+            return true;
+        } 
+        else if (event == Event::ArrowDown) {
+            decorationMenuSelected = std::min(maxOptions, decorationMenuSelected + 1);
+            return true;
+        } 
+        else if (event == Event::Return) {
+            applyDecoration();
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleCheckoutSummaryInput(Event event) {
+        if (event == Event::Return) {
+            performActualCheckout();
+            return true;
+        }
+        else if (event == Event::ArrowUp) {
+            checkoutScrollOffset = std::max(0, checkoutScrollOffset - 1);
+            return true;
+        }
+        else if (event == Event::ArrowDown) {
+            int totalItems = static_cast<int>(customer->getOrder().size());
+            const int maxVisibleItems = 10;
+            int maxScroll = std::max(0, totalItems - maxVisibleItems);
+            checkoutScrollOffset = std::min(maxScroll, checkoutScrollOffset + 1);
+            return true;
+        }
+        else if (event == Event::Character('b') || event == Event::Character('B')) {
+            messageBuffer = "Checkout cancelled";
+            currentView = MAIN_MENU;
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handlePastOrdersInput(Event event) {
+        auto& receipts = customer->getReceipts();
+        
+        if (event == Event::ArrowUp && !receipts.empty()) {
+            selectedOrderIndex = std::max(0, selectedOrderIndex - 1);
+            return true;
+        } else if (event == Event::ArrowDown && !receipts.empty()) {
+            selectedOrderIndex = std::min(static_cast<int>(receipts.size()) - 1, selectedOrderIndex + 1);
+            return true;
+        } else if (event == Event::Character('r') || event == Event::Character('R')) {
+            if (!receipts.empty() && selectedOrderIndex >= 0 && selectedOrderIndex < static_cast<int>(receipts.size())) {
+                Receipt* selectedReceipt = receipts[selectedOrderIndex];
+                const std::vector<Product*>* plants = selectedReceipt->getPlants();
+                refundFlags.clear();
+                refundFlags.resize(plants->size(), false);
+                refundListSelected = 0;
+                refundScrollOffset = 0;
+                currentView = REFUND_SELECTION;
+                return true;
+            }
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = MAIN_MENU;
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleRefundSelectionInput(Event event) {
+        auto& receipts = customer->getReceipts();
+        Receipt* selectedReceipt = receipts[selectedOrderIndex];
+        const std::vector<Product*>* plants = selectedReceipt->getPlants();
+        
+        if (event == Event::ArrowUp) {
+            refundListSelected = std::max(0, refundListSelected - 1);
+            return true;
+        } else if (event == Event::ArrowDown) {
+            refundListSelected = std::min(static_cast<int>(plants->size()) - 1, refundListSelected + 1);
+            return true;
+        } else if (event == Event::Character(' ')) {
+            refundFlags[refundListSelected] = !refundFlags[refundListSelected];
+            return true;
+        } else if (event == Event::Return) {
+            bool anySelected = false;
+            for (bool flag : refundFlags) {
+                if (flag) {
+                    anySelected = true;
+                    break;
+                }
+            }
+            
+            if (anySelected) {
+                processMultiItemRefund();
+            } else {
+                messageBuffer = "Please select at least one item to refund";
+            }
+            return true;
+        } else if (event == Event::Character('b') || event == Event::Character('B')) {
+            currentView = PAST_ORDERS;
+            refundFlags.clear();
+            return true;
+        }
+        return false;
+    }
+    
+bool PlantShopGUI::handleRefundConfirmationInput(Event) {
+        currentView = PAST_ORDERS;
+        refundFlags.clear();
+        refundResultMessage = "";
+        refundTotal = 0.0f;
+        return true;
+    }
+    
+void PlantShopGUI::loadPlantsForCategory(const std::string& category) {
+        currentPlants.clear();
+        const auto& allPlants = inventoryManager->getForSalePlants();
+        
+        for (Plant* p : allPlants) {
+            if (p->getCategory() == category) {
+                currentPlants.push_back(p);
+            }
+        }
+    }
+    
+void PlantShopGUI::loadPlantsForSeason(const std::string& season) {
+        currentPlants.clear();
+        Iterator<Plant>* seasonIterator = inventoryManager->createSaleIterator(season);
+        
+        for (Plant* plant = seasonIterator->first(); !seasonIterator->isDone(); plant = seasonIterator->next()) {
+            if (plant != nullptr) {
+                currentPlants.push_back(plant);
+            }
+        }
+        
+        delete seasonIterator;
+    }
+    
+void PlantShopGUI::showCart() {
+        auto& order = customer->getOrder();
+        if (order.empty()) {
+            messageBuffer = "Cart is empty!";
+        } else {
+            std::ostringstream totalStream;
+            totalStream << std::fixed << std::setprecision(2) << customer->totalCost();
+            messageBuffer = "Cart has " + std::to_string(order.size()) + " items. Total: R" + totalStream.str();
+        }
+    }
+    
+void PlantShopGUI::startCheckoutFlow() {
+        auto& order = customer->getOrder();
+        if (order.empty()) {
+            messageBuffer = "Cannot checkout - cart is empty!";
+            return;
+        }
+        
+        currentDecoratingIndex = 0;
+        decorationMenuSelected = 0;
+        hasPot = false;
+        hasWrapping = false;
+        hasFertilizer = false;
+        currentView = DECORATION_MENU;
+    }
+    
+void PlantShopGUI::applyDecoration() {
+        auto& order = customer->getOrder();
+        
+        if (currentDecoratingIndex >= static_cast<int>(order.size())) {
+            return;
+        }
+        
+        //Build the same options list to map selection to action
+        std::vector<std::string> decorationOptions;
+        decorationOptions.push_back("Done decorating - Next plant");
+        
+        std::vector<int> optionTypes;
+        optionTypes.push_back(0);
+        
+        if (!hasPot) {
+            decorationOptions.push_back("Ceramic Pot (+R80.00)");
+            optionTypes.push_back(1);
+            decorationOptions.push_back("Concrete Pot (+R60.00)");
+            optionTypes.push_back(2);
+            decorationOptions.push_back("Clay Pot (+R50.00)");
+            optionTypes.push_back(3);
+        }
+        
+        if (!hasWrapping) {
+            decorationOptions.push_back("Kraft Wrapping (+R20.00)");
+            optionTypes.push_back(4);
+        }
+        
+        if (!hasFertilizer) {
+            decorationOptions.push_back("Extra Fertilizer (+R80.00)");
+            optionTypes.push_back(5);
+        }
+        
+        if (decorationMenuSelected < 0 || decorationMenuSelected >= static_cast<int>(optionTypes.size())) {
+            return;
+        }
+        
+        int selectedType = optionTypes[decorationMenuSelected];
+        Product* currentProduct = order[currentDecoratingIndex];
+        Product* decorated = nullptr;
+        
+        if (selectedType == 0) {
+            currentDecoratingIndex++;
+            decorationMenuSelected = 0;
+            hasPot = false;
+            hasWrapping = false;
+            hasFertilizer = false;
+            messageBuffer = "Moving to next plant...";
+            if (currentDecoratingIndex >= static_cast<int>(order.size())) {
+                checkoutScrollOffset = 0;
+                currentView = CHECKOUT_SUMMARY;
+                messageBuffer = "";
+            }
+        } else {
+            //Adding decorations
+            switch (selectedType) {
+                case 1:
+                    decorated = new CeramicPot(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasPot = true;
+                    messageBuffer = "Added Ceramic Pot!";
+                    break;
+                case 2:
+                    decorated = new ConcretePot(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasPot = true;
+                    messageBuffer = "Added Concrete Pot!";
+                    break;
+                case 3:
+                    decorated = new ClayPot(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasPot = true;
+                    messageBuffer = "Added Clay Pot!";
+                    break;
+                case 4:
+                    decorated = new KraftWrapping(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasWrapping = true;
+                    messageBuffer = "Added Kraft Wrapping!";
+                    break;
+                case 5:
+                    decorated = new ExtraFertilizer(currentProduct);
+                    order[currentDecoratingIndex] = decorated;
+                    hasFertilizer = true;
+                    messageBuffer = "Added Extra Fertilizer!";
+                    break;
+            }
+            decorationMenuSelected = 0;
+        }
+    }
+    
+void PlantShopGUI::performActualCheckout() {
+        auto& order = customer->getOrder();
+        if (order.empty()) {
+            messageBuffer = "Cannot checkout - cart is empty!";
+            currentView = MAIN_MENU;
+            return;
+        }
+        
+        std::vector<bool> flags(order.size(), true);
+        
+        CheckoutCommand* checkoutCmd = new CheckoutCommand(salesStaff, &order, &flags);
+        auto result = customer->sendCommand(checkoutCmd);
+        delete checkoutCmd;
+        
+        if (result.second != nullptr) {
+            std::ostringstream totalStream;
+            totalStream << std::fixed << std::setprecision(2) << result.second->getCost();
+            messageBuffer = "Checkout successful! Total: R" + totalStream.str();
+        } else {
+            messageBuffer = "Checkout completed: ";
+        }
+        
+        currentView = MAIN_MENU;
+    }
+    
+void PlantShopGUI::processMultiItemRefund() {
+        auto& receipts = customer->getReceipts();
+        
+        if (selectedOrderIndex < 0 || selectedOrderIndex >= static_cast<int>(receipts.size())) {
+            messageBuffer = "Invalid order selected";
+            return;
+        }
+        
+        Receipt* selectedReceipt = receipts[selectedOrderIndex];
+        const std::vector<Product*>* plants = selectedReceipt->getPlants();
+
+        // Check if any items are selected for refund
+        bool anyRefund = false;
+        for (size_t i = 0; i < refundFlags.size() && i < plants->size(); i++) {
+            if (refundFlags[i]) {
+                anyRefund = true;
+                break;
+            }
+        }
+        
+        if (!anyRefund) {
+            messageBuffer = "No items selected for refund";
+            currentView = REFUND_CONFIRMATION;
+            refundTotal = 0.0f;
+            return;
+        }
+        
+        std::vector<Product*> receiptOrder;
+        for (auto p : *plants) {
+            receiptOrder.push_back(p);
+        }
+        
+        RefundCommand refundCmd(managerStaff, &receiptOrder, &refundFlags);
+        auto [resultMsg, unusedReceipt] = customer->sendCommand(&refundCmd);
+        
+        refundTotal = 0.0f;
+        size_t lastSpace = resultMsg.rfind(' ');
+        if (lastSpace != std::string::npos) {
+            try {
+                refundTotal = std::stof(resultMsg.substr(lastSpace + 1));
+            } catch(...) { 
+                refundTotal = 0.0f; 
+            }
+        }
+        
+        std::vector<Product*> refundedItems;
+        for (size_t i = 0; i < plants->size() && i < refundFlags.size(); i++) {
+            if (refundFlags[i]) {
+                refundedItems.push_back(const_cast<Product*>((*plants)[i]));
+            }
+        }
+        
+        for (Product* p : refundedItems) {
+            selectedReceipt->removeProduct(p);
+            delete p;  // We own the memory, so we delete it
+        }
+        
+        // If receipt is now empty, remove and delete it
+        if (selectedReceipt->getPlants()->empty()) {
+            receipts.erase(receipts.begin() + selectedOrderIndex);
+            delete selectedReceipt;
+            if (selectedOrderIndex >= static_cast<int>(receipts.size()) && selectedOrderIndex > 0) {
+                selectedOrderIndex--;
+            }
+            refundResultMessage = "All items refunded - receipt removed.";
+        } else {
+            refundResultMessage = "Partial refund processed - receipt updated.";
+        }
+        
+        currentView = REFUND_CONFIRMATION;
+    }
+
+int main() {
+    PlantShopGUI gui;
+    gui.run();
+    return 0;
+}

@@ -1,0 +1,5 @@
+<map id="Subject" name="Subject">
+<area shape="rect" id="Node000001" title="Design pattern: Observer Participant: Subject." alt="" coords="41,5,111,31"/>
+<area shape="rect" id="Node000002" href="$classInventoryManager.html" title="Design Pattern: Iterator, Observer Participant: Concrete Aggregate, Concrete Subject." alt="" coords="5,79,147,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,44,79,79,73,79,73,44"/>
+</map>

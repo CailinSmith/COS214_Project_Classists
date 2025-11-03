@@ -1,0 +1,34 @@
+\doxysection{Decorator.\+h}
+\hypertarget{Decorator_8h_source}{}\label{Decorator_8h_source}\index{src/Decorator.h@{src/Decorator.h}}
+\mbox{\hyperlink{Decorator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECORATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECORATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Product_8h}{Product.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDecorator}{Decorator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classProduct}{Product}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classDecorator}{Decorator}}\ (\mbox{\hyperlink{classProduct}{Product}}*\ \mbox{\hyperlink{classDecorator_aee2b0b6a617142e0f117c404ee0256ce}{plant}});}
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classDecorator_a3c67f74c83d839f2fd631e9bc44486bc}{\string~Decorator}}();}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classDecorator_ad47827375b71fe491345a10500f9dc2d}{calculateCost}}(\textcolor{keywordtype}{string}\ currentSeason);}
+\DoxyCodeLine{00046\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classDecorator_a6e7369cc889d396238a3e49551a84e07}{summary}}();}
+\DoxyCodeLine{00052\ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classDecorator_a158af0ff4428a18587297a534912c205}{getName}}();}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classProduct}{Product}}*\ \mbox{\hyperlink{classDecorator_aab194c66646f5ac22a34d8951b340b51}{removeDecorator}}();}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}*\ \mbox{\hyperlink{classDecorator_a9aabfbf824159608ec9c3276560b3f22}{getBasePlant}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classProduct}{Product}}*\ \mbox{\hyperlink{classDecorator_aee2b0b6a617142e0f117c404ee0256ce}{plant}};}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

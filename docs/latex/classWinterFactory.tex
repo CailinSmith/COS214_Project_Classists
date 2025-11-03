@@ -1,0 +1,227 @@
+\doxysection{Winter\+Factory Class Reference}
+\hypertarget{classWinterFactory}{}\label{classWinterFactory}\index{WinterFactory@{WinterFactory}}
+
+
+Concrete factory for creating winter-\/season plants. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Factory.  
+
+
+
+
+{\ttfamily \#include $<$Winter\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Winter\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classWinterFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Winter\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classWinterFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWinterFactory_a15d07bbe72fa96458a3bcbd27ffcde39}{create\+Flower}} ()
+\begin{DoxyCompactList}\small\item\em Creates a winter flower. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWinterFactory_a2167f6e997d166f6221425c870c1038f}{create\+Herb}} ()
+\begin{DoxyCompactList}\small\item\em Creates a winter herb. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWinterFactory_a1d5e97bfdb0f8cd6cbc5bbe9eb5c97ad}{create\+Fruit}} ()
+\begin{DoxyCompactList}\small\item\em Creates a winter fruit. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWinterFactory_ac3f0ae3d38f2dbff05f0590a68ccfe4a}{create\+Vegetable}} ()
+\begin{DoxyCompactList}\small\item\em Creates a winter vegetable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWinterFactory_a8e4b4b96ca9ed225b44d5abd8589ffdb}{create\+Succulent}} ()
+\begin{DoxyCompactList}\small\item\em Creates a winter succulent. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWinterFactory_a00a67baa58633a38ab29a1434aaee144}{create\+Aquatic}} ()
+\begin{DoxyCompactList}\small\item\em Creates a winter aquatic plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWinterFactory_a3e7932c98fcefcb62bf27ced2733db17}{create\+Indoor}} ()
+\begin{DoxyCompactList}\small\item\em Creates a winter indoor plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWinterFactory_a32a47fb0a27c169479c36948eb4ba569}{create\+Medicinal}} ()
+\begin{DoxyCompactList}\small\item\em Creates a winter medicinal plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantFactory}{Plant\+Factory}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantFactory_aaa9e963946bd91314941d259f7eec9bd}{\texorpdfstring{$\sim$}{\string~}\+Plant\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPlantFactory}{Plant\+Factory}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete factory for creating winter-\/season plants. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Factory. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements the \doxylink{classPlantFactory}{Plant\+Factory} interface to create plants that are appropriate for the winter season. Each creation method returns a specific winter plant variety (\doxylink{classSunflower}{Sunflower}, \doxylink{classRosemary}{Rosemary}, Orange Tree, \doxylink{classCucumber}{Cucumber}, Christmas Cactus, Water \doxylink{classLettuce}{Lettuce}, \doxylink{classPothos}{Pothos}, \doxylink{classGinger}{Ginger}).
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantFactory}{Plant\+Factory} 
+
+\doxylink{classSunflower}{Sunflower} 
+
+\doxylink{classRosemary}{Rosemary} 
+
+\doxylink{classOrangeTree}{Orange\+Tree} 
+
+\doxylink{classCucumber}{Cucumber} 
+
+\doxylink{classChristmasCactus}{Christmas\+Cactus} 
+
+\doxylink{classWaterLettuce}{Water\+Lettuce} 
+
+\doxylink{classPothos}{Pothos} 
+
+\doxylink{classGinger}{Ginger} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classWinterFactory_a00a67baa58633a38ab29a1434aaee144}\label{classWinterFactory_a00a67baa58633a38ab29a1434aaee144} 
+\index{WinterFactory@{WinterFactory}!createAquatic@{createAquatic}}
+\index{createAquatic@{createAquatic}!WinterFactory@{WinterFactory}}
+\doxysubsubsection{\texorpdfstring{createAquatic()}{createAquatic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Winter\+Factory\+::create\+Aquatic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a winter aquatic plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Water \doxylink{classLettuce}{Lettuce}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a0f9190403dc92ed675e33f582112b717}{Plant\+Factory}}.
+
+\Hypertarget{classWinterFactory_a15d07bbe72fa96458a3bcbd27ffcde39}\label{classWinterFactory_a15d07bbe72fa96458a3bcbd27ffcde39} 
+\index{WinterFactory@{WinterFactory}!createFlower@{createFlower}}
+\index{createFlower@{createFlower}!WinterFactory@{WinterFactory}}
+\doxysubsubsection{\texorpdfstring{createFlower()}{createFlower()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Winter\+Factory\+::create\+Flower (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a winter flower. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classSunflower}{Sunflower}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_af0d074fa394a24f7168de8e07b446c3e}{Plant\+Factory}}.
+
+\Hypertarget{classWinterFactory_a1d5e97bfdb0f8cd6cbc5bbe9eb5c97ad}\label{classWinterFactory_a1d5e97bfdb0f8cd6cbc5bbe9eb5c97ad} 
+\index{WinterFactory@{WinterFactory}!createFruit@{createFruit}}
+\index{createFruit@{createFruit}!WinterFactory@{WinterFactory}}
+\doxysubsubsection{\texorpdfstring{createFruit()}{createFruit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Winter\+Factory\+::create\+Fruit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a winter fruit. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Orange Tree. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_aa80395495862c2c47c6238af81e15168}{Plant\+Factory}}.
+
+\Hypertarget{classWinterFactory_a2167f6e997d166f6221425c870c1038f}\label{classWinterFactory_a2167f6e997d166f6221425c870c1038f} 
+\index{WinterFactory@{WinterFactory}!createHerb@{createHerb}}
+\index{createHerb@{createHerb}!WinterFactory@{WinterFactory}}
+\doxysubsubsection{\texorpdfstring{createHerb()}{createHerb()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Winter\+Factory\+::create\+Herb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a winter herb. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classRosemary}{Rosemary} plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a91ce9b32dc561b9fcf6d275784e2ef99}{Plant\+Factory}}.
+
+\Hypertarget{classWinterFactory_a3e7932c98fcefcb62bf27ced2733db17}\label{classWinterFactory_a3e7932c98fcefcb62bf27ced2733db17} 
+\index{WinterFactory@{WinterFactory}!createIndoor@{createIndoor}}
+\index{createIndoor@{createIndoor}!WinterFactory@{WinterFactory}}
+\doxysubsubsection{\texorpdfstring{createIndoor()}{createIndoor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Winter\+Factory\+::create\+Indoor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a winter indoor plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classPothos}{Pothos}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_ae717d4a9732ff9cff0b38d51d8e0e45c}{Plant\+Factory}}.
+
+\Hypertarget{classWinterFactory_a32a47fb0a27c169479c36948eb4ba569}\label{classWinterFactory_a32a47fb0a27c169479c36948eb4ba569} 
+\index{WinterFactory@{WinterFactory}!createMedicinal@{createMedicinal}}
+\index{createMedicinal@{createMedicinal}!WinterFactory@{WinterFactory}}
+\doxysubsubsection{\texorpdfstring{createMedicinal()}{createMedicinal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Winter\+Factory\+::create\+Medicinal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a winter medicinal plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classGinger}{Ginger} plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a6c29e0e6b4a1dbba6c747121fb26b7e4}{Plant\+Factory}}.
+
+\Hypertarget{classWinterFactory_a8e4b4b96ca9ed225b44d5abd8589ffdb}\label{classWinterFactory_a8e4b4b96ca9ed225b44d5abd8589ffdb} 
+\index{WinterFactory@{WinterFactory}!createSucculent@{createSucculent}}
+\index{createSucculent@{createSucculent}!WinterFactory@{WinterFactory}}
+\doxysubsubsection{\texorpdfstring{createSucculent()}{createSucculent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Winter\+Factory\+::create\+Succulent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a winter succulent. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created Christmas Cactus. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_af1bb9fedebdfa41aa26eb3fea971efc7}{Plant\+Factory}}.
+
+\Hypertarget{classWinterFactory_ac3f0ae3d38f2dbff05f0590a68ccfe4a}\label{classWinterFactory_ac3f0ae3d38f2dbff05f0590a68ccfe4a} 
+\index{WinterFactory@{WinterFactory}!createVegetable@{createVegetable}}
+\index{createVegetable@{createVegetable}!WinterFactory@{WinterFactory}}
+\doxysubsubsection{\texorpdfstring{createVegetable()}{createVegetable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Winter\+Factory\+::create\+Vegetable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a winter vegetable. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created \doxylink{classCucumber}{Cucumber} plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_aa29c0d000bf65fa78cd2bc34dc11c3fe}{Plant\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{WinterFactory_8h}{Winter\+Factory.\+h}}\item 
+src/\mbox{\hyperlink{WinterFactory_8cpp}{Winter\+Factory.\+cpp}}\end{DoxyCompactItemize}

@@ -7,6 +7,12 @@
 # Builder folder
 build/
 
+# Dependencies folder (FTXUI and other deps)
+.deps/
+
+# Doxygen generated documentation
+# docs/
+
 # Precompiled headers
 *.gch
 *.pch

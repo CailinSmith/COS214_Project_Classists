@@ -1,0 +1,154 @@
+\doxysection{Get\+Info\+Command Class Reference}
+\hypertarget{classGetInfoCommand}{}\label{classGetInfoCommand}\index{GetInfoCommand@{GetInfoCommand}}
+
+
+Command for retrieving plant information. Design Pattern\+: Command Participant\+: Concrete\+Command.  
+
+
+
+
+{\ttfamily \#include $<$Get\+Info\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Get\+Info\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classGetInfoCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Get\+Info\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGetInfoCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGetInfoCommand_a1517c5b0a1b5bd90c77fd3a66cd952bd}{Get\+Info\+Command}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}p)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classGetInfoCommand}{Get\+Info\+Command} for a specific plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classGetInfoCommand_ab997854c89152ae787189d42ccb6c61d}{\texorpdfstring{$\sim$}{\string~}\+Get\+Info\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classGetInfoCommand}{Get\+Info\+Command}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGetInfoCommand_a1fa3d05a306add3e823409d7121132d5}{execute}} () override
+\begin{DoxyCompactList}\small\item\em Executes the get info command. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGetInfoCommand_a91f407df9eb8231f809b4f8f0c12b76e}{get\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Gets the retrieved plant information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCommand_abe8268d554fd49c6892942356dc33144}{Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classGetInfoCommand_add176b78a0d65943d7e93198decebae6}{info}}
+\begin{DoxyCompactList}\small\item\em Stores the retrieved plant information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant associated with this command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}{nursery}}
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command for retrieving plant information. Design Pattern\+: Command Participant\+: Concrete\+Command. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class encapsulates the action of retrieving detailed information about a plant, including its characteristics, care requirements, and current state. The information can be accessed after execution via the \doxylink{classGetInfoCommand_a91f407df9eb8231f809b4f8f0c12b76e}{get\+Info()} method.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffCommand}{Staff\+Command} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classGetInfoCommand_a1517c5b0a1b5bd90c77fd3a66cd952bd}\label{classGetInfoCommand_a1517c5b0a1b5bd90c77fd3a66cd952bd} 
+\index{GetInfoCommand@{GetInfoCommand}!GetInfoCommand@{GetInfoCommand}}
+\index{GetInfoCommand@{GetInfoCommand}!GetInfoCommand@{GetInfoCommand}}
+\doxysubsubsection{\texorpdfstring{GetInfoCommand()}{GetInfoCommand()}}
+{\footnotesize\ttfamily Get\+Info\+Command\+::\+Get\+Info\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{p }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classGetInfoCommand}{Get\+Info\+Command} for a specific plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to the \doxylink{classPlant}{Plant} whose information is to be retrieved. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGetInfoCommand_ab997854c89152ae787189d42ccb6c61d}\label{classGetInfoCommand_ab997854c89152ae787189d42ccb6c61d} 
+\index{GetInfoCommand@{GetInfoCommand}!````~GetInfoCommand@{\texorpdfstring{$\sim$}{\string~}GetInfoCommand}}
+\index{````~GetInfoCommand@{\texorpdfstring{$\sim$}{\string~}GetInfoCommand}!GetInfoCommand@{GetInfoCommand}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GetInfoCommand()}{\string~GetInfoCommand()}}
+{\footnotesize\ttfamily Get\+Info\+Command\+::\texorpdfstring{$\sim$}{\string~}\+Get\+Info\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor for the \doxylink{classGetInfoCommand}{Get\+Info\+Command}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGetInfoCommand_a1fa3d05a306add3e823409d7121132d5}\label{classGetInfoCommand_a1fa3d05a306add3e823409d7121132d5} 
+\index{GetInfoCommand@{GetInfoCommand}!execute@{execute}}
+\index{execute@{execute}!GetInfoCommand@{GetInfoCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Get\+Info\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Executes the get info command. 
+
+Retrieves and stores detailed information about the plant. 
+
+Reimplemented from \mbox{\hyperlink{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}{Staff\+Command}}.
+
+\Hypertarget{classGetInfoCommand_a91f407df9eb8231f809b4f8f0c12b76e}\label{classGetInfoCommand_a91f407df9eb8231f809b4f8f0c12b76e} 
+\index{GetInfoCommand@{GetInfoCommand}!getInfo@{getInfo}}
+\index{getInfo@{getInfo}!GetInfoCommand@{GetInfoCommand}}
+\doxysubsubsection{\texorpdfstring{getInfo()}{getInfo()}}
+{\footnotesize\ttfamily std\+::string Get\+Info\+Command\+::get\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the retrieved plant information. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string The detailed plant information string. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classGetInfoCommand_add176b78a0d65943d7e93198decebae6}\label{classGetInfoCommand_add176b78a0d65943d7e93198decebae6} 
+\index{GetInfoCommand@{GetInfoCommand}!info@{info}}
+\index{info@{info}!GetInfoCommand@{GetInfoCommand}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily std\+::string Get\+Info\+Command\+::info\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Stores the retrieved plant information. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{GetInfoCommand_8h}{Get\+Info\+Command.\+h}}\item 
+src/\mbox{\hyperlink{GetInfoCommand_8cpp}{Get\+Info\+Command.\+cpp}}\end{DoxyCompactItemize}

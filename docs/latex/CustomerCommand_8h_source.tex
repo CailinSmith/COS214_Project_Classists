@@ -1,0 +1,26 @@
+\doxysection{Customer\+Command.\+h}
+\hypertarget{CustomerCommand_8h_source}{}\label{CustomerCommand_8h_source}\index{src/CustomerCommand.h@{src/CustomerCommand.h}}
+\mbox{\hyperlink{CustomerCommand_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CUSTOMERCOMMAND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CUSTOMERCOMMAND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Staff_8h}{Staff.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Receipt_8h}{Receipt.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCustomerCommand}{CustomerCommand}}\{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ \mbox{\hyperlink{classCustomerCommand_acc93353d78c9d32a95998c93e36928b0}{staff}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}*\ \mbox{\hyperlink{classCustomerCommand_a9aa20d3f8f8e1ee83b245e0e6a50414d}{plant}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ vector<Product*>*\ \mbox{\hyperlink{classCustomerCommand_a7bf22ad7a9b6b994c73a245d5edf152c}{order}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ vector<bool>*\ \mbox{\hyperlink{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d}{flags}};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCustomerCommand_a173198415f289ddb49bdce4a922680c0}{CustomerCommand}}(\mbox{\hyperlink{classStaff}{Staff}}*\ s,\ \mbox{\hyperlink{classPlant}{Plant}}*\ p,\ vector<Product*>*\ o,\ vector<bool>*\ f)\ :\ \mbox{\hyperlink{classCustomerCommand_acc93353d78c9d32a95998c93e36928b0}{staff}}(s),\ \mbox{\hyperlink{classCustomerCommand_a9aa20d3f8f8e1ee83b245e0e6a50414d}{plant}}(p),\ \mbox{\hyperlink{classCustomerCommand_a7bf22ad7a9b6b994c73a245d5edf152c}{order}}(o),\ \mbox{\hyperlink{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d}{flags}}(f)\{\}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classCustomerCommand_a7704c0793684c5134e4dbab578696f11}{\string~CustomerCommand}}()\{\}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ pair<string,\ Receipt*>\ \mbox{\hyperlink{classCustomerCommand_a036130d3067b0b44a37cfca5f032755b}{execute}}()\ =\ 0;}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

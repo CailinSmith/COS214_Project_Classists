@@ -1,0 +1,120 @@
+\doxysection{Plant.\+h}
+\hypertarget{Plant_8h_source}{}\label{Plant_8h_source}\index{src/Plant.h@{src/Plant.h}}
+\mbox{\hyperlink{Plant_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLANT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLANT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Product_8h}{Product.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{WateringStrategy_8h}{WateringStrategy.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PruningStrategy_8h}{PruningStrategy.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SeedState_8h}{SeedState.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Forward\ declaration\ to\ break\ circular\ include}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlantState}{PlantState}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlant}{Plant}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classProduct}{Product}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classWateringStrategy}{WateringStrategy}}*\ \mbox{\hyperlink{classPlant_a555aa51225db5b0e28887daa17a688be}{wateringStrat}};}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classPruningStrategy}{PruningStrategy}}*\ \mbox{\hyperlink{classPlant_ae5f3749ec4bf1623d9ba19d6e3a9892d}{pruningStrat}};}
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_ac1ae0655887754ca00e504d062181a14}{waterLevel}};}
+\DoxyCodeLine{00052\ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a24505f555de90a3b5b0fbc7aa615cb4b}{health}};}
+\DoxyCodeLine{00057\ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a2fba560075fb31026c3fcb4a3625f9b1}{height}};}
+\DoxyCodeLine{00062\ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classPlantState}{PlantState}}*\ \mbox{\hyperlink{classPlant_a9546327678b98cea0ae2475c215b5bea}{currentState}};}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlant_ad339313da357bf2c1a22d68ab1d18437}{maxHeight}};}
+\DoxyCodeLine{00072\ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlant_a0d2126f55f610743b97c981c350b8ef0}{pruned}};}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a1199b012e19d81e1e1d279c431e8362e}{category}};}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlant_ae90fc0910a701b20bfd9458f93f9998d}{totalWater}};}
+\DoxyCodeLine{00087\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a5e7524c02c407392be4ac490f849eecd}{name}};}
+\DoxyCodeLine{00092\ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_ac4e8c08317c5b6dc0c4edb9f0f78c284}{cost}};}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}{sellSeason}};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a1199b012e19d81e1e1d279c431e8362e}{category}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlant_ad339313da357bf2c1a22d68ab1d18437}{maxHeight}},\ \mbox{\hyperlink{classWateringStrategy}{WateringStrategy}}*\ waterStrat,\ \mbox{\hyperlink{classPruningStrategy}{PruningStrategy}}*\ pruneStrat,\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a5e7524c02c407392be4ac490f849eecd}{name}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}{sellSeason}});}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29}{\string~Plant}}();}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_af4552dd9ec01741c38eefd2f15ce2431}{water}}();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_a5dc852d2699b12c272c9c560138933f4}{prune}}();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_a70a53169f068ab5d8b2f5b6701e49aa1}{fertilise}}();}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a32f64c1097a39dc892dc9289cb23dfeb}{summary}}();}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_ab7dc62eeaf0ef7859d33a16a5b497a74}{customerSummary}}();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_ae38ed8fecfdf9436c197e8fb6979dcfd}{getWaterLevel}}();}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_a3fd132844992c39f6ce16dcf4de84d51}{setWaterLevel}}(\textcolor{keywordtype}{float}\ level);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlant_a8cbb56e7607f3a837c5c31c772821661}{getPruned}}();}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_a08a0ce721bd454405f60dd40b66659cc}{setPruned}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlant_a0d2126f55f610743b97c981c350b8ef0}{pruned}});}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a83e760df6246eb9468c00921505de146}{getCategory}}();}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a9c8946f35cb4fff3e1341b7f8c8ac6ba}{getHeight}}();}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_aa2467d428d0c1b945061dd7300b93cc9}{setHeight}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a2fba560075fb31026c3fcb4a3625f9b1}{height}});}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_aa83eb4ce6a92dc6859f8ede70cef7e74}{getActualHeight}}();}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a07fb6a2568f940b6655ea6714e06ba6d}{getState}}();}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_abe31f5c708a3d551b01cf22bbd8d221f}{setState}}(\mbox{\hyperlink{classPlantState}{PlantState}}*\ state);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_abc62e9840b319ac27f62737459a61436}{setHealth}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a24505f555de90a3b5b0fbc7aa615cb4b}{health}});}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a04380d2a574ac1da9aba29c78f8e7112}{getHealth}}();}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_a211d9c4a3e0c2c1acc5b2fb9124db1df}{setTotalWater}}(\textcolor{keywordtype}{int}\ total);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlant_aebe17b06d92cf310568e47b2959d451b}{getTotalWater}}();}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlant_ae86ed085d17995b5faf320ec55defe66}{getMaxHeight}}();}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a7794a8b91ceb0cf6309bc3e5bc53fbfa}{getStrategies}}();}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a91981706cdc524141d46d222d99a7bcb}{getName}}();}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_a9ea2abd8cd84b5a81a8d046fca9e0c15}{changePlantState}}();}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_ac4881de7d9da39ecb730dc7b3e9a7970}{changeHealth}}();}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_ac5cc4bf5eb5b0a9f330827265e77ea51}{getSellSeason}}();}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a4a819e97ddb7bd5b9a6e52e4a83ff5e2}{calculateCost}}(\textcolor{keywordtype}{string}\ currSeason);}
+\DoxyCodeLine{00273\ \ \ \ \ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_ad8a24a31b6f7b951642f0250f3acd851}{baseCost}}()\ =\ 0;}
+\DoxyCodeLine{00281\ \ \ \ \ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a31137f98667ee0672874d82cebbee537}{seasonCost}}(\textcolor{keywordtype}{string}\ curSeason);}
+\DoxyCodeLine{00290\ \ \ \ \ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlant_a0176ca4d6060c9f0cf0da2286a78ca9b}{getCost}}();}
+\DoxyCodeLine{00296\ \ \ \ \ }
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a0a03060cc05897960fd484e2c128eb5d}{getImagePath}}()\ =\ 0;}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlant}{Plant}}*\ \mbox{\hyperlink{classPlant_a6b25f8fde68eebea72c20ef7543dfea8}{getBasePlant}}()\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \};}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

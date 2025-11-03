@@ -1,0 +1,32 @@
+\doxysection{Staff\+Checkout\+Command.\+h}
+\hypertarget{StaffCheckoutCommand_8h_source}{}\label{StaffCheckoutCommand_8h_source}\index{src/StaffCheckoutCommand.h@{src/StaffCheckoutCommand.h}}
+\mbox{\hyperlink{StaffCheckoutCommand_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STAFFCHECKOUTCOMMAND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STAFFCHECKOUTCOMMAND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{StaffCommand_8h}{StaffCommand.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Product_8h}{Product.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Receipt_8h}{Receipt.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStaffCheckoutCommand}{StaffCheckoutCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaffCommand}{StaffCommand}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<Product*>\ \mbox{\hyperlink{classStaffCheckoutCommand_ad08a65c627affb6069675e80c07e2125}{plants}};}
+\DoxyCodeLine{00031\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classReceipt}{Receipt}}*\ \mbox{\hyperlink{classStaffCheckoutCommand_a5717ba7341ebeb2bf57e23bce6039300}{receipt}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classStaffCheckoutCommand}{StaffCheckoutCommand}}(\textcolor{keyword}{const}\ std::vector<Product*>\&\ p);}
+\DoxyCodeLine{00043\ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classStaffCheckoutCommand_add9387b78a60aa5514b463567ea390a4}{\string~StaffCheckoutCommand}}();}
+\DoxyCodeLine{00048\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStaffCheckoutCommand_a996440ca2d10ea8f08bfe41a56a2ccf9}{execute}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classReceipt}{Receipt}}*\ \mbox{\hyperlink{classStaffCheckoutCommand_a8bfe94bafb7121c6e4187e4d784aad9a}{getReceipt}}();}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,5 +1,6 @@
 #include "Manager.h"
 #include "Customer.h"
+#include "Receipt.h"
 
 Manager::Manager(string name) : Staff(name), receiver(nullptr) {}
 
@@ -19,23 +20,36 @@ pair<string, Receipt*> Manager::handleRequest(const string& requestType, Plant* 
     if (requestType == "Refund" && order && flags && order->size() == flags->size()) {
         float total = 0.0f;
         std::stringstream ss;
-        std::vector<size_t> toRemove;
 
-        for (size_t i = 0; i < order->size(); ++i) {
-            if ((*flags)[i] && (*order)[i]) {
-                Product* p = (*order)[i];
-                total += p->calculateCost(Nursery::getInstance()->getSeason());
+        std::vector<Product*> remaining;
+        // use current nursery season so decorators and seasonal costs are applied
+        Nursery* nursery = Nursery::getInstance();
+        std::string season = "";
+        if (nursery) season = nursery->getSeason();
+
+
+        std::vector<Product*> original = *order;
+        std::vector<Product*> refundedPlants;
+
+        for (size_t i = 0; i < original.size(); ++i) {
+            Product* p = original[i];
+            if (p == nullptr) continue;
+            if ((*flags)[i]) {
+                total += p->calculateCost(season);
                 ss << p->getName() << " ";
-                toRemove.push_back(i);
+                refundedPlants.push_back(p);
+            } else {
+                remaining.push_back(p);
             }
         }
+
         ss << total;
         result.first = ss.str();
 
-        for (auto it = toRemove.rbegin(); it != toRemove.rend(); ++it) {
-            delete (*order)[*it];
-            order->erase(order->begin() + *it);
-        }
+        order->clear();
+        for (auto p : remaining) order->push_back(p);
+        result.second = nullptr;
+
         return result;
     }
     return result;
@@ -49,6 +63,5 @@ void Manager::setReceiver(StaffMediator* mediator) {
 }
 
 void Manager::update(const string& message) {
-    cout << getName() << " (" << getPosition() << ") received observer update: " << message << endl;
-    send();
+    receive(message);
 }

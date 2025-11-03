@@ -1,0 +1,18 @@
+\doxysection{Checkout\+Command.\+h}
+\hypertarget{CheckoutCommand_8h_source}{}\label{CheckoutCommand_8h_source}\index{src/CheckoutCommand.h@{src/CheckoutCommand.h}}
+\mbox{\hyperlink{CheckoutCommand_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CHECKOUTCOMMAND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CHECKOUTCOMMAND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CustomerCommand_8h}{CustomerCommand.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCheckoutCommand}{CheckoutCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCustomerCommand}{CustomerCommand}}\{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCheckoutCommand}{CheckoutCommand}}(\mbox{\hyperlink{classStaff}{Staff}}*\ s,\ std::vector<Product*>*\ o,\ vector<bool>*\ \mbox{\hyperlink{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d}{flags}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ pair<string,\ Receipt*>\ \mbox{\hyperlink{classCheckoutCommand_a46b9c377fc15d24e93ce35ae9cb5b336}{execute}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

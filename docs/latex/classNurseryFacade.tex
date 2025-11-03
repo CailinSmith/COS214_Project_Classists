@@ -1,0 +1,550 @@
+\doxysection{Nursery\+Facade Class Reference}
+\hypertarget{classNurseryFacade}{}\label{classNurseryFacade}\index{NurseryFacade@{NurseryFacade}}
+
+
+Simplified interface for interacting with the nursery management system. Design Pattern\+: Facade Participant\+: Facade.  
+
+
+
+
+{\ttfamily \#include $<$Nursery\+Facade.\+h$>$}
+
+
+
+Collaboration diagram for Nursery\+Facade\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classNurseryFacade__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNurseryFacade_af5846a6e0ea97e9bea0e0ce4fa59a655}{Nursery\+Facade}} (\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}mgr=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classNurseryFacade}{Nursery\+Facade} with an inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNurseryFacade_ae0c2022602c0000338a538de163bed5e}{\texorpdfstring{$\sim$}{\string~}\+Nursery\+Facade}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classNurseryFacade}{Nursery\+Facade}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_aa9e5332f1b26cf731726c262121c6d83}{start}} ()
+\begin{DoxyCompactList}\small\item\em Launches background threads and runs the blocking main menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a8051e03c56e59da3096665e66a2ef132}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Signals threads to terminate and joins them. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_ade65beb1bc0a51742ca2c69ef2e1e915}{set\+Tick\+Interval}} (std\+::chrono\+::milliseconds tps)
+\begin{DoxyCompactList}\small\item\em Sets the tick interval for background plant updates. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a119c9bb703eb8748806efbc453f21eac}{list\+Sale\+Categories}} ()
+\begin{DoxyCompactList}\small\item\em Lists all plant categories available for sale with counts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a305c5af465ff2a6fab7ba8fa3ae173af}{list\+Plants\+In\+Category}} (const std\+::string \&category)
+\begin{DoxyCompactList}\small\item\em Lists all plants in a specific category. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a07ff6662e4ae0de1627b220759c0e738}{list\+Seasonal\+Plants}} (bool customer\+View=false)
+\begin{DoxyCompactList}\small\item\em Lists all plants matching the current season. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classNurseryFacade_ae56432f006055f853212b235c99351de}{get\+Stock\+Count\+By\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Gets the stock count for a specific plant by name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classNurseryFacade_ae106d39c46c37c2b616cf9ec28c78d1f}{run\+Main\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Runs the main interactive menu (blocking). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a8c9b38311ba6936618f1a1c197ae26fa}{run\+Customer\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Runs the customer interactive menu (blocking). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a63ac6bd7b7db9330d9c2516602091ebe}{run\+Staff\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Runs the staff interactive menu (blocking). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_afb7be790230536bd3497a368d5ceafd7}{tick\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Background worker thread for periodic plant updates. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_addd499ae93453fb35cfc6c7565b83e8a}{automated\+Customer\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Background worker thread for simulated customer purchases. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a614efe885732bf7709ffab7bd69c103c}{automated\+Staff\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Background worker thread for simulated staff plant care. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_aeba3833b4d1a15e82f210f90027a19c6}{run\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Runs the interactive settings menu (blocking). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_aaf1937250cbb3e2aeef0d96e91af4708}{list\+Sale\+Plants}} ()
+\begin{DoxyCompactList}\small\item\em Lists all plants currently for sale with interactive options. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a8d1862f4ff5b0d65538cb152395b39a4}{view\+Plant\+Info}} (size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Views detailed information about a specific plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNurseryFacade_ad6c5ecabb633e19cc23a30b2e39aa282}{pick\+Sale\+Plant}} (size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Picks a sale plant by index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a326a4b2782288ec1761fd8b65a913887}{perform\+Checkout}} ()
+\begin{DoxyCompactList}\small\item\em Performs the checkout process for the current order. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNurseryFacade_a68d1cd5af66bf2cb49a4be49e4067d9c}{decorate\+Product\+Menu}} (size\+\_\+t order\+Index)
+\begin{DoxyCompactList}\small\item\em Interactive menu to decorate a product in the current order. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNurseryFacade_ab55f07189fc027efc3c9b0e79e334c21}{manager\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager subsystem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNurseryFacade_a4d5bb34f11950417e67c01d7d463cc1c}{nursery\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSalesArea}{Sales\+Area}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNurseryFacade_ad8b461efed8172773e76f2f7313311f2}{sales\+Area\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the sales area mediator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNurseryArea}{Nursery\+Area}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNurseryFacade_ac30cf0d0f32b075dd7c74d06a91bc9a1}{nursery\+Area\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery area mediator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNurseryFacade_a2757e354acd8e737640ee00f72010ea2}{manager\+Staff\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the manager staff instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNurseryFacade_ae738c5b9b482f4d92d5adcfa8c27332d}{sales\+Staff\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the sales staff instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNurseryFacade_acfe8e766f6e5b6446822be833630c2e4}{nursery\+Staff\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery staff instance. \end{DoxyCompactList}\item 
+std\+::atomic$<$ bool $>$ \mbox{\hyperlink{classNurseryFacade_acf4b6203e852c86aadc1a118d730bf9d}{running\+\_\+}} \{false\}
+\begin{DoxyCompactList}\small\item\em Atomic flag indicating whether the facade is running. \end{DoxyCompactList}\item 
+std\+::mutex \mbox{\hyperlink{classNurseryFacade_a787121d9ed55c97bd4ce755c69403aef}{mtx\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Mutex for protecting shared state access. \end{DoxyCompactList}\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{classNurseryFacade_aab71a2d0c5b62d1f0554f5862a8357e4}{cv\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Condition variable for thread synchronization. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::thread $>$ \mbox{\hyperlink{classNurseryFacade_af443430b7e70303ca6bac71bc9b085ef}{threads\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Vector of background worker threads. \end{DoxyCompactList}\item 
+std\+::chrono\+::milliseconds \mbox{\hyperlink{classNurseryFacade_ac91a099943858f41d79f00535e0f303b}{tick\+Interval\+\_\+}} \{1000\}
+\begin{DoxyCompactList}\small\item\em Tick interval for background plant updates. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classNurseryFacade_ad3439a794b23f8d395b2dc6436e9f856}{current\+Order\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Current customer order (products not yet checked out). \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classNurseryFacade_afcba02c2799112b15e67bc2293408d71}{past\+Receipts\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Past receipts from completed checkouts. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classNurseryFacade_ad4939d5fdfdf4a115a130d638ccf7c39}{sold\+Products\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Products that have been sold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simplified interface for interacting with the nursery management system. Design Pattern\+: Facade Participant\+: Facade. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class provides a unified, high-\/level interface to the complex subsystems of the nursery management system. It coordinates interactions between the \doxylink{classInventoryManager}{Inventory\+Manager}, \doxylink{classNursery}{Nursery}, \doxylink{classStaff}{Staff} members, and customer operations. The facade manages background threads for automated plant care and customer simulations, and provides interactive menus for both customer and staff interactions.
+
+The facade handles\+:
+\begin{DoxyItemize}
+\item \doxylink{classCustomer}{Customer} browsing, ordering, and checkout operations
+\item \doxylink{classStaff}{Staff} plant care, inventory management, and notifications
+\item Background plant health updates and state transitions
+\item Concurrent access to shared resources via mutex protection
+\item \doxylink{classReceipt}{Receipt} management and refund processing
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classInventoryManager}{Inventory\+Manager} 
+
+\doxylink{classNursery}{Nursery} 
+
+\doxylink{classStaff}{Staff} 
+
+\doxylink{classReceipt}{Receipt} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classNurseryFacade_af5846a6e0ea97e9bea0e0ce4fa59a655}\label{classNurseryFacade_af5846a6e0ea97e9bea0e0ce4fa59a655} 
+\index{NurseryFacade@{NurseryFacade}!NurseryFacade@{NurseryFacade}}
+\index{NurseryFacade@{NurseryFacade}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{NurseryFacade()}{NurseryFacade()}}
+{\footnotesize\ttfamily Nursery\+Facade\+::\+Nursery\+Facade (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}}]{mgr = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classNurseryFacade}{Nursery\+Facade} with an inventory manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mgr} & Pointer to an existing \doxylink{classInventoryManager}{Inventory\+Manager}, or nullptr to create a new one.\\
+\hline
+\end{DoxyParams}
+Initializes all subsystems including the nursery, staff areas (sales and nursery), and pre-\/creates staff instances (manager, sales staff, nursery staff). Sets up the mediator pattern connections and chain of responsibility for staff. \Hypertarget{classNurseryFacade_ae0c2022602c0000338a538de163bed5e}\label{classNurseryFacade_ae0c2022602c0000338a538de163bed5e} 
+\index{NurseryFacade@{NurseryFacade}!````~NurseryFacade@{\texorpdfstring{$\sim$}{\string~}NurseryFacade}}
+\index{````~NurseryFacade@{\texorpdfstring{$\sim$}{\string~}NurseryFacade}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}NurseryFacade()}{\string~NurseryFacade()}}
+{\footnotesize\ttfamily Nursery\+Facade\+::\texorpdfstring{$\sim$}{\string~}\+Nursery\+Facade (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classNurseryFacade}{Nursery\+Facade}. 
+
+Stops all background threads, cleans up receipts and orders, unregisters staff from areas, and destroys all owned subsystems. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classNurseryFacade_addd499ae93453fb35cfc6c7565b83e8a}\label{classNurseryFacade_addd499ae93453fb35cfc6c7565b83e8a} 
+\index{NurseryFacade@{NurseryFacade}!automatedCustomerLoop@{automatedCustomerLoop}}
+\index{automatedCustomerLoop@{automatedCustomerLoop}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{automatedCustomerLoop()}{automatedCustomerLoop()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::automated\+Customer\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Background worker thread for simulated customer purchases. 
+
+Randomly selects plants from sale and simulates customer purchases. \Hypertarget{classNurseryFacade_a614efe885732bf7709ffab7bd69c103c}\label{classNurseryFacade_a614efe885732bf7709ffab7bd69c103c} 
+\index{NurseryFacade@{NurseryFacade}!automatedStaffLoop@{automatedStaffLoop}}
+\index{automatedStaffLoop@{automatedStaffLoop}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{automatedStaffLoop()}{automatedStaffLoop()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::automated\+Staff\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Background worker thread for simulated staff plant care. 
+
+Cycles through nursery plants, performs watering, fertilizing, and pruning, and moves ready plants to sale. \Hypertarget{classNurseryFacade_a68d1cd5af66bf2cb49a4be49e4067d9c}\label{classNurseryFacade_a68d1cd5af66bf2cb49a4be49e4067d9c} 
+\index{NurseryFacade@{NurseryFacade}!decorateProductMenu@{decorateProductMenu}}
+\index{decorateProductMenu@{decorateProductMenu}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{decorateProductMenu()}{decorateProductMenu()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::decorate\+Product\+Menu (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{order\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Interactive menu to decorate a product in the current order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order\+Index} & The index of the product in current\+Order\+\_\+ to decorate.\\
+\hline
+\end{DoxyParams}
+Prompts user to choose decorations (pots, wrapping, fertilizer) and wraps the product with the selected decorator. \Hypertarget{classNurseryFacade_ae56432f006055f853212b235c99351de}\label{classNurseryFacade_ae56432f006055f853212b235c99351de} 
+\index{NurseryFacade@{NurseryFacade}!getStockCountByName@{getStockCountByName}}
+\index{getStockCountByName@{getStockCountByName}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{getStockCountByName()}{getStockCountByName()}}
+{\footnotesize\ttfamily size\+\_\+t Nursery\+Facade\+::get\+Stock\+Count\+By\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Gets the stock count for a specific plant by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the plant to count. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The number of plants with that name currently for sale. 
+\end{DoxyReturn}
+\Hypertarget{classNurseryFacade_a305c5af465ff2a6fab7ba8fa3ae173af}\label{classNurseryFacade_a305c5af465ff2a6fab7ba8fa3ae173af} 
+\index{NurseryFacade@{NurseryFacade}!listPlantsInCategory@{listPlantsInCategory}}
+\index{listPlantsInCategory@{listPlantsInCategory}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{listPlantsInCategory()}{listPlantsInCategory()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::list\+Plants\+In\+Category (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{category }\end{DoxyParamCaption})}
+
+
+
+Lists all plants in a specific category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category name to filter plants by. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNurseryFacade_a119c9bb703eb8748806efbc453f21eac}\label{classNurseryFacade_a119c9bb703eb8748806efbc453f21eac} 
+\index{NurseryFacade@{NurseryFacade}!listSaleCategories@{listSaleCategories}}
+\index{listSaleCategories@{listSaleCategories}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{listSaleCategories()}{listSaleCategories()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::list\+Sale\+Categories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Lists all plant categories available for sale with counts. 
+
+Groups sale plants by category and displays how many plants are in each category. \Hypertarget{classNurseryFacade_aaf1937250cbb3e2aeef0d96e91af4708}\label{classNurseryFacade_aaf1937250cbb3e2aeef0d96e91af4708} 
+\index{NurseryFacade@{NurseryFacade}!listSalePlants@{listSalePlants}}
+\index{listSalePlants@{listSalePlants}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{listSalePlants()}{listSalePlants()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::list\+Sale\+Plants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Lists all plants currently for sale with interactive options. 
+
+Displays sale plants and provides options to view info, check stock, or add plants to the current order. \Hypertarget{classNurseryFacade_a07ff6662e4ae0de1627b220759c0e738}\label{classNurseryFacade_a07ff6662e4ae0de1627b220759c0e738} 
+\index{NurseryFacade@{NurseryFacade}!listSeasonalPlants@{listSeasonalPlants}}
+\index{listSeasonalPlants@{listSeasonalPlants}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{listSeasonalPlants()}{listSeasonalPlants()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::list\+Seasonal\+Plants (\begin{DoxyParamCaption}\item[{bool}]{customer\+View = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Lists all plants matching the current season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em customer\+View} & If true, shows only sale plants; if false, shows all plants.\\
+\hline
+\end{DoxyParams}
+Uses the \doxylink{classIterator}{Iterator} pattern to traverse seasonal plants from the inventory manager. \Hypertarget{classNurseryFacade_a326a4b2782288ec1761fd8b65a913887}\label{classNurseryFacade_a326a4b2782288ec1761fd8b65a913887} 
+\index{NurseryFacade@{NurseryFacade}!performCheckout@{performCheckout}}
+\index{performCheckout@{performCheckout}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{performCheckout()}{performCheckout()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::perform\+Checkout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Performs the checkout process for the current order. 
+
+Prompts for decorations on each plant, creates a checkout command, generates a receipt, and clears the current order. \Hypertarget{classNurseryFacade_ad6c5ecabb633e19cc23a30b2e39aa282}\label{classNurseryFacade_ad6c5ecabb633e19cc23a30b2e39aa282} 
+\index{NurseryFacade@{NurseryFacade}!pickSalePlant@{pickSalePlant}}
+\index{pickSalePlant@{pickSalePlant}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{pickSalePlant()}{pickSalePlant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Nursery\+Facade\+::pick\+Sale\+Plant (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Picks a sale plant by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The 1-\/based index of the plant in the sale list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to the selected plant, or nullptr if invalid index. 
+\end{DoxyReturn}
+\Hypertarget{classNurseryFacade_a8c9b38311ba6936618f1a1c197ae26fa}\label{classNurseryFacade_a8c9b38311ba6936618f1a1c197ae26fa} 
+\index{NurseryFacade@{NurseryFacade}!runCustomerMenu@{runCustomerMenu}}
+\index{runCustomerMenu@{runCustomerMenu}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{runCustomerMenu()}{runCustomerMenu()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::run\+Customer\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs the customer interactive menu (blocking). 
+
+Provides customer-\/facing operations\+: browsing plants, viewing categories, checking seasonal plants, managing orders, checkout, and viewing receipts. \Hypertarget{classNurseryFacade_ae106d39c46c37c2b616cf9ec28c78d1f}\label{classNurseryFacade_ae106d39c46c37c2b616cf9ec28c78d1f} 
+\index{NurseryFacade@{NurseryFacade}!runMainMenu@{runMainMenu}}
+\index{runMainMenu@{runMainMenu}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{runMainMenu()}{runMainMenu()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::run\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs the main interactive menu (blocking). 
+
+Displays the primary menu allowing users to choose between customer mode, staff mode, settings, or exit. Loops until user exits. \Hypertarget{classNurseryFacade_aeba3833b4d1a15e82f210f90027a19c6}\label{classNurseryFacade_aeba3833b4d1a15e82f210f90027a19c6} 
+\index{NurseryFacade@{NurseryFacade}!runSettings@{runSettings}}
+\index{runSettings@{runSettings}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{runSettings()}{runSettings()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::run\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs the interactive settings menu (blocking). 
+
+Allows configuration of tick interval and manual season changes. \Hypertarget{classNurseryFacade_a63ac6bd7b7db9330d9c2516602091ebe}\label{classNurseryFacade_a63ac6bd7b7db9330d9c2516602091ebe} 
+\index{NurseryFacade@{NurseryFacade}!runStaffMenu@{runStaffMenu}}
+\index{runStaffMenu@{runStaffMenu}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{runStaffMenu()}{runStaffMenu()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::run\+Staff\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs the staff interactive menu (blocking). 
+
+Provides staff-\/facing operations\+: viewing plants, caring for plants, managing inventory, sending notifications, and switching staff roles. \Hypertarget{classNurseryFacade_ade65beb1bc0a51742ca2c69ef2e1e915}\label{classNurseryFacade_ade65beb1bc0a51742ca2c69ef2e1e915} 
+\index{NurseryFacade@{NurseryFacade}!setTickInterval@{setTickInterval}}
+\index{setTickInterval@{setTickInterval}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{setTickInterval()}{setTickInterval()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::set\+Tick\+Interval (\begin{DoxyParamCaption}\item[{std\+::chrono\+::milliseconds}]{tps }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the tick interval for background plant updates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tps} & Ticks per second. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNurseryFacade_aa9e5332f1b26cf731726c262121c6d83}\label{classNurseryFacade_aa9e5332f1b26cf731726c262121c6d83} 
+\index{NurseryFacade@{NurseryFacade}!start@{start}}
+\index{start@{start}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Launches background threads and runs the blocking main menu. 
+
+This method spawns worker threads for plant updates and automated staff actions, populates demo inventory if needed, and enters the interactive main menu loop. It blocks until the user exits or \doxylink{classNurseryFacade_a8051e03c56e59da3096665e66a2ef132}{stop()} is called. \Hypertarget{classNurseryFacade_a8051e03c56e59da3096665e66a2ef132}\label{classNurseryFacade_a8051e03c56e59da3096665e66a2ef132} 
+\index{NurseryFacade@{NurseryFacade}!stop@{stop}}
+\index{stop@{stop}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Signals threads to terminate and joins them. 
+
+Atomically sets running flag to false, notifies waiting threads, and joins all background worker threads. Safe to call multiple times. \Hypertarget{classNurseryFacade_afb7be790230536bd3497a368d5ceafd7}\label{classNurseryFacade_afb7be790230536bd3497a368d5ceafd7} 
+\index{NurseryFacade@{NurseryFacade}!tickLoop@{tickLoop}}
+\index{tickLoop@{tickLoop}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{tickLoop()}{tickLoop()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::tick\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Background worker thread for periodic plant updates. 
+
+Periodically updates plant health and checks if nursery plants have reached the Ready\+For\+Sale state to move them to the sale list. \Hypertarget{classNurseryFacade_a8d1862f4ff5b0d65538cb152395b39a4}\label{classNurseryFacade_a8d1862f4ff5b0d65538cb152395b39a4} 
+\index{NurseryFacade@{NurseryFacade}!viewPlantInfo@{viewPlantInfo}}
+\index{viewPlantInfo@{viewPlantInfo}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{viewPlantInfo()}{viewPlantInfo()}}
+{\footnotesize\ttfamily void Nursery\+Facade\+::view\+Plant\+Info (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Views detailed information about a specific plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The 1-\/based index of the plant in the sale list. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classNurseryFacade_ad3439a794b23f8d395b2dc6436e9f856}\label{classNurseryFacade_ad3439a794b23f8d395b2dc6436e9f856} 
+\index{NurseryFacade@{NurseryFacade}!currentOrder\_@{currentOrder\_}}
+\index{currentOrder\_@{currentOrder\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{currentOrder\_}{currentOrder\_}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classProduct}{Product}}\texorpdfstring{$\ast$}{*}$>$ Nursery\+Facade\+::current\+Order\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current customer order (products not yet checked out). 
+
+Contains pointers to plants from manager or decorated wrappers. \Hypertarget{classNurseryFacade_aab71a2d0c5b62d1f0554f5862a8357e4}\label{classNurseryFacade_aab71a2d0c5b62d1f0554f5862a8357e4} 
+\index{NurseryFacade@{NurseryFacade}!cv\_@{cv\_}}
+\index{cv\_@{cv\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{cv\_}{cv\_}}
+{\footnotesize\ttfamily std\+::condition\+\_\+variable Nursery\+Facade\+::cv\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Condition variable for thread synchronization. 
+
+\Hypertarget{classNurseryFacade_ab55f07189fc027efc3c9b0e79e334c21}\label{classNurseryFacade_ab55f07189fc027efc3c9b0e79e334c21} 
+\index{NurseryFacade@{NurseryFacade}!manager\_@{manager\_}}
+\index{manager\_@{manager\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{manager\_}{manager\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}}\texorpdfstring{$\ast$}{*} Nursery\+Facade\+::manager\+\_\+ = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the inventory manager subsystem. 
+
+Manages all plant inventory including nursery and sale plants. Owned and deleted by the facade. \Hypertarget{classNurseryFacade_a2757e354acd8e737640ee00f72010ea2}\label{classNurseryFacade_a2757e354acd8e737640ee00f72010ea2} 
+\index{NurseryFacade@{NurseryFacade}!managerStaff\_@{managerStaff\_}}
+\index{managerStaff\_@{managerStaff\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{managerStaff\_}{managerStaff\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Nursery\+Facade\+::manager\+Staff\+\_\+ = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the manager staff instance. 
+
+Pre-\/created staff member with manager privileges. \Hypertarget{classNurseryFacade_a787121d9ed55c97bd4ce755c69403aef}\label{classNurseryFacade_a787121d9ed55c97bd4ce755c69403aef} 
+\index{NurseryFacade@{NurseryFacade}!mtx\_@{mtx\_}}
+\index{mtx\_@{mtx\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{mtx\_}{mtx\_}}
+{\footnotesize\ttfamily std\+::mutex Nursery\+Facade\+::mtx\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mutex for protecting shared state access. 
+
+Coarse-\/grained lock used to ensure thread-\/safe access to manager and orders. \Hypertarget{classNurseryFacade_a4d5bb34f11950417e67c01d7d463cc1c}\label{classNurseryFacade_a4d5bb34f11950417e67c01d7d463cc1c} 
+\index{NurseryFacade@{NurseryFacade}!nursery\_@{nursery\_}}
+\index{nursery\_@{nursery\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{nursery\_}{nursery\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNursery}{Nursery}}\texorpdfstring{$\ast$}{*} Nursery\+Facade\+::nursery\+\_\+ = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the nursery singleton. 
+
+Manages seasonal state and plant factories. \Hypertarget{classNurseryFacade_ac30cf0d0f32b075dd7c74d06a91bc9a1}\label{classNurseryFacade_ac30cf0d0f32b075dd7c74d06a91bc9a1} 
+\index{NurseryFacade@{NurseryFacade}!nurseryArea\_@{nurseryArea\_}}
+\index{nurseryArea\_@{nurseryArea\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{nurseryArea\_}{nurseryArea\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNurseryArea}{Nursery\+Area}}\texorpdfstring{$\ast$}{*} Nursery\+Facade\+::nursery\+Area\+\_\+ = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the nursery area mediator. 
+
+Facilitates communication between staff in the nursery area. \Hypertarget{classNurseryFacade_acfe8e766f6e5b6446822be833630c2e4}\label{classNurseryFacade_acfe8e766f6e5b6446822be833630c2e4} 
+\index{NurseryFacade@{NurseryFacade}!nurseryStaff\_@{nurseryStaff\_}}
+\index{nurseryStaff\_@{nurseryStaff\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{nurseryStaff\_}{nurseryStaff\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Nursery\+Facade\+::nursery\+Staff\+\_\+ = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the nursery staff instance. 
+
+Pre-\/created staff member for nursery operations. \Hypertarget{classNurseryFacade_afcba02c2799112b15e67bc2293408d71}\label{classNurseryFacade_afcba02c2799112b15e67bc2293408d71} 
+\index{NurseryFacade@{NurseryFacade}!pastReceipts\_@{pastReceipts\_}}
+\index{pastReceipts\_@{pastReceipts\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{pastReceipts\_}{pastReceipts\_}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classReceipt}{Receipt}}\texorpdfstring{$\ast$}{*}$>$ Nursery\+Facade\+::past\+Receipts\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Past receipts from completed checkouts. 
+
+Facade owns these receipts and deletes them in destructor. \Hypertarget{classNurseryFacade_acf4b6203e852c86aadc1a118d730bf9d}\label{classNurseryFacade_acf4b6203e852c86aadc1a118d730bf9d} 
+\index{NurseryFacade@{NurseryFacade}!running\_@{running\_}}
+\index{running\_@{running\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{running\_}{running\_}}
+{\footnotesize\ttfamily std\+::atomic$<$bool$>$ Nursery\+Facade\+::running\+\_\+ \{false\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Atomic flag indicating whether the facade is running. 
+
+Used to coordinate thread shutdown across multiple workers. \Hypertarget{classNurseryFacade_ad8b461efed8172773e76f2f7313311f2}\label{classNurseryFacade_ad8b461efed8172773e76f2f7313311f2} 
+\index{NurseryFacade@{NurseryFacade}!salesArea\_@{salesArea\_}}
+\index{salesArea\_@{salesArea\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{salesArea\_}{salesArea\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSalesArea}{Sales\+Area}}\texorpdfstring{$\ast$}{*} Nursery\+Facade\+::sales\+Area\+\_\+ = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the sales area mediator. 
+
+Facilitates communication between staff in the sales area. \Hypertarget{classNurseryFacade_ae738c5b9b482f4d92d5adcfa8c27332d}\label{classNurseryFacade_ae738c5b9b482f4d92d5adcfa8c27332d} 
+\index{NurseryFacade@{NurseryFacade}!salesStaff\_@{salesStaff\_}}
+\index{salesStaff\_@{salesStaff\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{salesStaff\_}{salesStaff\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Nursery\+Facade\+::sales\+Staff\+\_\+ = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the sales staff instance. 
+
+Pre-\/created staff member for sales operations. \Hypertarget{classNurseryFacade_ad4939d5fdfdf4a115a130d638ccf7c39}\label{classNurseryFacade_ad4939d5fdfdf4a115a130d638ccf7c39} 
+\index{NurseryFacade@{NurseryFacade}!soldProducts\_@{soldProducts\_}}
+\index{soldProducts\_@{soldProducts\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{soldProducts\_}{soldProducts\_}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classProduct}{Product}}\texorpdfstring{$\ast$}{*}$>$ Nursery\+Facade\+::sold\+Products\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Products that have been sold. 
+
+Facade takes ownership when items are sold. \Hypertarget{classNurseryFacade_af443430b7e70303ca6bac71bc9b085ef}\label{classNurseryFacade_af443430b7e70303ca6bac71bc9b085ef} 
+\index{NurseryFacade@{NurseryFacade}!threads\_@{threads\_}}
+\index{threads\_@{threads\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{threads\_}{threads\_}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::thread$>$ Nursery\+Facade\+::threads\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector of background worker threads. 
+
+Holds handles to tick\+Loop, automated\+Customer\+Loop, and automated\+Staff\+Loop threads. \Hypertarget{classNurseryFacade_ac91a099943858f41d79f00535e0f303b}\label{classNurseryFacade_ac91a099943858f41d79f00535e0f303b} 
+\index{NurseryFacade@{NurseryFacade}!tickInterval\_@{tickInterval\_}}
+\index{tickInterval\_@{tickInterval\_}!NurseryFacade@{NurseryFacade}}
+\doxysubsubsection{\texorpdfstring{tickInterval\_}{tickInterval\_}}
+{\footnotesize\ttfamily std\+::chrono\+::milliseconds Nursery\+Facade\+::tick\+Interval\+\_\+ \{1000\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tick interval for background plant updates. 
+
+Default is 1000tps between plant state updates. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{NurseryFacade_8h}{Nursery\+Facade.\+h}}\item 
+src/\mbox{\hyperlink{NurseryFacade_8cpp}{Nursery\+Facade.\+cpp}}\end{DoxyCompactItemize}

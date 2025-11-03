@@ -1,0 +1,25 @@
+\doxysection{Plant\+State.\+h}
+\hypertarget{PlantState_8h_source}{}\label{PlantState_8h_source}\index{src/PlantState.h@{src/PlantState.h}}
+\mbox{\hyperlink{PlantState_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLANTSTATE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLANTSTATE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Forward\ declaration\ to\ avoid\ circular\ dependency\ with\ Plant}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlant}{Plant}};}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlantState}{PlantState}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\string~PlantState}}()\ \{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantState_ae929dd4c55fc527ca58b9f85dcaf90fe}{change}}(\mbox{\hyperlink{classPlant}{Plant}}*\ plant)\ =\ 0;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlantState_ae26f80b79106927035bfac09f5c4830b}{print}}()\ =\ 0;}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

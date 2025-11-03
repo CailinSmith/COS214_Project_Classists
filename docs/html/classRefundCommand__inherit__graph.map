@@ -1,0 +1,5 @@
+<map id="RefundCommand" name="RefundCommand">
+<area shape="rect" id="Node000001" title="Design Pattern: Command Participant: Concrete Command." alt="" coords="14,79,149,104"/>
+<area shape="rect" id="Node000002" href="$classCustomerCommand.html" title="Design Pattern: Command Participant: Command Interface." alt="" coords="5,5,157,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,44,84,79,79,79,79,44"/>
+</map>

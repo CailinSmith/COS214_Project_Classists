@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classPruningStrategy.html" title="Abstract strategy for pruning plants. Design Pattern: Strategy Participant: Strategy." alt="" coords="5,80,132,105"/>
+<area shape="rect" id="Node000001" href="$classDeadPruning.html" title="Implements dead heading pruning strategy for plants. Design Pattern: Strategy Participant: ConcreteSt..." alt="" coords="180,5,285,31"/>
+<area shape="poly" id="edge66_Node000000_Node000001" title=" " alt="" coords="109,72,203,28,205,33,111,77"/>
+<area shape="rect" id="Node000002" href="$classNoPrune.html" title="Implements no pruning strategy for plants. Design Pattern: Strategy Participant: ConcreteStrategy." alt="" coords="194,55,271,80"/>
+<area shape="poly" id="edge67_Node000000_Node000002" title=" " alt="" coords="145,78,193,71,194,76,146,83"/>
+<area shape="rect" id="Node000003" href="$classReduction.html" title="Concrete pruning strategy for reduction pruning. Design Pattern: Strategy Participant: ConcreteStrate..." alt="" coords="189,104,276,129"/>
+<area shape="poly" id="edge68_Node000000_Node000003" title=" " alt="" coords="146,101,189,108,189,113,146,107"/>
+<area shape="rect" id="Node000004" href="$classThinning.html" title="Concrete pruning strategy for thinning. Design Pattern: Strategy Participant: ConcreteStrategy." alt="" coords="193,153,272,179"/>
+<area shape="poly" id="edge69_Node000000_Node000004" title=" " alt="" coords="112,109,204,151,202,156,110,114"/>
+</map>

@@ -12,7 +12,6 @@ Plant::Plant(string category, int maxHeight, WateringStrategy* wateringStrat, Pr
 	this->height = 0.0;
 	this->currentState = new SeedState();
 	this->pruned = true; 
-	this->sold = false;
 	this->totalWater = 0;
 	this->name = name;
 	this->cost = 0.0; //ook testing purposes
@@ -38,7 +37,7 @@ void Plant::fertilise() {
 	if (this->health > 1) {
 		this->health = 1; 
 	}
-	std::cout << this->name << " has been fertilised. Health is now " << this->health << "." << std::endl;
+	// std::cout << this->name << " has been fertilised. Health is now " << this->health << "." << std::endl;
 }
 
 string Plant::summary() {
@@ -121,7 +120,12 @@ float Plant::getHeight() {
 }
 
 void Plant::setHeight(float height) {
-	this->height = height;
+    if (height < 0) 
+        this->height = 0;
+    else if (height > 1) 
+        this->height = 1;
+    else
+	    this->height = height;
 }
 
 float Plant::getActualHeight() {
@@ -139,15 +143,16 @@ void Plant::setState(PlantState* state) {
 }
 
 void Plant::setHealth(float health) {
-	this->health = health;
+    if (health < 0) 
+        this->health = 0;
+    else if (health > 1) 
+        this->health = 1;
+    else
+	    this->health = health;
 }
 
 float Plant::getHealth() {
 	return this->health;
-}
-
-void Plant::setSold(bool sold) {
-	this->sold = sold;
 }
 
 void Plant::setTotalWater(int total) {
@@ -189,7 +194,8 @@ float Plant::calculateCost(string currSeason) {
 	float ncost =baseCost();
 	if (getHealth() >0.9)
 		ncost += baseCost()*(getHealth()-0.85);
-	ncost += seasonCost(currSeason);
+	if (currSeason!="")
+		ncost += seasonCost(currSeason);
 	cost=ncost;
 	return ncost;
 }
@@ -203,17 +209,17 @@ void Plant::changeHealth() {
 	float heightDelta = 0.0f;
 
 	if (waterLevel < 0.20f) {
-		healthDelta -= 0.010f; // dehydration
+		healthDelta -= 0.01f; // dehydration
 		heightDelta -= 0.003f;
 	} else {
 		// well watered or recently watered (1.0 means just watered)
-		healthDelta += 0.006f; // well watered
-		heightDelta += 0.004f; // promotes growth
+		healthDelta += 0.05f; // well watered
+		heightDelta += 0.05f; // promotes growth
 	}
 
 	if (pruned) {
-		healthDelta += 0.002f;
-		heightDelta -= 0.005f;
+		healthDelta += 0.05f;
+		heightDelta -= 0.01f;
 	}
 
 	//as plant approaches max height, growth slows down.
@@ -224,8 +230,8 @@ void Plant::changeHealth() {
 
 	//if health is very low --> decay accelerates
 	if (health < 0.20f) {
-		healthDelta -= 0.005f;
-		heightDelta -= 0.008f;
+		healthDelta -= 0.05f;
+		heightDelta -= 0.08f;
 	}
 
 	//apply deltas
@@ -239,7 +245,7 @@ void Plant::changeHealth() {
 	if (height < 0.0f) height = 0.0f;
 
 	//waterlevel decayy
-	const float waterDecay = 0.005f;
+	const float waterDecay = 0.03f;
 	waterLevel -= waterDecay;
 	if (waterLevel < 0.0f) waterLevel = 0.0f;
 

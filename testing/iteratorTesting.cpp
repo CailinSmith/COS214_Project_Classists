@@ -83,9 +83,6 @@ TEST_CASE("Iterator Pattern - InventoryManager createIterator") {
         
         delete nurseryIterator;
     }
-    delete tomato;
-    delete aloevera;
-    delete thyme;
     delete inventory;
 }
 

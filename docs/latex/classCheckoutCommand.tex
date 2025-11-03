@@ -1,0 +1,118 @@
+\doxysection{Checkout\+Command Class Reference}
+\hypertarget{classCheckoutCommand}{}\label{classCheckoutCommand}\index{CheckoutCommand@{CheckoutCommand}}
+
+
+Design Pattern\+: Command Participant\+: Concrete Command.  
+
+
+
+
+{\ttfamily \#include $<$Checkout\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Checkout\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{classCheckoutCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Checkout\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCheckoutCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCheckoutCommand_ad140897415b25a402d4a1265ef9f574a}{Checkout\+Command}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}s, std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}o, vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d}{flags}})
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classCheckoutCommand}{Checkout\+Command}. \end{DoxyCompactList}\item 
+virtual pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classCheckoutCommand_a46b9c377fc15d24e93ce35ae9cb5b336}{execute}} () override
+\begin{DoxyCompactList}\small\item\em Executes the checkout command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCustomerCommand}{Customer\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCustomerCommand_a173198415f289ddb49bdce4a922680c0}{Customer\+Command}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}s, \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}p, vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}o, vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}f)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classCustomerCommand}{Customer\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classCustomerCommand_a7704c0793684c5134e4dbab578696f11}{\texorpdfstring{$\sim$}{\string~}\+Customer\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classCustomerCommand}{Customer\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomerCommand_acc93353d78c9d32a95998c93e36928b0}{staff}}
+\begin{DoxyCompactList}\small\item\em Pointer to the staff member handling the command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomerCommand_a9aa20d3f8f8e1ee83b245e0e6a50414d}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant involved in the command. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomerCommand_a7bf22ad7a9b6b994c73a245d5edf152c}{order}}
+\begin{DoxyCompactList}\small\item\em Pointer to the order vector. \end{DoxyCompactList}\item 
+vector$<$ bool $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d}{flags}}
+\begin{DoxyCompactList}\small\item\em Pointer to flags for the order (marking for refund) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: Command Participant\+: Concrete Command. 
+
+\begin{DoxyAuthor}{Author}
+Abhay Rooplall 
+\end{DoxyAuthor}
+This class represents a concrete command for processing customer checkout. It encapsulates the checkout request with the customer\textquotesingle{}s order and processes the transaction through the appropriate staff member.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classCustomerCommand}{Customer\+Command} 
+
+\doxylink{classReceipt}{Receipt} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCheckoutCommand_ad140897415b25a402d4a1265ef9f574a}\label{classCheckoutCommand_ad140897415b25a402d4a1265ef9f574a} 
+\index{CheckoutCommand@{CheckoutCommand}!CheckoutCommand@{CheckoutCommand}}
+\index{CheckoutCommand@{CheckoutCommand}!CheckoutCommand@{CheckoutCommand}}
+\doxysubsubsection{\texorpdfstring{CheckoutCommand()}{CheckoutCommand()}}
+{\footnotesize\ttfamily Checkout\+Command\+::\+Checkout\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{s,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}}]{o,  }\item[{vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}}]{flags }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classCheckoutCommand}{Checkout\+Command}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the staff member handling the checkout \\
+\hline
+{\em o} & Pointer to the order vector containing products \\
+\hline
+{\em flags} & Pointer to flags indicating refund eligibility \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCheckoutCommand_a46b9c377fc15d24e93ce35ae9cb5b336}\label{classCheckoutCommand_a46b9c377fc15d24e93ce35ae9cb5b336} 
+\index{CheckoutCommand@{CheckoutCommand}!execute@{execute}}
+\index{execute@{execute}!CheckoutCommand@{CheckoutCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ Checkout\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Executes the checkout command. 
+
+\begin{DoxyReturn}{Returns}
+Pair containing checkout confirmation message and receipt pointer 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classCustomerCommand_a036130d3067b0b44a37cfca5f032755b}{Customer\+Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{CheckoutCommand_8h}{Checkout\+Command.\+h}}\item 
+src/\mbox{\hyperlink{CheckoutCommand_8cpp}{Checkout\+Command.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,219 @@
+\doxysection{Receipt Class Reference}
+\hypertarget{classReceipt}{}\label{classReceipt}\index{Receipt@{Receipt}}
+
+
+Represents a purchase receipt for plant products.  
+
+
+
+
+{\ttfamily \#include $<$Receipt.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classReceipt_a9a0d5eafc4eaab7a4b396559f8418be5}{Receipt}} (const std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \&plants)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classReceipt}{Receipt} with the given products. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classReceipt_a3259cd68231ee3a1626dd8fe9679e641}{\texorpdfstring{$\sim$}{\string~}\+Receipt}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classReceipt}{Receipt}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classReceipt_a9865641a9cfc6bf0eecc73497b695c44}{get\+Cost}} () const
+\begin{DoxyCompactList}\small\item\em Gets the total cost of the receipt. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classReceipt_acf6b84e976b94fa5be958c64a3e2e241}{get\+Date}} () const
+\begin{DoxyCompactList}\small\item\em Gets the receipt date. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classReceipt_a346bcf031e58e2ed4af0e96286077b97}{to\+String}} () const
+\begin{DoxyCompactList}\small\item\em Gets the formatted receipt content. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classReceipt_a1dfcb818d1e65f650ebb2e330cfd1aa7}{get\+Plants}} () const
+\begin{DoxyCompactList}\small\item\em Gets the list of products on the receipt. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classReceipt_ac4a2706a01348c41d7f6faa79376bce6}{remove\+Product}} (\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*}product)
+\begin{DoxyCompactList}\small\item\em Removes a product from the receipt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classReceipt_a1eeec1a99aab69dfa3857de208cfca65}{regenerate\+Receipt\+Content}} ()
+\begin{DoxyCompactList}\small\item\em Regenerates the receipt content string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classReceipt_a5e3610c662b591f4042e9f4831ceacf0}{cost}}
+\begin{DoxyCompactList}\small\item\em Total cost of all products on the receipt. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classReceipt_a328b29b15692ec6c1a462a0c607f3495}{date}}
+\begin{DoxyCompactList}\small\item\em Date when the receipt was created. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classReceipt_a562f558f7f1c8cebed5a143c9824ac58}{receipt\+Content}}
+\begin{DoxyCompactList}\small\item\em Formatted string representation of the receipt. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classReceipt_a53e2dfc45e997c0e157870540ee95771}{order\+Plants}}
+\begin{DoxyCompactList}\small\item\em Vector of all products on this receipt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a purchase receipt for plant products. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class manages a receipt for customer purchases, tracking the products ordered, total cost, and date of purchase. It provides functionality to generate receipt content, remove products, and retrieve receipt information.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classProduct}{Product} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classReceipt_a9a0d5eafc4eaab7a4b396559f8418be5}\label{classReceipt_a9a0d5eafc4eaab7a4b396559f8418be5} 
+\index{Receipt@{Receipt}!Receipt@{Receipt}}
+\index{Receipt@{Receipt}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{Receipt()}{Receipt()}}
+{\footnotesize\ttfamily Receipt\+::\+Receipt (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \&}]{plants }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classReceipt}{Receipt} with the given products. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plants} & Vector of products to include on the receipt. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classReceipt_a3259cd68231ee3a1626dd8fe9679e641}\label{classReceipt_a3259cd68231ee3a1626dd8fe9679e641} 
+\index{Receipt@{Receipt}!````~Receipt@{\texorpdfstring{$\sim$}{\string~}Receipt}}
+\index{````~Receipt@{\texorpdfstring{$\sim$}{\string~}Receipt}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Receipt()}{\string~Receipt()}}
+{\footnotesize\ttfamily Receipt\+::\texorpdfstring{$\sim$}{\string~}\+Receipt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classReceipt}{Receipt}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classReceipt_a9865641a9cfc6bf0eecc73497b695c44}\label{classReceipt_a9865641a9cfc6bf0eecc73497b695c44} 
+\index{Receipt@{Receipt}!getCost@{getCost}}
+\index{getCost@{getCost}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{getCost()}{getCost()}}
+{\footnotesize\ttfamily float Receipt\+::get\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the total cost of the receipt. 
+
+\begin{DoxyReturn}{Returns}
+float Total cost of all products. 
+\end{DoxyReturn}
+\Hypertarget{classReceipt_acf6b84e976b94fa5be958c64a3e2e241}\label{classReceipt_acf6b84e976b94fa5be958c64a3e2e241} 
+\index{Receipt@{Receipt}!getDate@{getDate}}
+\index{getDate@{getDate}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{getDate()}{getDate()}}
+{\footnotesize\ttfamily std\+::string Receipt\+::get\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the receipt date. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string Date of the receipt. 
+\end{DoxyReturn}
+\Hypertarget{classReceipt_a1dfcb818d1e65f650ebb2e330cfd1aa7}\label{classReceipt_a1dfcb818d1e65f650ebb2e330cfd1aa7} 
+\index{Receipt@{Receipt}!getPlants@{getPlants}}
+\index{getPlants@{getPlants}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{getPlants()}{getPlants()}}
+{\footnotesize\ttfamily const std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} Receipt\+::get\+Plants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the list of products on the receipt. 
+
+\begin{DoxyReturn}{Returns}
+const std\+::vector$<$\+Product\texorpdfstring{$\ast$}{*}$>$\texorpdfstring{$\ast$}{*} Pointer to the vector of products. 
+\end{DoxyReturn}
+\Hypertarget{classReceipt_a1eeec1a99aab69dfa3857de208cfca65}\label{classReceipt_a1eeec1a99aab69dfa3857de208cfca65} 
+\index{Receipt@{Receipt}!regenerateReceiptContent@{regenerateReceiptContent}}
+\index{regenerateReceiptContent@{regenerateReceiptContent}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{regenerateReceiptContent()}{regenerateReceiptContent()}}
+{\footnotesize\ttfamily void Receipt\+::regenerate\+Receipt\+Content (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Regenerates the receipt content string. 
+
+Updates the receipt\+Content based on current products and cost. \Hypertarget{classReceipt_ac4a2706a01348c41d7f6faa79376bce6}\label{classReceipt_ac4a2706a01348c41d7f6faa79376bce6} 
+\index{Receipt@{Receipt}!removeProduct@{removeProduct}}
+\index{removeProduct@{removeProduct}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{removeProduct()}{removeProduct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} Receipt\+::remove\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*}}]{product }\end{DoxyParamCaption})}
+
+
+
+Removes a product from the receipt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em product} & Pointer to the product to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Product\texorpdfstring{$\ast$}{*} Pointer to the removed product, or nullptr if not found. 
+\end{DoxyReturn}
+\Hypertarget{classReceipt_a346bcf031e58e2ed4af0e96286077b97}\label{classReceipt_a346bcf031e58e2ed4af0e96286077b97} 
+\index{Receipt@{Receipt}!toString@{toString}}
+\index{toString@{toString}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily std\+::string Receipt\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the formatted receipt content. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string String representation of the receipt. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classReceipt_a5e3610c662b591f4042e9f4831ceacf0}\label{classReceipt_a5e3610c662b591f4042e9f4831ceacf0} 
+\index{Receipt@{Receipt}!cost@{cost}}
+\index{cost@{cost}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{cost}{cost}}
+{\footnotesize\ttfamily float Receipt\+::cost\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Total cost of all products on the receipt. 
+
+\Hypertarget{classReceipt_a328b29b15692ec6c1a462a0c607f3495}\label{classReceipt_a328b29b15692ec6c1a462a0c607f3495} 
+\index{Receipt@{Receipt}!date@{date}}
+\index{date@{date}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{date}{date}}
+{\footnotesize\ttfamily std\+::string Receipt\+::date\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Date when the receipt was created. 
+
+\Hypertarget{classReceipt_a53e2dfc45e997c0e157870540ee95771}\label{classReceipt_a53e2dfc45e997c0e157870540ee95771} 
+\index{Receipt@{Receipt}!orderPlants@{orderPlants}}
+\index{orderPlants@{orderPlants}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{orderPlants}{orderPlants}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classProduct}{Product}}\texorpdfstring{$\ast$}{*}$>$ Receipt\+::order\+Plants\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector of all products on this receipt. 
+
+\Hypertarget{classReceipt_a562f558f7f1c8cebed5a143c9824ac58}\label{classReceipt_a562f558f7f1c8cebed5a143c9824ac58} 
+\index{Receipt@{Receipt}!receiptContent@{receiptContent}}
+\index{receiptContent@{receiptContent}!Receipt@{Receipt}}
+\doxysubsubsection{\texorpdfstring{receiptContent}{receiptContent}}
+{\footnotesize\ttfamily std\+::string Receipt\+::receipt\+Content\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Formatted string representation of the receipt. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Receipt_8h}{Receipt.\+h}}\item 
+src/\mbox{\hyperlink{Receipt_8cpp}{Receipt.\+cpp}}\end{DoxyCompactItemize}

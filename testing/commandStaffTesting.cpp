@@ -26,8 +26,11 @@ TEST_CASE("Command Pattern: WaterCommand executes without error") {
 }
 
 TEST_CASE("Command Pattern: StockCommand executes without error") {
+    Nursery::destroyInstance();
+    
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
     StockCommand stockNursery;
     CHECK_NOTHROW(stockNursery.execute());
     delete manager;
@@ -66,12 +69,16 @@ TEST_CASE("Command Pattern: PlantCommand adds plant to nursery") {
     
     CHECK(manager->getNurseryCount() == initialCount + 1);
     CHECK(manager->isInNursery(rose));
-    delete rose;
     delete manager;
 }
 
 TEST_CASE("Command Pattern: MakeSellableCommand moves plant to sale") {
+    Nursery::destroyInstance();
+    
     InventoryManager* manager = new InventoryManager();
+    Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; // MakeSellableCommand needs Nursery for getSeason()
+    
     Rose* rose = new Rose();
     manager->addToNursery(rose);
     
@@ -82,7 +89,6 @@ TEST_CASE("Command Pattern: MakeSellableCommand moves plant to sale") {
     CHECK(manager->getSaleCount() == initialSaleCount + 1);
     CHECK(manager->isInSale(rose));
     CHECK_FALSE(manager->isInNursery(rose));
-    delete rose;
     delete manager;
 }
 
@@ -96,8 +102,8 @@ TEST_CASE("Command Pattern: RemoveCommand removes plant from nursery") {
     removeRose.execute();
     
     CHECK_FALSE(manager->isInNursery(rose));
-    delete manager;
     delete rose;
+    delete manager;
 }
 
 TEST_CASE("Command Pattern: RemoveSaleCommand removes plant from sale") {
@@ -110,21 +116,24 @@ TEST_CASE("Command Pattern: RemoveSaleCommand removes plant from sale") {
     removeSale.execute();
     
     CHECK_FALSE(manager->isInSale(rose));
-    delete manager;
     delete rose;
+    delete manager;
 }
 
 TEST_CASE("Command Pattern: CalcCostCommand calculates plant cost") {
+    Nursery::destroyInstance();
+    
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
     Rose* rose = new Rose();
     
     CalcCostCommand calcCost(rose, nursery);
     calcCost.execute();
     
     CHECK(calcCost.getCost() >= 0.0f);
-    delete manager;
     delete rose;
+    delete manager;
 }
 
 TEST_CASE("Command Pattern: GetInfoCommand returns plant information") {
@@ -138,8 +147,11 @@ TEST_CASE("Command Pattern: GetInfoCommand returns plant information") {
 }
 
 TEST_CASE("Command Pattern: StaffCheckStockCommand checks inventory") {
+    Nursery::destroyInstance();
+    
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
     
     Rose* rose = new Rose();
     manager->addToSale(rose);
@@ -147,14 +159,15 @@ TEST_CASE("Command Pattern: StaffCheckStockCommand checks inventory") {
     StaffCheckStockCommand checkStock(rose, manager);
     CHECK_NOTHROW(checkStock.execute());
     
-    // cleanup created plant
-    delete rose;
     delete manager;
 }
 
 TEST_CASE("Command Pattern: StaffCheckoutCommand processes checkout") {
+    Nursery::destroyInstance();
+    
     InventoryManager* manager = new InventoryManager();
     Nursery* nursery = Nursery::getInstance(manager);
+    (void) nursery; //singleton instantiation
     
     std::vector<Product*> products;
     products.push_back(new Rose());
@@ -171,14 +184,8 @@ TEST_CASE("Command Pattern: StaffCheckoutCommand processes checkout") {
     CHECK(receipt != nullptr);
     CHECK(receipt->getCost() >= 0.0f);
     CHECK_FALSE(receipt->toString().empty());
-    //caller takes ownership of the returned receipt (getReceipt transfers ownership)
     delete receipt;
     delete manager;
-
-    // Clean up products
-    for (Product* product : products) {
-        delete product;
-    }
 }
 
 TEST_CASE("Command Pattern: Receipt functionality with multiple products") {
@@ -198,10 +205,6 @@ TEST_CASE("Command Pattern: Receipt functionality with multiple products") {
     CHECK(receiptText.find("TOTAL:") != std::string::npos);
     CHECK(receiptText.find("Thank you for shopping!") != std::string::npos);
 
-    // Clean up products
-    for (Product* product : products) {
-        delete product;
-    }
 }
 
 TEST_CASE("Command Pattern: Command execution with null plants") {

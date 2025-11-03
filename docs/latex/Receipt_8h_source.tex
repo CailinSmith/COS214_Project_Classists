@@ -1,0 +1,43 @@
+\doxysection{Receipt.\+h}
+\hypertarget{Receipt_8h_source}{}\label{Receipt_8h_source}\index{src/Receipt.h@{src/Receipt.h}}
+\mbox{\hyperlink{Receipt_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RECEIPT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RECEIPT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Product_8h}{Product.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classReceipt}{Receipt}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classReceipt_a5e3610c662b591f4042e9f4831ceacf0}{cost}};}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ std::string\ \mbox{\hyperlink{classReceipt_a328b29b15692ec6c1a462a0c607f3495}{date}};}
+\DoxyCodeLine{00032\ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ \mbox{\hyperlink{classReceipt_a562f558f7f1c8cebed5a143c9824ac58}{receiptContent}};\ }
+\DoxyCodeLine{00037\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ std::vector<Product*>\ \mbox{\hyperlink{classReceipt_a53e2dfc45e997c0e157870540ee95771}{orderPlants}};}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classReceipt_a1eeec1a99aab69dfa3857de208cfca65}{regenerateReceiptContent}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classReceipt}{Receipt}}(\textcolor{keyword}{const}\ std::vector<Product*>\&\ plants);}
+\DoxyCodeLine{00056\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classReceipt_a3259cd68231ee3a1626dd8fe9679e641}{\string~Receipt}}();}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classReceipt_a9865641a9cfc6bf0eecc73497b695c44}{getCost}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ std::string\ \mbox{\hyperlink{classReceipt_acf6b84e976b94fa5be958c64a3e2e241}{getDate}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ std::string\ \mbox{\hyperlink{classReceipt_a346bcf031e58e2ed4af0e96286077b97}{toString}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Product*>*\ \mbox{\hyperlink{classReceipt_a1dfcb818d1e65f650ebb2e330cfd1aa7}{getPlants}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classProduct}{Product}}*\ \mbox{\hyperlink{classReceipt_ac4a2706a01348c41d7f6faa79376bce6}{removeProduct}}(\mbox{\hyperlink{classProduct}{Product}}*\ product);}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

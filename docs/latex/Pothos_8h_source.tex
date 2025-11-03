@@ -1,0 +1,24 @@
+\doxysection{Pothos.\+h}
+\hypertarget{Pothos_8h_source}{}\label{Pothos_8h_source}\index{src/Pothos.h@{src/Pothos.h}}
+\mbox{\hyperlink{Pothos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ POTHOS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ POTHOS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Indoor_8h}{Indoor.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MediumMoisture_8h}{MediumMoisture.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Thinning_8h}{Thinning.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPothos}{Pothos}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classIndoor}{Indoor}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classPothos_a68882de91ec5f5139862734449a83726}{Pothos}}()\ :\ \mbox{\hyperlink{classIndoor}{Indoor}}(300,\ new\ \mbox{\hyperlink{classMediumMoisture}{MediumMoisture}}(),\ new\ \mbox{\hyperlink{classThinning}{Thinning}}(),\ \textcolor{stringliteral}{"{}Pothos"{}},\ \textcolor{stringliteral}{"{}Winter"{}})\ \{\}}
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPothos_a35b12d5fbe7480d06487e66d1a6dbfbb}{getImagePath}}()\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}assets/pothos.jpg"{}};}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,9 @@
+<map id="Cattails" name="Cattails">
+<area shape="rect" id="Node000001" title="Represents a Cattails aquatic plant. Design Pattern: Abstract Factory Participant: ConcreteProduct." alt="" coords="5,225,77,251"/>
+<area shape="rect" id="Node000002" href="$classAquatic.html" title="Represents an aquatic plant type in the nursery system. Design Pattern: Abstract Factory,..." alt="" coords="6,152,77,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,191,44,225,39,225,39,191"/>
+<area shape="rect" id="Node000003" href="$classPlant.html" title="Abstract base class representing a plant product in the nursery system. Design Pattern: State,..." alt="" coords="14,79,69,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="44,118,44,152,39,152,39,118"/>
+<area shape="rect" id="Node000004" href="$classProduct.html" title="Design Pattern: Decorator Participant: Component." alt="" coords="6,5,77,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="44,44,44,79,39,79,39,44"/>
+</map>

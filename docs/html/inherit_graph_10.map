@@ -1,0 +1,17 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classPlantState.html" title="Design pattern: State Participant: State." alt="" coords="5,153,95,179"/>
+<area shape="rect" id="Node000001" href="$classDeadState.html" title="Design pattern: State Participant: ConcreteState." alt="" coords="170,5,261,31"/>
+<area shape="poly" id="edge12_Node000000_Node000001" title=" " alt="" coords="61,140,93,89,115,63,141,40,168,26,171,31,144,44,119,67,97,93,66,143"/>
+<area shape="rect" id="Node000002" href="$classDyingState.html" title="Design pattern: State Participant: ConcreteState." alt="" coords="168,55,263,80"/>
+<area shape="poly" id="edge13_Node000000_Node000002" title=" " alt="" coords="72,142,103,115,141,89,167,78,169,82,144,94,107,119,75,146"/>
+<area shape="rect" id="Node000003" href="$classGrowingState.html" title="Design pattern: State Participant: ConcreteState." alt="" coords="160,104,271,129"/>
+<area shape="poly" id="edge14_Node000000_Node000003" title=" " alt="" coords="105,147,171,127,172,132,107,152"/>
+<area shape="rect" id="Node000004" href="$classMatureState.html" title="Design pattern: State Participant: ConcreteState." alt="" coords="164,153,267,179"/>
+<area shape="poly" id="edge15_Node000000_Node000004" title=" " alt="" coords="108,163,164,163,164,169,108,169"/>
+<area shape="rect" id="Node000005" href="$classReadyForSaleState.html" title="Design pattern: State Participant: ConcreteState." alt="" coords="143,203,288,228"/>
+<area shape="poly" id="edge16_Node000000_Node000005" title=" " alt="" coords="107,180,172,200,171,205,105,185"/>
+<area shape="rect" id="Node000006" href="$classSeedState.html" title="Design pattern: State Participant: ConcreteState." alt="" coords="171,252,259,277"/>
+<area shape="poly" id="edge17_Node000000_Node000006" title=" " alt="" coords="76,186,107,212,144,237,172,250,170,254,141,242,104,217,73,190"/>
+<area shape="rect" id="Node000007" href="$classSeedlingState.html" title="Design pattern: State Participant: ConcreteState." alt="" coords="159,301,271,327"/>
+<area shape="poly" id="edge18_Node000000_Node000007" title=" " alt="" coords="66,189,98,239,119,264,144,286,167,299,164,304,141,291,116,268,93,242,62,192"/>
+</map>
