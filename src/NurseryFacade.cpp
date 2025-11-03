@@ -163,24 +163,42 @@ void NurseryFacade::runSettings() {
         cout << MENU_BLUE << "Choice: " << MENU_RESET;
         string line; if (!getline(cin, line)) break;
         if (line == "1") {
-            cout << "Enter tick interval in milliseconds: "; string v; getline(cin, v);
-            try { int tps = stoi(v); if (tps < 100) tps = 100; setTickInterval(std::chrono::milliseconds(tps)); cout << "Tick interval set to " << tps << " tps\n"; }
-            catch(...) { cout << "Invalid value\n"; }
+            while (true) {
+                cout << "Enter tick interval in milliseconds: "; 
+                string v; 
+                if (!getline(cin, v)) break;
+                try { 
+                    int tps = stoi(v); 
+                    if (tps < 100) tps = 100; 
+                    setTickInterval(std::chrono::milliseconds(tps)); 
+                    cout << "Tick interval set to " << tps << " tps\n"; 
+                    break;
+                }
+                catch(...) { cout << "Invalid value. Please enter a valid number.\n"; }
+            }
         } else if (line == "2") {
-            cout << "Choose season:\n1) Spring\n2) Summer\n3) Autumn\n4) Winter\n";
-            cout << MENU_BLUE << "Choice: " << MENU_RESET; string s; getline(cin, s);
             if (!nursery_) { cout << "Nursery not initialised\n"; continue; }
-            SeasonState* ss = nullptr;
-            try {
-                int c = stoi(s);
-                if (c==1) ss = new Spring();
-                else if (c==2) ss = new Summer();
-                else if (c==3) ss = new Autumn();
-                else if (c==4) ss = new Winter();
-            } catch(...) { ss = nullptr; }
-            if (!ss) { cout << "Invalid season\n"; continue; }
-            nursery_->setSeason(ss);
-            cout << "Season set to: " << nursery_->getSeason() << "\n";
+            while (true) {
+                cout << "Choose season:\n1) Spring\n2) Summer\n3) Autumn\n4) Winter\n";
+                cout << MENU_BLUE << "Choice: " << MENU_RESET; 
+                string s; 
+                if (!getline(cin, s)) break;
+                SeasonState* ss = nullptr;
+                try {
+                    int c = stoi(s);
+                    if (c==1) ss = new Spring();
+                    else if (c==2) ss = new Summer();
+                    else if (c==3) ss = new Autumn();
+                    else if (c==4) ss = new Winter();
+                } catch(...) { ss = nullptr; }
+                if (!ss) { 
+                    cout << "Invalid season. Please enter 1-4.\n"; 
+                    continue; 
+                }
+                nursery_->setSeason(ss);
+                cout << "Season set to: " << nursery_->getSeason() << "\n";
+                break;
+            }
         } else if (line == "3") {
             break;
         } else {
@@ -235,12 +253,7 @@ void NurseryFacade::runCustomerMenu() {
             listSalePlants();
         } else if (line == "2") {
             listSaleCategories();
-            cout << MENU_BLUE << "Choose a category number (or 0 to return): " << MENU_RESET;
-            string catSel; getline(cin, catSel);
-            size_t catIdx = 0;
-            try { catIdx = stoi(catSel); } catch(...) { cout << "Invalid input\n"; continue; }
-            if (catIdx == 0) continue;
-
+            
             map<string, vector<Plant*>> groups;
             {
                 lock_guard<mutex> lk(mtx_);
@@ -249,7 +262,22 @@ void NurseryFacade::runCustomerMenu() {
             if (groups.empty()) { cout << "No categories available\n"; continue; }
             vector<string> cats; cats.reserve(groups.size());
             for (auto &kv : groups) cats.push_back(kv.first);
-            if (catIdx < 1 || catIdx > cats.size()) { cout << "Invalid category\n"; continue; }
+            
+            size_t catIdx = 0;
+            while (true) {
+                cout << MENU_BLUE << "Choose a category number (or 0 to return): " << MENU_RESET;
+                string catSel; 
+                if (!getline(cin, catSel)) break;
+                try { 
+                    catIdx = stoi(catSel); 
+                    if (catIdx == 0) break;
+                    if (catIdx >= 1 && catIdx <= cats.size()) break;
+                    cout << "Invalid category. Please enter a number between 0 and " << cats.size() << ".\n";
+                } catch(...) { 
+                    cout << "Invalid input. Please enter a valid number.\n"; 
+                }
+            }
+            if (catIdx == 0) continue;
             string chosen = cats[catIdx-1];
 
             auto items = groups[chosen];
@@ -358,20 +386,34 @@ void NurseryFacade::runCustomerMenu() {
             for (size_t i=0;i<pastReceipts_.size();++i) {
                 cout << i+1 << ") " << pastReceipts_[i]->getDate() << " - R" << pastReceipts_[i]->getCost() << "\n";
             }
-            cout << MENU_BLUE << "Choose a receipt number to view (or 0 to return): " << MENU_RESET;
-            string sel; if (!getline(cin, sel)) break;
+            
             int rnum = -1;
-            try { rnum = stoi(sel); } catch(...) { rnum = -1; }
+            while (true) {
+                cout << MENU_BLUE << "Choose a receipt number to view (or 0 to return): " << MENU_RESET;
+                string sel; 
+                if (!getline(cin, sel)) break;
+                try { 
+                    rnum = stoi(sel); 
+                    if (rnum == 0) break;
+                    if (rnum >= 1 && (size_t)rnum <= pastReceipts_.size()) break;
+                    cout << "Invalid receipt. Please enter a number between 0 and " << pastReceipts_.size() << ".\n";
+                } catch(...) { 
+                    cout << "Invalid input. Please enter a valid number.\n"; 
+                }
+            }
             if (rnum == 0) continue;
-            if (rnum < 1 || (size_t)rnum > pastReceipts_.size()) { cout << "Invalid receipt\n"; continue; }
+            
             size_t idx = (size_t)rnum - 1;
             Receipt* chosen = pastReceipts_[idx];
             cout << chosen->toString() << "\n";
-            cout << "Options: (r) Refund items from this receipt  (b) Back\n";
-            cout << MENU_BLUE << "Choice: " << MENU_RESET;
-            string op; if (!getline(cin, op)) break;
-            if (op == "b" || op == "B") continue;
-            if (op == "r" || op == "R") {
+            
+            while (true) {
+                cout << "Options: (r) Refund items from this receipt  (b) Back\n";
+                cout << MENU_BLUE << "Choice: " << MENU_RESET;
+                string op; 
+                if (!getline(cin, op)) break;
+                if (op == "b" || op == "B") break;
+                if (op == "r" || op == "R") {
                 const std::vector<Product*>* plants = chosen->getPlants();
                 if (!plants || plants->empty()) { 
                     cout << "Nothing to refund on this receipt.\n"; 
@@ -447,6 +489,10 @@ void NurseryFacade::runCustomerMenu() {
                     cout << "All items refunded - receipt removed.\n";
                 } else {
                     cout << "Updated receipt:\n" << chosen->toString() << "\n";
+                }
+                break;
+                } else {
+                    cout << "Invalid option. Please enter 'r' to refund or 'b' to go back.\n";
                 }
             }
         }
@@ -624,8 +670,17 @@ void NurseryFacade::runStaffMenu() {
         }
         else if (line == "3") {
             if (currentStaff && currentStaff->getPosition() == string("Sales staff")) { cout << "Not permitted for Sales staff\n"; continue; }
-            cout << "Enter 's' for sale list or 'n' for nursery: ";
-            string which; getline(cin, which);
+            
+            string which;
+            while (true) {
+                cout << "Enter 's' for sale list or 'n' for nursery: ";
+                if (!getline(cin, which)) break;
+                if (which == "s" || which == "S" || which == "n" || which == "N") {
+                    which = string(1, tolower(which[0])); // normalize to lowercase
+                    break;
+                }
+                cout << "Invalid choice. Please enter 's' or 'n'.\n";
+            }
 
             //show chosen list first
             vector<Plant*> listing;
@@ -655,22 +710,34 @@ void NurseryFacade::runStaffMenu() {
                     size_t idx = stoi(idxs);
                     if (idx>=1 && idx<=listing.size()) {
                         Plant* p = listing[idx-1];
-                        cout << "Care options: 1) water 2) prune 3) fertilise\n";
-                        string opt; getline(cin,opt);
-                        if (opt=="1") {
-                            WaterCommand waterCmd(p);
-                            waterCmd.execute();
-                        } else if (opt=="2") {
-                            PruneCommand pruneCmd(p);
-                            pruneCmd.execute();
-                        } else if (opt=="3") {
-                            FertiliseCommand fertiliseCmd(p);
-                            fertiliseCmd.execute();
+                        
+                        while (true) {
+                            cout << "Care options: 1) water 2) prune 3) fertilise\n";
+                            cout << MENU_BLUE << "Choice: " << MENU_RESET;
+                            string opt; 
+                            if (!getline(cin,opt)) break;
+                            if (opt=="1") {
+                                WaterCommand waterCmd(p);
+                                waterCmd.execute();
+                                cout << "Done." << "\n";
+                                break;
+                            } else if (opt=="2") {
+                                PruneCommand pruneCmd(p);
+                                pruneCmd.execute();
+                                cout << "Done." << "\n";
+                                break;
+                            } else if (opt=="3") {
+                                FertiliseCommand fertiliseCmd(p);
+                                fertiliseCmd.execute();
+                                cout << "Done." << "\n";
+                                break;
+                            } else {
+                                cout << "Invalid option. Please enter 1, 2, or 3.\n";
+                            }
                         }
-                        cout << "Done." << "\n";
                         break;
                     } else {
-                        cout << "Index out of range\n";
+                        cout << "Index out of range. Please enter a number between 1 and " << listing.size() << ".\n";
                         continue;
                     }
                 } catch(...) { cout << "Invalid index\n"; continue; }
@@ -697,7 +764,16 @@ void NurseryFacade::runStaffMenu() {
                 
                 // Option 4.1: Move plant between nursery/sale
                 if (plantOpt == "1") {
-                    cout << "Move from (s)ale or (n)ursery? "; string which; getline(cin,which);
+                    string which;
+                    while (true) {
+                        cout << "Move from (s)ale or (n)ursery? "; 
+                        if (!getline(cin,which)) break;
+                        if (which == "s" || which == "S" || which == "n" || which == "N") {
+                            which = string(1, tolower(which[0]));
+                            break;
+                        }
+                        cout << "Invalid choice. Please enter 's' or 'n'.\n";
+                    }
 
                     //copy the chosen list under lock and show it to the user
                     vector<Plant*> listing;
@@ -742,14 +818,27 @@ void NurseryFacade::runStaffMenu() {
                                 }
                                 break;
                             } else {
-                                cout << "Index out of range\n"; continue;
+                                cout << "Index out of range. Please enter a number between 1 and " << listing.size() << ".\n"; 
+                                continue;
                             }
-                        } catch(...) { cout << "Invalid index\n"; continue; }
+                        } catch(...) { 
+                            cout << "Invalid index. Please enter a valid number.\n"; 
+                            continue; 
+                        }
                     }
                 }
-                // Option 4.2: Remove plant from system (will be added next)
+                // Option 4.2: Remove plant from system
                 else if (plantOpt == "2") {
-                    cout << "Remove from (s)ale or (n)ursery? "; string which; getline(cin, which);
+                    string which;
+                    while (true) {
+                        cout << "Remove from (s)ale or (n)ursery? "; 
+                        if (!getline(cin, which)) break;
+                        if (which == "s" || which == "S" || which == "n" || which == "N") {
+                            which = string(1, tolower(which[0]));
+                            break;
+                        }
+                        cout << "Invalid choice. Please enter 's' or 'n'.\n";
+                    }
 
                     //copy and display the chosen list under lock
                     vector<Plant*> listing;
@@ -781,28 +870,42 @@ void NurseryFacade::runStaffMenu() {
                             size_t idx = stoi(idxs);
                             if (idx>=1 && idx<=listing.size()) {
                                 Plant* p = listing[idx-1];
-                                cout << "Are you sure you want to permanently remove '" << p->getName() << "'? (y/n): "; string conf; getline(cin, conf);
-                                if (conf == "y" || conf == "Y") {
-                                    if (which == "s") {
-                                        RemoveSaleCommand cmd(p, manager_);
-                                        cmd.execute();
-                                        cout << "Removed from sale.\n";
-                                        delete p;  
+                                
+                                while (true) {
+                                    cout << "Are you sure you want to permanently remove '" << p->getName() << "'? (y/n): "; 
+                                    string conf; 
+                                    if (!getline(cin, conf)) break;
+                                    if (conf == "y" || conf == "Y") {
+                                        if (which == "s") {
+                                            RemoveSaleCommand cmd(p, manager_);
+                                            cmd.execute();
+                                            cout << "Removed from sale.\n";
+                                            delete p;  
+                                        } else {
+                                            RemoveCommand cmd(p, manager_);
+                                            cmd.execute();
+                                            cout << "Removed from nursery.\n";
+                                            delete p;  
+                                        }
+                                        cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
+                                        break;
+                                    } else if (conf == "n" || conf == "N") {
+                                        cout << "Aborted removal.\n";
+                                        cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
+                                        break;
                                     } else {
-                                        RemoveCommand cmd(p, manager_);
-                                        cmd.execute();
-                                        cout << "Removed from nursery.\n";
-                                        delete p;  
+                                        cout << "Invalid input. Please enter 'y' or 'n'.\n";
                                     }
-                                    cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
-                                    break;
-                                } else {
-                                    cout << "Aborted removal.\n";
-                                    cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET; string tmp; getline(cin,tmp);
-                                    break;
                                 }
-                            } else { cout << "Index out of range\n"; continue; }
-                        } catch(...) { cout << "Invalid index\n"; continue; }
+                                break;
+                            } else { 
+                                cout << "Index out of range. Please enter a number between 1 and " << listing.size() << ".\n"; 
+                                continue; 
+                            }
+                        } catch(...) { 
+                            cout << "Invalid index. Please enter a valid number.\n"; 
+                            continue; 
+                        }
                     }
                 }
                 // Option 4.3: Add plant to nursery (will be added next)
@@ -862,12 +965,22 @@ void NurseryFacade::runStaffMenu() {
                     for (size_t i = 0; i < categories.size(); ++i) {
                         cout << i+1 << ") " << categories[i] << " (" << catToIndices[categories[i]].size() << " plants)\n";
                     }
-                    cout << MENU_BLUE << "Choose a category number (or 0 to return): " << MENU_RESET;
-                    string catline; if (!getline(cin, catline)) continue;
+                    
                     int catnum = 0;
-                    try { catnum = stoi(catline); } catch(...) { catnum = -1; }
+                    while (true) {
+                        cout << MENU_BLUE << "Choose a category number (or 0 to return): " << MENU_RESET;
+                        string catline; 
+                        if (!getline(cin, catline)) break;
+                        try { 
+                            catnum = stoi(catline); 
+                            if (catnum == 0) break;
+                            if (catnum >= 1 && (size_t)catnum <= categories.size()) break;
+                            cout << "Invalid category. Please enter a number between 0 and " << categories.size() << ".\n";
+                        } catch(...) { 
+                            cout << "Invalid input. Please enter a valid number.\n";
+                        }
+                    }
                     if (catnum == 0) continue;
-                    if (catnum < 1 || (size_t)catnum > categories.size()) { cout << "Invalid category\n"; continue; }
 
                     string chosenCat = categories[catnum-1];
                     auto &indices = catToIndices[chosenCat];
@@ -882,12 +995,21 @@ void NurseryFacade::runStaffMenu() {
                         cout << i+1 << ") " << name << " - R" << cost << "\n";
                     }
 
-                    cout << MENU_BLUE << "Choose plant number to create (or 0 to cancel): " << MENU_RESET;
-                    string pick; if (!getline(cin, pick)) continue;
                     int pnum = -1;
-                    try { pnum = stoi(pick); } catch(...) { pnum = -1; }
+                    while (true) {
+                        cout << MENU_BLUE << "Choose plant number to create (or 0 to cancel): " << MENU_RESET;
+                        string pick; 
+                        if (!getline(cin, pick)) break;
+                        try { 
+                            pnum = stoi(pick); 
+                            if (pnum == 0) break;
+                            if (pnum >= 1 && (size_t)pnum <= indices.size()) break;
+                            cout << "Invalid plant selection. Please enter a number between 0 and " << indices.size() << ".\n";
+                        } catch(...) { 
+                            cout << "Invalid input. Please enter a valid number.\n";
+                        }
+                    }
                     if (pnum == 0) continue;
-                    if (pnum < 1 || (size_t)pnum > indices.size()) { cout << "Invalid plant selection\n"; continue; }
 
                     size_t chosenIndex = indices[pnum-1];
                     Plant* p = nullptr;
@@ -936,17 +1058,31 @@ void NurseryFacade::runStaffMenu() {
                 
                 // Option 5.1: Send message to area
                 if (notifOpt == "1") {
-                    cout << "Enter message for staff area: "; string msg; getline(cin,msg);
+                    cout << "Enter message for staff area: "; 
+                    string msg; 
+                    if (!getline(cin,msg)) continue;
                     //choose room
                     if (currentStaff->getPosition() == string("Manager")) {
                         Manager* mgr = dynamic_cast<Manager*>(currentStaff);
                         if (mgr) {
-                            cout << "Send to: 1) Sales area 2) Nursery area 3) All rooms\n";
-                            cout << MENU_BLUE << "Choice: " << MENU_RESET;
-                            string dest; getline(cin, dest);
-                            if (dest == "1") mgr->setReceiver(salesArea_);
-                            else if (dest == "2") mgr->setReceiver(nurseryArea_);
-                            else mgr->setReceiver(nullptr); 
+                            while (true) {
+                                cout << "Send to: 1) Sales area 2) Nursery area 3) All rooms\n";
+                                cout << MENU_BLUE << "Choice: " << MENU_RESET;
+                                string dest; 
+                                if (!getline(cin, dest)) break;
+                                if (dest == "1") {
+                                    mgr->setReceiver(salesArea_);
+                                    break;
+                                } else if (dest == "2") {
+                                    mgr->setReceiver(nurseryArea_);
+                                    break;
+                                } else if (dest == "3") {
+                                    mgr->setReceiver(nullptr);
+                                    break;
+                                } else {
+                                    cout << "Invalid option. Please enter 1, 2, or 3.\n";
+                                }
+                            }
                             mgr->setMessage(msg);
                             mgr->send();
                         }
@@ -1229,21 +1365,37 @@ void NurseryFacade::performCheckout() {
             cout << "Please enter 'y' or 'n'.\n";
         }
         if (ans == "y" || ans == "Y") {
-            cout << "Decoration options:\n";
-            cout << "1) Ceramic pot (+80)\n";
-            cout << "2) Concrete pot (+60)\n";
-            cout << "3) Clay pot (+50)\n";
-            cout << "4) Kraft wrapping (+20)\n";
-            cout << "5) Extra fertilizer (+80)\n";
-            cout << MENU_BLUE << "Choose: " << MENU_RESET; string opt; getline(cin,opt);
-        Product* decorated = nullptr;
-        if (opt=="1") decorated = new CeramicPot(plant);
-        else if (opt=="2") decorated = new ConcretePot(plant);
-        else if (opt=="3") decorated = new ClayPot(plant);
-        else if (opt=="4") decorated = new KraftWrapping(plant);
-        else if (opt=="5") decorated = new ExtraFertilizer(plant);
-            if (decorated) {
-                currentOrder_[i] = decorated;
+            while (true) {
+                cout << "Decoration options:\n";
+                cout << "1) Ceramic pot (+80)\n";
+                cout << "2) Concrete pot (+60)\n";
+                cout << "3) Clay pot (+50)\n";
+                cout << "4) Kraft wrapping (+20)\n";
+                cout << "5) Extra fertilizer (+80)\n";
+                cout << MENU_BLUE << "Choose: " << MENU_RESET; 
+                string opt; 
+                if (!getline(cin,opt)) break;
+                
+                Product* decorated = nullptr;
+                if (opt=="1") {
+                    decorated = new CeramicPot(plant);
+                } else if (opt=="2") {
+                    decorated = new ConcretePot(plant);
+                } else if (opt=="3") {
+                    decorated = new ClayPot(plant);
+                } else if (opt=="4") {
+                    decorated = new KraftWrapping(plant);
+                } else if (opt=="5") {
+                    decorated = new ExtraFertilizer(plant);
+                } else {
+                    cout << "Invalid option. Please enter 1-5.\n";
+                    continue;
+                }
+                
+                if (decorated) {
+                    currentOrder_[i] = decorated;
+                }
+                break;
             }
         }
     }
@@ -1323,15 +1475,32 @@ void NurseryFacade::decorateProductMenu(size_t orderIndex) {
     cout << "3) Clay pot (+50)\n";
     cout << "4) Kraft wrapping (+20)\n";
     cout << "5) Extra fertilizer (+80)\n";
-    cout << MENU_BLUE << "Choose: " << MENU_RESET; string opt; getline(cin,opt);
-    Product* decorated = nullptr;
-    if (opt=="1") decorated = new CeramicPot(plant);
-    else if (opt=="2") decorated = new ConcretePot(plant);
-    else if (opt=="3") decorated = new ClayPot(plant);
-    else if (opt=="4") decorated = new KraftWrapping(plant);
-    else if (opt=="5") decorated = new ExtraFertilizer(plant);
-    if (decorated) {
-        currentOrder_[orderIndex] = decorated;
+    
+    while (true) {
+        cout << MENU_BLUE << "Choose: " << MENU_RESET; 
+        string opt; 
+        if (!getline(cin,opt)) return;
+        
+        Product* decorated = nullptr;
+        if (opt=="1") {
+            decorated = new CeramicPot(plant);
+        } else if (opt=="2") {
+            decorated = new ConcretePot(plant);
+        } else if (opt=="3") {
+            decorated = new ClayPot(plant);
+        } else if (opt=="4") {
+            decorated = new KraftWrapping(plant);
+        } else if (opt=="5") {
+            decorated = new ExtraFertilizer(plant);
+        } else {
+            cout << "Invalid option. Please enter 1-5.\n";
+            continue;
+        }
+        
+        if (decorated) {
+            currentOrder_[orderIndex] = decorated;
+        }
+        break;
     }
 }
 
