@@ -34,6 +34,7 @@ TEST_CASE("changeHealth decays when dry") {
     Basil basil;
     basil.setHealth(0.5f);
     basil.setWaterLevel(0.0f);
+    basil.setPruned(false); 
 
     float before = basil.getHealth();
     basil.changeHealth();
