@@ -1,0 +1,105 @@
+\doxysection{Watering\+Strategy Class Reference}
+\hypertarget{classWateringStrategy}{}\label{classWateringStrategy}\index{WateringStrategy@{WateringStrategy}}
+
+
+Abstract strategy for watering plants. Design Pattern\+: Strategy Participant\+: Strategy.  
+
+
+
+
+{\ttfamily \#include $<$Watering\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for Watering\+Strategy\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWateringStrategy__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classWateringStrategy_a2004c5310932d79086114b14a13a9680}{\texorpdfstring{$\sim$}{\string~}\+Watering\+Strategy}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classWateringStrategy}{Watering\+Strategy}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classWateringStrategy_a219b80c1132ecee9d2a87391f37c9f7e}{water}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)=0
+\begin{DoxyCompactList}\small\item\em Waters the given plant. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classWateringStrategy_aa95f409545500b3a5323f82d741d8212}{print}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets a string representation of the watering strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract strategy for watering plants. Design Pattern\+: Strategy Participant\+: Strategy. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This abstract class defines the interface for different watering strategies. Concrete implementations (\doxylink{classHighMoisture}{High\+Moisture}, \doxylink{classMediumMoisture}{Medium\+Moisture}, \doxylink{classDryPlant}{Dry\+Plant}) provide specific watering techniques for different plant types. The strategy pattern allows watering behavior to be changed at runtime.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classHighMoisture}{High\+Moisture} 
+
+\doxylink{classMediumMoisture}{Medium\+Moisture} 
+
+\doxylink{classDryPlant}{Dry\+Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classWateringStrategy_a2004c5310932d79086114b14a13a9680}\label{classWateringStrategy_a2004c5310932d79086114b14a13a9680} 
+\index{WateringStrategy@{WateringStrategy}!````~WateringStrategy@{\texorpdfstring{$\sim$}{\string~}WateringStrategy}}
+\index{````~WateringStrategy@{\texorpdfstring{$\sim$}{\string~}WateringStrategy}!WateringStrategy@{WateringStrategy}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}WateringStrategy()}{\string~WateringStrategy()}}
+{\footnotesize\ttfamily virtual Watering\+Strategy\+::\texorpdfstring{$\sim$}{\string~}\+Watering\+Strategy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor for the \doxylink{classWateringStrategy}{Watering\+Strategy}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classWateringStrategy_aa95f409545500b3a5323f82d741d8212}\label{classWateringStrategy_aa95f409545500b3a5323f82d741d8212} 
+\index{WateringStrategy@{WateringStrategy}!print@{print}}
+\index{print@{print}!WateringStrategy@{WateringStrategy}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual string Watering\+Strategy\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets a string representation of the watering strategy. 
+
+\begin{DoxyReturn}{Returns}
+string Description of the watering strategy. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classDryPlant_a196f320a386d53e62c3e35ee986c1cb1}{Dry\+Plant}}, \mbox{\hyperlink{classHighMoisture_aa5cc77e6151e97813a4a681bd81ca4e2}{High\+Moisture}}, and \mbox{\hyperlink{classMediumMoisture_a3151099d62a123421f7d4f2c2ba4bf1a}{Medium\+Moisture}}.
+
+\Hypertarget{classWateringStrategy_a219b80c1132ecee9d2a87391f37c9f7e}\label{classWateringStrategy_a219b80c1132ecee9d2a87391f37c9f7e} 
+\index{WateringStrategy@{WateringStrategy}!water@{water}}
+\index{water@{water}!WateringStrategy@{WateringStrategy}}
+\doxysubsubsection{\texorpdfstring{water()}{water()}}
+{\footnotesize\ttfamily virtual void Watering\+Strategy\+::water (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Waters the given plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be watered. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classDryPlant_aa27791c88fe5324f1d320dca8a5b2e6b}{Dry\+Plant}}, \mbox{\hyperlink{classHighMoisture_ad43e5707a98345ed88b9cfa6d204a154}{High\+Moisture}}, and \mbox{\hyperlink{classMediumMoisture_ab299d16e0291545e83879d5e0208d9ea}{Medium\+Moisture}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{WateringStrategy_8h}{Watering\+Strategy.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\doxysection{Reduction Class Reference}
+\hypertarget{classReduction}{}\label{classReduction}\index{Reduction@{Reduction}}
+
+
+Concrete pruning strategy for reduction pruning. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy.  
+
+
+
+
+{\ttfamily \#include $<$Reduction.\+h$>$}
+
+
+
+Inheritance diagram for Reduction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classReduction__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Reduction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classReduction__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classReduction_ab6f5477f7c2308bb08cb0111cda68dd5}{prune}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Performs reduction pruning on the given plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classReduction_a2f2ab05fc90880570968b53bc16aa861}{print}} ()
+\begin{DoxyCompactList}\small\item\em Gets a string representation of this strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPruningStrategy_a0d3ed13b6816f882662303df634ed345}{\texorpdfstring{$\sim$}{\string~}\+Pruning\+Strategy}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPruningStrategy}{Pruning\+Strategy}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete pruning strategy for reduction pruning. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements a reduction pruning strategy, which involves cutting back plant growth to control size and shape. This technique is used for plants that need significant trimming to maintain health and appearance.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPruningStrategy}{Pruning\+Strategy} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classReduction_a2f2ab05fc90880570968b53bc16aa861}\label{classReduction_a2f2ab05fc90880570968b53bc16aa861} 
+\index{Reduction@{Reduction}!print@{print}}
+\index{print@{print}!Reduction@{Reduction}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string Reduction\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets a string representation of this strategy. 
+
+\begin{DoxyReturn}{Returns}
+string Description of the reduction pruning strategy. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPruningStrategy_a64bca15bc6390b0602e17709c217877a}{Pruning\+Strategy}}.
+
+\Hypertarget{classReduction_ab6f5477f7c2308bb08cb0111cda68dd5}\label{classReduction_ab6f5477f7c2308bb08cb0111cda68dd5} 
+\index{Reduction@{Reduction}!prune@{prune}}
+\index{prune@{prune}!Reduction@{Reduction}}
+\doxysubsubsection{\texorpdfstring{prune()}{prune()}}
+{\footnotesize\ttfamily void Reduction\+::prune (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Performs reduction pruning on the given plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be pruned. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classPruningStrategy_afde6df8bffa1c15e9c87f965fdd6ba3d}{Pruning\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Reduction_8h}{Reduction.\+h}}\item 
+src/\mbox{\hyperlink{Reduction_8cpp}{Reduction.\+cpp}}\end{DoxyCompactItemize}

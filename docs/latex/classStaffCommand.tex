@@ -1,0 +1,149 @@
+\doxysection{Staff\+Command Class Reference}
+\hypertarget{classStaffCommand}{}\label{classStaffCommand}\index{StaffCommand@{StaffCommand}}
+
+
+Abstract base class for staff commands. Design Pattern\+: Command Participant\+: Command.  
+
+
+
+
+{\ttfamily \#include $<$Staff\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Staff\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classStaffCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Staff\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classStaffCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCommand_abe8268d554fd49c6892942356dc33144}{Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Executes the staff command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant associated with this command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}{nursery}}
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for staff commands. Design Pattern\+: Command Participant\+: Command. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class defines the interface for all staff-\/related commands in the nursery system. Concrete command subclasses encapsulate specific staff operations (pruning, watering, checkout, etc.) as objects, allowing for flexible command execution and potential undo/redo functionality.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPruneCommand}{Prune\+Command} 
+
+\doxylink{classFertiliseCommand}{Fertilise\+Command} 
+
+\doxylink{classPlantCommand}{Plant\+Command} 
+
+\doxylink{classRemoveCommand}{Remove\+Command} 
+
+\doxylink{classStaffCheckoutCommand}{Staff\+Checkout\+Command} 
+
+\doxylink{classStaffCheckStockCommand}{Staff\+Check\+Stock\+Command} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classStaffCommand_abe8268d554fd49c6892942356dc33144}\label{classStaffCommand_abe8268d554fd49c6892942356dc33144} 
+\index{StaffCommand@{StaffCommand}!StaffCommand@{StaffCommand}}
+\index{StaffCommand@{StaffCommand}!StaffCommand@{StaffCommand}}
+\doxysubsubsection{\texorpdfstring{StaffCommand()}{StaffCommand()}}
+{\footnotesize\ttfamily Staff\+Command\+::\+Staff\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. 
+
+Initializes all pointers to nullptr. \Hypertarget{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}\label{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe} 
+\index{StaffCommand@{StaffCommand}!````~StaffCommand@{\texorpdfstring{$\sim$}{\string~}StaffCommand}}
+\index{````~StaffCommand@{\texorpdfstring{$\sim$}{\string~}StaffCommand}!StaffCommand@{StaffCommand}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StaffCommand()}{\string~StaffCommand()}}
+{\footnotesize\ttfamily virtual Staff\+Command\+::\texorpdfstring{$\sim$}{\string~}\+Staff\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}\label{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3} 
+\index{StaffCommand@{StaffCommand}!execute@{execute}}
+\index{execute@{execute}!StaffCommand@{StaffCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Staff\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the staff command. 
+
+This method is overridden by concrete command classes to perform their specific operations. 
+
+Reimplemented in \mbox{\hyperlink{classCalcCostCommand_a07cab15f6ffe9a3257a7880d2d07bce9}{Calc\+Cost\+Command}}, \mbox{\hyperlink{classFertiliseCommand_ad3c829a0c3e575bc68864a66f0c0af8a}{Fertilise\+Command}}, \mbox{\hyperlink{classMakeSellableCommand_a2776c42c5241c30e19a78fc22edce915}{Make\+Sellable\+Command}}, \mbox{\hyperlink{classPlantCommand_ae4e51a017837deb3a23d78089844b0b7}{Plant\+Command}}, \mbox{\hyperlink{classPruneCommand_a919e108a8f98f7e84d62d10619fd4a7d}{Prune\+Command}}, \mbox{\hyperlink{classRemoveCommand_a493b0a9fe7f2c917189b67e8d79d5029}{Remove\+Command}}, \mbox{\hyperlink{classRemoveSaleCommand_af611a11a2a2995dd70b1b8d5fee2c853}{Remove\+Sale\+Command}}, \mbox{\hyperlink{classStockCommand_a13834ee896a9bff819564b29fdf88c88}{Stock\+Command}}, \mbox{\hyperlink{classWaterCommand_a57c9fc5cb3256356f96eb7ab922db1f7}{Water\+Command}}, \mbox{\hyperlink{classGetInfoCommand_a1fa3d05a306add3e823409d7121132d5}{Get\+Info\+Command}}, \mbox{\hyperlink{classStaffCheckoutCommand_a996440ca2d10ea8f08bfe41a56a2ccf9}{Staff\+Checkout\+Command}}, and \mbox{\hyperlink{classStaffCheckStockCommand_ad3854e5f9fde52c6b43a137020e7f6b6}{Staff\+Check\+Stock\+Command}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}\label{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5} 
+\index{StaffCommand@{StaffCommand}!inventoryManager@{inventoryManager}}
+\index{inventoryManager@{inventoryManager}!StaffCommand@{StaffCommand}}
+\doxysubsubsection{\texorpdfstring{inventoryManager}{inventoryManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}}\texorpdfstring{$\ast$}{*} Staff\+Command\+::inventory\+Manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the inventory manager. 
+
+\Hypertarget{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}\label{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407} 
+\index{StaffCommand@{StaffCommand}!nursery@{nursery}}
+\index{nursery@{nursery}!StaffCommand@{StaffCommand}}
+\doxysubsubsection{\texorpdfstring{nursery}{nursery}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNursery}{Nursery}}\texorpdfstring{$\ast$}{*} Staff\+Command\+::nursery\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the nursery singleton. 
+
+\Hypertarget{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}\label{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf} 
+\index{StaffCommand@{StaffCommand}!plant@{plant}}
+\index{plant@{plant}!StaffCommand@{StaffCommand}}
+\doxysubsubsection{\texorpdfstring{plant}{plant}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}}\texorpdfstring{$\ast$}{*} Staff\+Command\+::plant\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the plant associated with this command. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{StaffCommand_8h}{Staff\+Command.\+h}}\item 
+src/\mbox{\hyperlink{StaffCommand_8cpp}{Staff\+Command.\+cpp}}\end{DoxyCompactItemize}

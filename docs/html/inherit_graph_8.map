@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classPlantFactory.html" title="Abstract factory for creating different types of plants. Design Pattern: Abstract Factory Participant..." alt="" coords="5,80,108,105"/>
+<area shape="rect" id="Node000001" href="$classAutumnFactory.html" title="Factory for creating autumn&#45;season plants. Design Pattern: Abstract Factory Participant: ConcreteFact..." alt="" coords="158,5,278,31"/>
+<area shape="poly" id="edge8_Node000000_Node000001" title=" " alt="" coords="92,71,155,40,181,28,183,33,157,44,94,76"/>
+<area shape="rect" id="Node000002" href="$classSpringFactory.html" title="Concrete factory for creating spring&#45;season plants. Design Pattern: Abstract Factory Participant: Con..." alt="" coords="163,55,273,80"/>
+<area shape="poly" id="edge9_Node000000_Node000002" title=" " alt="" coords="121,80,162,73,163,79,122,85"/>
+<area shape="rect" id="Node000003" href="$classSummerFactory.html" title="Concrete factory for creating summer&#45;season plants. Design Pattern: Abstract Factory Participant: Con..." alt="" coords="156,104,280,129"/>
+<area shape="poly" id="edge10_Node000000_Node000003" title=" " alt="" coords="122,100,156,105,155,110,121,105"/>
+<area shape="rect" id="Node000004" href="$classWinterFactory.html" title="Concrete factory for creating winter&#45;season plants. Design Pattern: Abstract Factory Participant: Con..." alt="" coords="162,153,274,179"/>
+<area shape="poly" id="edge11_Node000000_Node000004" title=" " alt="" coords="97,109,157,138,186,151,184,156,155,143,94,114"/>
+</map>

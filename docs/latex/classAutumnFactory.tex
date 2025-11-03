@@ -1,0 +1,213 @@
+\doxysection{Autumn\+Factory Class Reference}
+\hypertarget{classAutumnFactory}{}\label{classAutumnFactory}\index{AutumnFactory@{AutumnFactory}}
+
+
+Factory for creating autumn-\/season plants. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Factory.  
+
+
+
+
+{\ttfamily \#include $<$Autumn\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Autumn\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classAutumnFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Autumn\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classAutumnFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAutumnFactory_a8c47bf5ec7a5d53335f5ae05016a9040}{create\+Flower}} ()
+\begin{DoxyCompactList}\small\item\em Creates an autumn flower plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAutumnFactory_a1b29ee3d40d3dca655f836dde39f4a5c}{create\+Herb}} ()
+\begin{DoxyCompactList}\small\item\em Creates an autumn herb plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAutumnFactory_ad9a78c79e84aeecc73e7328c58c7abdf}{create\+Fruit}} ()
+\begin{DoxyCompactList}\small\item\em Creates an autumn fruit plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAutumnFactory_a07497c8c2f11114266a5fcaae5e2abd9}{create\+Vegetable}} ()
+\begin{DoxyCompactList}\small\item\em Creates an autumn vegetable plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAutumnFactory_a46417ede247445403f4e5b1b4756730e}{create\+Succulent}} ()
+\begin{DoxyCompactList}\small\item\em Creates an autumn succulent plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAutumnFactory_ae3467ae3ea668469d0d7ef4667bc365f}{create\+Aquatic}} ()
+\begin{DoxyCompactList}\small\item\em Creates an autumn aquatic plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAutumnFactory_a7fda46e9c156afbe84b315ebb393be61}{create\+Indoor}} ()
+\begin{DoxyCompactList}\small\item\em Creates an autumn indoor plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAutumnFactory_a6e752d3f7cbdebbc920502ad481f43ab}{create\+Medicinal}} ()
+\begin{DoxyCompactList}\small\item\em Creates an autumn medicinal plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantFactory}{Plant\+Factory}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantFactory_aaa9e963946bd91314941d259f7eec9bd}{\texorpdfstring{$\sim$}{\string~}\+Plant\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPlantFactory}{Plant\+Factory}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory for creating autumn-\/season plants. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Factory. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements the \doxylink{classPlantFactory}{Plant\+Factory} interface to create specific plant types that are available during the \doxylink{classAutumn}{Autumn} season. It provides factory methods for creating flowers, herbs, fruits, vegetables, succulents, aquatic plants, indoor plants, and medicinal plants suitable for autumn.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantFactory}{Plant\+Factory} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAutumnFactory_ae3467ae3ea668469d0d7ef4667bc365f}\label{classAutumnFactory_ae3467ae3ea668469d0d7ef4667bc365f} 
+\index{AutumnFactory@{AutumnFactory}!createAquatic@{createAquatic}}
+\index{createAquatic@{createAquatic}!AutumnFactory@{AutumnFactory}}
+\doxysubsubsection{\texorpdfstring{createAquatic()}{createAquatic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Autumn\+Factory\+::create\+Aquatic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an autumn aquatic plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created autumn aquatic plant (\doxylink{classCattails}{Cattails}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a0f9190403dc92ed675e33f582112b717}{Plant\+Factory}}.
+
+\Hypertarget{classAutumnFactory_a8c47bf5ec7a5d53335f5ae05016a9040}\label{classAutumnFactory_a8c47bf5ec7a5d53335f5ae05016a9040} 
+\index{AutumnFactory@{AutumnFactory}!createFlower@{createFlower}}
+\index{createFlower@{createFlower}!AutumnFactory@{AutumnFactory}}
+\doxysubsubsection{\texorpdfstring{createFlower()}{createFlower()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Autumn\+Factory\+::create\+Flower (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an autumn flower plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created autumn flower (\doxylink{classPansy}{Pansy}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_af0d074fa394a24f7168de8e07b446c3e}{Plant\+Factory}}.
+
+\Hypertarget{classAutumnFactory_ad9a78c79e84aeecc73e7328c58c7abdf}\label{classAutumnFactory_ad9a78c79e84aeecc73e7328c58c7abdf} 
+\index{AutumnFactory@{AutumnFactory}!createFruit@{createFruit}}
+\index{createFruit@{createFruit}!AutumnFactory@{AutumnFactory}}
+\doxysubsubsection{\texorpdfstring{createFruit()}{createFruit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Autumn\+Factory\+::create\+Fruit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an autumn fruit plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created autumn fruit (\doxylink{classStrawberry}{Strawberry}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_aa80395495862c2c47c6238af81e15168}{Plant\+Factory}}.
+
+\Hypertarget{classAutumnFactory_a1b29ee3d40d3dca655f836dde39f4a5c}\label{classAutumnFactory_a1b29ee3d40d3dca655f836dde39f4a5c} 
+\index{AutumnFactory@{AutumnFactory}!createHerb@{createHerb}}
+\index{createHerb@{createHerb}!AutumnFactory@{AutumnFactory}}
+\doxysubsubsection{\texorpdfstring{createHerb()}{createHerb()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Autumn\+Factory\+::create\+Herb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an autumn herb plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created autumn herb (\doxylink{classThyme}{Thyme}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a91ce9b32dc561b9fcf6d275784e2ef99}{Plant\+Factory}}.
+
+\Hypertarget{classAutumnFactory_a7fda46e9c156afbe84b315ebb393be61}\label{classAutumnFactory_a7fda46e9c156afbe84b315ebb393be61} 
+\index{AutumnFactory@{AutumnFactory}!createIndoor@{createIndoor}}
+\index{createIndoor@{createIndoor}!AutumnFactory@{AutumnFactory}}
+\doxysubsubsection{\texorpdfstring{createIndoor()}{createIndoor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Autumn\+Factory\+::create\+Indoor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an autumn indoor plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created autumn indoor plant (\doxylink{classPeaceLily}{Peace\+Lily}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_ae717d4a9732ff9cff0b38d51d8e0e45c}{Plant\+Factory}}.
+
+\Hypertarget{classAutumnFactory_a6e752d3f7cbdebbc920502ad481f43ab}\label{classAutumnFactory_a6e752d3f7cbdebbc920502ad481f43ab} 
+\index{AutumnFactory@{AutumnFactory}!createMedicinal@{createMedicinal}}
+\index{createMedicinal@{createMedicinal}!AutumnFactory@{AutumnFactory}}
+\doxysubsubsection{\texorpdfstring{createMedicinal()}{createMedicinal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Autumn\+Factory\+::create\+Medicinal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an autumn medicinal plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created autumn medicinal plant (\doxylink{classChamomile}{Chamomile}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_a6c29e0e6b4a1dbba6c747121fb26b7e4}{Plant\+Factory}}.
+
+\Hypertarget{classAutumnFactory_a46417ede247445403f4e5b1b4756730e}\label{classAutumnFactory_a46417ede247445403f4e5b1b4756730e} 
+\index{AutumnFactory@{AutumnFactory}!createSucculent@{createSucculent}}
+\index{createSucculent@{createSucculent}!AutumnFactory@{AutumnFactory}}
+\doxysubsubsection{\texorpdfstring{createSucculent()}{createSucculent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Autumn\+Factory\+::create\+Succulent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an autumn succulent plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created autumn succulent (\doxylink{classEcheveria}{Echeveria}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_af1bb9fedebdfa41aa26eb3fea971efc7}{Plant\+Factory}}.
+
+\Hypertarget{classAutumnFactory_a07497c8c2f11114266a5fcaae5e2abd9}\label{classAutumnFactory_a07497c8c2f11114266a5fcaae5e2abd9} 
+\index{AutumnFactory@{AutumnFactory}!createVegetable@{createVegetable}}
+\index{createVegetable@{createVegetable}!AutumnFactory@{AutumnFactory}}
+\doxysubsubsection{\texorpdfstring{createVegetable()}{createVegetable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Autumn\+Factory\+::create\+Vegetable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an autumn vegetable plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to a newly created autumn vegetable (\doxylink{classKale}{Kale}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantFactory_aa29c0d000bf65fa78cd2bc34dc11c3fe}{Plant\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{AutumnFactory_8h}{Autumn\+Factory.\+h}}\item 
+src/\mbox{\hyperlink{AutumnFactory_8cpp}{Autumn\+Factory.\+cpp}}\end{DoxyCompactItemize}

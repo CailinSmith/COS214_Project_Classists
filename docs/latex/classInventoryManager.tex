@@ -1,0 +1,544 @@
+\doxysection{Inventory\+Manager Class Reference}
+\hypertarget{classInventoryManager}{}\label{classInventoryManager}\index{InventoryManager@{InventoryManager}}
+
+
+Design Pattern\+: \doxylink{classIterator}{Iterator}, Observer Participant\+: Concrete \doxylink{classAggregate}{Aggregate}, Concrete \doxylink{classSubject}{Subject}.  
+
+
+
+
+{\ttfamily \#include $<$Inventory\+Manager.\+h$>$}
+
+
+
+Inheritance diagram for Inventory\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classInventoryManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Inventory\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classInventoryManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInventoryManager_a762f9944114edab7d20b0c6abbc3f98e}{Inventory\+Manager}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classInventoryManager_a512a0bfc118080463aabc42267b28036}{\texorpdfstring{$\sim$}{\string~}\+Inventory\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classPlant}{Plant}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classInventoryManager_a401fdd0d1c318b906b143c69f1745f09}{create\+Iterator}} (const std\+::string \&season) override
+\begin{DoxyCompactList}\small\item\em Creates an iterator for traversing plants by season. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classPlant}{Plant}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classInventoryManager_a89428263425084be3fc95a2d150724ca}{create\+Sale\+Iterator}} (const std\+::string \&season)
+\begin{DoxyCompactList}\small\item\em Creates an iterator for traversing sale plants by season. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classPlant}{Plant}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classInventoryManager_a033c5a4517bc73035964ce682b9925d6}{create\+Nursery\+Iterator}} (const std\+::string \&season)
+\begin{DoxyCompactList}\small\item\em Creates an iterator for traversing nursery plants by season. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_ab42eecb8b8395c81e3d2693e41ce1c13}{add\+To\+Sale}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Adds a plant to the sale inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_a5c83248546cdfccfcaccf83f9637e1f6}{add\+To\+Nursery}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Adds a plant to the nursery inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_aedba1565f96f14ac46652cf6ad222ff2}{remove\+From\+Nursery}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Removes a plant from the nursery inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_ad29995a3a278f00540fcbfdd7f5e60ed}{remove\+From\+Sale}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Removes a plant from the sale inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_a0daea71051aee72ae3cf97eadc4d7e0e}{notify\+Staff}} (string message) override
+\begin{DoxyCompactList}\small\item\em Notifies all registered staff observers with a message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_a94e1cdec2dbe5b97019e9470a82740b8}{register\+Observer}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}staff)
+\begin{DoxyCompactList}\small\item\em Registers a staff member as an observer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_a1cdf55ec22cdcd8bbb2d336106f0b88f}{deregister\+Observer}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}staff)
+\begin{DoxyCompactList}\small\item\em Deregisters a staff member as an observer. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classInventoryManager_acc4ab48e35668a9d03f70f2d0d4848fd}{get\+Sale\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the count of plants available for sale. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classInventoryManager_a740ac2be461919889568c19d1c0ba6d4}{get\+Nursery\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the count of plants in the nursery. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInventoryManager_a3ca44cd03eb149be1880e7347268702c}{is\+In\+Sale}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant) const
+\begin{DoxyCompactList}\small\item\em Checks if a plant is in the sale inventory. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInventoryManager_a375c5bd36d3768b2a6b014fb4f3be543}{is\+In\+Nursery}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant) const
+\begin{DoxyCompactList}\small\item\em Checks if a plant is in the nursery inventory. \end{DoxyCompactList}\item 
+const vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classInventoryManager_a9e544aaf12772aa8f23926e88837819d}{get\+For\+Sale\+Plants}} () const
+\begin{DoxyCompactList}\small\item\em Gets the vector of plants available for sale. \end{DoxyCompactList}\item 
+const vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classInventoryManager_ab5d4b9b42fd1576b01f0d22f152a85d6}{get\+Nursery\+Plants}} () const
+\begin{DoxyCompactList}\small\item\em Gets the vector of plants in the nursery. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_ae9fe22e6efdfee7ca24c69ffef2c7f60}{populate\+Demo\+Inventory}} (size\+\_\+t nursery\+Count, size\+\_\+t sale\+Count)
+\begin{DoxyCompactList}\small\item\em Populates the inventory with demo plants for testing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_a7114e8a080d65942d2387eedf5b83b76}{set\+Sale\+Threshold}} (size\+\_\+t t)
+\begin{DoxyCompactList}\small\item\em Sets the threshold for sale inventory notifications. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInventoryManager_acfaf41f9a4c0cad8e0aae762023f5e5c}{set\+Nursery\+Threshold}} (size\+\_\+t t)
+\begin{DoxyCompactList}\small\item\em Sets the threshold for nursery inventory notifications. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classAggregate}{Aggregate}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classAggregate_aa59597e202b5ddea69919ca733579ecf}{\texorpdfstring{$\sim$}{\string~}\+Aggregate}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSubject}{Subject}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classSubject_a07c8a305c3629b14283545536f38af54}{notify\+Staff}} (std\+::string message)=0
+\begin{DoxyCompactList}\small\item\em Notifies all staff observers of a message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classInventoryManager_a457d7f208bbf1187353a2bea9ed263b6}{check\+And\+Notify}} ()
+\begin{DoxyCompactList}\small\item\em Checks inventory levels and notifies observers if thresholds are exceeded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classInventoryManager_aa59c4a31d3c12fd3971c773e4bbd41ab}{for\+Sale}}
+\begin{DoxyCompactList}\small\item\em Vectors to hold plants for sale and in the nursery. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classInventoryManager_a423353f7262c6c009f210a9a618dab60}{observer\+List}}
+\begin{DoxyCompactList}\small\item\em List of registered staff observers. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classInventoryManager_abfb82377172ad333885852708c350576}{in\+Nursery}}
+\begin{DoxyCompactList}\small\item\em Vectors to hold plants in nursery. \end{DoxyCompactList}\item 
+map$<$ string, int $>$ \mbox{\hyperlink{classInventoryManager_a3a87364a21dd3c5a953d51be3513ddc2}{priority}}
+\begin{DoxyCompactList}\small\item\em Priority mapping for plant categories. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classInventoryManager_ab7aaed6939c0d6a292a722a5d89497ab}{sale\+Threshold}} = 5
+\begin{DoxyCompactList}\small\item\em Inventory thresholds for notifications. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classInventoryManager_a742d4ea4b9af5332424a4d52e401e194}{nursery\+Threshold}} = 5
+\begin{DoxyCompactList}\small\item\em Inventory thresholds for notifications. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: \doxylink{classIterator}{Iterator}, Observer Participant\+: Concrete \doxylink{classAggregate}{Aggregate}, Concrete \doxylink{classSubject}{Subject}. 
+
+\begin{DoxyAuthor}{Author}
+Alex Lange 
+
+Edwin Kusel 
+
+Jordan Naidoo 
+
+Cailin Smith 
+\end{DoxyAuthor}
+This class manages the plant inventory for both sale and nursery areas. It implements the \doxylink{classAggregate}{Aggregate} interface to provide iterators for traversing plants by season, and the \doxylink{classSubject}{Subject} interface to notify staff observers when inventory thresholds are reached.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classAggregate}{Aggregate} 
+
+\doxylink{classSubject}{Subject} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classInventoryManager_a762f9944114edab7d20b0c6abbc3f98e}\label{classInventoryManager_a762f9944114edab7d20b0c6abbc3f98e} 
+\index{InventoryManager@{InventoryManager}!InventoryManager@{InventoryManager}}
+\index{InventoryManager@{InventoryManager}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{InventoryManager()}{InventoryManager()}}
+{\footnotesize\ttfamily Inventory\+Manager\+::\+Inventory\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classInventoryManager_a512a0bfc118080463aabc42267b28036}\label{classInventoryManager_a512a0bfc118080463aabc42267b28036} 
+\index{InventoryManager@{InventoryManager}!````~InventoryManager@{\texorpdfstring{$\sim$}{\string~}InventoryManager}}
+\index{````~InventoryManager@{\texorpdfstring{$\sim$}{\string~}InventoryManager}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}InventoryManager()}{\string~InventoryManager()}}
+{\footnotesize\ttfamily Inventory\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Inventory\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classInventoryManager_a5c83248546cdfccfcaccf83f9637e1f6}\label{classInventoryManager_a5c83248546cdfccfcaccf83f9637e1f6} 
+\index{InventoryManager@{InventoryManager}!addToNursery@{addToNursery}}
+\index{addToNursery@{addToNursery}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{addToNursery()}{addToNursery()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::add\+To\+Nursery (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})}
+
+
+
+Adds a plant to the nursery inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to add \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_ab42eecb8b8395c81e3d2693e41ce1c13}\label{classInventoryManager_ab42eecb8b8395c81e3d2693e41ce1c13} 
+\index{InventoryManager@{InventoryManager}!addToSale@{addToSale}}
+\index{addToSale@{addToSale}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{addToSale()}{addToSale()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::add\+To\+Sale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})}
+
+
+
+Adds a plant to the sale inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to add \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_a457d7f208bbf1187353a2bea9ed263b6}\label{classInventoryManager_a457d7f208bbf1187353a2bea9ed263b6} 
+\index{InventoryManager@{InventoryManager}!checkAndNotify@{checkAndNotify}}
+\index{checkAndNotify@{checkAndNotify}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{checkAndNotify()}{checkAndNotify()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::check\+And\+Notify (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks inventory levels and notifies observers if thresholds are exceeded. 
+
+\Hypertarget{classInventoryManager_a401fdd0d1c318b906b143c69f1745f09}\label{classInventoryManager_a401fdd0d1c318b906b143c69f1745f09} 
+\index{InventoryManager@{InventoryManager}!createIterator@{createIterator}}
+\index{createIterator@{createIterator}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{createIterator()}{createIterator()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classPlant}{Plant}} $>$ \texorpdfstring{$\ast$}{*} Inventory\+Manager\+::create\+Iterator (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{season }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Creates an iterator for traversing plants by season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season} & The season string to filter plants by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a new \doxylink{classIterator}{Iterator} object 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAggregate_ac9b651f11e323e3aa58cb2a24fb7414f}{Aggregate}}.
+
+\Hypertarget{classInventoryManager_a033c5a4517bc73035964ce682b9925d6}\label{classInventoryManager_a033c5a4517bc73035964ce682b9925d6} 
+\index{InventoryManager@{InventoryManager}!createNurseryIterator@{createNurseryIterator}}
+\index{createNurseryIterator@{createNurseryIterator}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{createNurseryIterator()}{createNurseryIterator()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classPlant}{Plant}} $>$ \texorpdfstring{$\ast$}{*} Inventory\+Manager\+::create\+Nursery\+Iterator (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{season }\end{DoxyParamCaption})}
+
+
+
+Creates an iterator for traversing nursery plants by season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season} & The season string to filter plants by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a new \doxylink{classIterator}{Iterator} object for nursery plants 
+\end{DoxyReturn}
+\Hypertarget{classInventoryManager_a89428263425084be3fc95a2d150724ca}\label{classInventoryManager_a89428263425084be3fc95a2d150724ca} 
+\index{InventoryManager@{InventoryManager}!createSaleIterator@{createSaleIterator}}
+\index{createSaleIterator@{createSaleIterator}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{createSaleIterator()}{createSaleIterator()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classPlant}{Plant}} $>$ \texorpdfstring{$\ast$}{*} Inventory\+Manager\+::create\+Sale\+Iterator (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{season }\end{DoxyParamCaption})}
+
+
+
+Creates an iterator for traversing sale plants by season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season} & The season string to filter plants by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a new \doxylink{classIterator}{Iterator} object for sale plants 
+\end{DoxyReturn}
+\Hypertarget{classInventoryManager_a1cdf55ec22cdcd8bbb2d336106f0b88f}\label{classInventoryManager_a1cdf55ec22cdcd8bbb2d336106f0b88f} 
+\index{InventoryManager@{InventoryManager}!deregisterObserver@{deregisterObserver}}
+\index{deregisterObserver@{deregisterObserver}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{deregisterObserver()}{deregisterObserver()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::deregister\+Observer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{staff }\end{DoxyParamCaption})}
+
+
+
+Deregisters a staff member as an observer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em staff} & Pointer to the staff member to deregister \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_a9e544aaf12772aa8f23926e88837819d}\label{classInventoryManager_a9e544aaf12772aa8f23926e88837819d} 
+\index{InventoryManager@{InventoryManager}!getForSalePlants@{getForSalePlants}}
+\index{getForSalePlants@{getForSalePlants}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{getForSalePlants()}{getForSalePlants()}}
+{\footnotesize\ttfamily const vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \& Inventory\+Manager\+::get\+For\+Sale\+Plants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the vector of plants available for sale. 
+
+\begin{DoxyReturn}{Returns}
+Const reference to the for\+Sale vector 
+\end{DoxyReturn}
+\Hypertarget{classInventoryManager_a740ac2be461919889568c19d1c0ba6d4}\label{classInventoryManager_a740ac2be461919889568c19d1c0ba6d4} 
+\index{InventoryManager@{InventoryManager}!getNurseryCount@{getNurseryCount}}
+\index{getNurseryCount@{getNurseryCount}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{getNurseryCount()}{getNurseryCount()}}
+{\footnotesize\ttfamily size\+\_\+t Inventory\+Manager\+::get\+Nursery\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the count of plants in the nursery. 
+
+\begin{DoxyReturn}{Returns}
+The number of plants in the nursery inventory 
+\end{DoxyReturn}
+\Hypertarget{classInventoryManager_ab5d4b9b42fd1576b01f0d22f152a85d6}\label{classInventoryManager_ab5d4b9b42fd1576b01f0d22f152a85d6} 
+\index{InventoryManager@{InventoryManager}!getNurseryPlants@{getNurseryPlants}}
+\index{getNurseryPlants@{getNurseryPlants}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{getNurseryPlants()}{getNurseryPlants()}}
+{\footnotesize\ttfamily const vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \& Inventory\+Manager\+::get\+Nursery\+Plants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the vector of plants in the nursery. 
+
+\begin{DoxyReturn}{Returns}
+Const reference to the in\+Nursery vector 
+\end{DoxyReturn}
+\Hypertarget{classInventoryManager_acc4ab48e35668a9d03f70f2d0d4848fd}\label{classInventoryManager_acc4ab48e35668a9d03f70f2d0d4848fd} 
+\index{InventoryManager@{InventoryManager}!getSaleCount@{getSaleCount}}
+\index{getSaleCount@{getSaleCount}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{getSaleCount()}{getSaleCount()}}
+{\footnotesize\ttfamily size\+\_\+t Inventory\+Manager\+::get\+Sale\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the count of plants available for sale. 
+
+\begin{DoxyReturn}{Returns}
+The number of plants in the sale inventory 
+\end{DoxyReturn}
+\Hypertarget{classInventoryManager_a375c5bd36d3768b2a6b014fb4f3be543}\label{classInventoryManager_a375c5bd36d3768b2a6b014fb4f3be543} 
+\index{InventoryManager@{InventoryManager}!isInNursery@{isInNursery}}
+\index{isInNursery@{isInNursery}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{isInNursery()}{isInNursery()}}
+{\footnotesize\ttfamily bool Inventory\+Manager\+::is\+In\+Nursery (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption}) const}
+
+
+
+Checks if a plant is in the nursery inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the plant is in nursery inventory, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classInventoryManager_a3ca44cd03eb149be1880e7347268702c}\label{classInventoryManager_a3ca44cd03eb149be1880e7347268702c} 
+\index{InventoryManager@{InventoryManager}!isInSale@{isInSale}}
+\index{isInSale@{isInSale}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{isInSale()}{isInSale()}}
+{\footnotesize\ttfamily bool Inventory\+Manager\+::is\+In\+Sale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption}) const}
+
+
+
+Checks if a plant is in the sale inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the plant is in sale inventory, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classInventoryManager_a0daea71051aee72ae3cf97eadc4d7e0e}\label{classInventoryManager_a0daea71051aee72ae3cf97eadc4d7e0e} 
+\index{InventoryManager@{InventoryManager}!notifyStaff@{notifyStaff}}
+\index{notifyStaff@{notifyStaff}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{notifyStaff()}{notifyStaff()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::notify\+Staff (\begin{DoxyParamCaption}\item[{string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Notifies all registered staff observers with a message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The notification message to send \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_ae9fe22e6efdfee7ca24c69ffef2c7f60}\label{classInventoryManager_ae9fe22e6efdfee7ca24c69ffef2c7f60} 
+\index{InventoryManager@{InventoryManager}!populateDemoInventory@{populateDemoInventory}}
+\index{populateDemoInventory@{populateDemoInventory}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{populateDemoInventory()}{populateDemoInventory()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::populate\+Demo\+Inventory (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{nursery\+Count,  }\item[{size\+\_\+t}]{sale\+Count }\end{DoxyParamCaption})}
+
+
+
+Populates the inventory with demo plants for testing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nursery\+Count} & Number of plants to add to the nursery \\
+\hline
+{\em sale\+Count} & Number of plants to add to the sale inventory \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_a94e1cdec2dbe5b97019e9470a82740b8}\label{classInventoryManager_a94e1cdec2dbe5b97019e9470a82740b8} 
+\index{InventoryManager@{InventoryManager}!registerObserver@{registerObserver}}
+\index{registerObserver@{registerObserver}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{registerObserver()}{registerObserver()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::register\+Observer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{staff }\end{DoxyParamCaption})}
+
+
+
+Registers a staff member as an observer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em staff} & Pointer to the staff member to register \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_aedba1565f96f14ac46652cf6ad222ff2}\label{classInventoryManager_aedba1565f96f14ac46652cf6ad222ff2} 
+\index{InventoryManager@{InventoryManager}!removeFromNursery@{removeFromNursery}}
+\index{removeFromNursery@{removeFromNursery}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{removeFromNursery()}{removeFromNursery()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::remove\+From\+Nursery (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})}
+
+
+
+Removes a plant from the nursery inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to remove \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_ad29995a3a278f00540fcbfdd7f5e60ed}\label{classInventoryManager_ad29995a3a278f00540fcbfdd7f5e60ed} 
+\index{InventoryManager@{InventoryManager}!removeFromSale@{removeFromSale}}
+\index{removeFromSale@{removeFromSale}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{removeFromSale()}{removeFromSale()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::remove\+From\+Sale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})}
+
+
+
+Removes a plant from the sale inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to remove \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_acfaf41f9a4c0cad8e0aae762023f5e5c}\label{classInventoryManager_acfaf41f9a4c0cad8e0aae762023f5e5c} 
+\index{InventoryManager@{InventoryManager}!setNurseryThreshold@{setNurseryThreshold}}
+\index{setNurseryThreshold@{setNurseryThreshold}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{setNurseryThreshold()}{setNurseryThreshold()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::set\+Nursery\+Threshold (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the threshold for nursery inventory notifications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The new threshold value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInventoryManager_a7114e8a080d65942d2387eedf5b83b76}\label{classInventoryManager_a7114e8a080d65942d2387eedf5b83b76} 
+\index{InventoryManager@{InventoryManager}!setSaleThreshold@{setSaleThreshold}}
+\index{setSaleThreshold@{setSaleThreshold}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{setSaleThreshold()}{setSaleThreshold()}}
+{\footnotesize\ttfamily void Inventory\+Manager\+::set\+Sale\+Threshold (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the threshold for sale inventory notifications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The new threshold value \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classInventoryManager_aa59c4a31d3c12fd3971c773e4bbd41ab}\label{classInventoryManager_aa59c4a31d3c12fd3971c773e4bbd41ab} 
+\index{InventoryManager@{InventoryManager}!forSale@{forSale}}
+\index{forSale@{forSale}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{forSale}{forSale}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classPlant}{Plant}}\texorpdfstring{$\ast$}{*}$>$ Inventory\+Manager\+::for\+Sale\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vectors to hold plants for sale and in the nursery. 
+
+\Hypertarget{classInventoryManager_abfb82377172ad333885852708c350576}\label{classInventoryManager_abfb82377172ad333885852708c350576} 
+\index{InventoryManager@{InventoryManager}!inNursery@{inNursery}}
+\index{inNursery@{inNursery}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{inNursery}{inNursery}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classPlant}{Plant}}\texorpdfstring{$\ast$}{*}$>$ Inventory\+Manager\+::in\+Nursery\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vectors to hold plants in nursery. 
+
+\Hypertarget{classInventoryManager_a742d4ea4b9af5332424a4d52e401e194}\label{classInventoryManager_a742d4ea4b9af5332424a4d52e401e194} 
+\index{InventoryManager@{InventoryManager}!nurseryThreshold@{nurseryThreshold}}
+\index{nurseryThreshold@{nurseryThreshold}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{nurseryThreshold}{nurseryThreshold}}
+{\footnotesize\ttfamily size\+\_\+t Inventory\+Manager\+::nursery\+Threshold = 5\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Inventory thresholds for notifications. 
+
+\Hypertarget{classInventoryManager_a423353f7262c6c009f210a9a618dab60}\label{classInventoryManager_a423353f7262c6c009f210a9a618dab60} 
+\index{InventoryManager@{InventoryManager}!observerList@{observerList}}
+\index{observerList@{observerList}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{observerList}{observerList}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*}$>$ Inventory\+Manager\+::observer\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+List of registered staff observers. 
+
+\Hypertarget{classInventoryManager_a3a87364a21dd3c5a953d51be3513ddc2}\label{classInventoryManager_a3a87364a21dd3c5a953d51be3513ddc2} 
+\index{InventoryManager@{InventoryManager}!priority@{priority}}
+\index{priority@{priority}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{priority}{priority}}
+{\footnotesize\ttfamily map$<$string, int$>$ Inventory\+Manager\+::priority\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Flower"{}},\ 0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Herb"{}},\ 1\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Fruit"{}},\ 2\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Vegetable"{}},\ 3\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Succulent"{}},\ 4\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Aquatic"{}},\ 5\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Indoor"{}},\ 6\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Medicinal"{}},\ 7\}}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Priority mapping for plant categories. 
+
+\Hypertarget{classInventoryManager_ab7aaed6939c0d6a292a722a5d89497ab}\label{classInventoryManager_ab7aaed6939c0d6a292a722a5d89497ab} 
+\index{InventoryManager@{InventoryManager}!saleThreshold@{saleThreshold}}
+\index{saleThreshold@{saleThreshold}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{saleThreshold}{saleThreshold}}
+{\footnotesize\ttfamily size\+\_\+t Inventory\+Manager\+::sale\+Threshold = 5\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Inventory thresholds for notifications. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{InventoryManager_8h}{Inventory\+Manager.\+h}}\item 
+src/\mbox{\hyperlink{InventoryManager_8cpp}{Inventory\+Manager.\+cpp}}\end{DoxyCompactItemize}

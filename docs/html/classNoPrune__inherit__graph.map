@@ -1,0 +1,5 @@
+<map id="NoPrune" name="NoPrune">
+<area shape="rect" id="Node000001" title="Implements no pruning strategy for plants. Design Pattern: Strategy Participant: ConcreteStrategy." alt="" coords="30,79,107,104"/>
+<area shape="rect" id="Node000002" href="$classPruningStrategy.html" title="Abstract strategy for pruning plants. Design Pattern: Strategy Participant: Strategy." alt="" coords="5,5,132,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,44,71,79,66,79,66,44"/>
+</map>

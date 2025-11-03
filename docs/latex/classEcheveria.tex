@@ -1,0 +1,170 @@
+\doxysection{Echeveria Class Reference}
+\hypertarget{classEcheveria}{}\label{classEcheveria}\index{Echeveria@{Echeveria}}
+
+
+Represents an \doxylink{classEcheveria}{Echeveria} succulent plant. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Product.  
+
+
+
+
+{\ttfamily \#include $<$Echeveria.\+h$>$}
+
+
+
+Inheritance diagram for Echeveria\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=145pt]{classEcheveria__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Echeveria\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEcheveria__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEcheveria_a944e0277a45735a1e0b3100c318a51ab}{Echeveria}} ()
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classEcheveria}{Echeveria} plant with default characteristics. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classEcheveria_a65d8b916959bb4da02fa1ff4f2eff1bf}{get\+Image\+Path}} () override
+\begin{DoxyCompactList}\small\item\em Gets the image path for the \doxylink{classEcheveria}{Echeveria} plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSucculent}{Succulent}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSucculent_aa086f48e2d22e516815782959897fc20}{Succulent}} (int \mbox{\hyperlink{classPlant_ad339313da357bf2c1a22d68ab1d18437}{max\+Height}}, \mbox{\hyperlink{classWateringStrategy}{Watering\+Strategy}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classPlant_a555aa51225db5b0e28887daa17a688be}{watering\+Strat}}, \mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classPlant_ae5f3749ec4bf1623d9ba19d6e3a9892d}{pruning\+Strat}}, string \mbox{\hyperlink{classPlant_a5e7524c02c407392be4ac490f849eecd}{name}}, string \mbox{\hyperlink{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}{sell\+Season}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSucculent}{Succulent} plant. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classSucculent_a3058897f304dec078a1909a3027abf74}{base\+Cost}} () override
+\begin{DoxyCompactList}\small\item\em Calculates the base cost for succulent plants (primitive operation for Template Method). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlant}{Plant}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant_a10611539393bddc165203f3e2f34fab1}{Plant}} (string \mbox{\hyperlink{classPlant_a1199b012e19d81e1e1d279c431e8362e}{category}}, int \mbox{\hyperlink{classPlant_ad339313da357bf2c1a22d68ab1d18437}{max\+Height}}, \mbox{\hyperlink{classWateringStrategy}{Watering\+Strategy}} \texorpdfstring{$\ast$}{*}water\+Strat, \mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}} \texorpdfstring{$\ast$}{*}prune\+Strat, string \mbox{\hyperlink{classPlant_a5e7524c02c407392be4ac490f849eecd}{name}}, string \mbox{\hyperlink{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}{sell\+Season}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classPlant}{Plant} with specified characteristics. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29}{\texorpdfstring{$\sim$}{\string~}\+Plant}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPlant}{Plant} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_af4552dd9ec01741c38eefd2f15ce2431}{water}} ()
+\begin{DoxyCompactList}\small\item\em Waters the plant using its watering strategy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a5dc852d2699b12c272c9c560138933f4}{prune}} ()
+\begin{DoxyCompactList}\small\item\em Prunes the plant using its pruning strategy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a70a53169f068ab5d8b2f5b6701e49aa1}{fertilise}} ()
+\begin{DoxyCompactList}\small\item\em Fertilises the plant to promote growth. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a32f64c1097a39dc892dc9289cb23dfeb}{summary}} ()
+\begin{DoxyCompactList}\small\item\em Generates a detailed summary of the plant\textquotesingle{}s status. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_ab7dc62eeaf0ef7859d33a16a5b497a74}{customer\+Summary}} ()
+\begin{DoxyCompactList}\small\item\em Generates a customer-\/facing summary of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_ae38ed8fecfdf9436c197e8fb6979dcfd}{get\+Water\+Level}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current water level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a3fd132844992c39f6ce16dcf4de84d51}{set\+Water\+Level}} (float level)
+\begin{DoxyCompactList}\small\item\em Sets the water level of the plant. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlant_a8cbb56e7607f3a837c5c31c772821661}{get\+Pruned}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the plant has been pruned. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a08a0ce721bd454405f60dd40b66659cc}{set\+Pruned}} (bool \mbox{\hyperlink{classPlant_a0d2126f55f610743b97c981c350b8ef0}{pruned}})
+\begin{DoxyCompactList}\small\item\em Sets the pruned status of the plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a83e760df6246eb9468c00921505de146}{get\+Category}} ()
+\begin{DoxyCompactList}\small\item\em Gets the plant category. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a9c8946f35cb4fff3e1341b7f8c8ac6ba}{get\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current height of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_aa2467d428d0c1b945061dd7300b93cc9}{set\+Height}} (float \mbox{\hyperlink{classPlant_a2fba560075fb31026c3fcb4a3625f9b1}{height}})
+\begin{DoxyCompactList}\small\item\em Sets the height of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_aa83eb4ce6a92dc6859f8ede70cef7e74}{get\+Actual\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Gets the actual height of the plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a07fb6a2568f940b6655ea6714e06ba6d}{get\+State}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current state of the plant as a string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_abe31f5c708a3d551b01cf22bbd8d221f}{set\+State}} (\mbox{\hyperlink{classPlantState}{Plant\+State}} \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Sets the plant\textquotesingle{}s current state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_abc62e9840b319ac27f62737459a61436}{set\+Health}} (float \mbox{\hyperlink{classPlant_a24505f555de90a3b5b0fbc7aa615cb4b}{health}})
+\begin{DoxyCompactList}\small\item\em Sets the health of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a04380d2a574ac1da9aba29c78f8e7112}{get\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current health of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a211d9c4a3e0c2c1acc5b2fb9124db1df}{set\+Total\+Water}} (int total)
+\begin{DoxyCompactList}\small\item\em Sets the total water given to the plant. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlant_aebe17b06d92cf310568e47b2959d451b}{get\+Total\+Water}} ()
+\begin{DoxyCompactList}\small\item\em Gets the total water given to the plant. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlant_ae86ed085d17995b5faf320ec55defe66}{get\+Max\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Gets the maximum height the plant can reach. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a7794a8b91ceb0cf6309bc3e5bc53fbfa}{get\+Strategies}} ()
+\begin{DoxyCompactList}\small\item\em Gets a string description of the plant\textquotesingle{}s care strategies. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a91981706cdc524141d46d222d99a7bcb}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a9ea2abd8cd84b5a81a8d046fca9e0c15}{change\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Triggers a change in the plant\textquotesingle{}s growth state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_ac4881de7d9da39ecb730dc7b3e9a7970}{change\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Updates the plant\textquotesingle{}s health based on its current conditions. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_ac5cc4bf5eb5b0a9f330827265e77ea51}{get\+Sell\+Season}} ()
+\begin{DoxyCompactList}\small\item\em Gets the season when this plant is available for sale. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a4a819e97ddb7bd5b9a6e52e4a83ff5e2}{calculate\+Cost}} (string curr\+Season)
+\begin{DoxyCompactList}\small\item\em Calculates the cost based on the current season. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classPlant_a31137f98667ee0672874d82cebbee537}{season\+Cost}} (string cur\+Season)
+\begin{DoxyCompactList}\small\item\em Calculates seasonal cost adjustments. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a0176ca4d6060c9f0cf0da2286a78ca9b}{get\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current cost of the plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlant_a6b25f8fde68eebea72c20ef7543dfea8}{get\+Base\+Plant}} ()
+\begin{DoxyCompactList}\small\item\em Gets the base plant (used by decorator pattern). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classProduct}{Product}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classProduct_a18f26095e25405579968c6ede367484f}{\texorpdfstring{$\sim$}{\string~}\+Product}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classProduct_a867d6377f83e2baac15d0afcb1e79bf6}{get\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves additional information about the product. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an \doxylink{classEcheveria}{Echeveria} succulent plant. Design Pattern\+: Abstract Factory Participant\+: Concrete\+Product. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class represents an \doxylink{classEcheveria}{Echeveria} plant, which is a succulent with dry watering requirements and thinning pruning strategy. The plant has a maximum height of 30cm and is available for sale during the \doxylink{classSummer}{Summer} season.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classSucculent}{Succulent} 
+
+\doxylink{classDryPlant}{Dry\+Plant} 
+
+\doxylink{classThinning}{Thinning} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEcheveria_a944e0277a45735a1e0b3100c318a51ab}\label{classEcheveria_a944e0277a45735a1e0b3100c318a51ab} 
+\index{Echeveria@{Echeveria}!Echeveria@{Echeveria}}
+\index{Echeveria@{Echeveria}!Echeveria@{Echeveria}}
+\doxysubsubsection{\texorpdfstring{Echeveria()}{Echeveria()}}
+{\footnotesize\ttfamily Echeveria\+::\+Echeveria (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an \doxylink{classEcheveria}{Echeveria} plant with default characteristics. 
+
+Initializes the \doxylink{classEcheveria}{Echeveria} with a maximum height of 30cm, dry watering strategy, thinning pruning strategy, and sets it as available for sale in \doxylink{classSummer}{Summer}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEcheveria_a65d8b916959bb4da02fa1ff4f2eff1bf}\label{classEcheveria_a65d8b916959bb4da02fa1ff4f2eff1bf} 
+\index{Echeveria@{Echeveria}!getImagePath@{getImagePath}}
+\index{getImagePath@{getImagePath}!Echeveria@{Echeveria}}
+\doxysubsubsection{\texorpdfstring{getImagePath()}{getImagePath()}}
+{\footnotesize\ttfamily string Echeveria\+::get\+Image\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the image path for the \doxylink{classEcheveria}{Echeveria} plant. 
+
+\begin{DoxyReturn}{Returns}
+string The path to the \doxylink{classEcheveria}{Echeveria} image asset. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlant_a0a03060cc05897960fd484e2c128eb5d}{Plant}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Echeveria_8h}{Echeveria.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,166 @@
+\doxysection{Customer\+Command Class Reference}
+\hypertarget{classCustomerCommand}{}\label{classCustomerCommand}\index{CustomerCommand@{CustomerCommand}}
+
+
+Design Pattern\+: Command Participant\+: Command Interface.  
+
+
+
+
+{\ttfamily \#include $<$Customer\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Customer\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCustomerCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Customer\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCustomerCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCustomerCommand_a173198415f289ddb49bdce4a922680c0}{Customer\+Command}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}s, \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}p, vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}o, vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}f)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classCustomerCommand}{Customer\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classCustomerCommand_a7704c0793684c5134e4dbab578696f11}{\texorpdfstring{$\sim$}{\string~}\+Customer\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+virtual pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classCustomerCommand_a036130d3067b0b44a37cfca5f032755b}{execute}} ()=0
+\begin{DoxyCompactList}\small\item\em Executes the customer command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomerCommand_acc93353d78c9d32a95998c93e36928b0}{staff}}
+\begin{DoxyCompactList}\small\item\em Pointer to the staff member handling the command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomerCommand_a9aa20d3f8f8e1ee83b245e0e6a50414d}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant involved in the command. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomerCommand_a7bf22ad7a9b6b994c73a245d5edf152c}{order}}
+\begin{DoxyCompactList}\small\item\em Pointer to the order vector. \end{DoxyCompactList}\item 
+vector$<$ bool $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d}{flags}}
+\begin{DoxyCompactList}\small\item\em Pointer to flags for the order (marking for refund) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: Command Participant\+: Command Interface. 
+
+\begin{DoxyAuthor}{Author}
+Abhay Rooplall 
+\end{DoxyAuthor}
+This abstract class defines the interface for customer commands in the command pattern. It encapsulates customer requests to staff members, allowing for parameterization and queuing of requests. Concrete command classes implement the execute method to perform specific operations.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaff}{Staff} 
+
+\doxylink{classReceipt}{Receipt} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCustomerCommand_a173198415f289ddb49bdce4a922680c0}\label{classCustomerCommand_a173198415f289ddb49bdce4a922680c0} 
+\index{CustomerCommand@{CustomerCommand}!CustomerCommand@{CustomerCommand}}
+\index{CustomerCommand@{CustomerCommand}!CustomerCommand@{CustomerCommand}}
+\doxysubsubsection{\texorpdfstring{CustomerCommand()}{CustomerCommand()}}
+{\footnotesize\ttfamily Customer\+Command\+::\+Customer\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{s,  }\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{p,  }\item[{vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}}]{o,  }\item[{vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classCustomerCommand}{Customer\+Command}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the staff member handling the command \\
+\hline
+{\em p} & Pointer to the plant involved in the command \\
+\hline
+{\em o} & Pointer to the order vector \\
+\hline
+{\em f} & Pointer to flags for the order \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classCustomerCommand_a7704c0793684c5134e4dbab578696f11}\label{classCustomerCommand_a7704c0793684c5134e4dbab578696f11} 
+\index{CustomerCommand@{CustomerCommand}!````~CustomerCommand@{\texorpdfstring{$\sim$}{\string~}CustomerCommand}}
+\index{````~CustomerCommand@{\texorpdfstring{$\sim$}{\string~}CustomerCommand}!CustomerCommand@{CustomerCommand}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CustomerCommand()}{\string~CustomerCommand()}}
+{\footnotesize\ttfamily virtual Customer\+Command\+::\texorpdfstring{$\sim$}{\string~}\+Customer\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCustomerCommand_a036130d3067b0b44a37cfca5f032755b}\label{classCustomerCommand_a036130d3067b0b44a37cfca5f032755b} 
+\index{CustomerCommand@{CustomerCommand}!execute@{execute}}
+\index{execute@{execute}!CustomerCommand@{CustomerCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily virtual pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ Customer\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Executes the customer command. 
+
+\begin{DoxyReturn}{Returns}
+Pair containing response message and receipt pointer 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAskInfoCommand_ab4b5bd8abe03180e03cf5a26e187c41f}{Ask\+Info\+Command}}, \mbox{\hyperlink{classCheckoutCommand_a46b9c377fc15d24e93ce35ae9cb5b336}{Checkout\+Command}}, \mbox{\hyperlink{classCheckStockCommand_a7cd652616d063e4c9398058923a36fd4}{Check\+Stock\+Command}}, and \mbox{\hyperlink{classRefundCommand_a700665c1efa0741b908064841556cea7}{Refund\+Command}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d}\label{classCustomerCommand_a1eaeb79eae2aba49f1247fd942d4f81d} 
+\index{CustomerCommand@{CustomerCommand}!flags@{flags}}
+\index{flags@{flags}!CustomerCommand@{CustomerCommand}}
+\doxysubsubsection{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily vector$<$bool$>$\texorpdfstring{$\ast$}{*} Customer\+Command\+::flags\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to flags for the order (marking for refund) 
+
+\Hypertarget{classCustomerCommand_a7bf22ad7a9b6b994c73a245d5edf152c}\label{classCustomerCommand_a7bf22ad7a9b6b994c73a245d5edf152c} 
+\index{CustomerCommand@{CustomerCommand}!order@{order}}
+\index{order@{order}!CustomerCommand@{CustomerCommand}}
+\doxysubsubsection{\texorpdfstring{order}{order}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classProduct}{Product}}\texorpdfstring{$\ast$}{*}$>$\texorpdfstring{$\ast$}{*} Customer\+Command\+::order\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the order vector. 
+
+\Hypertarget{classCustomerCommand_a9aa20d3f8f8e1ee83b245e0e6a50414d}\label{classCustomerCommand_a9aa20d3f8f8e1ee83b245e0e6a50414d} 
+\index{CustomerCommand@{CustomerCommand}!plant@{plant}}
+\index{plant@{plant}!CustomerCommand@{CustomerCommand}}
+\doxysubsubsection{\texorpdfstring{plant}{plant}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}}\texorpdfstring{$\ast$}{*} Customer\+Command\+::plant\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the plant involved in the command. 
+
+\Hypertarget{classCustomerCommand_acc93353d78c9d32a95998c93e36928b0}\label{classCustomerCommand_acc93353d78c9d32a95998c93e36928b0} 
+\index{CustomerCommand@{CustomerCommand}!staff@{staff}}
+\index{staff@{staff}!CustomerCommand@{CustomerCommand}}
+\doxysubsubsection{\texorpdfstring{staff}{staff}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Customer\+Command\+::staff\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the staff member handling the command. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{CustomerCommand_8h}{Customer\+Command.\+h}}\end{DoxyCompactItemize}

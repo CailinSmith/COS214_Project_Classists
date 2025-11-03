@@ -1,0 +1,111 @@
+\doxysection{Prune\+Command Class Reference}
+\hypertarget{classPruneCommand}{}\label{classPruneCommand}\index{PruneCommand@{PruneCommand}}
+
+
+Command for pruning a plant. Design Pattern\+: Command Participant\+: Concrete\+Command.  
+
+
+
+
+{\ttfamily \#include $<$Prune\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Prune\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classPruneCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Prune\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPruneCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPruneCommand_a2e31ad935436de46d6fe469f25cabf62}{Prune\+Command}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classPruneCommand}{Prune\+Command}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPruneCommand_a919e108a8f98f7e84d62d10619fd4a7d}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Executes the prune command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCommand_abe8268d554fd49c6892942356dc33144}{Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant associated with this command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}{nursery}}
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command for pruning a plant. Design Pattern\+: Command Participant\+: Concrete\+Command. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class encapsulates a pruning request as a command object. It allows staff members to prune a specific plant by delegating the pruning operation to the plant\textquotesingle{}s pruning strategy.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffCommand}{Staff\+Command} 
+
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classPruningStrategy}{Pruning\+Strategy} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPruneCommand_a2e31ad935436de46d6fe469f25cabf62}\label{classPruneCommand_a2e31ad935436de46d6fe469f25cabf62} 
+\index{PruneCommand@{PruneCommand}!PruneCommand@{PruneCommand}}
+\index{PruneCommand@{PruneCommand}!PruneCommand@{PruneCommand}}
+\doxysubsubsection{\texorpdfstring{PruneCommand()}{PruneCommand()}}
+{\footnotesize\ttfamily Prune\+Command\+::\+Prune\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classPruneCommand}{Prune\+Command}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be pruned. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPruneCommand_a919e108a8f98f7e84d62d10619fd4a7d}\label{classPruneCommand_a919e108a8f98f7e84d62d10619fd4a7d} 
+\index{PruneCommand@{PruneCommand}!execute@{execute}}
+\index{execute@{execute}!PruneCommand@{PruneCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Prune\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the prune command. 
+
+This method calls the plant\textquotesingle{}s prune() method, which delegates to its assigned pruning strategy. 
+
+Reimplemented from \mbox{\hyperlink{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}{Staff\+Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{PruneCommand_8h}{Prune\+Command.\+h}}\item 
+src/\mbox{\hyperlink{PruneCommand_8cpp}{Prune\+Command.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\doxysection{Summer Class Reference}
+\hypertarget{classSummer}{}\label{classSummer}\index{Summer@{Summer}}
+
+
+Design pattern\+: State Participant\+: Concrete\+State.  
+
+
+
+
+{\ttfamily \#include $<$Summer.\+h$>$}
+
+
+
+Inheritance diagram for Summer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classSummer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Summer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classSummer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classSummer_ad5e21fc2f61f789a4f33bf189d628322}{change}} (\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*}nursery) override
+\begin{DoxyCompactList}\small\item\em Changes the season to the next season. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classSummer_a2f7c7d2ec50eb2c8fcca6e51e48b0231}{print}} () override
+\begin{DoxyCompactList}\small\item\em Returns the name of the season. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSeasonState}{Season\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classSeasonState_af4555f2670a9274ded61b90e98daec84}{\texorpdfstring{$\sim$}{\string~}\+Season\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classSeasonState}{Season\+State}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: State Participant\+: Concrete\+State. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel
+\end{DoxyAuthor}
+
+
+This class is a concrete state for the \doxylink{classSummer}{Summer} season.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classSeasonState}{Season\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSummer_ad5e21fc2f61f789a4f33bf189d628322}\label{classSummer_ad5e21fc2f61f789a4f33bf189d628322} 
+\index{Summer@{Summer}!change@{change}}
+\index{change@{change}!Summer@{Summer}}
+\doxysubsubsection{\texorpdfstring{change()}{change()}}
+{\footnotesize\ttfamily void Summer\+::change (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*}}]{nursery }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Changes the season to the next season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nursery} & The nursery to change the season of. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classSeasonState_a25546bda284fb8db12ae54dda2bd9407}{Season\+State}}.
+
+\Hypertarget{classSummer_a2f7c7d2ec50eb2c8fcca6e51e48b0231}\label{classSummer_a2f7c7d2ec50eb2c8fcca6e51e48b0231} 
+\index{Summer@{Summer}!print@{print}}
+\index{print@{print}!Summer@{Summer}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string Summer\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the name of the season. 
+
+\begin{DoxyReturn}{Returns}
+The name of the season as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classSeasonState_af7625449001a8a3232928a7cafe1c68d}{Season\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Summer_8h}{Summer.\+h}}\item 
+src/\mbox{\hyperlink{Summer_8cpp}{Summer.\+cpp}}\end{DoxyCompactItemize}

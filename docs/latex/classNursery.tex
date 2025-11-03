@@ -1,0 +1,308 @@
+\doxysection{Nursery Class Reference}
+\hypertarget{classNursery}{}\label{classNursery}\index{Nursery@{Nursery}}
+
+
+Central management system for the nursery operations. Design Pattern\+: Singleton, State Participant\+: Singleton, Context (State Pattern)  
+
+
+
+
+{\ttfamily \#include $<$Nursery.\+h$>$}
+
+
+
+Collaboration diagram for Nursery\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classNursery__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNursery_a5e7e42da5e8be1f5aa7769c64b5e3ce4}{get\+Inventory\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Gets the inventory manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNursery_a8c4bc8a343eb69b5b0f7ffec560530ea}{clear\+Inventory\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Clears the pointer to the inventory manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNursery_a4e149a713ebe47ad2001b31eb208fea8}{set\+Season}} (\mbox{\hyperlink{classSeasonState}{Season\+State}} \texorpdfstring{$\ast$}{*}season)
+\begin{DoxyCompactList}\small\item\em Sets the current season state. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classNursery_a83ba8e21f0167644ada1345d449652af}{get\+Season}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current season name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNursery_a4fedd0eabcf8ec4553aa21fbe00f0a0d}{set\+Factory}} (\mbox{\hyperlink{classPlantFactory}{Plant\+Factory}} \texorpdfstring{$\ast$}{*}factory)
+\begin{DoxyCompactList}\small\item\em Sets the plant factory for the current season. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNursery_a9f9fbe5e8d09c7ebb26e84c869a6112e}{change\+Season}} ()
+\begin{DoxyCompactList}\small\item\em Changes to the next season. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNursery_a6714698a25b587d4051866dadb1b514a}{stock\+Nursery}} ()
+\begin{DoxyCompactList}\small\item\em Stocks the nursery with seasonal plants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNursery_aa505ab6f44e8ad2b358d73b0df29a4e3}{get\+Instance}} (\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}manager=nullptr)
+\begin{DoxyCompactList}\small\item\em Gets or creates the singleton \doxylink{classNursery}{Nursery} instance. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classNursery_a245953484f70d554392e47ffc50c1e99}{destroy\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the singleton instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNursery_a79332a826a56374b6ee1ff497777d5f1}{Nursery}} (\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}manager)
+\begin{DoxyCompactList}\small\item\em Protected constructor to enforce Singleton pattern. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery_a2f2de151d7165db976fc89b4271c09d9}{Nursery}} (const \mbox{\hyperlink{classNursery}{Nursery}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor to prevent copying. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \& \mbox{\hyperlink{classNursery_a4ef687ef8ea785e711d4fdf1f41c8473}{operator=}} (const \mbox{\hyperlink{classNursery}{Nursery}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted assignment operator to prevent assignment. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery_a14147229d47eb7fefc609f4105a97b40}{\texorpdfstring{$\sim$}{\string~}\+Nursery}} ()
+\begin{DoxyCompactList}\small\item\em Protected destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNursery_af392488a3a4f997238303b3a1d002c5e}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages plant inventory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSeasonState}{Season\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNursery_a2b29486a890a09fee10ad2ef5717e639}{current\+Season}}
+\begin{DoxyCompactList}\small\item\em Current season state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantFactory}{Plant\+Factory}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNursery_acf7ddec38834cc58a3fb96b5fbd35cb2}{current\+Factory}}
+\begin{DoxyCompactList}\small\item\em Factory for creating seasonal plants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classNursery_a815fa88b2f1a22b6c20268db067ceaa2}{instance}} = nullptr
+\begin{DoxyCompactList}\small\item\em Singleton instance of the \doxylink{classNursery}{Nursery}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Central management system for the nursery operations. Design Pattern\+: Singleton, State Participant\+: Singleton, Context (State Pattern) 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+
+Edwin Kusel 
+\end{DoxyAuthor}
+This class serves as the central control system for the nursery, managing the current season state, plant factory, and inventory. It implements the Singleton pattern to ensure only one nursery instance exists, and acts as the Context in the State pattern for managing seasonal changes. The nursery coordinates season transitions, plant production, and inventory management.
+
+Usage\+: First initialize\+: Inventory\+Manager\texorpdfstring{$\ast$}{*} inventory\+Manager = new \doxylink{classInventoryManager}{Inventory\+Manager()}; Nursery\texorpdfstring{$\ast$}{*} nursery = Nursery\+::get\+Instance(inventory\+Manager);
+
+To access inventory manager\+: Inventory\+Manager\texorpdfstring{$\ast$}{*} im = nursery-\/\texorpdfstring{$>$}{>}\doxylink{classNursery_a5e7e42da5e8be1f5aa7769c64b5e3ce4}{get\+Inventory\+Manager()};
+
+To access the singleton\+: Nursery\texorpdfstring{$\ast$}{*} n = \doxylink{classNursery_aa505ab6f44e8ad2b358d73b0df29a4e3}{Nursery\+::get\+Instance()};
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classSeasonState}{Season\+State} 
+
+\doxylink{classPlantFactory}{Plant\+Factory} 
+
+\doxylink{classInventoryManager}{Inventory\+Manager} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classNursery_a79332a826a56374b6ee1ff497777d5f1}\label{classNursery_a79332a826a56374b6ee1ff497777d5f1} 
+\index{Nursery@{Nursery}!Nursery@{Nursery}}
+\index{Nursery@{Nursery}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{Nursery()}{Nursery()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Nursery\+::\+Nursery (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}}]{manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Protected constructor to enforce Singleton pattern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Pointer to the \doxylink{classInventoryManager}{Inventory\+Manager} for this nursery. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNursery_a2f2de151d7165db976fc89b4271c09d9}\label{classNursery_a2f2de151d7165db976fc89b4271c09d9} 
+\index{Nursery@{Nursery}!Nursery@{Nursery}}
+\index{Nursery@{Nursery}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{Nursery()}{Nursery()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Nursery\+::\+Nursery (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNursery}{Nursery}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}}
+
+
+
+Deleted copy constructor to prevent copying. 
+
+\Hypertarget{classNursery_a14147229d47eb7fefc609f4105a97b40}\label{classNursery_a14147229d47eb7fefc609f4105a97b40} 
+\index{Nursery@{Nursery}!````~Nursery@{\texorpdfstring{$\sim$}{\string~}Nursery}}
+\index{````~Nursery@{\texorpdfstring{$\sim$}{\string~}Nursery}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Nursery()}{\string~Nursery()}}
+{\footnotesize\ttfamily Nursery\+::\texorpdfstring{$\sim$}{\string~}\+Nursery (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Protected destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classNursery_a9f9fbe5e8d09c7ebb26e84c869a6112e}\label{classNursery_a9f9fbe5e8d09c7ebb26e84c869a6112e} 
+\index{Nursery@{Nursery}!changeSeason@{changeSeason}}
+\index{changeSeason@{changeSeason}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{changeSeason()}{changeSeason()}}
+{\footnotesize\ttfamily void Nursery\+::change\+Season (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Changes to the next season. 
+
+Called by client to transition to the next season. Delegates to current\+Season to handle the state transition. \Hypertarget{classNursery_a8c4bc8a343eb69b5b0f7ffec560530ea}\label{classNursery_a8c4bc8a343eb69b5b0f7ffec560530ea} 
+\index{Nursery@{Nursery}!clearInventoryManager@{clearInventoryManager}}
+\index{clearInventoryManager@{clearInventoryManager}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{clearInventoryManager()}{clearInventoryManager()}}
+{\footnotesize\ttfamily void Nursery\+::clear\+Inventory\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears the pointer to the inventory manager. 
+
+Used when the manager is destroyed externally to prevent dangling pointer. \Hypertarget{classNursery_a245953484f70d554392e47ffc50c1e99}\label{classNursery_a245953484f70d554392e47ffc50c1e99} 
+\index{Nursery@{Nursery}!destroyInstance@{destroyInstance}}
+\index{destroyInstance@{destroyInstance}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{destroyInstance()}{destroyInstance()}}
+{\footnotesize\ttfamily void Nursery\+::destroy\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Destroys the singleton instance. 
+
+Safe to call at program/test teardown to clean up the singleton. \Hypertarget{classNursery_aa505ab6f44e8ad2b358d73b0df29a4e3}\label{classNursery_aa505ab6f44e8ad2b358d73b0df29a4e3} 
+\index{Nursery@{Nursery}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} Nursery\+::get\+Instance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*}}]{manager = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets or creates the singleton \doxylink{classNursery}{Nursery} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Optional \doxylink{classInventoryManager}{Inventory\+Manager} pointer (required for first initialization). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nursery\texorpdfstring{$\ast$}{*} Pointer to the singleton \doxylink{classNursery}{Nursery} instance. 
+\end{DoxyReturn}
+\Hypertarget{classNursery_a5e7e42da5e8be1f5aa7769c64b5e3ce4}\label{classNursery_a5e7e42da5e8be1f5aa7769c64b5e3ce4} 
+\index{Nursery@{Nursery}!getInventoryManager@{getInventoryManager}}
+\index{getInventoryManager@{getInventoryManager}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{getInventoryManager()}{getInventoryManager()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} Nursery\+::get\+Inventory\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the inventory manager. 
+
+\begin{DoxyReturn}{Returns}
+Inventory\+Manager\texorpdfstring{$\ast$}{*} Pointer to the nursery\textquotesingle{}s inventory manager. 
+\end{DoxyReturn}
+\Hypertarget{classNursery_a83ba8e21f0167644ada1345d449652af}\label{classNursery_a83ba8e21f0167644ada1345d449652af} 
+\index{Nursery@{Nursery}!getSeason@{getSeason}}
+\index{getSeason@{getSeason}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{getSeason()}{getSeason()}}
+{\footnotesize\ttfamily string Nursery\+::get\+Season (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current season name. 
+
+\begin{DoxyReturn}{Returns}
+string The name of the current season. 
+\end{DoxyReturn}
+\Hypertarget{classNursery_a4ef687ef8ea785e711d4fdf1f41c8473}\label{classNursery_a4ef687ef8ea785e711d4fdf1f41c8473} 
+\index{Nursery@{Nursery}!operator=@{operator=}}
+\index{operator=@{operator=}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNursery}{Nursery}} \& Nursery\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNursery}{Nursery}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}}
+
+
+
+Deleted assignment operator to prevent assignment. 
+
+\Hypertarget{classNursery_a4fedd0eabcf8ec4553aa21fbe00f0a0d}\label{classNursery_a4fedd0eabcf8ec4553aa21fbe00f0a0d} 
+\index{Nursery@{Nursery}!setFactory@{setFactory}}
+\index{setFactory@{setFactory}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{setFactory()}{setFactory()}}
+{\footnotesize\ttfamily void Nursery\+::set\+Factory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlantFactory}{Plant\+Factory}} \texorpdfstring{$\ast$}{*}}]{factory }\end{DoxyParamCaption})}
+
+
+
+Sets the plant factory for the current season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em factory} & Pointer to the \doxylink{classPlantFactory}{Plant\+Factory} to use for creating plants. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNursery_a4e149a713ebe47ad2001b31eb208fea8}\label{classNursery_a4e149a713ebe47ad2001b31eb208fea8} 
+\index{Nursery@{Nursery}!setSeason@{setSeason}}
+\index{setSeason@{setSeason}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{setSeason()}{setSeason()}}
+{\footnotesize\ttfamily void Nursery\+::set\+Season (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSeasonState}{Season\+State}} \texorpdfstring{$\ast$}{*}}]{season }\end{DoxyParamCaption})}
+
+
+
+Sets the current season state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season} & Pointer to the new \doxylink{classSeasonState}{Season\+State} to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNursery_a6714698a25b587d4051866dadb1b514a}\label{classNursery_a6714698a25b587d4051866dadb1b514a} 
+\index{Nursery@{Nursery}!stockNursery@{stockNursery}}
+\index{stockNursery@{stockNursery}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{stockNursery()}{stockNursery()}}
+{\footnotesize\ttfamily void Nursery\+::stock\+Nursery (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stocks the nursery with seasonal plants. 
+
+Uses the current factory to create and add plants to inventory. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classNursery_acf7ddec38834cc58a3fb96b5fbd35cb2}\label{classNursery_acf7ddec38834cc58a3fb96b5fbd35cb2} 
+\index{Nursery@{Nursery}!currentFactory@{currentFactory}}
+\index{currentFactory@{currentFactory}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{currentFactory}{currentFactory}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlantFactory}{Plant\+Factory}}\texorpdfstring{$\ast$}{*} Nursery\+::current\+Factory\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Factory for creating seasonal plants. 
+
+\Hypertarget{classNursery_a2b29486a890a09fee10ad2ef5717e639}\label{classNursery_a2b29486a890a09fee10ad2ef5717e639} 
+\index{Nursery@{Nursery}!currentSeason@{currentSeason}}
+\index{currentSeason@{currentSeason}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{currentSeason}{currentSeason}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSeasonState}{Season\+State}}\texorpdfstring{$\ast$}{*} Nursery\+::current\+Season\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current season state. 
+
+\Hypertarget{classNursery_a815fa88b2f1a22b6c20268db067ceaa2}\label{classNursery_a815fa88b2f1a22b6c20268db067ceaa2} 
+\index{Nursery@{Nursery}!instance@{instance}}
+\index{instance@{instance}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{instance}{instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} Nursery\+::instance = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Singleton instance of the \doxylink{classNursery}{Nursery}. 
+
+\Hypertarget{classNursery_af392488a3a4f997238303b3a1d002c5e}\label{classNursery_af392488a3a4f997238303b3a1d002c5e} 
+\index{Nursery@{Nursery}!inventoryManager@{inventoryManager}}
+\index{inventoryManager@{inventoryManager}!Nursery@{Nursery}}
+\doxysubsubsection{\texorpdfstring{inventoryManager}{inventoryManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}}\texorpdfstring{$\ast$}{*} Nursery\+::inventory\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Manages plant inventory. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Nursery_8h}{Nursery.\+h}}\item 
+src/\mbox{\hyperlink{Nursery_8cpp}{Nursery.\+cpp}}\end{DoxyCompactItemize}

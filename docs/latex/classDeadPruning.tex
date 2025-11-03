@@ -1,0 +1,101 @@
+\doxysection{Dead\+Pruning Class Reference}
+\hypertarget{classDeadPruning}{}\label{classDeadPruning}\index{DeadPruning@{DeadPruning}}
+
+
+Implements dead heading pruning strategy for plants. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy.  
+
+
+
+
+{\ttfamily \#include $<$Dead\+Pruning.\+h$>$}
+
+
+
+Inheritance diagram for Dead\+Pruning\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classDeadPruning__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Dead\+Pruning\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classDeadPruning__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classDeadPruning_a9035f10f69267b657244a37ee6917375}{prune}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Applies dead heading pruning to the specified plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classDeadPruning_a08f65cf0839e23b490ea2f171ff4ebac}{print}} ()
+\begin{DoxyCompactList}\small\item\em Returns a string description of this pruning strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPruningStrategy_a0d3ed13b6816f882662303df634ed345}{\texorpdfstring{$\sim$}{\string~}\+Pruning\+Strategy}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPruningStrategy}{Pruning\+Strategy}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements dead heading pruning strategy for plants. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements a dead heading pruning strategy where dead or spent flowers and foliage are removed to encourage new growth and maintain plant health. This strategy is commonly used for flowering plants to promote continuous blooming.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPruningStrategy}{Pruning\+Strategy} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDeadPruning_a08f65cf0839e23b490ea2f171ff4ebac}\label{classDeadPruning_a08f65cf0839e23b490ea2f171ff4ebac} 
+\index{DeadPruning@{DeadPruning}!print@{print}}
+\index{print@{print}!DeadPruning@{DeadPruning}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string Dead\+Pruning\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns a string description of this pruning strategy. 
+
+\begin{DoxyReturn}{Returns}
+string A text description of the dead heading pruning method. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPruningStrategy_a64bca15bc6390b0602e17709c217877a}{Pruning\+Strategy}}.
+
+\Hypertarget{classDeadPruning_a9035f10f69267b657244a37ee6917375}\label{classDeadPruning_a9035f10f69267b657244a37ee6917375} 
+\index{DeadPruning@{DeadPruning}!prune@{prune}}
+\index{prune@{prune}!DeadPruning@{DeadPruning}}
+\doxysubsubsection{\texorpdfstring{prune()}{prune()}}
+{\footnotesize\ttfamily void Dead\+Pruning\+::prune (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Applies dead heading pruning to the specified plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the \doxylink{classPlant}{Plant} object to be pruned using dead heading technique. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classPruningStrategy_afde6df8bffa1c15e9c87f965fdd6ba3d}{Pruning\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{DeadPruning_8h}{Dead\+Pruning.\+h}}\item 
+src/\mbox{\hyperlink{DeadPruning_8cpp}{Dead\+Pruning.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\doxysection{Plant\+State Class Reference}
+\hypertarget{classPlantState}{}\label{classPlantState}\index{PlantState@{PlantState}}
+
+
+Design pattern\+: State Participant\+: State.  
+
+
+
+
+{\ttfamily \#include $<$Plant\+State.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classPlantState__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPlantState_ae929dd4c55fc527ca58b9f85dcaf90fe}{change}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)=0
+\begin{DoxyCompactList}\small\item\em Changes the state of the plant. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classPlantState_ae26f80b79106927035bfac09f5c4830b}{print}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the name of the state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: State Participant\+: State. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel
+\end{DoxyAuthor}
+
+
+This class is an abstract base class for the different states of a plant. It defines the interface for changing the state of a plant.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlantState_a161ce94f53bbe443c85e313688aa63b0}\label{classPlantState_a161ce94f53bbe443c85e313688aa63b0} 
+\index{PlantState@{PlantState}!````~PlantState@{\texorpdfstring{$\sim$}{\string~}PlantState}}
+\index{````~PlantState@{\texorpdfstring{$\sim$}{\string~}PlantState}!PlantState@{PlantState}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PlantState()}{\string~PlantState()}}
+{\footnotesize\ttfamily virtual Plant\+State\+::\texorpdfstring{$\sim$}{\string~}\+Plant\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlantState_ae929dd4c55fc527ca58b9f85dcaf90fe}\label{classPlantState_ae929dd4c55fc527ca58b9f85dcaf90fe} 
+\index{PlantState@{PlantState}!change@{change}}
+\index{change@{change}!PlantState@{PlantState}}
+\doxysubsubsection{\texorpdfstring{change()}{change()}}
+{\footnotesize\ttfamily virtual void Plant\+State\+::change (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Changes the state of the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & The plant to change the state of. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classDeadState_a6b87e50d165a5dd05b564c12f5a2de57}{Dead\+State}}, \mbox{\hyperlink{classDyingState_a9917314017d98140102ff7ee79f9d950}{Dying\+State}}, \mbox{\hyperlink{classGrowingState_a52a9569b87294a3bcccd6839d2c426d8}{Growing\+State}}, \mbox{\hyperlink{classMatureState_a3b35b9de1ef765f97cb5c1c3ee3c1e00}{Mature\+State}}, \mbox{\hyperlink{classReadyForSaleState_a5b6c2f23d0ad12a0a6454f4352d451ca}{Ready\+For\+Sale\+State}}, \mbox{\hyperlink{classSeedlingState_a7c9fafd5aaad1b544808f55e92e3d81e}{Seedling\+State}}, and \mbox{\hyperlink{classSeedState_ab5b9ca7ca87a0c5bb2f04f0caa66e0a4}{Seed\+State}}.
+
+\Hypertarget{classPlantState_ae26f80b79106927035bfac09f5c4830b}\label{classPlantState_ae26f80b79106927035bfac09f5c4830b} 
+\index{PlantState@{PlantState}!print@{print}}
+\index{print@{print}!PlantState@{PlantState}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual string Plant\+State\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the name of the state. 
+
+\begin{DoxyReturn}{Returns}
+The name of the state. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classDeadState_a21340663c870e017bb9e8f14777f567b}{Dead\+State}}, \mbox{\hyperlink{classDyingState_a6ef6243b8cd3069ce840d37efcea04e4}{Dying\+State}}, \mbox{\hyperlink{classGrowingState_a0ee5c55e39c88afdc2c222ef816ca478}{Growing\+State}}, \mbox{\hyperlink{classMatureState_ab698b53f526d7dbe8d7c32176063ef95}{Mature\+State}}, \mbox{\hyperlink{classReadyForSaleState_a8844b4edb9e2671d309d077d57d473d1}{Ready\+For\+Sale\+State}}, \mbox{\hyperlink{classSeedlingState_a0d3fee1a1285c2ae1d9eff00ad193cc8}{Seedling\+State}}, and \mbox{\hyperlink{classSeedState_a104e635d9f473f1e50fda14f9c5c0bac}{Seed\+State}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{PlantState_8h}{Plant\+State.\+h}}\end{DoxyCompactItemize}

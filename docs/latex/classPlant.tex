@@ -1,0 +1,779 @@
+\doxysection{Plant Class Reference}
+\hypertarget{classPlant}{}\label{classPlant}\index{Plant@{Plant}}
+
+
+Abstract base class representing a plant product in the nursery system. Design Pattern\+: State, Strategy, Template Method, \doxylink{classDecorator}{Decorator} Participant\+: Context (State), Context (Strategy), Concrete Component (\doxylink{classDecorator}{Decorator})  
+
+
+
+
+{\ttfamily \#include $<$Plant.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classPlant__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Plant\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPlant__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant_a10611539393bddc165203f3e2f34fab1}{Plant}} (string \mbox{\hyperlink{classPlant_a1199b012e19d81e1e1d279c431e8362e}{category}}, int \mbox{\hyperlink{classPlant_ad339313da357bf2c1a22d68ab1d18437}{max\+Height}}, \mbox{\hyperlink{classWateringStrategy}{Watering\+Strategy}} \texorpdfstring{$\ast$}{*}water\+Strat, \mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}} \texorpdfstring{$\ast$}{*}prune\+Strat, string \mbox{\hyperlink{classPlant_a5e7524c02c407392be4ac490f849eecd}{name}}, string \mbox{\hyperlink{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}{sell\+Season}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classPlant}{Plant} with specified characteristics. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29}{\texorpdfstring{$\sim$}{\string~}\+Plant}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPlant}{Plant} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_af4552dd9ec01741c38eefd2f15ce2431}{water}} ()
+\begin{DoxyCompactList}\small\item\em Waters the plant using its watering strategy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a5dc852d2699b12c272c9c560138933f4}{prune}} ()
+\begin{DoxyCompactList}\small\item\em Prunes the plant using its pruning strategy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a70a53169f068ab5d8b2f5b6701e49aa1}{fertilise}} ()
+\begin{DoxyCompactList}\small\item\em Fertilises the plant to promote growth. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a32f64c1097a39dc892dc9289cb23dfeb}{summary}} ()
+\begin{DoxyCompactList}\small\item\em Generates a detailed summary of the plant\textquotesingle{}s status. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_ab7dc62eeaf0ef7859d33a16a5b497a74}{customer\+Summary}} ()
+\begin{DoxyCompactList}\small\item\em Generates a customer-\/facing summary of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_ae38ed8fecfdf9436c197e8fb6979dcfd}{get\+Water\+Level}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current water level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a3fd132844992c39f6ce16dcf4de84d51}{set\+Water\+Level}} (float level)
+\begin{DoxyCompactList}\small\item\em Sets the water level of the plant. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlant_a8cbb56e7607f3a837c5c31c772821661}{get\+Pruned}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the plant has been pruned. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a08a0ce721bd454405f60dd40b66659cc}{set\+Pruned}} (bool \mbox{\hyperlink{classPlant_a0d2126f55f610743b97c981c350b8ef0}{pruned}})
+\begin{DoxyCompactList}\small\item\em Sets the pruned status of the plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a83e760df6246eb9468c00921505de146}{get\+Category}} ()
+\begin{DoxyCompactList}\small\item\em Gets the plant category. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a9c8946f35cb4fff3e1341b7f8c8ac6ba}{get\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current height of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_aa2467d428d0c1b945061dd7300b93cc9}{set\+Height}} (float \mbox{\hyperlink{classPlant_a2fba560075fb31026c3fcb4a3625f9b1}{height}})
+\begin{DoxyCompactList}\small\item\em Sets the height of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_aa83eb4ce6a92dc6859f8ede70cef7e74}{get\+Actual\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Gets the actual height of the plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a07fb6a2568f940b6655ea6714e06ba6d}{get\+State}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current state of the plant as a string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_abe31f5c708a3d551b01cf22bbd8d221f}{set\+State}} (\mbox{\hyperlink{classPlantState}{Plant\+State}} \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Sets the plant\textquotesingle{}s current state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_abc62e9840b319ac27f62737459a61436}{set\+Health}} (float \mbox{\hyperlink{classPlant_a24505f555de90a3b5b0fbc7aa615cb4b}{health}})
+\begin{DoxyCompactList}\small\item\em Sets the health of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a04380d2a574ac1da9aba29c78f8e7112}{get\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current health of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a211d9c4a3e0c2c1acc5b2fb9124db1df}{set\+Total\+Water}} (int total)
+\begin{DoxyCompactList}\small\item\em Sets the total water given to the plant. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlant_aebe17b06d92cf310568e47b2959d451b}{get\+Total\+Water}} ()
+\begin{DoxyCompactList}\small\item\em Gets the total water given to the plant. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlant_ae86ed085d17995b5faf320ec55defe66}{get\+Max\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Gets the maximum height the plant can reach. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a7794a8b91ceb0cf6309bc3e5bc53fbfa}{get\+Strategies}} ()
+\begin{DoxyCompactList}\small\item\em Gets a string description of the plant\textquotesingle{}s care strategies. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a91981706cdc524141d46d222d99a7bcb}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_a9ea2abd8cd84b5a81a8d046fca9e0c15}{change\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Triggers a change in the plant\textquotesingle{}s growth state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlant_ac4881de7d9da39ecb730dc7b3e9a7970}{change\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Updates the plant\textquotesingle{}s health based on its current conditions. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_ac5cc4bf5eb5b0a9f330827265e77ea51}{get\+Sell\+Season}} ()
+\begin{DoxyCompactList}\small\item\em Gets the season when this plant is available for sale. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a4a819e97ddb7bd5b9a6e52e4a83ff5e2}{calculate\+Cost}} (string curr\+Season)
+\begin{DoxyCompactList}\small\item\em Calculates the cost based on the current season. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classPlant_ad8a24a31b6f7b951642f0250f3acd851}{base\+Cost}} ()=0
+\begin{DoxyCompactList}\small\item\em Calculates the base cost of the plant. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classPlant_a31137f98667ee0672874d82cebbee537}{season\+Cost}} (string cur\+Season)
+\begin{DoxyCompactList}\small\item\em Calculates seasonal cost adjustments. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a0176ca4d6060c9f0cf0da2286a78ca9b}{get\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current cost of the plant. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classPlant_a0a03060cc05897960fd484e2c128eb5d}{get\+Image\+Path}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the image path for this plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlant_a6b25f8fde68eebea72c20ef7543dfea8}{get\+Base\+Plant}} ()
+\begin{DoxyCompactList}\small\item\em Gets the base plant (used by decorator pattern). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classProduct}{Product}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classProduct_a18f26095e25405579968c6ede367484f}{\texorpdfstring{$\sim$}{\string~}\+Product}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classProduct_a867d6377f83e2baac15d0afcb1e79bf6}{get\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves additional information about the product. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWateringStrategy}{Watering\+Strategy}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlant_a555aa51225db5b0e28887daa17a688be}{watering\+Strat}}
+\begin{DoxyCompactList}\small\item\em Strategy for watering this plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlant_ae5f3749ec4bf1623d9ba19d6e3a9892d}{pruning\+Strat}}
+\begin{DoxyCompactList}\small\item\em Strategy for pruning this plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_ac1ae0655887754ca00e504d062181a14}{water\+Level}}
+\begin{DoxyCompactList}\small\item\em Current water level of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a24505f555de90a3b5b0fbc7aa615cb4b}{health}}
+\begin{DoxyCompactList}\small\item\em Current health status of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_a2fba560075fb31026c3fcb4a3625f9b1}{height}}
+\begin{DoxyCompactList}\small\item\em Current height of the plant in cm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantState}{Plant\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlant_a9546327678b98cea0ae2475c215b5bea}{current\+State}}
+\begin{DoxyCompactList}\small\item\em Current growth state of the plant. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlant_ad339313da357bf2c1a22d68ab1d18437}{max\+Height}}
+\begin{DoxyCompactList}\small\item\em Maximum height this plant can reach in cm. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlant_a0d2126f55f610743b97c981c350b8ef0}{pruned}}
+\begin{DoxyCompactList}\small\item\em Whether the plant has been pruned. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a1199b012e19d81e1e1d279c431e8362e}{category}}
+\begin{DoxyCompactList}\small\item\em Category of plant (\doxylink{classFlower}{Flower}, \doxylink{classHerb}{Herb}, \doxylink{classFruit}{Fruit}, etc.) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlant_ae90fc0910a701b20bfd9458f93f9998d}{total\+Water}}
+\begin{DoxyCompactList}\small\item\em Total amount of water given to the plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a5e7524c02c407392be4ac490f849eecd}{name}}
+\begin{DoxyCompactList}\small\item\em Name/variety of the plant. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPlant_ac4e8c08317c5b6dc0c4edb9f0f78c284}{cost}}
+\begin{DoxyCompactList}\small\item\em Current cost of the plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}{sell\+Season}}
+\begin{DoxyCompactList}\small\item\em Season when this plant is available for sale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class representing a plant product in the nursery system. Design Pattern\+: State, Strategy, Template Method, \doxylink{classDecorator}{Decorator} Participant\+: Context (State), Context (Strategy), Concrete Component (\doxylink{classDecorator}{Decorator}) 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+
+Edwin Kusel 
+
+Jordan Naidoo 
+\end{DoxyAuthor}
+This class serves as the foundation for all plant types in the nursery management system. It implements the State pattern to manage plant growth states (Seed, Growing, Mature, etc.), and the Strategy pattern for watering and pruning behaviors. Plants track their health, height, water level, and other vital statistics. The class provides both internal management methods and customer-\/facing summary information.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classProduct}{Product} 
+
+\doxylink{classPlantState}{Plant\+State} 
+
+\doxylink{classWateringStrategy}{Watering\+Strategy} 
+
+\doxylink{classPruningStrategy}{Pruning\+Strategy} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlant_a10611539393bddc165203f3e2f34fab1}\label{classPlant_a10611539393bddc165203f3e2f34fab1} 
+\index{Plant@{Plant}!Plant@{Plant}}
+\index{Plant@{Plant}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{Plant()}{Plant()}}
+{\footnotesize\ttfamily Plant\+::\+Plant (\begin{DoxyParamCaption}\item[{string}]{category,  }\item[{int}]{max\+Height,  }\item[{\mbox{\hyperlink{classWateringStrategy}{Watering\+Strategy}} \texorpdfstring{$\ast$}{*}}]{water\+Strat,  }\item[{\mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}} \texorpdfstring{$\ast$}{*}}]{prune\+Strat,  }\item[{string}]{name,  }\item[{string}]{sell\+Season }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classPlant}{Plant} with specified characteristics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category of plant (\doxylink{classFlower}{Flower}, \doxylink{classHerb}{Herb}, \doxylink{classFruit}{Fruit}, \doxylink{classVegetable}{Vegetable}, etc.). \\
+\hline
+{\em max\+Height} & The maximum height this plant can reach in cm. \\
+\hline
+{\em water\+Strat} & Pointer to the watering strategy for this plant. \\
+\hline
+{\em prune\+Strat} & Pointer to the pruning strategy for this plant. \\
+\hline
+{\em name} & The specific name/variety of this plant. \\
+\hline
+{\em sell\+Season} & The season when this plant is typically available for sale. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29}\label{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29} 
+\index{Plant@{Plant}!````~Plant@{\texorpdfstring{$\sim$}{\string~}Plant}}
+\index{````~Plant@{\texorpdfstring{$\sim$}{\string~}Plant}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Plant()}{\string~Plant()}}
+{\footnotesize\ttfamily Plant\+::\texorpdfstring{$\sim$}{\string~}\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Virtual destructor for the \doxylink{classPlant}{Plant} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlant_ad8a24a31b6f7b951642f0250f3acd851}\label{classPlant_ad8a24a31b6f7b951642f0250f3acd851} 
+\index{Plant@{Plant}!baseCost@{baseCost}}
+\index{baseCost@{baseCost}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{baseCost()}{baseCost()}}
+{\footnotesize\ttfamily virtual float Plant\+::base\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Calculates the base cost of the plant. 
+
+This is a primitive operation in the Template Method pattern. \begin{DoxyReturn}{Returns}
+float The base cost before seasonal or decorator adjustments. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAquatic_a9ad07c496450a5e4020b0f9d55f4ab9a}{Aquatic}}, \mbox{\hyperlink{classFlower_a2a3975650b43e27f6b559a408d6d3d66}{Flower}}, \mbox{\hyperlink{classFruit_adbe90b93c1c7cfe65042e10846d89bd1}{Fruit}}, \mbox{\hyperlink{classHerb_a47364b8206bd5682405a48054f332832}{Herb}}, \mbox{\hyperlink{classIndoor_a60fb448ad2e7181a83ee8232174ae60a}{Indoor}}, \mbox{\hyperlink{classMedicinal_a28294f153d603fd1c71c0716e8ce90be}{Medicinal}}, \mbox{\hyperlink{classSucculent_a3058897f304dec078a1909a3027abf74}{Succulent}}, and \mbox{\hyperlink{classVegetable_ae184263701e88f0b3296f2a7fe713c96}{Vegetable}}.
+
+\Hypertarget{classPlant_a4a819e97ddb7bd5b9a6e52e4a83ff5e2}\label{classPlant_a4a819e97ddb7bd5b9a6e52e4a83ff5e2} 
+\index{Plant@{Plant}!calculateCost@{calculateCost}}
+\index{calculateCost@{calculateCost}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{calculateCost()}{calculateCost()}}
+{\footnotesize\ttfamily float Plant\+::calculate\+Cost (\begin{DoxyParamCaption}\item[{string}]{curr\+Season }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Calculates the cost based on the current season. 
+
+This method implements the Template Method design pattern by defining the skeleton of the cost calculation algorithm. 
+\begin{DoxyParams}{Parameters}
+{\em curr\+Season} & The current season affecting pricing. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float The calculated cost of the plant. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classProduct_a5ef6f2c6ddaa95f9d3000776c9ddaeff}{Product}}.
+
+\Hypertarget{classPlant_ac4881de7d9da39ecb730dc7b3e9a7970}\label{classPlant_ac4881de7d9da39ecb730dc7b3e9a7970} 
+\index{Plant@{Plant}!changeHealth@{changeHealth}}
+\index{changeHealth@{changeHealth}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{changeHealth()}{changeHealth()}}
+{\footnotesize\ttfamily void Plant\+::change\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the plant\textquotesingle{}s health based on its current conditions. 
+
+\Hypertarget{classPlant_a9ea2abd8cd84b5a81a8d046fca9e0c15}\label{classPlant_a9ea2abd8cd84b5a81a8d046fca9e0c15} 
+\index{Plant@{Plant}!changePlantState@{changePlantState}}
+\index{changePlantState@{changePlantState}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{changePlantState()}{changePlantState()}}
+{\footnotesize\ttfamily void Plant\+::change\+Plant\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Triggers a change in the plant\textquotesingle{}s growth state. 
+
+\Hypertarget{classPlant_ab7dc62eeaf0ef7859d33a16a5b497a74}\label{classPlant_ab7dc62eeaf0ef7859d33a16a5b497a74} 
+\index{Plant@{Plant}!customerSummary@{customerSummary}}
+\index{customerSummary@{customerSummary}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{customerSummary()}{customerSummary()}}
+{\footnotesize\ttfamily string Plant\+::customer\+Summary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates a customer-\/facing summary of the plant. 
+
+\begin{DoxyReturn}{Returns}
+string A summary with information relevant to customers. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a70a53169f068ab5d8b2f5b6701e49aa1}\label{classPlant_a70a53169f068ab5d8b2f5b6701e49aa1} 
+\index{Plant@{Plant}!fertilise@{fertilise}}
+\index{fertilise@{fertilise}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{fertilise()}{fertilise()}}
+{\footnotesize\ttfamily void Plant\+::fertilise (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fertilises the plant to promote growth. 
+
+\Hypertarget{classPlant_aa83eb4ce6a92dc6859f8ede70cef7e74}\label{classPlant_aa83eb4ce6a92dc6859f8ede70cef7e74} 
+\index{Plant@{Plant}!getActualHeight@{getActualHeight}}
+\index{getActualHeight@{getActualHeight}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getActualHeight()}{getActualHeight()}}
+{\footnotesize\ttfamily float Plant\+::get\+Actual\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the actual height of the plant. 
+
+\begin{DoxyReturn}{Returns}
+float The actual height of the plant in cm. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a6b25f8fde68eebea72c20ef7543dfea8}\label{classPlant_a6b25f8fde68eebea72c20ef7543dfea8} 
+\index{Plant@{Plant}!getBasePlant@{getBasePlant}}
+\index{getBasePlant@{getBasePlant}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getBasePlant()}{getBasePlant()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Plant\+::get\+Base\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the base plant (used by decorator pattern). 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to the base plant (returns this for non-\/decorated plants). 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classProduct_a9f4d87a432b67fb97412ec0ae8880217}{Product}}.
+
+\Hypertarget{classPlant_a83e760df6246eb9468c00921505de146}\label{classPlant_a83e760df6246eb9468c00921505de146} 
+\index{Plant@{Plant}!getCategory@{getCategory}}
+\index{getCategory@{getCategory}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getCategory()}{getCategory()}}
+{\footnotesize\ttfamily string Plant\+::get\+Category (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the plant category. 
+
+\begin{DoxyReturn}{Returns}
+string The category of this plant. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a0176ca4d6060c9f0cf0da2286a78ca9b}\label{classPlant_a0176ca4d6060c9f0cf0da2286a78ca9b} 
+\index{Plant@{Plant}!getCost@{getCost}}
+\index{getCost@{getCost}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getCost()}{getCost()}}
+{\footnotesize\ttfamily float Plant\+::get\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the current cost of the plant. 
+
+\begin{DoxyReturn}{Returns}
+float The current cost value. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classProduct_aa1432fef1d1bf11ba7b2324f34796aee}{Product}}.
+
+\Hypertarget{classPlant_a04380d2a574ac1da9aba29c78f8e7112}\label{classPlant_a04380d2a574ac1da9aba29c78f8e7112} 
+\index{Plant@{Plant}!getHealth@{getHealth}}
+\index{getHealth@{getHealth}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getHealth()}{getHealth()}}
+{\footnotesize\ttfamily float Plant\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current health of the plant. 
+
+\begin{DoxyReturn}{Returns}
+float The current health value. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a9c8946f35cb4fff3e1341b7f8c8ac6ba}\label{classPlant_a9c8946f35cb4fff3e1341b7f8c8ac6ba} 
+\index{Plant@{Plant}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily float Plant\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current height of the plant. 
+
+\begin{DoxyReturn}{Returns}
+float The current height in cm. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a0a03060cc05897960fd484e2c128eb5d}\label{classPlant_a0a03060cc05897960fd484e2c128eb5d} 
+\index{Plant@{Plant}!getImagePath@{getImagePath}}
+\index{getImagePath@{getImagePath}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getImagePath()}{getImagePath()}}
+{\footnotesize\ttfamily virtual string Plant\+::get\+Image\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the image path for this plant. 
+
+\begin{DoxyReturn}{Returns}
+string The path to the plant\textquotesingle{}s image asset. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAloeVera_a76483e1cd43d89f1503e73a14b1bc319}{Aloe\+Vera}}, \mbox{\hyperlink{classAppleTree_a7cb00d3ec2e4ba5e41cbdd7c2516b853}{Apple\+Tree}}, \mbox{\hyperlink{classBarrelCactus_a8834e9f75d57df0c6b6625bc6fa39bb2}{Barrel\+Cactus}}, \mbox{\hyperlink{classBasil_a72aa36141395ab680d8efc099a8868dd}{Basil}}, \mbox{\hyperlink{classCattails_ad6626a320beb3ef466f11b10afb8aed6}{Cattails}}, \mbox{\hyperlink{classChamomile_aff3152f16e50c0b2eaabf93f7760a656}{Chamomile}}, \mbox{\hyperlink{classChristmasCactus_a89a16ff244f027f511fe27d3d204fd1e}{Christmas\+Cactus}}, \mbox{\hyperlink{classChrysanthemum_ae2c24c75098c523b33996e10cf06167d}{Chrysanthemum}}, \mbox{\hyperlink{classConeflower_a4c0a6315734a0765460652a6d6a109ac}{Coneflower}}, \mbox{\hyperlink{classCucumber_ae541c5e97d104c61ccd63b2ccee7768c}{Cucumber}}, \mbox{\hyperlink{classEcheveria_a65d8b916959bb4da02fa1ff4f2eff1bf}{Echeveria}}, \mbox{\hyperlink{classGinger_a7f034119de0d8c38c20760580e4f6cf9}{Ginger}}, \mbox{\hyperlink{classJadePlant_af800df5180fd58ddb19ddd6aa4aeb9b4}{Jade\+Plant}}, \mbox{\hyperlink{classKale_a6158e775eafd6a8b79431ab1ad084ebc}{Kale}}, \mbox{\hyperlink{classLavender_adf2c2fcfad723f86f7f014cc5e53632f}{Lavender}}, \mbox{\hyperlink{classLettuce_a1daa8bd31d8d264506dfc6e67dee101c}{Lettuce}}, \mbox{\hyperlink{classOrangeTree_adaf7abb3f5d4f5709b01708b245e1244}{Orange\+Tree}}, \mbox{\hyperlink{classPansy_a8569b6f952391d566652d933e2a8ed89}{Pansy}}, \mbox{\hyperlink{classPeaceLily_af10b6afbcd76fd76fd5c74a5b8dc7e05}{Peace\+Lily}}, \mbox{\hyperlink{classPothos_a35b12d5fbe7480d06487e66d1a6dbfbb}{Pothos}}, \mbox{\hyperlink{classPumpkin_ac3ade5602d726fe3942106efcc336d28}{Pumpkin}}, \mbox{\hyperlink{classRose_a87c619b7bf08b81f90699cbe10f6712f}{Rose}}, \mbox{\hyperlink{classRosemary_a09671706c8a9b4f86dcb793c4504dcec}{Rosemary}}, \mbox{\hyperlink{classRubberTree_a006055f47ec055fb96b7bd24dce15bc5}{Rubber\+Tree}}, \mbox{\hyperlink{classSnakePlant_a1f9d6a2b3ed34033fddf66f865c23ecf}{Snake\+Plant}}, \mbox{\hyperlink{classStrawberry_a82db5df5bdbeea7815873bb74fb751ae}{Strawberry}}, \mbox{\hyperlink{classSunflower_ada766a729ba0daa5892c4cb6a60facb1}{Sunflower}}, \mbox{\hyperlink{classThyme_a985df1898690ed15fbbd402ebe2021e5}{Thyme}}, \mbox{\hyperlink{classTomato_a42ebb247ad1e711cd2441a4cf23e2d24}{Tomato}}, \mbox{\hyperlink{classWaterHyacinth_a20e420e6009b6d70e14293f5e5b89d39}{Water\+Hyacinth}}, \mbox{\hyperlink{classWaterLettuce_af2a51fecec4299376e148fb48d90ba80}{Water\+Lettuce}}, and \mbox{\hyperlink{classWaterLily_a973e95d756b6b8c9780fbb67143d418e}{Water\+Lily}}.
+
+\Hypertarget{classPlant_ae86ed085d17995b5faf320ec55defe66}\label{classPlant_ae86ed085d17995b5faf320ec55defe66} 
+\index{Plant@{Plant}!getMaxHeight@{getMaxHeight}}
+\index{getMaxHeight@{getMaxHeight}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getMaxHeight()}{getMaxHeight()}}
+{\footnotesize\ttfamily int Plant\+::get\+Max\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the maximum height the plant can reach. 
+
+\begin{DoxyReturn}{Returns}
+int The maximum height in cm. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a91981706cdc524141d46d222d99a7bcb}\label{classPlant_a91981706cdc524141d46d222d99a7bcb} 
+\index{Plant@{Plant}!getName@{getName}}
+\index{getName@{getName}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Plant\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the name of the plant. 
+
+\begin{DoxyReturn}{Returns}
+string The plant\textquotesingle{}s name/variety. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classProduct_a88748011e43b0f68125e98daa0844ad0}{Product}}.
+
+\Hypertarget{classPlant_a8cbb56e7607f3a837c5c31c772821661}\label{classPlant_a8cbb56e7607f3a837c5c31c772821661} 
+\index{Plant@{Plant}!getPruned@{getPruned}}
+\index{getPruned@{getPruned}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getPruned()}{getPruned()}}
+{\footnotesize\ttfamily bool Plant\+::get\+Pruned (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the plant has been pruned. 
+
+\begin{DoxyReturn}{Returns}
+bool True if the plant has been pruned, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_ac5cc4bf5eb5b0a9f330827265e77ea51}\label{classPlant_ac5cc4bf5eb5b0a9f330827265e77ea51} 
+\index{Plant@{Plant}!getSellSeason@{getSellSeason}}
+\index{getSellSeason@{getSellSeason}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getSellSeason()}{getSellSeason()}}
+{\footnotesize\ttfamily string Plant\+::get\+Sell\+Season (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the season when this plant is available for sale. 
+
+\begin{DoxyReturn}{Returns}
+string The sell season name. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a07fb6a2568f940b6655ea6714e06ba6d}\label{classPlant_a07fb6a2568f940b6655ea6714e06ba6d} 
+\index{Plant@{Plant}!getState@{getState}}
+\index{getState@{getState}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getState()}{getState()}}
+{\footnotesize\ttfamily string Plant\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current state of the plant as a string. 
+
+\begin{DoxyReturn}{Returns}
+string The name of the current plant state. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a7794a8b91ceb0cf6309bc3e5bc53fbfa}\label{classPlant_a7794a8b91ceb0cf6309bc3e5bc53fbfa} 
+\index{Plant@{Plant}!getStrategies@{getStrategies}}
+\index{getStrategies@{getStrategies}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getStrategies()}{getStrategies()}}
+{\footnotesize\ttfamily string Plant\+::get\+Strategies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets a string description of the plant\textquotesingle{}s care strategies. 
+
+\begin{DoxyReturn}{Returns}
+string Description of watering and pruning strategies. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_aebe17b06d92cf310568e47b2959d451b}\label{classPlant_aebe17b06d92cf310568e47b2959d451b} 
+\index{Plant@{Plant}!getTotalWater@{getTotalWater}}
+\index{getTotalWater@{getTotalWater}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getTotalWater()}{getTotalWater()}}
+{\footnotesize\ttfamily int Plant\+::get\+Total\+Water (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the total water given to the plant. 
+
+\begin{DoxyReturn}{Returns}
+int The total water amount. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_ae38ed8fecfdf9436c197e8fb6979dcfd}\label{classPlant_ae38ed8fecfdf9436c197e8fb6979dcfd} 
+\index{Plant@{Plant}!getWaterLevel@{getWaterLevel}}
+\index{getWaterLevel@{getWaterLevel}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getWaterLevel()}{getWaterLevel()}}
+{\footnotesize\ttfamily float Plant\+::get\+Water\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current water level. 
+
+\begin{DoxyReturn}{Returns}
+float The current water level of the plant. 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a5dc852d2699b12c272c9c560138933f4}\label{classPlant_a5dc852d2699b12c272c9c560138933f4} 
+\index{Plant@{Plant}!prune@{prune}}
+\index{prune@{prune}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{prune()}{prune()}}
+{\footnotesize\ttfamily void Plant\+::prune (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prunes the plant using its pruning strategy. 
+
+\Hypertarget{classPlant_a31137f98667ee0672874d82cebbee537}\label{classPlant_a31137f98667ee0672874d82cebbee537} 
+\index{Plant@{Plant}!seasonCost@{seasonCost}}
+\index{seasonCost@{seasonCost}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{seasonCost()}{seasonCost()}}
+{\footnotesize\ttfamily float Plant\+::season\+Cost (\begin{DoxyParamCaption}\item[{string}]{cur\+Season }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Calculates seasonal cost adjustments. 
+
+This is a primitive operation in the Template Method pattern. 
+\begin{DoxyParams}{Parameters}
+{\em cur\+Season} & The current season. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float The seasonally adjusted cost. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classFlower_a84e8acc91ae6171179827919849b752e}{Flower}}, \mbox{\hyperlink{classFruit_a4e6d8407b5152e2f128e57a8400912d1}{Fruit}}, and \mbox{\hyperlink{classVegetable_a4a03ba5321bbd3ddc67cd5264391e7b2}{Vegetable}}.
+
+\Hypertarget{classPlant_abc62e9840b319ac27f62737459a61436}\label{classPlant_abc62e9840b319ac27f62737459a61436} 
+\index{Plant@{Plant}!setHealth@{setHealth}}
+\index{setHealth@{setHealth}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{setHealth()}{setHealth()}}
+{\footnotesize\ttfamily void Plant\+::set\+Health (\begin{DoxyParamCaption}\item[{float}]{health }\end{DoxyParamCaption})}
+
+
+
+Sets the health of the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em health} & The new health value to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlant_aa2467d428d0c1b945061dd7300b93cc9}\label{classPlant_aa2467d428d0c1b945061dd7300b93cc9} 
+\index{Plant@{Plant}!setHeight@{setHeight}}
+\index{setHeight@{setHeight}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{setHeight()}{setHeight()}}
+{\footnotesize\ttfamily void Plant\+::set\+Height (\begin{DoxyParamCaption}\item[{float}]{height }\end{DoxyParamCaption})}
+
+
+
+Sets the height of the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em height} & The new height to set in cm. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlant_a08a0ce721bd454405f60dd40b66659cc}\label{classPlant_a08a0ce721bd454405f60dd40b66659cc} 
+\index{Plant@{Plant}!setPruned@{setPruned}}
+\index{setPruned@{setPruned}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{setPruned()}{setPruned()}}
+{\footnotesize\ttfamily void Plant\+::set\+Pruned (\begin{DoxyParamCaption}\item[{bool}]{pruned }\end{DoxyParamCaption})}
+
+
+
+Sets the pruned status of the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pruned} & The new pruned status. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlant_abe31f5c708a3d551b01cf22bbd8d221f}\label{classPlant_abe31f5c708a3d551b01cf22bbd8d221f} 
+\index{Plant@{Plant}!setState@{setState}}
+\index{setState@{setState}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{setState()}{setState()}}
+{\footnotesize\ttfamily void Plant\+::set\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlantState}{Plant\+State}} \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
+
+
+
+Sets the plant\textquotesingle{}s current state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Pointer to the new \doxylink{classPlantState}{Plant\+State}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlant_a211d9c4a3e0c2c1acc5b2fb9124db1df}\label{classPlant_a211d9c4a3e0c2c1acc5b2fb9124db1df} 
+\index{Plant@{Plant}!setTotalWater@{setTotalWater}}
+\index{setTotalWater@{setTotalWater}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{setTotalWater()}{setTotalWater()}}
+{\footnotesize\ttfamily void Plant\+::set\+Total\+Water (\begin{DoxyParamCaption}\item[{int}]{total }\end{DoxyParamCaption})}
+
+
+
+Sets the total water given to the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total} & The total water amount. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlant_a3fd132844992c39f6ce16dcf4de84d51}\label{classPlant_a3fd132844992c39f6ce16dcf4de84d51} 
+\index{Plant@{Plant}!setWaterLevel@{setWaterLevel}}
+\index{setWaterLevel@{setWaterLevel}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{setWaterLevel()}{setWaterLevel()}}
+{\footnotesize\ttfamily void Plant\+::set\+Water\+Level (\begin{DoxyParamCaption}\item[{float}]{level }\end{DoxyParamCaption})}
+
+
+
+Sets the water level of the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The new water level to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlant_a32f64c1097a39dc892dc9289cb23dfeb}\label{classPlant_a32f64c1097a39dc892dc9289cb23dfeb} 
+\index{Plant@{Plant}!summary@{summary}}
+\index{summary@{summary}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{summary()}{summary()}}
+{\footnotesize\ttfamily string Plant\+::summary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Generates a detailed summary of the plant\textquotesingle{}s status. 
+
+\begin{DoxyReturn}{Returns}
+string A comprehensive summary including all plant statistics. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classProduct_a949d367acad2b44d24320a8363ac2873}{Product}}.
+
+\Hypertarget{classPlant_af4552dd9ec01741c38eefd2f15ce2431}\label{classPlant_af4552dd9ec01741c38eefd2f15ce2431} 
+\index{Plant@{Plant}!water@{water}}
+\index{water@{water}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{water()}{water()}}
+{\footnotesize\ttfamily void Plant\+::water (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Waters the plant using its watering strategy. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classPlant_a1199b012e19d81e1e1d279c431e8362e}\label{classPlant_a1199b012e19d81e1e1d279c431e8362e} 
+\index{Plant@{Plant}!category@{category}}
+\index{category@{category}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{category}{category}}
+{\footnotesize\ttfamily string Plant\+::category\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Category of plant (\doxylink{classFlower}{Flower}, \doxylink{classHerb}{Herb}, \doxylink{classFruit}{Fruit}, etc.) 
+
+\Hypertarget{classPlant_ac4e8c08317c5b6dc0c4edb9f0f78c284}\label{classPlant_ac4e8c08317c5b6dc0c4edb9f0f78c284} 
+\index{Plant@{Plant}!cost@{cost}}
+\index{cost@{cost}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{cost}{cost}}
+{\footnotesize\ttfamily float Plant\+::cost\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current cost of the plant. 
+
+\Hypertarget{classPlant_a9546327678b98cea0ae2475c215b5bea}\label{classPlant_a9546327678b98cea0ae2475c215b5bea} 
+\index{Plant@{Plant}!currentState@{currentState}}
+\index{currentState@{currentState}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{currentState}{currentState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlantState}{Plant\+State}}\texorpdfstring{$\ast$}{*} Plant\+::current\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current growth state of the plant. 
+
+\Hypertarget{classPlant_a24505f555de90a3b5b0fbc7aa615cb4b}\label{classPlant_a24505f555de90a3b5b0fbc7aa615cb4b} 
+\index{Plant@{Plant}!health@{health}}
+\index{health@{health}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{health}{health}}
+{\footnotesize\ttfamily float Plant\+::health\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current health status of the plant. 
+
+\Hypertarget{classPlant_a2fba560075fb31026c3fcb4a3625f9b1}\label{classPlant_a2fba560075fb31026c3fcb4a3625f9b1} 
+\index{Plant@{Plant}!height@{height}}
+\index{height@{height}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily float Plant\+::height\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current height of the plant in cm. 
+
+\Hypertarget{classPlant_ad339313da357bf2c1a22d68ab1d18437}\label{classPlant_ad339313da357bf2c1a22d68ab1d18437} 
+\index{Plant@{Plant}!maxHeight@{maxHeight}}
+\index{maxHeight@{maxHeight}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{maxHeight}{maxHeight}}
+{\footnotesize\ttfamily int Plant\+::max\+Height\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maximum height this plant can reach in cm. 
+
+\Hypertarget{classPlant_a5e7524c02c407392be4ac490f849eecd}\label{classPlant_a5e7524c02c407392be4ac490f849eecd} 
+\index{Plant@{Plant}!name@{name}}
+\index{name@{name}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Plant\+::name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Name/variety of the plant. 
+
+\Hypertarget{classPlant_a0d2126f55f610743b97c981c350b8ef0}\label{classPlant_a0d2126f55f610743b97c981c350b8ef0} 
+\index{Plant@{Plant}!pruned@{pruned}}
+\index{pruned@{pruned}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{pruned}{pruned}}
+{\footnotesize\ttfamily bool Plant\+::pruned\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Whether the plant has been pruned. 
+
+\Hypertarget{classPlant_ae5f3749ec4bf1623d9ba19d6e3a9892d}\label{classPlant_ae5f3749ec4bf1623d9ba19d6e3a9892d} 
+\index{Plant@{Plant}!pruningStrat@{pruningStrat}}
+\index{pruningStrat@{pruningStrat}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{pruningStrat}{pruningStrat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}}\texorpdfstring{$\ast$}{*} Plant\+::pruning\+Strat\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Strategy for pruning this plant. 
+
+\Hypertarget{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}\label{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42} 
+\index{Plant@{Plant}!sellSeason@{sellSeason}}
+\index{sellSeason@{sellSeason}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{sellSeason}{sellSeason}}
+{\footnotesize\ttfamily string Plant\+::sell\+Season\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Season when this plant is available for sale. 
+
+\Hypertarget{classPlant_ae90fc0910a701b20bfd9458f93f9998d}\label{classPlant_ae90fc0910a701b20bfd9458f93f9998d} 
+\index{Plant@{Plant}!totalWater@{totalWater}}
+\index{totalWater@{totalWater}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{totalWater}{totalWater}}
+{\footnotesize\ttfamily int Plant\+::total\+Water\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Total amount of water given to the plant. 
+
+\Hypertarget{classPlant_a555aa51225db5b0e28887daa17a688be}\label{classPlant_a555aa51225db5b0e28887daa17a688be} 
+\index{Plant@{Plant}!wateringStrat@{wateringStrat}}
+\index{wateringStrat@{wateringStrat}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{wateringStrat}{wateringStrat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classWateringStrategy}{Watering\+Strategy}}\texorpdfstring{$\ast$}{*} Plant\+::watering\+Strat\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Strategy for watering this plant. 
+
+\Hypertarget{classPlant_ac1ae0655887754ca00e504d062181a14}\label{classPlant_ac1ae0655887754ca00e504d062181a14} 
+\index{Plant@{Plant}!waterLevel@{waterLevel}}
+\index{waterLevel@{waterLevel}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{waterLevel}{waterLevel}}
+{\footnotesize\ttfamily float Plant\+::water\+Level\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current water level of the plant. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Plant_8h}{Plant.\+h}}\item 
+src/\mbox{\hyperlink{Plant_8cpp}{Plant.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,111 @@
+\doxysection{Water\+Command Class Reference}
+\hypertarget{classWaterCommand}{}\label{classWaterCommand}\index{WaterCommand@{WaterCommand}}
+
+
+Command for watering a plant. Design Pattern\+: Command Participant\+: Concrete\+Command.  
+
+
+
+
+{\ttfamily \#include $<$Water\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Water\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classWaterCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Water\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWaterCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWaterCommand_a1c820f59b0f5ba1956e6a56b4eef41b3}{Water\+Command}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classWaterCommand}{Water\+Command}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWaterCommand_a57c9fc5cb3256356f96eb7ab922db1f7}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Executes the water command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCommand_abe8268d554fd49c6892942356dc33144}{Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant associated with this command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}{nursery}}
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command for watering a plant. Design Pattern\+: Command Participant\+: Concrete\+Command. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class encapsulates a watering request as a command object. It allows staff members to water a specific plant by delegating the watering operation to the plant\textquotesingle{}s watering strategy.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffCommand}{Staff\+Command} 
+
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classWateringStrategy}{Watering\+Strategy} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classWaterCommand_a1c820f59b0f5ba1956e6a56b4eef41b3}\label{classWaterCommand_a1c820f59b0f5ba1956e6a56b4eef41b3} 
+\index{WaterCommand@{WaterCommand}!WaterCommand@{WaterCommand}}
+\index{WaterCommand@{WaterCommand}!WaterCommand@{WaterCommand}}
+\doxysubsubsection{\texorpdfstring{WaterCommand()}{WaterCommand()}}
+{\footnotesize\ttfamily Water\+Command\+::\+Water\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classWaterCommand}{Water\+Command}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be watered. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classWaterCommand_a57c9fc5cb3256356f96eb7ab922db1f7}\label{classWaterCommand_a57c9fc5cb3256356f96eb7ab922db1f7} 
+\index{WaterCommand@{WaterCommand}!execute@{execute}}
+\index{execute@{execute}!WaterCommand@{WaterCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Water\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the water command. 
+
+This method calls the plant\textquotesingle{}s water() method, which delegates to its assigned watering strategy. 
+
+Reimplemented from \mbox{\hyperlink{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}{Staff\+Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{WaterCommand_8h}{Water\+Command.\+h}}\item 
+src/\mbox{\hyperlink{WaterCommand_8cpp}{Water\+Command.\+cpp}}\end{DoxyCompactItemize}

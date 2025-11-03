@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classCustomerCommand.html" title="Design Pattern: Command Participant: Command Interface." alt="" coords="5,80,157,105"/>
+<area shape="rect" id="Node000001" href="$classAskInfoCommand.html" title="Design Pattern: Command Participant: Concrete Command." alt="" coords="219,5,357,31"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="122,72,204,39,240,28,241,33,206,45,124,77"/>
+<area shape="rect" id="Node000002" href="$classCheckStockCommand.html" title="Design Pattern: Command Participant: Concrete Command." alt="" coords="205,55,371,80"/>
+<area shape="poly" id="edge4_Node000000_Node000002" title=" " alt="" coords="171,79,205,75,205,80,171,84"/>
+<area shape="rect" id="Node000003" href="$classCheckoutCommand.html" title="Design Pattern: Command Participant: Concrete Command." alt="" coords="213,104,363,129"/>
+<area shape="poly" id="edge5_Node000000_Node000003" title=" " alt="" coords="171,100,214,105,213,111,171,106"/>
+<area shape="rect" id="Node000004" href="$classRefundCommand.html" title="Design Pattern: Command Participant: Concrete Command." alt="" coords="221,153,355,179"/>
+<area shape="poly" id="edge6_Node000000_Node000004" title=" " alt="" coords="128,108,206,138,245,151,243,156,204,143,126,113"/>
+</map>

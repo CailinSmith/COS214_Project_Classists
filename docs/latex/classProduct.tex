@@ -1,0 +1,176 @@
+\doxysection{Product Class Reference}
+\hypertarget{classProduct}{}\label{classProduct}\index{Product@{Product}}
+
+
+Design Pattern\+: \doxylink{classDecorator}{Decorator} Participant\+: Component.  
+
+
+
+
+{\ttfamily \#include $<$Product.\+h$>$}
+
+
+
+Inheritance diagram for Product\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classProduct__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classProduct_a18f26095e25405579968c6ede367484f}{\texorpdfstring{$\sim$}{\string~}\+Product}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classProduct_a5ef6f2c6ddaa95f9d3000776c9ddaeff}{calculate\+Cost}} (string current\+Season)
+\begin{DoxyCompactList}\small\item\em Calculates the cost of the product based on the current season. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classProduct_a949d367acad2b44d24320a8363ac2873}{summary}} ()
+\begin{DoxyCompactList}\small\item\em Generates a detailed summary of the product. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classProduct_a88748011e43b0f68125e98daa0844ad0}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the product. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classProduct_a867d6377f83e2baac15d0afcb1e79bf6}{get\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves additional information about the product. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classProduct_aa1432fef1d1bf11ba7b2324f34796aee}{get\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Gets the cost of the product without season consideration. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classProduct_a9f4d87a432b67fb97412ec0ae8880217}{get\+Base\+Plant}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the base plant object if this product wraps a plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: \doxylink{classDecorator}{Decorator} Participant\+: Component. 
+
+\begin{DoxyAuthor}{Author}
+Jordan Naidoo 
+\end{DoxyAuthor}
+Defines the common interface for both \doxylink{classPlant}{Plant} objects and \doxylink{classDecorator}{Decorator} objects in the nursery system. This abstract base class allows plants to be decorated with various items such as pots, wrapping and fertilizer while maintaining a uniform interface for cost calculation, naming, and information retrieval.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classDecorator}{Decorator} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classProduct_a18f26095e25405579968c6ede367484f}\label{classProduct_a18f26095e25405579968c6ede367484f} 
+\index{Product@{Product}!````~Product@{\texorpdfstring{$\sim$}{\string~}Product}}
+\index{````~Product@{\texorpdfstring{$\sim$}{\string~}Product}!Product@{Product}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Product()}{\string~Product()}}
+{\footnotesize\ttfamily virtual Product\+::\texorpdfstring{$\sim$}{\string~}\+Product (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor for proper cleanup of derived classes. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classProduct_a5ef6f2c6ddaa95f9d3000776c9ddaeff}\label{classProduct_a5ef6f2c6ddaa95f9d3000776c9ddaeff} 
+\index{Product@{Product}!calculateCost@{calculateCost}}
+\index{calculateCost@{calculateCost}!Product@{Product}}
+\doxysubsubsection{\texorpdfstring{calculateCost()}{calculateCost()}}
+{\footnotesize\ttfamily virtual float Product\+::calculate\+Cost (\begin{DoxyParamCaption}\item[{string}]{current\+Season }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Calculates the cost of the product based on the current season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Season} & The current season affecting product pricing. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float The calculated cost of the product. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCeramicPot_aec753e6cad9bf1c4d705608185b6fde4}{Ceramic\+Pot}}, \mbox{\hyperlink{classClayPot_acdf741574fc14c86e1ec0cd42e845d38}{Clay\+Pot}}, \mbox{\hyperlink{classConcretePot_ac0d250f07af961424c8088009365fd92}{Concrete\+Pot}}, \mbox{\hyperlink{classDecorator_ad47827375b71fe491345a10500f9dc2d}{Decorator}}, \mbox{\hyperlink{classExtraFertilizer_a2001b29706fae72371cc1a838b8d79cf}{Extra\+Fertilizer}}, \mbox{\hyperlink{classKraftWrapping_a3091af8fb763ae3d9e860c92ac440b7a}{Kraft\+Wrapping}}, and \mbox{\hyperlink{classPlant_a4a819e97ddb7bd5b9a6e52e4a83ff5e2}{Plant}}.
+
+\Hypertarget{classProduct_a9f4d87a432b67fb97412ec0ae8880217}\label{classProduct_a9f4d87a432b67fb97412ec0ae8880217} 
+\index{Product@{Product}!getBasePlant@{getBasePlant}}
+\index{getBasePlant@{getBasePlant}!Product@{Product}}
+\doxysubsubsection{\texorpdfstring{getBasePlant()}{getBasePlant()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} Product\+::get\+Base\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Retrieves the base plant object if this product wraps a plant. 
+
+\begin{DoxyReturn}{Returns}
+Plant\texorpdfstring{$\ast$}{*} Pointer to the base plant, or nullptr if not applicable. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classPlant_a6b25f8fde68eebea72c20ef7543dfea8}{Plant}}, and \mbox{\hyperlink{classDecorator_a9aabfbf824159608ec9c3276560b3f22}{Decorator}}.
+
+\Hypertarget{classProduct_aa1432fef1d1bf11ba7b2324f34796aee}\label{classProduct_aa1432fef1d1bf11ba7b2324f34796aee} 
+\index{Product@{Product}!getCost@{getCost}}
+\index{getCost@{getCost}!Product@{Product}}
+\doxysubsubsection{\texorpdfstring{getCost()}{getCost()}}
+{\footnotesize\ttfamily virtual float Product\+::get\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the cost of the product without season consideration. 
+
+\begin{DoxyReturn}{Returns}
+float The base cost of the product. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classPlant_a0176ca4d6060c9f0cf0da2286a78ca9b}{Plant}}.
+
+\Hypertarget{classProduct_a867d6377f83e2baac15d0afcb1e79bf6}\label{classProduct_a867d6377f83e2baac15d0afcb1e79bf6} 
+\index{Product@{Product}!getInfo@{getInfo}}
+\index{getInfo@{getInfo}!Product@{Product}}
+\doxysubsubsection{\texorpdfstring{getInfo()}{getInfo()}}
+{\footnotesize\ttfamily virtual string Product\+::get\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Retrieves additional information about the product. 
+
+\begin{DoxyReturn}{Returns}
+string Additional product information. 
+\end{DoxyReturn}
+\Hypertarget{classProduct_a88748011e43b0f68125e98daa0844ad0}\label{classProduct_a88748011e43b0f68125e98daa0844ad0} 
+\index{Product@{Product}!getName@{getName}}
+\index{getName@{getName}!Product@{Product}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily virtual string Product\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Retrieves the name of the product. 
+
+\begin{DoxyReturn}{Returns}
+string The product name. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCeramicPot_ab7d6cc06cd77e9f6838adf47353f2647}{Ceramic\+Pot}}, \mbox{\hyperlink{classClayPot_a8f77bd7b9b293b097812199ce143df61}{Clay\+Pot}}, \mbox{\hyperlink{classConcretePot_a09376f9fbbc3c612b8d0480d075d8fed}{Concrete\+Pot}}, \mbox{\hyperlink{classDecorator_a158af0ff4428a18587297a534912c205}{Decorator}}, \mbox{\hyperlink{classExtraFertilizer_a069765008cad4f703d25d636c297333a}{Extra\+Fertilizer}}, \mbox{\hyperlink{classKraftWrapping_ab496810b94842d049389e83325266d41}{Kraft\+Wrapping}}, and \mbox{\hyperlink{classPlant_a91981706cdc524141d46d222d99a7bcb}{Plant}}.
+
+\Hypertarget{classProduct_a949d367acad2b44d24320a8363ac2873}\label{classProduct_a949d367acad2b44d24320a8363ac2873} 
+\index{Product@{Product}!summary@{summary}}
+\index{summary@{summary}!Product@{Product}}
+\doxysubsubsection{\texorpdfstring{summary()}{summary()}}
+{\footnotesize\ttfamily virtual string Product\+::summary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Generates a detailed summary of the product. 
+
+\begin{DoxyReturn}{Returns}
+string A formatted description of the product. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCeramicPot_a45f85c26be3fb51b4634a5f4ecafa844}{Ceramic\+Pot}}, \mbox{\hyperlink{classClayPot_a33e94e6157c950c040f7159b3271b339}{Clay\+Pot}}, \mbox{\hyperlink{classConcretePot_ac960d41fb4f0442743f534f5554e32e0}{Concrete\+Pot}}, \mbox{\hyperlink{classDecorator_a6e7369cc889d396238a3e49551a84e07}{Decorator}}, \mbox{\hyperlink{classExtraFertilizer_ab7eff78228a23a1fbf84644440c12d75}{Extra\+Fertilizer}}, \mbox{\hyperlink{classKraftWrapping_a1d5a7e70c1095dbbeac6721c82c64d32}{Kraft\+Wrapping}}, and \mbox{\hyperlink{classPlant_a32f64c1097a39dc892dc9289cb23dfeb}{Plant}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Product_8h}{Product.\+h}}\end{DoxyCompactItemize}

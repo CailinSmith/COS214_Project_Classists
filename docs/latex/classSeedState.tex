@@ -1,0 +1,101 @@
+\doxysection{Seed\+State Class Reference}
+\hypertarget{classSeedState}{}\label{classSeedState}\index{SeedState@{SeedState}}
+
+
+Design pattern\+: State Participant\+: Concrete\+State.  
+
+
+
+
+{\ttfamily \#include $<$Seed\+State.\+h$>$}
+
+
+
+Inheritance diagram for Seed\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=147pt]{classSeedState__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Seed\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=147pt]{classSeedState__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classSeedState_ab5b9ca7ca87a0c5bb2f04f0caa66e0a4}{change}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant) override
+\begin{DoxyCompactList}\small\item\em Changes the state of the plant. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classSeedState_a104e635d9f473f1e50fda14f9c5c0bac}{print}} () override
+\begin{DoxyCompactList}\small\item\em Returns the name of the state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: State Participant\+: Concrete\+State. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel
+\end{DoxyAuthor}
+
+
+This class is a concrete state for when a plant is a seed.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantState}{Plant\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSeedState_ab5b9ca7ca87a0c5bb2f04f0caa66e0a4}\label{classSeedState_ab5b9ca7ca87a0c5bb2f04f0caa66e0a4} 
+\index{SeedState@{SeedState}!change@{change}}
+\index{change@{change}!SeedState@{SeedState}}
+\doxysubsubsection{\texorpdfstring{change()}{change()}}
+{\footnotesize\ttfamily void Seed\+State\+::change (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Changes the state of the plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & The plant to change the state of. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classPlantState_ae929dd4c55fc527ca58b9f85dcaf90fe}{Plant\+State}}.
+
+\Hypertarget{classSeedState_a104e635d9f473f1e50fda14f9c5c0bac}\label{classSeedState_a104e635d9f473f1e50fda14f9c5c0bac} 
+\index{SeedState@{SeedState}!print@{print}}
+\index{print@{print}!SeedState@{SeedState}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string Seed\+State\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the name of the state. 
+
+\begin{DoxyReturn}{Returns}
+The name of the state. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantState_ae26f80b79106927035bfac09f5c4830b}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{SeedState_8h}{Seed\+State.\+h}}\item 
+src/\mbox{\hyperlink{SeedState_8cpp}{Seed\+State.\+cpp}}\end{DoxyCompactItemize}

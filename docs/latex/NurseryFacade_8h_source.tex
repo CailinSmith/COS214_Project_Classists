@@ -1,0 +1,109 @@
+\doxysection{Nursery\+Facade.\+h}
+\hypertarget{NurseryFacade_8h_source}{}\label{NurseryFacade_8h_source}\index{src/NurseryFacade.h@{src/NurseryFacade.h}}
+\mbox{\hyperlink{NurseryFacade_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ NURSERYFACADE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ NURSERYFACADE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{InventoryManager_8h}{InventoryManager.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Nursery_8h}{Nursery.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Receipt_8h}{Receipt.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Decorator_8h}{Decorator.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{KraftWrapping_8h}{KraftWrapping.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ConcretePot_8h}{ConcretePot.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ClayPot_8h}{ClayPot.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CeramicPot_8h}{CeramicPot.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ExtraFertilizer_8h}{ExtraFertilizer.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SalesArea_8h}{SalesArea.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NurseryArea_8h}{NurseryArea.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Staff_8h}{Staff.h}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNurseryFacade}{NurseryFacade}}\ \{}
+\DoxyCodeLine{00053\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classNurseryFacade}{NurseryFacade}}(\mbox{\hyperlink{classInventoryManager}{InventoryManager}}*\ mgr\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classNurseryFacade_ae0c2022602c0000338a538de163bed5e}{\string~NurseryFacade}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_aa9e5332f1b26cf731726c262121c6d83}{start}}();}
+\DoxyCodeLine{00080\ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a8051e03c56e59da3096665e66a2ef132}{stop}}();}
+\DoxyCodeLine{00088\ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_ade65beb1bc0a51742ca2c69ef2e1e915}{setTickInterval}}(std::chrono::milliseconds\ tps)\ \{\ \mbox{\hyperlink{classNurseryFacade_ac91a099943858f41d79f00535e0f303b}{tickInterval\_}}\ =\ tps;\ \}}
+\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a119c9bb703eb8748806efbc453f21eac}{listSaleCategories}}();}
+\DoxyCodeLine{00101\ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a305c5af465ff2a6fab7ba8fa3ae173af}{listPlantsInCategory}}(\textcolor{keyword}{const}\ std::string\ \&category);}
+\DoxyCodeLine{00107\ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a07ff6662e4ae0de1627b220759c0e738}{listSeasonalPlants}}(\textcolor{keywordtype}{bool}\ customerView\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00115\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classNurseryFacade_ae56432f006055f853212b235c99351de}{getStockCountByName}}(\textcolor{keyword}{const}\ std::string\ \&name);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_ae106d39c46c37c2b616cf9ec28c78d1f}{runMainMenu}}();}
+\DoxyCodeLine{00131\ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a8c9b38311ba6936618f1a1c197ae26fa}{runCustomerMenu}}();}
+\DoxyCodeLine{00139\ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a63ac6bd7b7db9330d9c2516602091ebe}{runStaffMenu}}();}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_afb7be790230536bd3497a368d5ceafd7}{tickLoop}}();}
+\DoxyCodeLine{00155\ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_addd499ae93453fb35cfc6c7565b83e8a}{automatedCustomerLoop}}();}
+\DoxyCodeLine{00162\ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a614efe885732bf7709ffab7bd69c103c}{automatedStaffLoop}}();}
+\DoxyCodeLine{00170\ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_aeba3833b4d1a15e82f210f90027a19c6}{runSettings}}();}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_aaf1937250cbb3e2aeef0d96e91af4708}{listSalePlants}}();}
+\DoxyCodeLine{00185\ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a8d1862f4ff5b0d65538cb152395b39a4}{viewPlantInfo}}(\textcolor{keywordtype}{size\_t}\ index);}
+\DoxyCodeLine{00191\ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}*\ \mbox{\hyperlink{classNurseryFacade_ad6c5ecabb633e19cc23a30b2e39aa282}{pickSalePlant}}(\textcolor{keywordtype}{size\_t}\ index);}
+\DoxyCodeLine{00198\ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a326a4b2782288ec1761fd8b65a913887}{performCheckout}}();}
+\DoxyCodeLine{00206\ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryFacade_a68d1cd5af66bf2cb49a4be49e4067d9c}{decorateProductMenu}}(\textcolor{keywordtype}{size\_t}\ orderIndex);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00222\ \ \ \ \ \mbox{\hyperlink{classInventoryManager}{InventoryManager}}*\ \mbox{\hyperlink{classNurseryFacade_ab55f07189fc027efc3c9b0e79e334c21}{manager\_}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00223\ \ \ \ \ }
+\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{classNursery}{Nursery}}*\ \mbox{\hyperlink{classNurseryFacade_a4d5bb34f11950417e67c01d7d463cc1c}{nursery\_}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00230\ \ \ \ \ }
+\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{classSalesArea}{SalesArea}}*\ \mbox{\hyperlink{classNurseryFacade_ad8b461efed8172773e76f2f7313311f2}{salesArea\_}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00237\ \ \ \ \ }
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{classNurseryArea}{NurseryArea}}*\ \mbox{\hyperlink{classNurseryFacade_ac30cf0d0f32b075dd7c74d06a91bc9a1}{nurseryArea\_}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00244\ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ \mbox{\hyperlink{classNurseryFacade_a2757e354acd8e737640ee00f72010ea2}{managerStaff\_}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00251\ \ \ \ \ }
+\DoxyCodeLine{00257\ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ \mbox{\hyperlink{classNurseryFacade_ae738c5b9b482f4d92d5adcfa8c27332d}{salesStaff\_}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00258\ \ \ \ \ }
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ \mbox{\hyperlink{classNurseryFacade_acfe8e766f6e5b6446822be833630c2e4}{nurseryStaff\_}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00271\ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classNurseryFacade_acf4b6203e852c86aadc1a118d730bf9d}{running\_}}\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00272\ \ \ \ \ }
+\DoxyCodeLine{00278\ \ \ \ \ std::mutex\ \mbox{\hyperlink{classNurseryFacade_a787121d9ed55c97bd4ce755c69403aef}{mtx\_}};}
+\DoxyCodeLine{00279\ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{classNurseryFacade_aab71a2d0c5b62d1f0554f5862a8357e4}{cv\_}};}
+\DoxyCodeLine{00284\ \ \ \ \ }
+\DoxyCodeLine{00290\ \ \ \ \ std::vector<std::thread>\ \mbox{\hyperlink{classNurseryFacade_af443430b7e70303ca6bac71bc9b085ef}{threads\_}};}
+\DoxyCodeLine{00291\ \ \ \ \ }
+\DoxyCodeLine{00297\ \ \ \ \ std::chrono::milliseconds\ \mbox{\hyperlink{classNurseryFacade_ac91a099943858f41d79f00535e0f303b}{tickInterval\_}}\{1000\};}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00304\ \ \ \ \ std::vector<Product*>\ \mbox{\hyperlink{classNurseryFacade_ad3439a794b23f8d395b2dc6436e9f856}{currentOrder\_}};}
+\DoxyCodeLine{00305\ \ \ \ \ }
+\DoxyCodeLine{00311\ \ \ \ \ std::vector<Receipt*>\ \mbox{\hyperlink{classNurseryFacade_afcba02c2799112b15e67bc2293408d71}{pastReceipts\_}};}
+\DoxyCodeLine{00312\ \ \ \ \ }
+\DoxyCodeLine{00318\ \ \ \ \ std::vector<Product*>\ \mbox{\hyperlink{classNurseryFacade_ad4939d5fdfdf4a115a130d638ccf7c39}{soldProducts\_}};}
+\DoxyCodeLine{00319\ \};}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

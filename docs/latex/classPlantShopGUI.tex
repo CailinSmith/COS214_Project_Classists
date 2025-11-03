@@ -1,0 +1,1144 @@
+\doxysection{Plant\+Shop\+GUI Class Reference}
+\hypertarget{classPlantShopGUI}{}\label{classPlantShopGUI}\index{PlantShopGUI@{PlantShopGUI}}
+
+
+Main GUI class for the plant shop application using FTXUI.  
+
+
+
+
+{\ttfamily \#include $<$gui.\+h$>$}
+
+
+
+Collaboration diagram for Plant\+Shop\+GUI\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPlantShopGUI__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlantShopGUI_a6abfec14b36ff01e0e25f0da0ee25118}{Plant\+Shop\+GUI}} ()
+\begin{DoxyCompactList}\small\item\em Constructor -\/ initializes the GUI and all necessary components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantShopGUI_a810815497239fa69df3c5c2b285cba48}{\texorpdfstring{$\sim$}{\string~}\+Plant\+Shop\+GUI}} ()
+\begin{DoxyCompactList}\small\item\em Destructor -\/ cleans up allocated resources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantShopGUI_a73d034f01df2b3c629054f47e07b4821}{run}} ()
+\begin{DoxyCompactList}\small\item\em Main entry point to run the GUI application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907}{View}} \{ \newline
+\mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a8a84a67f19d835defe95113f20debc8b}{MAIN\+\_\+\+MENU}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ab60107316b4527b64d9fd648a120e9bd}{VIEW\+\_\+\+BY\+\_\+\+SELECTION}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ae9a8c6cc8e1a16a3f2aad0c3c216c6b7}{CATEGORY\+\_\+\+SELECTION}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a8d980188758e2410732a66c3edd205f5}{SEASON\+\_\+\+SELECTION}}
+, \newline
+\mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a5a37fe3b89c7b39130b1810287e2f733}{PLANT\+\_\+\+LIST}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907aa43c61bc2fec6e1091040845e3493cd8}{PLANT\+\_\+\+DETAILS}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a817d9dbf66a843b93f80dc1bb5b9523e}{CART\+\_\+\+VIEW}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a0503f90554b9655e2003e22569ae6fef}{DECORATION\+\_\+\+MENU}}
+, \newline
+\mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ac3764a305c971f6b8cc17a7debcd1d89}{CHECKOUT\+\_\+\+SUMMARY}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a44fd8002a311c7cab6ff4b5a50bd7d42}{STOCK\+\_\+\+CHECK}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ae22835bde75a9fe41a0e86de15482a81}{PAST\+\_\+\+ORDERS}}
+, \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a3bd810a46d83a1673d976f1027e53d95}{REFUND\+\_\+\+SELECTION}}
+, \newline
+\mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a51f9257d35f097a2ca8fd4bbd6d6213e}{REFUND\+\_\+\+CONFIRMATION}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum representing the different views in the GUI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPlantShopGUI_a3c93ff64c3cdad2bb4b5fe2360cab8e9}{initialize\+Plants}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the plant inventory with demo plants. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantShopGUI_a65f2f923afa302d7118f14e4a872fb28}{load\+Plants\+For\+Category}} (const std\+::string \&category)
+\begin{DoxyCompactList}\small\item\em Loads plants matching a specific category. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantShopGUI_a59924fa04ef0d476489b5318304e23fb}{load\+Plants\+For\+Season}} (const std\+::string \&season)
+\begin{DoxyCompactList}\small\item\em Loads plants matching a specific season. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantShopGUI_a55efa8b4c1ab711d30554fbcdec59288}{apply\+Decoration}} ()
+\begin{DoxyCompactList}\small\item\em Applies decorations to the currently selected plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantShopGUI_ab53c52a23e69ab86cee7cebefcccd486}{process\+Multi\+Item\+Refund}} ()
+\begin{DoxyCompactList}\small\item\em Processes refund for multiple items from past orders. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantShopGUI_aab20f3e76abd8a3189ae4f3d969bd3b9}{show\+Cart}} ()
+\begin{DoxyCompactList}\small\item\em Displays the shopping cart view. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantShopGUI_a9b41f77a8380e0dd774dd483e8bc51aa}{start\+Checkout\+Flow}} ()
+\begin{DoxyCompactList}\small\item\em Initiates the checkout process flow. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantShopGUI_a9299cced20d8c6d6b6c26d5df5c9860d}{perform\+Actual\+Checkout}} ()
+\begin{DoxyCompactList}\small\item\em Performs the actual checkout transaction. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_abed79b76b41f39149623696d7f49ff03}{render}} ()
+\begin{DoxyCompactList}\small\item\em Renders the current view. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_ac02abb41d78d5828f4e19641c1fb5ed2}{render\+Main\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Renders the main menu. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_aa407428051cbfd4704358f13c19612ca}{render\+View\+By\+Selection}} ()
+\begin{DoxyCompactList}\small\item\em Renders the view selection menu. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_aff9e66fd8d42df89a8e7d5c09188fd5c}{render\+Category\+Selection}} ()
+\begin{DoxyCompactList}\small\item\em Renders the category selection menu. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_ae64922744a0ed9593c67b6172cdb7815}{render\+Season\+Selection}} ()
+\begin{DoxyCompactList}\small\item\em Renders the season selection menu. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_a9c080f0a31e34e53fd31b8105c022471}{render\+Plant\+List}} ()
+\begin{DoxyCompactList}\small\item\em Renders the plant list view. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_a34f5959c1699cb4e3a7c40ca8568011e}{render\+Plant\+Details}} ()
+\begin{DoxyCompactList}\small\item\em Renders detailed information about a selected plant. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_a1eee8fb8196641fdc3a4de9a7df405dd}{render\+Cart}} ()
+\begin{DoxyCompactList}\small\item\em Renders the shopping cart. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_ad5156d837c2118f4d8d050f20914032d}{render\+Decoration\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Renders the decoration menu. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_aa1be030aa2efa9436f71e73fd73eef36}{render\+Checkout\+Summary}} ()
+\begin{DoxyCompactList}\small\item\em Renders the checkout summary. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_a3ad92a49c945d6a15136eb6cb98cbd82}{render\+Stock\+Check}} ()
+\begin{DoxyCompactList}\small\item\em Renders the stock check view. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_a1cb63c4df13dca0e79bf2d6ef3e0a8cb}{render\+Past\+Orders}} ()
+\begin{DoxyCompactList}\small\item\em Renders the past orders view. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_a62312fcc7bc9467391a550e82baa07c9}{render\+Refund\+Selection}} ()
+\begin{DoxyCompactList}\small\item\em Renders the refund selection view. \end{DoxyCompactList}\item 
+Element \mbox{\hyperlink{classPlantShopGUI_aec1a1b6d97baa815c96145c38f2a6083}{render\+Refund\+Confirmation}} ()
+\begin{DoxyCompactList}\small\item\em Renders the refund confirmation view. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_ab6207e06f329fe4beff835bc09cfc108}{handle\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input events. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a4b00a203dc22190bae56e573edcc3e04}{handle\+Main\+Menu\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the main menu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a4398b03fb72f3224fb12fa8597278900}{handle\+View\+By\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the view selection menu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a026731f94c5760aa4ed7bcfa769cab7b}{handle\+Category\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the category selection menu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a705131023d763e5170325e8b0b9aea36}{handle\+Season\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the season selection menu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_ab6084bc5dcee981ac088d4d612881b24}{handle\+Plant\+List\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the plant list view. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a8a6cc3acc73e9300ed7f92fea1d217f2}{handle\+Details\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the plant details view. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_aa3e8a1c4bc51f1704843680f54174c18}{handle\+Cart\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the cart view. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a54cdc88e4bbe71880c86d58166264cff}{handle\+Decoration\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the decoration menu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a5cee38ce6235ee30e17863e8dd3faf4c}{handle\+Checkout\+Summary\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the checkout summary. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a7d0ff7345b5bc93661b326e2eb5892eb}{handle\+Past\+Orders\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the past orders view. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_aca25ee817f74cf49df8f93d83002d767}{handle\+Refund\+Selection\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the refund selection view. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlantShopGUI_ac6dc27459336a77ad37f065d36fb3909}{handle\+Refund\+Confirmation\+Input}} (Event event)
+\begin{DoxyCompactList}\small\item\em Handles input for the refund confirmation view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Screen\+Interactive \mbox{\hyperlink{classPlantShopGUI_a5f3aa174759b44321ee13289bccfe316}{screen}}
+\begin{DoxyCompactList}\small\item\em FTXUI Screen\+Interactive for rendering the GUI. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantShopGUI_a5d84fe287452b98c14a9be64d1d1fd2f}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Inventory manager for managing plant inventory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantShopGUI_abc1e0f1fb4e9230f040d0fa43dade71b}{nursery}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classNursery}{Nursery} for managing nursery operations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCustomer}{Customer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantShopGUI_a672607a979773215f862948b4cc5d1de}{customer}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classCustomer}{Customer} using the GUI. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantShopGUI_a18a689f5305b6d511d01092e59d5ed04}{nursery\+Staff}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classStaff}{Staff} members for handling various operations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantShopGUI_a8897086a4d3e0f93c1146d1249fabbb9}{sales\+Staff}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classStaff}{Staff} members for handling various operations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantShopGUI_af51e065b254bf575abf6e6016a18c6a8}{manager\+Staff}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classStaff}{Staff} members for handling various operations. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlantShopGUI_adb7fa68f361011782c18402bd2ac7c88}{main\+Menu\+Selected}}
+\begin{DoxyCompactList}\small\item\em Variable for main menu navigation and selections. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlantShopGUI_a73350eed80137b0018a8bed2659d4dc3}{category\+Menu\+Selected}}
+\begin{DoxyCompactList}\small\item\em Variable for category menu navigation and selections. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlantShopGUI_a5ac259c8dce29a8c6d1ef6e970adc0fd}{plant\+List\+Selected}}
+\begin{DoxyCompactList}\small\item\em Variable for plant list navigation and selections. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlantShopGUI_a1c2ec9254261580a1039f396e817a816}{details\+Scroll\+Offset}}
+\begin{DoxyCompactList}\small\item\em Variable for details view scrolling. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPlantShopGUI_a279c54a5026f1bf418a8ff5cfe876d99}{input\+Buffer}}
+\begin{DoxyCompactList}\small\item\em Input buffer for text input fields. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPlantShopGUI_a408772220627d2659c95d9d72fcd0143}{message\+Buffer}}
+\begin{DoxyCompactList}\small\item\em Message buffer for displaying messages to the user. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907}{View}} \mbox{\hyperlink{classPlantShopGUI_a5c3295cee2f1ea59e181efee6983d596}{current\+View}}
+\begin{DoxyCompactList}\small\item\em Current view being displayed. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlantShopGUI_acd30fd1631ebf3bc962f972e53d82cff}{cart\+List\+Selected}}
+\item 
+int \mbox{\hyperlink{classPlantShopGUI_a5e1450b6c766b9e8e4d97ddc9afbfa62}{decoration\+Menu\+Selected}}
+\item 
+int \mbox{\hyperlink{classPlantShopGUI_a714bd9edea099d689aa44faeff7c4a99}{view\+By\+Selected}}
+\item 
+int \mbox{\hyperlink{classPlantShopGUI_a70b98fb5fdd3b1f96810766b41b0393f}{season\+Menu\+Selected}}
+\item 
+int \mbox{\hyperlink{classPlantShopGUI_a5b39919771433dfd53d56d494127a87d}{current\+Decorating\+Index}}
+\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a932078adf66b8cc7b2439ac2a2d0a284}{has\+Pot}}
+\item 
+bool \mbox{\hyperlink{classPlantShopGUI_af87fb97366e77708096032dc6a225539}{has\+Wrapping}}
+\item 
+bool \mbox{\hyperlink{classPlantShopGUI_ab7bf49d6c43ce50bdd0b6b4e54bf8f6f}{has\+Fertilizer}}
+\item 
+bool \mbox{\hyperlink{classPlantShopGUI_a08c2f7eb71067c233b63eda2d1b0b665}{viewing\+By\+Season}}
+\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{classPlantShopGUI_a96f08b90f5926440c7aa63eb43c794d1}{refund\+Flags}}
+\item 
+int \mbox{\hyperlink{classPlantShopGUI_a3f7d07bd3a9a728cdc2c6b0dc2585529}{refund\+List\+Selected}}
+\item 
+std\+::string \mbox{\hyperlink{classPlantShopGUI_a60d37b4c15e10be148c3dfba0a0ec7d3}{refund\+Result\+Message}}
+\item 
+float \mbox{\hyperlink{classPlantShopGUI_a9b04e192df7e4016fd53a5f29f3da209}{refund\+Total}}
+\item 
+int \mbox{\hyperlink{classPlantShopGUI_a96b56ee92d6ca23393a8f6dce30f61e4}{plant\+List\+Scroll\+Offset}}
+\item 
+int \mbox{\hyperlink{classPlantShopGUI_a7c8a55524fe5211fc1d50d0ed1617c6c}{checkout\+Scroll\+Offset}}
+\item 
+int \mbox{\hyperlink{classPlantShopGUI_a4d43c9cdfc1d298939635b252ced8208}{refund\+Scroll\+Offset}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classPlantShopGUI_abdb7cf5bc78054229b0b97970710fdae}{categories}}
+\begin{DoxyCompactList}\small\item\em Lists for categories of plant types. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classPlantShopGUI_a380c46614ab0f501505e6d71ffd95862}{seasons}}
+\begin{DoxyCompactList}\small\item\em Lists for the different seasons. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPlantShopGUI_aa978614b86f563ee7b227ce7ef8ec7f8}{selected\+Category}}
+\begin{DoxyCompactList}\small\item\em Currently selected category. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPlantShopGUI_a8b7b9b7873977172342974756d1dd22b}{selected\+Season}}
+\begin{DoxyCompactList}\small\item\em Currently selected season. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classPlantShopGUI_ac4af0c81949da6461810e113eb4a8bca}{current\+Plants}}
+\begin{DoxyCompactList}\small\item\em Currently loaded plants based on selection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantShopGUI_a1b95e03b60895ea8b89f8d5381f7137b}{selected\+Plant}}
+\begin{DoxyCompactList}\small\item\em Currently selected plant. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPlantShopGUI_a9145f75c949025406ab1d89ed2da547b}{selected\+Order\+Index}}
+\begin{DoxyCompactList}\small\item\em Currently selected order index for past orders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main GUI class for the plant shop application using FTXUI. 
+
+\begin{DoxyAuthor}{Author}
+Jordan Naidoo 
+
+Alex Lange 
+\end{DoxyAuthor}
+This class manages the entire graphical user interface for the plant shop, providing an interactive terminal-\/based interface for customers to browse plants, manage their cart, make purchases, and handle refunds. It integrates with the inventory management system, nursery operations, and staff members.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classInventoryManager}{Inventory\+Manager} 
+
+\doxylink{classNursery}{Nursery} 
+
+ \+Customer 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907} 
+\index{PlantShopGUI@{PlantShopGUI}!View@{View}}
+\index{View@{View}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{View}{View}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907}{Plant\+Shop\+GUI\+::\+View}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Enum representing the different views in the GUI. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAIN\_MENU@{MAIN\_MENU}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!MAIN\_MENU@{MAIN\_MENU}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a8a84a67f19d835defe95113f20debc8b}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a8a84a67f19d835defe95113f20debc8b} 
+MAIN\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VIEW\_BY\_SELECTION@{VIEW\_BY\_SELECTION}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!VIEW\_BY\_SELECTION@{VIEW\_BY\_SELECTION}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ab60107316b4527b64d9fd648a120e9bd}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ab60107316b4527b64d9fd648a120e9bd} 
+VIEW\+\_\+\+BY\+\_\+\+SELECTION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CATEGORY\_SELECTION@{CATEGORY\_SELECTION}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!CATEGORY\_SELECTION@{CATEGORY\_SELECTION}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ae9a8c6cc8e1a16a3f2aad0c3c216c6b7}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ae9a8c6cc8e1a16a3f2aad0c3c216c6b7} 
+CATEGORY\+\_\+\+SELECTION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEASON\_SELECTION@{SEASON\_SELECTION}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!SEASON\_SELECTION@{SEASON\_SELECTION}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a8d980188758e2410732a66c3edd205f5}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a8d980188758e2410732a66c3edd205f5} 
+SEASON\+\_\+\+SELECTION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLANT\_LIST@{PLANT\_LIST}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!PLANT\_LIST@{PLANT\_LIST}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a5a37fe3b89c7b39130b1810287e2f733}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a5a37fe3b89c7b39130b1810287e2f733} 
+PLANT\+\_\+\+LIST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLANT\_DETAILS@{PLANT\_DETAILS}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!PLANT\_DETAILS@{PLANT\_DETAILS}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907aa43c61bc2fec6e1091040845e3493cd8}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907aa43c61bc2fec6e1091040845e3493cd8} 
+PLANT\+\_\+\+DETAILS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CART\_VIEW@{CART\_VIEW}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!CART\_VIEW@{CART\_VIEW}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a817d9dbf66a843b93f80dc1bb5b9523e}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a817d9dbf66a843b93f80dc1bb5b9523e} 
+CART\+\_\+\+VIEW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DECORATION\_MENU@{DECORATION\_MENU}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!DECORATION\_MENU@{DECORATION\_MENU}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a0503f90554b9655e2003e22569ae6fef}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a0503f90554b9655e2003e22569ae6fef} 
+DECORATION\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHECKOUT\_SUMMARY@{CHECKOUT\_SUMMARY}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!CHECKOUT\_SUMMARY@{CHECKOUT\_SUMMARY}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ac3764a305c971f6b8cc17a7debcd1d89}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ac3764a305c971f6b8cc17a7debcd1d89} 
+CHECKOUT\+\_\+\+SUMMARY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STOCK\_CHECK@{STOCK\_CHECK}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!STOCK\_CHECK@{STOCK\_CHECK}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a44fd8002a311c7cab6ff4b5a50bd7d42}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a44fd8002a311c7cab6ff4b5a50bd7d42} 
+STOCK\+\_\+\+CHECK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PAST\_ORDERS@{PAST\_ORDERS}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!PAST\_ORDERS@{PAST\_ORDERS}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ae22835bde75a9fe41a0e86de15482a81}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ae22835bde75a9fe41a0e86de15482a81} 
+PAST\+\_\+\+ORDERS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REFUND\_SELECTION@{REFUND\_SELECTION}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!REFUND\_SELECTION@{REFUND\_SELECTION}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a3bd810a46d83a1673d976f1027e53d95}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a3bd810a46d83a1673d976f1027e53d95} 
+REFUND\+\_\+\+SELECTION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REFUND\_CONFIRMATION@{REFUND\_CONFIRMATION}!PlantShopGUI@{PlantShopGUI}}\index{PlantShopGUI@{PlantShopGUI}!REFUND\_CONFIRMATION@{REFUND\_CONFIRMATION}}}\Hypertarget{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a51f9257d35f097a2ca8fd4bbd6d6213e}\label{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a51f9257d35f097a2ca8fd4bbd6d6213e} 
+REFUND\+\_\+\+CONFIRMATION&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlantShopGUI_a6abfec14b36ff01e0e25f0da0ee25118}\label{classPlantShopGUI_a6abfec14b36ff01e0e25f0da0ee25118} 
+\index{PlantShopGUI@{PlantShopGUI}!PlantShopGUI@{PlantShopGUI}}
+\index{PlantShopGUI@{PlantShopGUI}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{PlantShopGUI()}{PlantShopGUI()}}
+{\footnotesize\ttfamily Plant\+Shop\+GUI\+::\+Plant\+Shop\+GUI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ initializes the GUI and all necessary components. 
+
+\Hypertarget{classPlantShopGUI_a810815497239fa69df3c5c2b285cba48}\label{classPlantShopGUI_a810815497239fa69df3c5c2b285cba48} 
+\index{PlantShopGUI@{PlantShopGUI}!````~PlantShopGUI@{\texorpdfstring{$\sim$}{\string~}PlantShopGUI}}
+\index{````~PlantShopGUI@{\texorpdfstring{$\sim$}{\string~}PlantShopGUI}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PlantShopGUI()}{\string~PlantShopGUI()}}
+{\footnotesize\ttfamily Plant\+Shop\+GUI\+::\texorpdfstring{$\sim$}{\string~}\+Plant\+Shop\+GUI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor -\/ cleans up allocated resources. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlantShopGUI_a55efa8b4c1ab711d30554fbcdec59288}\label{classPlantShopGUI_a55efa8b4c1ab711d30554fbcdec59288} 
+\index{PlantShopGUI@{PlantShopGUI}!applyDecoration@{applyDecoration}}
+\index{applyDecoration@{applyDecoration}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{applyDecoration()}{applyDecoration()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::apply\+Decoration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Applies decorations to the currently selected plant. 
+
+\Hypertarget{classPlantShopGUI_aa3e8a1c4bc51f1704843680f54174c18}\label{classPlantShopGUI_aa3e8a1c4bc51f1704843680f54174c18} 
+\index{PlantShopGUI@{PlantShopGUI}!handleCartInput@{handleCartInput}}
+\index{handleCartInput@{handleCartInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleCartInput()}{handleCartInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Cart\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the cart view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a026731f94c5760aa4ed7bcfa769cab7b}\label{classPlantShopGUI_a026731f94c5760aa4ed7bcfa769cab7b} 
+\index{PlantShopGUI@{PlantShopGUI}!handleCategoryInput@{handleCategoryInput}}
+\index{handleCategoryInput@{handleCategoryInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleCategoryInput()}{handleCategoryInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Category\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the category selection menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a5cee38ce6235ee30e17863e8dd3faf4c}\label{classPlantShopGUI_a5cee38ce6235ee30e17863e8dd3faf4c} 
+\index{PlantShopGUI@{PlantShopGUI}!handleCheckoutSummaryInput@{handleCheckoutSummaryInput}}
+\index{handleCheckoutSummaryInput@{handleCheckoutSummaryInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleCheckoutSummaryInput()}{handleCheckoutSummaryInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Checkout\+Summary\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the checkout summary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a54cdc88e4bbe71880c86d58166264cff}\label{classPlantShopGUI_a54cdc88e4bbe71880c86d58166264cff} 
+\index{PlantShopGUI@{PlantShopGUI}!handleDecorationInput@{handleDecorationInput}}
+\index{handleDecorationInput@{handleDecorationInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleDecorationInput()}{handleDecorationInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Decoration\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the decoration menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a8a6cc3acc73e9300ed7f92fea1d217f2}\label{classPlantShopGUI_a8a6cc3acc73e9300ed7f92fea1d217f2} 
+\index{PlantShopGUI@{PlantShopGUI}!handleDetailsInput@{handleDetailsInput}}
+\index{handleDetailsInput@{handleDetailsInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleDetailsInput()}{handleDetailsInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Details\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the plant details view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_ab6207e06f329fe4beff835bc09cfc108}\label{classPlantShopGUI_ab6207e06f329fe4beff835bc09cfc108} 
+\index{PlantShopGUI@{PlantShopGUI}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a4b00a203dc22190bae56e573edcc3e04}\label{classPlantShopGUI_a4b00a203dc22190bae56e573edcc3e04} 
+\index{PlantShopGUI@{PlantShopGUI}!handleMainMenuInput@{handleMainMenuInput}}
+\index{handleMainMenuInput@{handleMainMenuInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleMainMenuInput()}{handleMainMenuInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Main\+Menu\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the main menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a7d0ff7345b5bc93661b326e2eb5892eb}\label{classPlantShopGUI_a7d0ff7345b5bc93661b326e2eb5892eb} 
+\index{PlantShopGUI@{PlantShopGUI}!handlePastOrdersInput@{handlePastOrdersInput}}
+\index{handlePastOrdersInput@{handlePastOrdersInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handlePastOrdersInput()}{handlePastOrdersInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Past\+Orders\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the past orders view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_ab6084bc5dcee981ac088d4d612881b24}\label{classPlantShopGUI_ab6084bc5dcee981ac088d4d612881b24} 
+\index{PlantShopGUI@{PlantShopGUI}!handlePlantListInput@{handlePlantListInput}}
+\index{handlePlantListInput@{handlePlantListInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handlePlantListInput()}{handlePlantListInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Plant\+List\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the plant list view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_ac6dc27459336a77ad37f065d36fb3909}\label{classPlantShopGUI_ac6dc27459336a77ad37f065d36fb3909} 
+\index{PlantShopGUI@{PlantShopGUI}!handleRefundConfirmationInput@{handleRefundConfirmationInput}}
+\index{handleRefundConfirmationInput@{handleRefundConfirmationInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleRefundConfirmationInput()}{handleRefundConfirmationInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Refund\+Confirmation\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the refund confirmation view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_aca25ee817f74cf49df8f93d83002d767}\label{classPlantShopGUI_aca25ee817f74cf49df8f93d83002d767} 
+\index{PlantShopGUI@{PlantShopGUI}!handleRefundSelectionInput@{handleRefundSelectionInput}}
+\index{handleRefundSelectionInput@{handleRefundSelectionInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleRefundSelectionInput()}{handleRefundSelectionInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Refund\+Selection\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the refund selection view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a705131023d763e5170325e8b0b9aea36}\label{classPlantShopGUI_a705131023d763e5170325e8b0b9aea36} 
+\index{PlantShopGUI@{PlantShopGUI}!handleSeasonInput@{handleSeasonInput}}
+\index{handleSeasonInput@{handleSeasonInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleSeasonInput()}{handleSeasonInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+Season\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the season selection menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a4398b03fb72f3224fb12fa8597278900}\label{classPlantShopGUI_a4398b03fb72f3224fb12fa8597278900} 
+\index{PlantShopGUI@{PlantShopGUI}!handleViewByInput@{handleViewByInput}}
+\index{handleViewByInput@{handleViewByInput}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{handleViewByInput()}{handleViewByInput()}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::handle\+View\+By\+Input (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles input for the view selection menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The input event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a3c93ff64c3cdad2bb4b5fe2360cab8e9}\label{classPlantShopGUI_a3c93ff64c3cdad2bb4b5fe2360cab8e9} 
+\index{PlantShopGUI@{PlantShopGUI}!initializePlants@{initializePlants}}
+\index{initializePlants@{initializePlants}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{initializePlants()}{initializePlants()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::initialize\+Plants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the plant inventory with demo plants. 
+
+\Hypertarget{classPlantShopGUI_a65f2f923afa302d7118f14e4a872fb28}\label{classPlantShopGUI_a65f2f923afa302d7118f14e4a872fb28} 
+\index{PlantShopGUI@{PlantShopGUI}!loadPlantsForCategory@{loadPlantsForCategory}}
+\index{loadPlantsForCategory@{loadPlantsForCategory}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{loadPlantsForCategory()}{loadPlantsForCategory()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::load\+Plants\+For\+Category (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{category }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads plants matching a specific category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category name to filter plants by \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlantShopGUI_a59924fa04ef0d476489b5318304e23fb}\label{classPlantShopGUI_a59924fa04ef0d476489b5318304e23fb} 
+\index{PlantShopGUI@{PlantShopGUI}!loadPlantsForSeason@{loadPlantsForSeason}}
+\index{loadPlantsForSeason@{loadPlantsForSeason}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{loadPlantsForSeason()}{loadPlantsForSeason()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::load\+Plants\+For\+Season (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{season }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads plants matching a specific season. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season} & The season name to filter plants by \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPlantShopGUI_a9299cced20d8c6d6b6c26d5df5c9860d}\label{classPlantShopGUI_a9299cced20d8c6d6b6c26d5df5c9860d} 
+\index{PlantShopGUI@{PlantShopGUI}!performActualCheckout@{performActualCheckout}}
+\index{performActualCheckout@{performActualCheckout}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{performActualCheckout()}{performActualCheckout()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::perform\+Actual\+Checkout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Performs the actual checkout transaction. 
+
+\Hypertarget{classPlantShopGUI_ab53c52a23e69ab86cee7cebefcccd486}\label{classPlantShopGUI_ab53c52a23e69ab86cee7cebefcccd486} 
+\index{PlantShopGUI@{PlantShopGUI}!processMultiItemRefund@{processMultiItemRefund}}
+\index{processMultiItemRefund@{processMultiItemRefund}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{processMultiItemRefund()}{processMultiItemRefund()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::process\+Multi\+Item\+Refund (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes refund for multiple items from past orders. 
+
+\Hypertarget{classPlantShopGUI_abed79b76b41f39149623696d7f49ff03}\label{classPlantShopGUI_abed79b76b41f39149623696d7f49ff03} 
+\index{PlantShopGUI@{PlantShopGUI}!render@{render}}
+\index{render@{render}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the current view. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the rendered UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a1eee8fb8196641fdc3a4de9a7df405dd}\label{classPlantShopGUI_a1eee8fb8196641fdc3a4de9a7df405dd} 
+\index{PlantShopGUI@{PlantShopGUI}!renderCart@{renderCart}}
+\index{renderCart@{renderCart}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderCart()}{renderCart()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Cart (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the shopping cart. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the cart UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_aff9e66fd8d42df89a8e7d5c09188fd5c}\label{classPlantShopGUI_aff9e66fd8d42df89a8e7d5c09188fd5c} 
+\index{PlantShopGUI@{PlantShopGUI}!renderCategorySelection@{renderCategorySelection}}
+\index{renderCategorySelection@{renderCategorySelection}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderCategorySelection()}{renderCategorySelection()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Category\+Selection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the category selection menu. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the category selection UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_aa1be030aa2efa9436f71e73fd73eef36}\label{classPlantShopGUI_aa1be030aa2efa9436f71e73fd73eef36} 
+\index{PlantShopGUI@{PlantShopGUI}!renderCheckoutSummary@{renderCheckoutSummary}}
+\index{renderCheckoutSummary@{renderCheckoutSummary}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderCheckoutSummary()}{renderCheckoutSummary()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Checkout\+Summary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the checkout summary. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the checkout summary UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_ad5156d837c2118f4d8d050f20914032d}\label{classPlantShopGUI_ad5156d837c2118f4d8d050f20914032d} 
+\index{PlantShopGUI@{PlantShopGUI}!renderDecorationMenu@{renderDecorationMenu}}
+\index{renderDecorationMenu@{renderDecorationMenu}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderDecorationMenu()}{renderDecorationMenu()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Decoration\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the decoration menu. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the decoration menu UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_ac02abb41d78d5828f4e19641c1fb5ed2}\label{classPlantShopGUI_ac02abb41d78d5828f4e19641c1fb5ed2} 
+\index{PlantShopGUI@{PlantShopGUI}!renderMainMenu@{renderMainMenu}}
+\index{renderMainMenu@{renderMainMenu}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderMainMenu()}{renderMainMenu()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the main menu. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the main menu UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a1cb63c4df13dca0e79bf2d6ef3e0a8cb}\label{classPlantShopGUI_a1cb63c4df13dca0e79bf2d6ef3e0a8cb} 
+\index{PlantShopGUI@{PlantShopGUI}!renderPastOrders@{renderPastOrders}}
+\index{renderPastOrders@{renderPastOrders}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderPastOrders()}{renderPastOrders()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Past\+Orders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the past orders view. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the past orders UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a34f5959c1699cb4e3a7c40ca8568011e}\label{classPlantShopGUI_a34f5959c1699cb4e3a7c40ca8568011e} 
+\index{PlantShopGUI@{PlantShopGUI}!renderPlantDetails@{renderPlantDetails}}
+\index{renderPlantDetails@{renderPlantDetails}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderPlantDetails()}{renderPlantDetails()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Plant\+Details (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders detailed information about a selected plant. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the plant details UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a9c080f0a31e34e53fd31b8105c022471}\label{classPlantShopGUI_a9c080f0a31e34e53fd31b8105c022471} 
+\index{PlantShopGUI@{PlantShopGUI}!renderPlantList@{renderPlantList}}
+\index{renderPlantList@{renderPlantList}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderPlantList()}{renderPlantList()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Plant\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the plant list view. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the plant list UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_aec1a1b6d97baa815c96145c38f2a6083}\label{classPlantShopGUI_aec1a1b6d97baa815c96145c38f2a6083} 
+\index{PlantShopGUI@{PlantShopGUI}!renderRefundConfirmation@{renderRefundConfirmation}}
+\index{renderRefundConfirmation@{renderRefundConfirmation}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderRefundConfirmation()}{renderRefundConfirmation()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Refund\+Confirmation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the refund confirmation view. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the refund confirmation UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a62312fcc7bc9467391a550e82baa07c9}\label{classPlantShopGUI_a62312fcc7bc9467391a550e82baa07c9} 
+\index{PlantShopGUI@{PlantShopGUI}!renderRefundSelection@{renderRefundSelection}}
+\index{renderRefundSelection@{renderRefundSelection}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderRefundSelection()}{renderRefundSelection()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Refund\+Selection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the refund selection view. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the refund selection UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_ae64922744a0ed9593c67b6172cdb7815}\label{classPlantShopGUI_ae64922744a0ed9593c67b6172cdb7815} 
+\index{PlantShopGUI@{PlantShopGUI}!renderSeasonSelection@{renderSeasonSelection}}
+\index{renderSeasonSelection@{renderSeasonSelection}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderSeasonSelection()}{renderSeasonSelection()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Season\+Selection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the season selection menu. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the season selection UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a3ad92a49c945d6a15136eb6cb98cbd82}\label{classPlantShopGUI_a3ad92a49c945d6a15136eb6cb98cbd82} 
+\index{PlantShopGUI@{PlantShopGUI}!renderStockCheck@{renderStockCheck}}
+\index{renderStockCheck@{renderStockCheck}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderStockCheck()}{renderStockCheck()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+Stock\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the stock check view. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the stock check UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_aa407428051cbfd4704358f13c19612ca}\label{classPlantShopGUI_aa407428051cbfd4704358f13c19612ca} 
+\index{PlantShopGUI@{PlantShopGUI}!renderViewBySelection@{renderViewBySelection}}
+\index{renderViewBySelection@{renderViewBySelection}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{renderViewBySelection()}{renderViewBySelection()}}
+{\footnotesize\ttfamily Element Plant\+Shop\+GUI\+::render\+View\+By\+Selection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renders the view selection menu. 
+
+\begin{DoxyReturn}{Returns}
+Element representing the view selection UI 
+\end{DoxyReturn}
+\Hypertarget{classPlantShopGUI_a73d034f01df2b3c629054f47e07b4821}\label{classPlantShopGUI_a73d034f01df2b3c629054f47e07b4821} 
+\index{PlantShopGUI@{PlantShopGUI}!run@{run}}
+\index{run@{run}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main entry point to run the GUI application. 
+
+\Hypertarget{classPlantShopGUI_aab20f3e76abd8a3189ae4f3d969bd3b9}\label{classPlantShopGUI_aab20f3e76abd8a3189ae4f3d969bd3b9} 
+\index{PlantShopGUI@{PlantShopGUI}!showCart@{showCart}}
+\index{showCart@{showCart}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{showCart()}{showCart()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::show\+Cart (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Displays the shopping cart view. 
+
+\Hypertarget{classPlantShopGUI_a9b41f77a8380e0dd774dd483e8bc51aa}\label{classPlantShopGUI_a9b41f77a8380e0dd774dd483e8bc51aa} 
+\index{PlantShopGUI@{PlantShopGUI}!startCheckoutFlow@{startCheckoutFlow}}
+\index{startCheckoutFlow@{startCheckoutFlow}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{startCheckoutFlow()}{startCheckoutFlow()}}
+{\footnotesize\ttfamily void Plant\+Shop\+GUI\+::start\+Checkout\+Flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initiates the checkout process flow. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classPlantShopGUI_acd30fd1631ebf3bc962f972e53d82cff}\label{classPlantShopGUI_acd30fd1631ebf3bc962f972e53d82cff} 
+\index{PlantShopGUI@{PlantShopGUI}!cartListSelected@{cartListSelected}}
+\index{cartListSelected@{cartListSelected}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{cartListSelected}{cartListSelected}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::cart\+List\+Selected\hspace{0.3cm}{\ttfamily [private]}}
+
+Variable for the cart list navigation and selections \Hypertarget{classPlantShopGUI_abdb7cf5bc78054229b0b97970710fdae}\label{classPlantShopGUI_abdb7cf5bc78054229b0b97970710fdae} 
+\index{PlantShopGUI@{PlantShopGUI}!categories@{categories}}
+\index{categories@{categories}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{categories}{categories}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Plant\+Shop\+GUI\+::categories\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Lists for categories of plant types. 
+
+\Hypertarget{classPlantShopGUI_a73350eed80137b0018a8bed2659d4dc3}\label{classPlantShopGUI_a73350eed80137b0018a8bed2659d4dc3} 
+\index{PlantShopGUI@{PlantShopGUI}!categoryMenuSelected@{categoryMenuSelected}}
+\index{categoryMenuSelected@{categoryMenuSelected}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{categoryMenuSelected}{categoryMenuSelected}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::category\+Menu\+Selected\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variable for category menu navigation and selections. 
+
+\Hypertarget{classPlantShopGUI_a7c8a55524fe5211fc1d50d0ed1617c6c}\label{classPlantShopGUI_a7c8a55524fe5211fc1d50d0ed1617c6c} 
+\index{PlantShopGUI@{PlantShopGUI}!checkoutScrollOffset@{checkoutScrollOffset}}
+\index{checkoutScrollOffset@{checkoutScrollOffset}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{checkoutScrollOffset}{checkoutScrollOffset}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::checkout\+Scroll\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+Scroll offset for checkout summary view \Hypertarget{classPlantShopGUI_a5b39919771433dfd53d56d494127a87d}\label{classPlantShopGUI_a5b39919771433dfd53d56d494127a87d} 
+\index{PlantShopGUI@{PlantShopGUI}!currentDecoratingIndex@{currentDecoratingIndex}}
+\index{currentDecoratingIndex@{currentDecoratingIndex}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{currentDecoratingIndex}{currentDecoratingIndex}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::current\+Decorating\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+Variable for the decorating index selection \Hypertarget{classPlantShopGUI_ac4af0c81949da6461810e113eb4a8bca}\label{classPlantShopGUI_ac4af0c81949da6461810e113eb4a8bca} 
+\index{PlantShopGUI@{PlantShopGUI}!currentPlants@{currentPlants}}
+\index{currentPlants@{currentPlants}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{currentPlants}{currentPlants}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classPlant}{Plant}}\texorpdfstring{$\ast$}{*}$>$ Plant\+Shop\+GUI\+::current\+Plants\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Currently loaded plants based on selection. 
+
+\Hypertarget{classPlantShopGUI_a5c3295cee2f1ea59e181efee6983d596}\label{classPlantShopGUI_a5c3295cee2f1ea59e181efee6983d596} 
+\index{PlantShopGUI@{PlantShopGUI}!currentView@{currentView}}
+\index{currentView@{currentView}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{currentView}{currentView}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907}{View}} Plant\+Shop\+GUI\+::current\+View\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current view being displayed. 
+
+\Hypertarget{classPlantShopGUI_a672607a979773215f862948b4cc5d1de}\label{classPlantShopGUI_a672607a979773215f862948b4cc5d1de} 
+\index{PlantShopGUI@{PlantShopGUI}!customer@{customer}}
+\index{customer@{customer}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{customer}{customer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCustomer}{Customer}}\texorpdfstring{$\ast$}{*} Plant\+Shop\+GUI\+::customer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classCustomer}{Customer} using the GUI. 
+
+\Hypertarget{classPlantShopGUI_a5e1450b6c766b9e8e4d97ddc9afbfa62}\label{classPlantShopGUI_a5e1450b6c766b9e8e4d97ddc9afbfa62} 
+\index{PlantShopGUI@{PlantShopGUI}!decorationMenuSelected@{decorationMenuSelected}}
+\index{decorationMenuSelected@{decorationMenuSelected}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{decorationMenuSelected}{decorationMenuSelected}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::decoration\+Menu\+Selected\hspace{0.3cm}{\ttfamily [private]}}
+
+Variable for the decoration menu navigation and selections \Hypertarget{classPlantShopGUI_a1c2ec9254261580a1039f396e817a816}\label{classPlantShopGUI_a1c2ec9254261580a1039f396e817a816} 
+\index{PlantShopGUI@{PlantShopGUI}!detailsScrollOffset@{detailsScrollOffset}}
+\index{detailsScrollOffset@{detailsScrollOffset}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{detailsScrollOffset}{detailsScrollOffset}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::details\+Scroll\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variable for details view scrolling. 
+
+\Hypertarget{classPlantShopGUI_ab7bf49d6c43ce50bdd0b6b4e54bf8f6f}\label{classPlantShopGUI_ab7bf49d6c43ce50bdd0b6b4e54bf8f6f} 
+\index{PlantShopGUI@{PlantShopGUI}!hasFertilizer@{hasFertilizer}}
+\index{hasFertilizer@{hasFertilizer}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{hasFertilizer}{hasFertilizer}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::has\+Fertilizer\hspace{0.3cm}{\ttfamily [private]}}
+
+Flag for if fertilizer decorations have been applied to the selected plant \Hypertarget{classPlantShopGUI_a932078adf66b8cc7b2439ac2a2d0a284}\label{classPlantShopGUI_a932078adf66b8cc7b2439ac2a2d0a284} 
+\index{PlantShopGUI@{PlantShopGUI}!hasPot@{hasPot}}
+\index{hasPot@{hasPot}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{hasPot}{hasPot}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::has\+Pot\hspace{0.3cm}{\ttfamily [private]}}
+
+Flag for if pot decorations have been applied to the selected plant \Hypertarget{classPlantShopGUI_af87fb97366e77708096032dc6a225539}\label{classPlantShopGUI_af87fb97366e77708096032dc6a225539} 
+\index{PlantShopGUI@{PlantShopGUI}!hasWrapping@{hasWrapping}}
+\index{hasWrapping@{hasWrapping}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{hasWrapping}{hasWrapping}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::has\+Wrapping\hspace{0.3cm}{\ttfamily [private]}}
+
+Flag for if wrapping decorations have been applied to the selected plant \Hypertarget{classPlantShopGUI_a279c54a5026f1bf418a8ff5cfe876d99}\label{classPlantShopGUI_a279c54a5026f1bf418a8ff5cfe876d99} 
+\index{PlantShopGUI@{PlantShopGUI}!inputBuffer@{inputBuffer}}
+\index{inputBuffer@{inputBuffer}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{inputBuffer}{inputBuffer}}
+{\footnotesize\ttfamily std\+::string Plant\+Shop\+GUI\+::input\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Input buffer for text input fields. 
+
+\Hypertarget{classPlantShopGUI_a5d84fe287452b98c14a9be64d1d1fd2f}\label{classPlantShopGUI_a5d84fe287452b98c14a9be64d1d1fd2f} 
+\index{PlantShopGUI@{PlantShopGUI}!inventoryManager@{inventoryManager}}
+\index{inventoryManager@{inventoryManager}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{inventoryManager}{inventoryManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}}\texorpdfstring{$\ast$}{*} Plant\+Shop\+GUI\+::inventory\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Inventory manager for managing plant inventory. 
+
+\Hypertarget{classPlantShopGUI_adb7fa68f361011782c18402bd2ac7c88}\label{classPlantShopGUI_adb7fa68f361011782c18402bd2ac7c88} 
+\index{PlantShopGUI@{PlantShopGUI}!mainMenuSelected@{mainMenuSelected}}
+\index{mainMenuSelected@{mainMenuSelected}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{mainMenuSelected}{mainMenuSelected}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::main\+Menu\+Selected\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variable for main menu navigation and selections. 
+
+\Hypertarget{classPlantShopGUI_af51e065b254bf575abf6e6016a18c6a8}\label{classPlantShopGUI_af51e065b254bf575abf6e6016a18c6a8} 
+\index{PlantShopGUI@{PlantShopGUI}!managerStaff@{managerStaff}}
+\index{managerStaff@{managerStaff}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{managerStaff}{managerStaff}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Plant\+Shop\+GUI\+::manager\+Staff\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classStaff}{Staff} members for handling various operations. 
+
+\Hypertarget{classPlantShopGUI_a408772220627d2659c95d9d72fcd0143}\label{classPlantShopGUI_a408772220627d2659c95d9d72fcd0143} 
+\index{PlantShopGUI@{PlantShopGUI}!messageBuffer@{messageBuffer}}
+\index{messageBuffer@{messageBuffer}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{messageBuffer}{messageBuffer}}
+{\footnotesize\ttfamily std\+::string Plant\+Shop\+GUI\+::message\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Message buffer for displaying messages to the user. 
+
+\Hypertarget{classPlantShopGUI_abc1e0f1fb4e9230f040d0fa43dade71b}\label{classPlantShopGUI_abc1e0f1fb4e9230f040d0fa43dade71b} 
+\index{PlantShopGUI@{PlantShopGUI}!nursery@{nursery}}
+\index{nursery@{nursery}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{nursery}{nursery}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNursery}{Nursery}}\texorpdfstring{$\ast$}{*} Plant\+Shop\+GUI\+::nursery\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classNursery}{Nursery} for managing nursery operations. 
+
+\Hypertarget{classPlantShopGUI_a18a689f5305b6d511d01092e59d5ed04}\label{classPlantShopGUI_a18a689f5305b6d511d01092e59d5ed04} 
+\index{PlantShopGUI@{PlantShopGUI}!nurseryStaff@{nurseryStaff}}
+\index{nurseryStaff@{nurseryStaff}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{nurseryStaff}{nurseryStaff}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Plant\+Shop\+GUI\+::nursery\+Staff\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classStaff}{Staff} members for handling various operations. 
+
+\Hypertarget{classPlantShopGUI_a96b56ee92d6ca23393a8f6dce30f61e4}\label{classPlantShopGUI_a96b56ee92d6ca23393a8f6dce30f61e4} 
+\index{PlantShopGUI@{PlantShopGUI}!plantListScrollOffset@{plantListScrollOffset}}
+\index{plantListScrollOffset@{plantListScrollOffset}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{plantListScrollOffset}{plantListScrollOffset}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::plant\+List\+Scroll\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+Scroll offsets for various views \Hypertarget{classPlantShopGUI_a5ac259c8dce29a8c6d1ef6e970adc0fd}\label{classPlantShopGUI_a5ac259c8dce29a8c6d1ef6e970adc0fd} 
+\index{PlantShopGUI@{PlantShopGUI}!plantListSelected@{plantListSelected}}
+\index{plantListSelected@{plantListSelected}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{plantListSelected}{plantListSelected}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::plant\+List\+Selected\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variable for plant list navigation and selections. 
+
+\Hypertarget{classPlantShopGUI_a96f08b90f5926440c7aa63eb43c794d1}\label{classPlantShopGUI_a96f08b90f5926440c7aa63eb43c794d1} 
+\index{PlantShopGUI@{PlantShopGUI}!refundFlags@{refundFlags}}
+\index{refundFlags@{refundFlags}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{refundFlags}{refundFlags}}
+{\footnotesize\ttfamily std\+::vector$<$bool$>$ Plant\+Shop\+GUI\+::refund\+Flags\hspace{0.3cm}{\ttfamily [private]}}
+
+Variables for refund selection \Hypertarget{classPlantShopGUI_a3f7d07bd3a9a728cdc2c6b0dc2585529}\label{classPlantShopGUI_a3f7d07bd3a9a728cdc2c6b0dc2585529} 
+\index{PlantShopGUI@{PlantShopGUI}!refundListSelected@{refundListSelected}}
+\index{refundListSelected@{refundListSelected}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{refundListSelected}{refundListSelected}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::refund\+List\+Selected\hspace{0.3cm}{\ttfamily [private]}}
+
+Variable for the refund list navigation and selections \Hypertarget{classPlantShopGUI_a60d37b4c15e10be148c3dfba0a0ec7d3}\label{classPlantShopGUI_a60d37b4c15e10be148c3dfba0a0ec7d3} 
+\index{PlantShopGUI@{PlantShopGUI}!refundResultMessage@{refundResultMessage}}
+\index{refundResultMessage@{refundResultMessage}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{refundResultMessage}{refundResultMessage}}
+{\footnotesize\ttfamily std\+::string Plant\+Shop\+GUI\+::refund\+Result\+Message\hspace{0.3cm}{\ttfamily [private]}}
+
+Variable for refund result message \Hypertarget{classPlantShopGUI_a4d43c9cdfc1d298939635b252ced8208}\label{classPlantShopGUI_a4d43c9cdfc1d298939635b252ced8208} 
+\index{PlantShopGUI@{PlantShopGUI}!refundScrollOffset@{refundScrollOffset}}
+\index{refundScrollOffset@{refundScrollOffset}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{refundScrollOffset}{refundScrollOffset}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::refund\+Scroll\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+Scroll offset for refund confirmation view \Hypertarget{classPlantShopGUI_a9b04e192df7e4016fd53a5f29f3da209}\label{classPlantShopGUI_a9b04e192df7e4016fd53a5f29f3da209} 
+\index{PlantShopGUI@{PlantShopGUI}!refundTotal@{refundTotal}}
+\index{refundTotal@{refundTotal}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{refundTotal}{refundTotal}}
+{\footnotesize\ttfamily float Plant\+Shop\+GUI\+::refund\+Total\hspace{0.3cm}{\ttfamily [private]}}
+
+Variable for refund total amount \Hypertarget{classPlantShopGUI_a8897086a4d3e0f93c1146d1249fabbb9}\label{classPlantShopGUI_a8897086a4d3e0f93c1146d1249fabbb9} 
+\index{PlantShopGUI@{PlantShopGUI}!salesStaff@{salesStaff}}
+\index{salesStaff@{salesStaff}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{salesStaff}{salesStaff}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Plant\+Shop\+GUI\+::sales\+Staff\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classStaff}{Staff} members for handling various operations. 
+
+\Hypertarget{classPlantShopGUI_a5f3aa174759b44321ee13289bccfe316}\label{classPlantShopGUI_a5f3aa174759b44321ee13289bccfe316} 
+\index{PlantShopGUI@{PlantShopGUI}!screen@{screen}}
+\index{screen@{screen}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{screen}{screen}}
+{\footnotesize\ttfamily Screen\+Interactive Plant\+Shop\+GUI\+::screen\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+FTXUI Screen\+Interactive for rendering the GUI. 
+
+\Hypertarget{classPlantShopGUI_a70b98fb5fdd3b1f96810766b41b0393f}\label{classPlantShopGUI_a70b98fb5fdd3b1f96810766b41b0393f} 
+\index{PlantShopGUI@{PlantShopGUI}!seasonMenuSelected@{seasonMenuSelected}}
+\index{seasonMenuSelected@{seasonMenuSelected}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{seasonMenuSelected}{seasonMenuSelected}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::season\+Menu\+Selected\hspace{0.3cm}{\ttfamily [private]}}
+
+Variable for the season menu navigation and selections \Hypertarget{classPlantShopGUI_a380c46614ab0f501505e6d71ffd95862}\label{classPlantShopGUI_a380c46614ab0f501505e6d71ffd95862} 
+\index{PlantShopGUI@{PlantShopGUI}!seasons@{seasons}}
+\index{seasons@{seasons}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{seasons}{seasons}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Plant\+Shop\+GUI\+::seasons\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Lists for the different seasons. 
+
+\Hypertarget{classPlantShopGUI_aa978614b86f563ee7b227ce7ef8ec7f8}\label{classPlantShopGUI_aa978614b86f563ee7b227ce7ef8ec7f8} 
+\index{PlantShopGUI@{PlantShopGUI}!selectedCategory@{selectedCategory}}
+\index{selectedCategory@{selectedCategory}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{selectedCategory}{selectedCategory}}
+{\footnotesize\ttfamily std\+::string Plant\+Shop\+GUI\+::selected\+Category\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Currently selected category. 
+
+\Hypertarget{classPlantShopGUI_a9145f75c949025406ab1d89ed2da547b}\label{classPlantShopGUI_a9145f75c949025406ab1d89ed2da547b} 
+\index{PlantShopGUI@{PlantShopGUI}!selectedOrderIndex@{selectedOrderIndex}}
+\index{selectedOrderIndex@{selectedOrderIndex}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{selectedOrderIndex}{selectedOrderIndex}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::selected\+Order\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Currently selected order index for past orders. 
+
+\Hypertarget{classPlantShopGUI_a1b95e03b60895ea8b89f8d5381f7137b}\label{classPlantShopGUI_a1b95e03b60895ea8b89f8d5381f7137b} 
+\index{PlantShopGUI@{PlantShopGUI}!selectedPlant@{selectedPlant}}
+\index{selectedPlant@{selectedPlant}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{selectedPlant}{selectedPlant}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlant}{Plant}}\texorpdfstring{$\ast$}{*} Plant\+Shop\+GUI\+::selected\+Plant\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Currently selected plant. 
+
+\Hypertarget{classPlantShopGUI_a8b7b9b7873977172342974756d1dd22b}\label{classPlantShopGUI_a8b7b9b7873977172342974756d1dd22b} 
+\index{PlantShopGUI@{PlantShopGUI}!selectedSeason@{selectedSeason}}
+\index{selectedSeason@{selectedSeason}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{selectedSeason}{selectedSeason}}
+{\footnotesize\ttfamily std\+::string Plant\+Shop\+GUI\+::selected\+Season\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Currently selected season. 
+
+\Hypertarget{classPlantShopGUI_a714bd9edea099d689aa44faeff7c4a99}\label{classPlantShopGUI_a714bd9edea099d689aa44faeff7c4a99} 
+\index{PlantShopGUI@{PlantShopGUI}!viewBySelected@{viewBySelected}}
+\index{viewBySelected@{viewBySelected}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{viewBySelected}{viewBySelected}}
+{\footnotesize\ttfamily int Plant\+Shop\+GUI\+::view\+By\+Selected\hspace{0.3cm}{\ttfamily [private]}}
+
+Variable for the checkout summary navigation and selections \Hypertarget{classPlantShopGUI_a08c2f7eb71067c233b63eda2d1b0b665}\label{classPlantShopGUI_a08c2f7eb71067c233b63eda2d1b0b665} 
+\index{PlantShopGUI@{PlantShopGUI}!viewingBySeason@{viewingBySeason}}
+\index{viewingBySeason@{viewingBySeason}!PlantShopGUI@{PlantShopGUI}}
+\doxysubsubsection{\texorpdfstring{viewingBySeason}{viewingBySeason}}
+{\footnotesize\ttfamily bool Plant\+Shop\+GUI\+::viewing\+By\+Season\hspace{0.3cm}{\ttfamily [private]}}
+
+Flag for if viewing by season 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{gui_8h}{gui.\+h}}\item 
+src/\mbox{\hyperlink{gui_8cpp}{gui.\+cpp}}\end{DoxyCompactItemize}

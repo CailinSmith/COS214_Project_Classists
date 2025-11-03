@@ -1,0 +1,242 @@
+\doxysection{Manager Class Reference}
+\hypertarget{classManager}{}\label{classManager}\index{Manager@{Manager}}
+
+
+Design Pattern\+: Chain of Responsibility, Mediator, Observer, Command Participant\+: Concrete Handler, Concrete Colleague, Concrete Observer.  
+
+
+
+
+{\ttfamily \#include $<$Manager.\+h$>$}
+
+
+
+Inheritance diagram for Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{classManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classManager_a36972a451b19473a7736d44ef121b190}{Manager}} (string \mbox{\hyperlink{classStaff_a59cef245384e229b7cc793d772385256}{name}})
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classManager}{Manager}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classManager_a77e01fdf9235c2143b5742dddf122199}{send}} () override
+\begin{DoxyCompactList}\small\item\em Sends a message through the mediator. \end{DoxyCompactList}\item 
+virtual pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classManager_a132350504028d6b1fac225c07fae5fea}{handle\+Request}} (const string \&request\+Type, \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant, vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}order, vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}flags) override
+\begin{DoxyCompactList}\small\item\em Handles customer requests at the manager level. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classManager_a5eea52ccf7e687c96a78c33f085f44a3}{get\+Position}} () override
+\begin{DoxyCompactList}\small\item\em Gets the position/role of this staff member. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a3db1e6583516d615110f49265a996baa}{set\+Receiver}} (\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*}mediator)
+\begin{DoxyCompactList}\small\item\em Sets the mediator for staff communication. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classManager_ac511b6dd50d3e14c432a0467eac2cea2}{update}} (const string \&\mbox{\hyperlink{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}{message}})
+\begin{DoxyCompactList}\small\item\em Updates the manager with notifications from subjects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaff}{Staff}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff_abbdcaabb6acba17d81ab706b1f23d392}{Staff}} (string \mbox{\hyperlink{classStaff_a59cef245384e229b7cc793d772385256}{name}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaff_a1c2f98aad2fbd5ddf72e9ff92304cbfd}{\texorpdfstring{$\sim$}{\string~}\+Staff}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a4c21d06b71d5eb9188bafb9adb2ffd16}{receive}} (string \mbox{\hyperlink{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}{message}})
+\begin{DoxyCompactList}\small\item\em Receives a message from a colleague via the mediator. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classStaff_a60dbbb47023aaeb0a5b8a9cde9ca3f57}{get\+Chat\+History\+String}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the chat history as a formatted string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a7e1ae77f8e3971e99b3d5abcbec6dbc1}{clear\+Chat\+History}} ()
+\begin{DoxyCompactList}\small\item\em Clears the chat history. \end{DoxyCompactList}\item 
+virtual pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classStaff_ab0a077b73c5a1ac4b65a16695c863fcd}{handle\+Request}} (const std\+::string \&request\+Type, \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant, std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}order, vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}flags)
+\begin{DoxyCompactList}\small\item\em Handles a request in the chain of responsibility. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a1c31bb70ffeb38a4e74c5b3de5825fb8}{set\+Command}} (\mbox{\hyperlink{classStaffCommand}{Staff\+Command}} \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Sets the command to be executed. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classStaff_a4ccc0cc74d0b8a94c2b8a473eb9e0893}{get\+Message}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a16cacff082f4d3ceec81d7fde06de0bc}{set\+Message}} (string \mbox{\hyperlink{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}{message}})
+\begin{DoxyCompactList}\small\item\em Sets the current message. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classStaff_a130d0ccf6a5fbd0a1678bf008d843891}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the staff member. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_ab775f57b8d65d19b2b489bcb31644cb8}{set\+Next}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}next\+Staff)
+\begin{DoxyCompactList}\small\item\em Sets the next staff member in the chain of responsibility. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_ac5465cbf47205bf6be4366b83c18ba20}{register\+Mediator}} (\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*}mediator)
+\begin{DoxyCompactList}\small\item\em Registers a mediator for this staff member. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a995b92ed3e7259e55bbb0c32bf2d0f31}{deregister\+Mediator}} (\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*}mediator)
+\begin{DoxyCompactList}\small\item\em Deregisters a mediator for this staff member. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classManager_adbf54f346ce5fbc458ca988dd460a58c}{receiver}}
+\begin{DoxyCompactList}\small\item\em Mediator for staff communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaff}{Staff}}}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classStaff_a59cef245384e229b7cc793d772385256}{name}}
+\begin{DoxyCompactList}\small\item\em The name of the staff member. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_a0cd97499c9e86ce4f0ec7b3eed5c80ac}{next}}
+\begin{DoxyCompactList}\small\item\em The next staff member in the chain of responsibility. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classStaff_a15f22c0ff8553fd2489aa2582c147cfc}{mediators}}
+\begin{DoxyCompactList}\small\item\em The mediators this staff member is registered with. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaffCommand}{Staff\+Command}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_ab973d150c43678740292b6ed9e896008}{command}}
+\begin{DoxyCompactList}\small\item\em The command to be executed by this staff member. \end{DoxyCompactList}\item 
+std\+::mutex \mbox{\hyperlink{classStaff_a2ee8a451312f591bf070387a04b6bb52}{chat\+Mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex for thread-\/safe chat history access. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::pair$<$ std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point, std\+::string $>$ $>$ \mbox{\hyperlink{classStaff_af0a1254ed0674b3178ff6d00d659284c}{chat\+History}}
+\begin{DoxyCompactList}\small\item\em The chat history of messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design Pattern\+: Chain of Responsibility, Mediator, Observer, Command Participant\+: Concrete Handler, Concrete Colleague, Concrete Observer. 
+
+\begin{DoxyAuthor}{Author}
+Abhay Rooplall 
+
+Edwin Kusel 
+
+Cailin Smith 
+\end{DoxyAuthor}
+This class represents a manager who handles complex requests and coordinates communication between staff members through the mediator pattern. The manager also observes inventory changes and can escalate requests within the chain.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaff}{Staff} 
+
+\doxylink{classStaffMediator}{Staff\+Mediator} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classManager_a36972a451b19473a7736d44ef121b190}\label{classManager_a36972a451b19473a7736d44ef121b190} 
+\index{Manager@{Manager}!Manager@{Manager}}
+\index{Manager@{Manager}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{Manager()}{Manager()}}
+{\footnotesize\ttfamily Manager\+::\+Manager (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classManager}{Manager}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the manager \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classManager_a5eea52ccf7e687c96a78c33f085f44a3}\label{classManager_a5eea52ccf7e687c96a78c33f085f44a3} 
+\index{Manager@{Manager}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily string Manager\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the position/role of this staff member. 
+
+\begin{DoxyReturn}{Returns}
+String representing the position "{}\+Manager"{} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classStaff_ac7e75cd3972b51438195bfb11cee6601}{Staff}}.
+
+\Hypertarget{classManager_a132350504028d6b1fac225c07fae5fea}\label{classManager_a132350504028d6b1fac225c07fae5fea} 
+\index{Manager@{Manager}!handleRequest@{handleRequest}}
+\index{handleRequest@{handleRequest}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{handleRequest()}{handleRequest()}}
+{\footnotesize\ttfamily pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ Manager\+::handle\+Request (\begin{DoxyParamCaption}\item[{const string \&}]{request\+Type,  }\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant,  }\item[{vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}}]{order,  }\item[{vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}}]{flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Handles customer requests at the manager level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request\+Type} & The type of request to handle \\
+\hline
+{\em plant} & Pointer to the plant involved in the request \\
+\hline
+{\em order} & Pointer to the order vector \\
+\hline
+{\em flags} & Pointer to flags for the order \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair containing response message and receipt pointer 
+\end{DoxyReturn}
+\Hypertarget{classManager_a77e01fdf9235c2143b5742dddf122199}\label{classManager_a77e01fdf9235c2143b5742dddf122199} 
+\index{Manager@{Manager}!send@{send}}
+\index{send@{send}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily void Manager\+::send (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sends a message through the mediator. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classStaff_a19896de893ea572e5d39fe771f886ff2}{Staff}}.
+
+\Hypertarget{classManager_a3db1e6583516d615110f49265a996baa}\label{classManager_a3db1e6583516d615110f49265a996baa} 
+\index{Manager@{Manager}!setReceiver@{setReceiver}}
+\index{setReceiver@{setReceiver}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{setReceiver()}{setReceiver()}}
+{\footnotesize\ttfamily void Manager\+::set\+Receiver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*}}]{mediator }\end{DoxyParamCaption})}
+
+
+
+Sets the mediator for staff communication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mediator} & Pointer to the \doxylink{classStaffMediator}{Staff\+Mediator} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_ac511b6dd50d3e14c432a0467eac2cea2}\label{classManager_ac511b6dd50d3e14c432a0467eac2cea2} 
+\index{Manager@{Manager}!update@{update}}
+\index{update@{update}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Manager\+::update (\begin{DoxyParamCaption}\item[{const string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates the manager with notifications from subjects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The notification message received \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classStaff_ab8b12b3cc9e53b821d3059052d4bd4d9}{Staff}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classManager_adbf54f346ce5fbc458ca988dd460a58c}\label{classManager_adbf54f346ce5fbc458ca988dd460a58c} 
+\index{Manager@{Manager}!receiver@{receiver}}
+\index{receiver@{receiver}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{receiver}{receiver}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}}\texorpdfstring{$\ast$}{*} Manager\+::receiver\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mediator for staff communication. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Manager_8h}{Manager.\+h}}\item 
+src/\mbox{\hyperlink{Manager_8cpp}{Manager.\+cpp}}\end{DoxyCompactItemize}

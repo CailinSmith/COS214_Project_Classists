@@ -1,0 +1,5 @@
+<map id="SummerFactory" name="SummerFactory">
+<area shape="rect" id="Node000001" title="Concrete factory for creating summer&#45;season plants. Design Pattern: Abstract Factory Participant: Con..." alt="" coords="5,79,129,104"/>
+<area shape="rect" id="Node000002" href="$classPlantFactory.html" title="Abstract factory for creating different types of plants. Design Pattern: Abstract Factory Participant..." alt="" coords="16,5,119,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,44,70,79,65,79,65,44"/>
+</map>

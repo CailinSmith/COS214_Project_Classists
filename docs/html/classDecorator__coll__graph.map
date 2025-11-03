@@ -1,0 +1,6 @@
+<map id="Decorator" name="Decorator">
+<area shape="rect" id="Node000001" title="Design Pattern: Decorator Participant: Decorator." alt="" coords="5,93,92,119"/>
+<area shape="rect" id="Node000002" href="$classProduct.html" title="Design Pattern: Decorator Participant: Component." alt="" coords="13,5,84,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,45,49,55,50,93,45,93,43,55,44,44"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="51,45,51,93,46,93,46,45"/>
+</map>

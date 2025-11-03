@@ -1,0 +1,31 @@
+\doxysection{Manager.\+h}
+\hypertarget{Manager_8h_source}{}\label{Manager_8h_source}\index{src/Manager.h@{src/Manager.h}}
+\mbox{\hyperlink{Manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Staff_8h}{Staff.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{StaffMediator_8h}{StaffMediator.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Nursery_8h}{Nursery.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classManager}{Manager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaff}{Staff}}\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classManager}{Manager}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{classStaff_a59cef245384e229b7cc793d772385256}{name}});}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_a77e01fdf9235c2143b5742dddf122199}{send}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ pair<string,\ Receipt*>\ \mbox{\hyperlink{classManager_a132350504028d6b1fac225c07fae5fea}{handleRequest}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ requestType,\ \mbox{\hyperlink{classPlant}{Plant}}*\ plant,\ vector<Product*>*\ order,\ vector<bool>*\ flags)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classManager_a5eea52ccf7e687c96a78c33f085f44a3}{getPosition}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_a3db1e6583516d615110f49265a996baa}{setReceiver}}(\mbox{\hyperlink{classStaffMediator}{StaffMediator}}*\ mediator);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_ac511b6dd50d3e14c432a0467eac2cea2}{update}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}{message}});}
+\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classStaffMediator}{StaffMediator}}*\ \mbox{\hyperlink{classManager_adbf54f346ce5fbc458ca988dd460a58c}{receiver}};}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

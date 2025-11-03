@@ -1,0 +1,158 @@
+\doxysection{Calc\+Cost\+Command Class Reference}
+\hypertarget{classCalcCostCommand}{}\label{classCalcCostCommand}\index{CalcCostCommand@{CalcCostCommand}}
+
+
+Command for calculating the cost of a plant. Design Pattern\+: Command Participant\+: Concrete\+Command.  
+
+
+
+
+{\ttfamily \#include $<$Calc\+Cost\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Calc\+Cost\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classCalcCostCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Calc\+Cost\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCalcCostCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCalcCostCommand_af09bed1021ec6a7deeb886acc0ed1ad9}{Calc\+Cost\+Command}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}p, \mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*}n)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classCalcCostCommand}{Calc\+Cost\+Command} for a specific plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classCalcCostCommand_afe970041def056e5f1ba7bca858527ba}{\texorpdfstring{$\sim$}{\string~}\+Calc\+Cost\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classCalcCostCommand}{Calc\+Cost\+Command}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCalcCostCommand_a07cab15f6ffe9a3257a7880d2d07bce9}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Executes the cost calculation command. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classCalcCostCommand_a9f1ea9f020da50c5429e9f847777928d}{get\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Gets the calculated cost after execution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCommand_abe8268d554fd49c6892942356dc33144}{Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classCalcCostCommand_a1a8dcfa10e882eb0dfbde9e674f8aa92}{cost}}
+\begin{DoxyCompactList}\small\item\em The calculated cost of the plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant associated with this command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}{nursery}}
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command for calculating the cost of a plant. Design Pattern\+: Command Participant\+: Concrete\+Command. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class encapsulates the action of calculating the total cost of a plant product, taking into account the current season and any applied decorators. It stores the calculated cost which can be retrieved after execution.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffCommand}{Staff\+Command} 
+
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classNursery}{Nursery} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCalcCostCommand_af09bed1021ec6a7deeb886acc0ed1ad9}\label{classCalcCostCommand_af09bed1021ec6a7deeb886acc0ed1ad9} 
+\index{CalcCostCommand@{CalcCostCommand}!CalcCostCommand@{CalcCostCommand}}
+\index{CalcCostCommand@{CalcCostCommand}!CalcCostCommand@{CalcCostCommand}}
+\doxysubsubsection{\texorpdfstring{CalcCostCommand()}{CalcCostCommand()}}
+{\footnotesize\ttfamily Calc\+Cost\+Command\+::\+Calc\+Cost\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{p,  }\item[{\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*}}]{n }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classCalcCostCommand}{Calc\+Cost\+Command} for a specific plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to the \doxylink{classPlant}{Plant} whose cost is to be calculated. \\
+\hline
+{\em n} & Pointer to the \doxylink{classNursery}{Nursery} context for seasonal information. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classCalcCostCommand_afe970041def056e5f1ba7bca858527ba}\label{classCalcCostCommand_afe970041def056e5f1ba7bca858527ba} 
+\index{CalcCostCommand@{CalcCostCommand}!````~CalcCostCommand@{\texorpdfstring{$\sim$}{\string~}CalcCostCommand}}
+\index{````~CalcCostCommand@{\texorpdfstring{$\sim$}{\string~}CalcCostCommand}!CalcCostCommand@{CalcCostCommand}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CalcCostCommand()}{\string~CalcCostCommand()}}
+{\footnotesize\ttfamily Calc\+Cost\+Command\+::\texorpdfstring{$\sim$}{\string~}\+Calc\+Cost\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor for the \doxylink{classCalcCostCommand}{Calc\+Cost\+Command}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCalcCostCommand_a07cab15f6ffe9a3257a7880d2d07bce9}\label{classCalcCostCommand_a07cab15f6ffe9a3257a7880d2d07bce9} 
+\index{CalcCostCommand@{CalcCostCommand}!execute@{execute}}
+\index{execute@{execute}!CalcCostCommand@{CalcCostCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Calc\+Cost\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the cost calculation command. 
+
+Calculates the total cost of the plant based on current season and stores the result in the cost member variable. 
+
+Reimplemented from \mbox{\hyperlink{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}{Staff\+Command}}.
+
+\Hypertarget{classCalcCostCommand_a9f1ea9f020da50c5429e9f847777928d}\label{classCalcCostCommand_a9f1ea9f020da50c5429e9f847777928d} 
+\index{CalcCostCommand@{CalcCostCommand}!getCost@{getCost}}
+\index{getCost@{getCost}!CalcCostCommand@{CalcCostCommand}}
+\doxysubsubsection{\texorpdfstring{getCost()}{getCost()}}
+{\footnotesize\ttfamily float Calc\+Cost\+Command\+::get\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the calculated cost after execution. 
+
+\begin{DoxyReturn}{Returns}
+float The calculated cost of the plant. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCalcCostCommand_a1a8dcfa10e882eb0dfbde9e674f8aa92}\label{classCalcCostCommand_a1a8dcfa10e882eb0dfbde9e674f8aa92} 
+\index{CalcCostCommand@{CalcCostCommand}!cost@{cost}}
+\index{cost@{cost}!CalcCostCommand@{CalcCostCommand}}
+\doxysubsubsection{\texorpdfstring{cost}{cost}}
+{\footnotesize\ttfamily float Calc\+Cost\+Command\+::cost\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The calculated cost of the plant. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{CalcCostCommand_8h}{Calc\+Cost\+Command.\+h}}\item 
+src/\mbox{\hyperlink{CalcCostCommand_8cpp}{Calc\+Cost\+Command.\+cpp}}\end{DoxyCompactItemize}

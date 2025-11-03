@@ -1,0 +1,429 @@
+\doxysection{Staff Class Reference}
+\hypertarget{classStaff}{}\label{classStaff}\index{Staff@{Staff}}
+
+
+Design pattern\+: Mediator, Chain of Responsibility, Command, Observer Participant\+: Colleague, Handler, Receiver, Observer.  
+
+
+
+
+{\ttfamily \#include $<$Staff.\+h$>$}
+
+
+
+Inheritance diagram for Staff\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{classStaff__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Staff\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classStaff__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff_abbdcaabb6acba17d81ab706b1f23d392}{Staff}} (string \mbox{\hyperlink{classStaff_a59cef245384e229b7cc793d772385256}{name}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaff_a1c2f98aad2fbd5ddf72e9ff92304cbfd}{\texorpdfstring{$\sim$}{\string~}\+Staff}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStaff_a19896de893ea572e5d39fe771f886ff2}{send}} ()
+\begin{DoxyCompactList}\small\item\em Sends a message to colleagues via the mediator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a4c21d06b71d5eb9188bafb9adb2ffd16}{receive}} (string \mbox{\hyperlink{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}{message}})
+\begin{DoxyCompactList}\small\item\em Receives a message from a colleague via the mediator. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classStaff_a60dbbb47023aaeb0a5b8a9cde9ca3f57}{get\+Chat\+History\+String}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the chat history as a formatted string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a7e1ae77f8e3971e99b3d5abcbec6dbc1}{clear\+Chat\+History}} ()
+\begin{DoxyCompactList}\small\item\em Clears the chat history. \end{DoxyCompactList}\item 
+virtual pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classStaff_ab0a077b73c5a1ac4b65a16695c863fcd}{handle\+Request}} (const std\+::string \&request\+Type, \mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant, std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}order, vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}flags)
+\begin{DoxyCompactList}\small\item\em Handles a request in the chain of responsibility. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a1c31bb70ffeb38a4e74c5b3de5825fb8}{set\+Command}} (\mbox{\hyperlink{classStaffCommand}{Staff\+Command}} \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Sets the command to be executed. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classStaff_ac7e75cd3972b51438195bfb11cee6601}{get\+Position}} ()=0
+\begin{DoxyCompactList}\small\item\em returns the position of the staff member \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classStaff_a4ccc0cc74d0b8a94c2b8a473eb9e0893}{get\+Message}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a16cacff082f4d3ceec81d7fde06de0bc}{set\+Message}} (string \mbox{\hyperlink{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}{message}})
+\begin{DoxyCompactList}\small\item\em Sets the current message. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classStaff_a130d0ccf6a5fbd0a1678bf008d843891}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the staff member. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_ab775f57b8d65d19b2b489bcb31644cb8}{set\+Next}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}next\+Staff)
+\begin{DoxyCompactList}\small\item\em Sets the next staff member in the chain of responsibility. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_ac5465cbf47205bf6be4366b83c18ba20}{register\+Mediator}} (\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*}mediator)
+\begin{DoxyCompactList}\small\item\em Registers a mediator for this staff member. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_a995b92ed3e7259e55bbb0c32bf2d0f31}{deregister\+Mediator}} (\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*}mediator)
+\begin{DoxyCompactList}\small\item\em Deregisters a mediator for this staff member. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStaff_ab8b12b3cc9e53b821d3059052d4bd4d9}{update}} (const string \&\mbox{\hyperlink{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}{message}})
+\begin{DoxyCompactList}\small\item\em Updates the staff member with a new message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classStaff_a59cef245384e229b7cc793d772385256}{name}}
+\begin{DoxyCompactList}\small\item\em The name of the staff member. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_a0cd97499c9e86ce4f0ec7b3eed5c80ac}{next}}
+\begin{DoxyCompactList}\small\item\em The next staff member in the chain of responsibility. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classStaff_a15f22c0ff8553fd2489aa2582c147cfc}{mediators}}
+\begin{DoxyCompactList}\small\item\em The mediators this staff member is registered with. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaffCommand}{Staff\+Command}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_ab973d150c43678740292b6ed9e896008}{command}}
+\begin{DoxyCompactList}\small\item\em The command to be executed by this staff member. \end{DoxyCompactList}\item 
+std\+::mutex \mbox{\hyperlink{classStaff_a2ee8a451312f591bf070387a04b6bb52}{chat\+Mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex for thread-\/safe chat history access. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::pair$<$ std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point, std\+::string $>$ $>$ \mbox{\hyperlink{classStaff_af0a1254ed0674b3178ff6d00d659284c}{chat\+History}}
+\begin{DoxyCompactList}\small\item\em The chat history of messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}{message}}
+\begin{DoxyCompactList}\small\item\em The current message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Design pattern\+: Mediator, Chain of Responsibility, Command, Observer Participant\+: Colleague, Handler, Receiver, Observer. 
+
+\begin{DoxyAuthor}{Author}
+Edwin Kusel 
+
+Abhay Rooplall 
+
+Cailin Smith
+\end{DoxyAuthor}
+
+
+This class represents a staff member.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffMediator}{Staff\+Mediator} 
+
+\doxylink{classCustomerCommand}{Customer\+Command} 
+
+\doxylink{classStaffCommand}{Staff\+Command} 
+
+\doxylink{classProduct}{Product} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classStaff_abbdcaabb6acba17d81ab706b1f23d392}\label{classStaff_abbdcaabb6acba17d81ab706b1f23d392} 
+\index{Staff@{Staff}!Staff@{Staff}}
+\index{Staff@{Staff}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{Staff()}{Staff()}}
+{\footnotesize\ttfamily Staff\+::\+Staff (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the staff member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaff_a1c2f98aad2fbd5ddf72e9ff92304cbfd}\label{classStaff_a1c2f98aad2fbd5ddf72e9ff92304cbfd} 
+\index{Staff@{Staff}!````~Staff@{\texorpdfstring{$\sim$}{\string~}Staff}}
+\index{````~Staff@{\texorpdfstring{$\sim$}{\string~}Staff}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Staff()}{\string~Staff()}}
+{\footnotesize\ttfamily Staff\+::\texorpdfstring{$\sim$}{\string~}\+Staff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStaff_a7e1ae77f8e3971e99b3d5abcbec6dbc1}\label{classStaff_a7e1ae77f8e3971e99b3d5abcbec6dbc1} 
+\index{Staff@{Staff}!clearChatHistory@{clearChatHistory}}
+\index{clearChatHistory@{clearChatHistory}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{clearChatHistory()}{clearChatHistory()}}
+{\footnotesize\ttfamily void Staff\+::clear\+Chat\+History (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears the chat history. 
+
+\Hypertarget{classStaff_a995b92ed3e7259e55bbb0c32bf2d0f31}\label{classStaff_a995b92ed3e7259e55bbb0c32bf2d0f31} 
+\index{Staff@{Staff}!deregisterMediator@{deregisterMediator}}
+\index{deregisterMediator@{deregisterMediator}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{deregisterMediator()}{deregisterMediator()}}
+{\footnotesize\ttfamily void Staff\+::deregister\+Mediator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*}}]{mediator }\end{DoxyParamCaption})}
+
+
+
+Deregisters a mediator for this staff member. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mediator} & The mediator to deregister. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaff_a60dbbb47023aaeb0a5b8a9cde9ca3f57}\label{classStaff_a60dbbb47023aaeb0a5b8a9cde9ca3f57} 
+\index{Staff@{Staff}!getChatHistoryString@{getChatHistoryString}}
+\index{getChatHistoryString@{getChatHistoryString}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{getChatHistoryString()}{getChatHistoryString()}}
+{\footnotesize\ttfamily std\+::string Staff\+::get\+Chat\+History\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the chat history as a formatted string. 
+
+\begin{DoxyReturn}{Returns}
+A string representation of the chat history. 
+\end{DoxyReturn}
+\Hypertarget{classStaff_a4ccc0cc74d0b8a94c2b8a473eb9e0893}\label{classStaff_a4ccc0cc74d0b8a94c2b8a473eb9e0893} 
+\index{Staff@{Staff}!getMessage@{getMessage}}
+\index{getMessage@{getMessage}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{getMessage()}{getMessage()}}
+{\footnotesize\ttfamily string Staff\+::get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current message. 
+
+\begin{DoxyReturn}{Returns}
+The current message. 
+\end{DoxyReturn}
+\Hypertarget{classStaff_a130d0ccf6a5fbd0a1678bf008d843891}\label{classStaff_a130d0ccf6a5fbd0a1678bf008d843891} 
+\index{Staff@{Staff}!getName@{getName}}
+\index{getName@{getName}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Staff\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the name of the staff member. 
+
+\begin{DoxyReturn}{Returns}
+The name of the staff member. 
+\end{DoxyReturn}
+\Hypertarget{classStaff_ac7e75cd3972b51438195bfb11cee6601}\label{classStaff_ac7e75cd3972b51438195bfb11cee6601} 
+\index{Staff@{Staff}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily virtual string Staff\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+returns the position of the staff member 
+
+
+
+Implemented in \mbox{\hyperlink{classManager_a5eea52ccf7e687c96a78c33f085f44a3}{Manager}}, \mbox{\hyperlink{classNurseryStaff_afc271de725e3c1aaaef150723ba3930b}{Nursery\+Staff}}, and \mbox{\hyperlink{classSalesStaff_a7b666919ee230b95cdf964e3dd15992c}{Sales\+Staff}}.
+
+\Hypertarget{classStaff_ab0a077b73c5a1ac4b65a16695c863fcd}\label{classStaff_ab0a077b73c5a1ac4b65a16695c863fcd} 
+\index{Staff@{Staff}!handleRequest@{handleRequest}}
+\index{handleRequest@{handleRequest}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{handleRequest()}{handleRequest()}}
+{\footnotesize\ttfamily pair$<$ string, \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} $>$ Staff\+::handle\+Request (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{request\+Type,  }\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}}]{order,  }\item[{vector$<$ bool $>$ \texorpdfstring{$\ast$}{*}}]{flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handles a request in the chain of responsibility. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request\+Type} & The type of request. \\
+\hline
+{\em plant} & The plant involved in the request. \\
+\hline
+{\em order} & The order vector for products. \\
+\hline
+{\em flags} & Additional flags for processing. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pair containing a status message and a receipt pointer. 
+\end{DoxyReturn}
+\Hypertarget{classStaff_a4c21d06b71d5eb9188bafb9adb2ffd16}\label{classStaff_a4c21d06b71d5eb9188bafb9adb2ffd16} 
+\index{Staff@{Staff}!receive@{receive}}
+\index{receive@{receive}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{receive()}{receive()}}
+{\footnotesize\ttfamily void Staff\+::receive (\begin{DoxyParamCaption}\item[{string}]{message }\end{DoxyParamCaption})}
+
+
+
+Receives a message from a colleague via the mediator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message received. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaff_ac5465cbf47205bf6be4366b83c18ba20}\label{classStaff_ac5465cbf47205bf6be4366b83c18ba20} 
+\index{Staff@{Staff}!registerMediator@{registerMediator}}
+\index{registerMediator@{registerMediator}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{registerMediator()}{registerMediator()}}
+{\footnotesize\ttfamily void Staff\+::register\+Mediator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}} \texorpdfstring{$\ast$}{*}}]{mediator }\end{DoxyParamCaption})}
+
+
+
+Registers a mediator for this staff member. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mediator} & The mediator to register. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaff_a19896de893ea572e5d39fe771f886ff2}\label{classStaff_a19896de893ea572e5d39fe771f886ff2} 
+\index{Staff@{Staff}!send@{send}}
+\index{send@{send}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily void Staff\+::send (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Sends a message to colleagues via the mediator. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classManager_a77e01fdf9235c2143b5742dddf122199}{Manager}}.
+
+\Hypertarget{classStaff_a1c31bb70ffeb38a4e74c5b3de5825fb8}\label{classStaff_a1c31bb70ffeb38a4e74c5b3de5825fb8} 
+\index{Staff@{Staff}!setCommand@{setCommand}}
+\index{setCommand@{setCommand}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{setCommand()}{setCommand()}}
+{\footnotesize\ttfamily void Staff\+::set\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaffCommand}{Staff\+Command}} \texorpdfstring{$\ast$}{*}}]{cmd }\end{DoxyParamCaption})}
+
+
+
+Sets the command to be executed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & The command to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaff_a16cacff082f4d3ceec81d7fde06de0bc}\label{classStaff_a16cacff082f4d3ceec81d7fde06de0bc} 
+\index{Staff@{Staff}!setMessage@{setMessage}}
+\index{setMessage@{setMessage}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{setMessage()}{setMessage()}}
+{\footnotesize\ttfamily void Staff\+::set\+Message (\begin{DoxyParamCaption}\item[{string}]{message }\end{DoxyParamCaption})}
+
+
+
+Sets the current message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaff_ab775f57b8d65d19b2b489bcb31644cb8}\label{classStaff_ab775f57b8d65d19b2b489bcb31644cb8} 
+\index{Staff@{Staff}!setNext@{setNext}}
+\index{setNext@{setNext}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{setNext()}{setNext()}}
+{\footnotesize\ttfamily void Staff\+::set\+Next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{next\+Staff }\end{DoxyParamCaption})}
+
+
+
+Sets the next staff member in the chain of responsibility. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next\+Staff} & The next staff member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaff_ab8b12b3cc9e53b821d3059052d4bd4d9}\label{classStaff_ab8b12b3cc9e53b821d3059052d4bd4d9} 
+\index{Staff@{Staff}!update@{update}}
+\index{update@{update}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Staff\+::update (\begin{DoxyParamCaption}\item[{const string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates the staff member with a new message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to update with. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classManager_ac511b6dd50d3e14c432a0467eac2cea2}{Manager}}, and \mbox{\hyperlink{classNurseryStaff_a06f979f36af1610705a05272b46a3241}{Nursery\+Staff}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classStaff_af0a1254ed0674b3178ff6d00d659284c}\label{classStaff_af0a1254ed0674b3178ff6d00d659284c} 
+\index{Staff@{Staff}!chatHistory@{chatHistory}}
+\index{chatHistory@{chatHistory}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{chatHistory}{chatHistory}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::pair$<$std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point, std\+::string$>$ $>$ Staff\+::chat\+History\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The chat history of messages. 
+
+\Hypertarget{classStaff_a2ee8a451312f591bf070387a04b6bb52}\label{classStaff_a2ee8a451312f591bf070387a04b6bb52} 
+\index{Staff@{Staff}!chatMutex@{chatMutex}}
+\index{chatMutex@{chatMutex}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{chatMutex}{chatMutex}}
+{\footnotesize\ttfamily std\+::mutex Staff\+::chat\+Mutex\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Mutex for thread-\/safe chat history access. 
+
+\Hypertarget{classStaff_ab973d150c43678740292b6ed9e896008}\label{classStaff_ab973d150c43678740292b6ed9e896008} 
+\index{Staff@{Staff}!command@{command}}
+\index{command@{command}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{command}{command}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}\texorpdfstring{$\ast$}{*} Staff\+::command\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The command to be executed by this staff member. 
+
+\Hypertarget{classStaff_a15f22c0ff8553fd2489aa2582c147cfc}\label{classStaff_a15f22c0ff8553fd2489aa2582c147cfc} 
+\index{Staff@{Staff}!mediators@{mediators}}
+\index{mediators@{mediators}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{mediators}{mediators}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classStaffMediator}{Staff\+Mediator}}\texorpdfstring{$\ast$}{*}$>$ Staff\+::mediators\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The mediators this staff member is registered with. 
+
+\Hypertarget{classStaff_a609e9cc5e2cb2b4a8440268567b733e1}\label{classStaff_a609e9cc5e2cb2b4a8440268567b733e1} 
+\index{Staff@{Staff}!message@{message}}
+\index{message@{message}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily string Staff\+::message\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current message. 
+
+\Hypertarget{classStaff_a59cef245384e229b7cc793d772385256}\label{classStaff_a59cef245384e229b7cc793d772385256} 
+\index{Staff@{Staff}!name@{name}}
+\index{name@{name}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Staff\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The name of the staff member. 
+
+\Hypertarget{classStaff_a0cd97499c9e86ce4f0ec7b3eed5c80ac}\label{classStaff_a0cd97499c9e86ce4f0ec7b3eed5c80ac} 
+\index{Staff@{Staff}!next@{next}}
+\index{next@{next}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Staff\+::next\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The next staff member in the chain of responsibility. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Staff_8h}{Staff.\+h}}\item 
+src/\mbox{\hyperlink{Staff_8cpp}{Staff.\+cpp}}\end{DoxyCompactItemize}

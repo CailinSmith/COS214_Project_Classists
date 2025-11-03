@@ -1,0 +1,168 @@
+\doxysection{Staff\+Checkout\+Command Class Reference}
+\hypertarget{classStaffCheckoutCommand}{}\label{classStaffCheckoutCommand}\index{StaffCheckoutCommand@{StaffCheckoutCommand}}
+
+
+Command for processing customer checkout. Design Pattern\+: Command Participant\+: Concrete\+Command.  
+
+
+
+
+{\ttfamily \#include $<$Staff\+Checkout\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Staff\+Checkout\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classStaffCheckoutCommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Staff\+Checkout\+Command\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classStaffCheckoutCommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCheckoutCommand_a3e75661daa0537ab57e3cb42a781612f}{Staff\+Checkout\+Command}} (const std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \&p)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classStaffCheckoutCommand}{Staff\+Checkout\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCheckoutCommand_add9387b78a60aa5514b463567ea390a4}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Checkout\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classStaffCheckoutCommand}{Staff\+Checkout\+Command}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaffCheckoutCommand_a996440ca2d10ea8f08bfe41a56a2ccf9}{execute}} () override
+\begin{DoxyCompactList}\small\item\em Executes the checkout command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCheckoutCommand_a8bfe94bafb7121c6e4187e4d784aad9a}{get\+Receipt}} ()
+\begin{DoxyCompactList}\small\item\em Gets the generated receipt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaffCommand_abe8268d554fd49c6892942356dc33144}{Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStaffCommand_a0e4f900d839d4d4d20ca385f707e4efe}{\texorpdfstring{$\sim$}{\string~}\+Staff\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classStaffCommand}{Staff\+Command}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classStaffCheckoutCommand_ad08a65c627affb6069675e80c07e2125}{plants}}
+\begin{DoxyCompactList}\small\item\em Vector of products being purchased. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCheckoutCommand_a5717ba7341ebeb2bf57e23bce6039300}{receipt}}
+\begin{DoxyCompactList}\small\item\em Pointer to the generated receipt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaffCommand}{Staff\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aba7652c53cd0d879c622975ceb3b76bf}{plant}}
+\begin{DoxyCompactList}\small\item\em Pointer to the plant associated with this command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInventoryManager}{Inventory\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_a3c2b568b10852ff88bd052ff2b8655b5}{inventory\+Manager}}
+\begin{DoxyCompactList}\small\item\em Pointer to the inventory manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNursery}{Nursery}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaffCommand_aa824f49e16ba75ed5c2a35d10b8fe407}{nursery}}
+\begin{DoxyCompactList}\small\item\em Pointer to the nursery singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command for processing customer checkout. Design Pattern\+: Command Participant\+: Concrete\+Command. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class encapsulates a checkout request as a command object. It allows staff to process a customer\textquotesingle{}s purchase by creating a receipt for the selected products.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classStaffCommand}{Staff\+Command} 
+
+\doxylink{classProduct}{Product} 
+
+\doxylink{classReceipt}{Receipt} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classStaffCheckoutCommand_a3e75661daa0537ab57e3cb42a781612f}\label{classStaffCheckoutCommand_a3e75661daa0537ab57e3cb42a781612f} 
+\index{StaffCheckoutCommand@{StaffCheckoutCommand}!StaffCheckoutCommand@{StaffCheckoutCommand}}
+\index{StaffCheckoutCommand@{StaffCheckoutCommand}!StaffCheckoutCommand@{StaffCheckoutCommand}}
+\doxysubsubsection{\texorpdfstring{StaffCheckoutCommand()}{StaffCheckoutCommand()}}
+{\footnotesize\ttfamily Staff\+Checkout\+Command\+::\+Staff\+Checkout\+Command (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classProduct}{Product}} \texorpdfstring{$\ast$}{*} $>$ \&}]{p }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classStaffCheckoutCommand}{Staff\+Checkout\+Command}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Vector of products to checkout. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classStaffCheckoutCommand_add9387b78a60aa5514b463567ea390a4}\label{classStaffCheckoutCommand_add9387b78a60aa5514b463567ea390a4} 
+\index{StaffCheckoutCommand@{StaffCheckoutCommand}!````~StaffCheckoutCommand@{\texorpdfstring{$\sim$}{\string~}StaffCheckoutCommand}}
+\index{````~StaffCheckoutCommand@{\texorpdfstring{$\sim$}{\string~}StaffCheckoutCommand}!StaffCheckoutCommand@{StaffCheckoutCommand}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StaffCheckoutCommand()}{\string~StaffCheckoutCommand()}}
+{\footnotesize\ttfamily Staff\+Checkout\+Command\+::\texorpdfstring{$\sim$}{\string~}\+Staff\+Checkout\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor for the \doxylink{classStaffCheckoutCommand}{Staff\+Checkout\+Command}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStaffCheckoutCommand_a996440ca2d10ea8f08bfe41a56a2ccf9}\label{classStaffCheckoutCommand_a996440ca2d10ea8f08bfe41a56a2ccf9} 
+\index{StaffCheckoutCommand@{StaffCheckoutCommand}!execute@{execute}}
+\index{execute@{execute}!StaffCheckoutCommand@{StaffCheckoutCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Staff\+Checkout\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Executes the checkout command. 
+
+Creates a receipt for the products being purchased. 
+
+Reimplemented from \mbox{\hyperlink{classStaffCommand_a1127b7e75d870286c20b3ef00df7f3f3}{Staff\+Command}}.
+
+\Hypertarget{classStaffCheckoutCommand_a8bfe94bafb7121c6e4187e4d784aad9a}\label{classStaffCheckoutCommand_a8bfe94bafb7121c6e4187e4d784aad9a} 
+\index{StaffCheckoutCommand@{StaffCheckoutCommand}!getReceipt@{getReceipt}}
+\index{getReceipt@{getReceipt}!StaffCheckoutCommand@{StaffCheckoutCommand}}
+\doxysubsubsection{\texorpdfstring{getReceipt()}{getReceipt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classReceipt}{Receipt}} \texorpdfstring{$\ast$}{*} Staff\+Checkout\+Command\+::get\+Receipt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the generated receipt. 
+
+\begin{DoxyReturn}{Returns}
+Receipt\texorpdfstring{$\ast$}{*} Pointer to the receipt created during checkout. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classStaffCheckoutCommand_ad08a65c627affb6069675e80c07e2125}\label{classStaffCheckoutCommand_ad08a65c627affb6069675e80c07e2125} 
+\index{StaffCheckoutCommand@{StaffCheckoutCommand}!plants@{plants}}
+\index{plants@{plants}!StaffCheckoutCommand@{StaffCheckoutCommand}}
+\doxysubsubsection{\texorpdfstring{plants}{plants}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classProduct}{Product}}\texorpdfstring{$\ast$}{*}$>$ Staff\+Checkout\+Command\+::plants\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector of products being purchased. 
+
+\Hypertarget{classStaffCheckoutCommand_a5717ba7341ebeb2bf57e23bce6039300}\label{classStaffCheckoutCommand_a5717ba7341ebeb2bf57e23bce6039300} 
+\index{StaffCheckoutCommand@{StaffCheckoutCommand}!receipt@{receipt}}
+\index{receipt@{receipt}!StaffCheckoutCommand@{StaffCheckoutCommand}}
+\doxysubsubsection{\texorpdfstring{receipt}{receipt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classReceipt}{Receipt}}\texorpdfstring{$\ast$}{*} Staff\+Checkout\+Command\+::receipt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the generated receipt. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{StaffCheckoutCommand_8h}{Staff\+Checkout\+Command.\+h}}\item 
+src/\mbox{\hyperlink{StaffCheckoutCommand_8cpp}{Staff\+Checkout\+Command.\+cpp}}\end{DoxyCompactItemize}

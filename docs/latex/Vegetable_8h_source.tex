@@ -1,0 +1,22 @@
+\doxysection{Vegetable.\+h}
+\hypertarget{Vegetable_8h_source}{}\label{Vegetable_8h_source}\index{src/Vegetable.h@{src/Vegetable.h}}
+\mbox{\hyperlink{Vegetable_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VEGETABLE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VEGETABLE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVegetable}{Vegetable}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPlant}{Plant}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classVegetable_ab59166fb257fac35611a884f1ad8cf4a}{Vegetable}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlant_ad339313da357bf2c1a22d68ab1d18437}{maxHeight}},\ \mbox{\hyperlink{classWateringStrategy}{WateringStrategy}}*\ \mbox{\hyperlink{classPlant_a555aa51225db5b0e28887daa17a688be}{wateringStrat}},\ \mbox{\hyperlink{classPruningStrategy}{PruningStrategy}}*\ \mbox{\hyperlink{classPlant_ae5f3749ec4bf1623d9ba19d6e3a9892d}{pruningStrat}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a5e7524c02c407392be4ac490f849eecd}{name}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}{sellSeason}})\ :\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}(\textcolor{stringliteral}{"{}Vegetable"{}},\ \mbox{\hyperlink{classPlant_ad339313da357bf2c1a22d68ab1d18437}{maxHeight}},\ \mbox{\hyperlink{classPlant_a555aa51225db5b0e28887daa17a688be}{wateringStrat}},\ \mbox{\hyperlink{classPlant_ae5f3749ec4bf1623d9ba19d6e3a9892d}{pruningStrat}},\ \mbox{\hyperlink{classPlant_a5e7524c02c407392be4ac490f849eecd}{name}},\ \mbox{\hyperlink{classPlant_a71440a1a6eb6f5200ae4f16bb90cec42}{sellSeason}})\ \{\}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classVegetable_ae184263701e88f0b3296f2a7fe713c96}{baseCost}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00043\ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classVegetable_a4a03ba5321bbd3ddc67cd5264391e7b2}{seasonCost}}(\textcolor{keywordtype}{string}\ curSeason)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

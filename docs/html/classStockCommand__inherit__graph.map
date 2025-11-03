@@ -1,0 +1,5 @@
+<map id="StockCommand" name="StockCommand">
+<area shape="rect" id="Node000001" title="Command for stocking/restocking the nursery. Design Pattern: Command Participant: ConcreteCommand." alt="" coords="5,79,131,104"/>
+<area shape="rect" id="Node000002" href="$classStaffCommand.html" title="Abstract base class for staff commands. Design Pattern: Command Participant: Command." alt="" coords="9,5,127,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,44,71,79,65,79,65,44"/>
+</map>

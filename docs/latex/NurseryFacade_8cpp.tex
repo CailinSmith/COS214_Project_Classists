@@ -1,0 +1,110 @@
+\doxysection{src/\+Nursery\+Facade.cpp File Reference}
+\hypertarget{NurseryFacade_8cpp}{}\label{NurseryFacade_8cpp}\index{src/NurseryFacade.cpp@{src/NurseryFacade.cpp}}
+{\ttfamily \#include "{}Nursery\+Facade.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include "{}Sales\+Area.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery\+Area.\+h"{}}\newline
+{\ttfamily \#include "{}Sales\+Staff.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery\+Staff.\+h"{}}\newline
+{\ttfamily \#include "{}Manager.\+h"{}}\newline
+{\ttfamily \#include "{}Checkout\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Remove\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Remove\+Sale\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Ask\+Info\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Check\+Stock\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Refund\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Prune\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Fertilise\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Stock\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Spring.\+h"{}}\newline
+{\ttfamily \#include "{}Summer.\+h"{}}\newline
+{\ttfamily \#include "{}Autumn.\+h"{}}\newline
+{\ttfamily \#include "{}Winter.\+h"{}}\newline
+{\ttfamily \#include "{}Rose.\+h"{}}\newline
+{\ttfamily \#include "{}Basil.\+h"{}}\newline
+{\ttfamily \#include "{}Tomato.\+h"{}}\newline
+{\ttfamily \#include "{}Lettuce.\+h"{}}\newline
+{\ttfamily \#include "{}Jade\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Lily.\+h"{}}\newline
+{\ttfamily \#include "{}Snake\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Aloe\+Vera.\+h"{}}\newline
+{\ttfamily \#include "{}Chrysanthemum.\+h"{}}\newline
+{\ttfamily \#include "{}Lavender.\+h"{}}\newline
+{\ttfamily \#include "{}Apple\+Tree.\+h"{}}\newline
+{\ttfamily \#include "{}Pumpkin.\+h"{}}\newline
+{\ttfamily \#include "{}Barrel\+Cactus.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Hyacinth.\+h"{}}\newline
+{\ttfamily \#include "{}Rubber\+Tree.\+h"{}}\newline
+{\ttfamily \#include "{}Coneflower.\+h"{}}\newline
+{\ttfamily \#include "{}Pansy.\+h"{}}\newline
+{\ttfamily \#include "{}Thyme.\+h"{}}\newline
+{\ttfamily \#include "{}Strawberry.\+h"{}}\newline
+{\ttfamily \#include "{}Kale.\+h"{}}\newline
+{\ttfamily \#include "{}Echeveria.\+h"{}}\newline
+{\ttfamily \#include "{}Cattails.\+h"{}}\newline
+{\ttfamily \#include "{}Peace\+Lily.\+h"{}}\newline
+{\ttfamily \#include "{}Chamomile.\+h"{}}\newline
+{\ttfamily \#include "{}Sunflower.\+h"{}}\newline
+{\ttfamily \#include "{}Rosemary.\+h"{}}\newline
+{\ttfamily \#include "{}Orange\+Tree.\+h"{}}\newline
+{\ttfamily \#include "{}Cucumber.\+h"{}}\newline
+{\ttfamily \#include "{}Christmas\+Cactus.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Lettuce.\+h"{}}\newline
+{\ttfamily \#include "{}Pothos.\+h"{}}\newline
+{\ttfamily \#include "{}Ginger.\+h"{}}\newline
+{\ttfamily \#include "{}Customer.\+h"{}}\newline
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const string \mbox{\hyperlink{NurseryFacade_8cpp_ae0b701cb85442489b3817a27d3ea6420}{MENU\+\_\+\+BLUE}} = "{}\textbackslash{}033\mbox{[}34m"{}
+\item 
+static const string \mbox{\hyperlink{NurseryFacade_8cpp_a7a1fff2750afc37f5ff952d7fefc0389}{MENU\+\_\+\+RESET}} = "{}\textbackslash{}033\mbox{[}0m"{}
+\item 
+static const string \mbox{\hyperlink{NurseryFacade_8cpp_a6f6c105d20e8be519f438377325da6e3}{MENU\+\_\+\+SEP}} = "{}============================================================"{}
+\item 
+static const string \mbox{\hyperlink{NurseryFacade_8cpp_a3959f1a1ab8de32feefba257a999123b}{MENU\+\_\+\+GREEN}} = "{}\textbackslash{}033\mbox{[}32m"{}
+\item 
+static std\+::atomic$<$ bool $>$ \mbox{\hyperlink{NurseryFacade_8cpp_a17f0491e378adca655fe2bd08d571292}{automation\+Enabled\+\_\+}} \{true\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{NurseryFacade_8cpp_a17f0491e378adca655fe2bd08d571292}\label{NurseryFacade_8cpp_a17f0491e378adca655fe2bd08d571292} 
+\index{NurseryFacade.cpp@{NurseryFacade.cpp}!automationEnabled\_@{automationEnabled\_}}
+\index{automationEnabled\_@{automationEnabled\_}!NurseryFacade.cpp@{NurseryFacade.cpp}}
+\doxysubsubsection{\texorpdfstring{automationEnabled\_}{automationEnabled\_}}
+{\footnotesize\ttfamily std\+::atomic$<$bool$>$ automation\+Enabled\+\_\+ \{true\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{NurseryFacade_8cpp_ae0b701cb85442489b3817a27d3ea6420}\label{NurseryFacade_8cpp_ae0b701cb85442489b3817a27d3ea6420} 
+\index{NurseryFacade.cpp@{NurseryFacade.cpp}!MENU\_BLUE@{MENU\_BLUE}}
+\index{MENU\_BLUE@{MENU\_BLUE}!NurseryFacade.cpp@{NurseryFacade.cpp}}
+\doxysubsubsection{\texorpdfstring{MENU\_BLUE}{MENU\_BLUE}}
+{\footnotesize\ttfamily const string MENU\+\_\+\+BLUE = "{}\textbackslash{}033\mbox{[}34m"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{NurseryFacade_8cpp_a3959f1a1ab8de32feefba257a999123b}\label{NurseryFacade_8cpp_a3959f1a1ab8de32feefba257a999123b} 
+\index{NurseryFacade.cpp@{NurseryFacade.cpp}!MENU\_GREEN@{MENU\_GREEN}}
+\index{MENU\_GREEN@{MENU\_GREEN}!NurseryFacade.cpp@{NurseryFacade.cpp}}
+\doxysubsubsection{\texorpdfstring{MENU\_GREEN}{MENU\_GREEN}}
+{\footnotesize\ttfamily const string MENU\+\_\+\+GREEN = "{}\textbackslash{}033\mbox{[}32m"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{NurseryFacade_8cpp_a7a1fff2750afc37f5ff952d7fefc0389}\label{NurseryFacade_8cpp_a7a1fff2750afc37f5ff952d7fefc0389} 
+\index{NurseryFacade.cpp@{NurseryFacade.cpp}!MENU\_RESET@{MENU\_RESET}}
+\index{MENU\_RESET@{MENU\_RESET}!NurseryFacade.cpp@{NurseryFacade.cpp}}
+\doxysubsubsection{\texorpdfstring{MENU\_RESET}{MENU\_RESET}}
+{\footnotesize\ttfamily const string MENU\+\_\+\+RESET = "{}\textbackslash{}033\mbox{[}0m"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{NurseryFacade_8cpp_a6f6c105d20e8be519f438377325da6e3}\label{NurseryFacade_8cpp_a6f6c105d20e8be519f438377325da6e3} 
+\index{NurseryFacade.cpp@{NurseryFacade.cpp}!MENU\_SEP@{MENU\_SEP}}
+\index{MENU\_SEP@{MENU\_SEP}!NurseryFacade.cpp@{NurseryFacade.cpp}}
+\doxysubsubsection{\texorpdfstring{MENU\_SEP}{MENU\_SEP}}
+{\footnotesize\ttfamily const string MENU\+\_\+\+SEP = "{}============================================================"{}\hspace{0.3cm}{\ttfamily [static]}}
+

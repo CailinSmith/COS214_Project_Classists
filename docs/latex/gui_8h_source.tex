@@ -1,0 +1,227 @@
+\doxysection{gui.\+h}
+\hypertarget{gui_8h_source}{}\label{gui_8h_source}\index{src/gui.h@{src/gui.h}}
+\mbox{\hyperlink{gui_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GUI\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GUI\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}ftxui/component/captured\_mouse.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}ftxui/component/component.hpp"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}ftxui/component/component\_base.hpp"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}ftxui/component/screen\_interactive.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}ftxui/dom/elements.hpp"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Product_8h}{Product.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Customer_8h}{Customer.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Staff_8h}{Staff.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Manager_8h}{Manager.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SalesStaff_8h}{SalesStaff.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{InventoryManager_8h}{InventoryManager.h}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Nursery_8h}{Nursery.h}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CheckoutCommand_8h}{CheckoutCommand.h}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AskInfoCommand_8h}{AskInfoCommand.h}}"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CheckStockCommand_8h}{CheckStockCommand.h}}"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{RefundCommand_8h}{RefundCommand.h}}"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Receipt_8h}{Receipt.h}}"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Iterator_8h}{Iterator.h}}"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SeasonIterator_8h}{SeasonIterator.h}}"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CeramicPot_8h}{CeramicPot.h}}"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ConcretePot_8h}{ConcretePot.h}}"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ClayPot_8h}{ClayPot.h}}"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{KraftWrapping_8h}{KraftWrapping.h}}"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ExtraFertilizer_8h}{ExtraFertilizer.h}}"{}}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Rose_8h}{Rose.h}}"{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Basil_8h}{Basil.h}}"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Tomato_8h}{Tomato.h}}"{}}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Lettuce_8h}{Lettuce.h}}"{}}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{JadePlant_8h}{JadePlant.h}}"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{WaterLily_8h}{WaterLily.h}}"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SnakePlant_8h}{SnakePlant.h}}"{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AloeVera_8h}{AloeVera.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Chrysanthemum_8h}{Chrysanthemum.h}}"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Lavender_8h}{Lavender.h}}"{}}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AppleTree_8h}{AppleTree.h}}"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Pumpkin_8h}{Pumpkin.h}}"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{BarrelCactus_8h}{BarrelCactus.h}}"{}}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{WaterHyacinth_8h}{WaterHyacinth.h}}"{}}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{RubberTree_8h}{RubberTree.h}}"{}}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Coneflower_8h}{Coneflower.h}}"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Pansy_8h}{Pansy.h}}"{}}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Thyme_8h}{Thyme.h}}"{}}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Strawberry_8h}{Strawberry.h}}"{}}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Kale_8h}{Kale.h}}"{}}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Echeveria_8h}{Echeveria.h}}"{}}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Cattails_8h}{Cattails.h}}"{}}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PeaceLily_8h}{PeaceLily.h}}"{}}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Chamomile_8h}{Chamomile.h}}"{}}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Sunflower_8h}{Sunflower.h}}"{}}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Rosemary_8h}{Rosemary.h}}"{}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{OrangeTree_8h}{OrangeTree.h}}"{}}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Cucumber_8h}{Cucumber.h}}"{}}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ChristmasCactus_8h}{ChristmasCactus.h}}"{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{WaterLettuce_8h}{WaterLettuce.h}}"{}}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Pothos_8h}{Pothos.h}}"{}}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Ginger_8h}{Ginger.h}}"{}}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NurseryStaff_8h}{NurseryStaff.h}}"{}}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ReadyForSaleState_8h}{ReadyForSaleState.h}}"{}}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Summer_8h}{Summer.h}}"{}}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{using\ namespace\ }ftxui;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlantShopGUI}{PlantShopGUI}}\ \{}
+\DoxyCodeLine{00097\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00101\ \ \ \ \ ScreenInteractive\ \mbox{\hyperlink{classPlantShopGUI_a5f3aa174759b44321ee13289bccfe316}{screen}};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classInventoryManager}{InventoryManager}}*\ \mbox{\hyperlink{classPlantShopGUI_a5d84fe287452b98c14a9be64d1d1fd2f}{inventoryManager}};}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classNursery}{Nursery}}*\ \mbox{\hyperlink{classPlantShopGUI_abc1e0f1fb4e9230f040d0fa43dade71b}{nursery}};}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{classCustomer}{Customer}}*\ \mbox{\hyperlink{classPlantShopGUI_a672607a979773215f862948b4cc5d1de}{customer}};}
+\DoxyCodeLine{00115\ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ \mbox{\hyperlink{classPlantShopGUI_a18a689f5305b6d511d01092e59d5ed04}{nurseryStaff}};}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ \mbox{\hyperlink{classPlantShopGUI_a8897086a4d3e0f93c1146d1249fabbb9}{salesStaff}};}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ \mbox{\hyperlink{classPlantShopGUI_af51e065b254bf575abf6e6016a18c6a8}{managerStaff}};}
+\DoxyCodeLine{00128\ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_adb7fa68f361011782c18402bd2ac7c88}{mainMenuSelected}};}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a73350eed80137b0018a8bed2659d4dc3}{categoryMenuSelected}};}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a5ac259c8dce29a8c6d1ef6e970adc0fd}{plantListSelected}};}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a1c2ec9254261580a1039f396e817a816}{detailsScrollOffset}};}
+\DoxyCodeLine{00148\ \ \ \ \ std::string\ \mbox{\hyperlink{classPlantShopGUI_a279c54a5026f1bf418a8ff5cfe876d99}{inputBuffer}};}
+\DoxyCodeLine{00152\ \ \ \ \ std::string\ \mbox{\hyperlink{classPlantShopGUI_a408772220627d2659c95d9d72fcd0143}{messageBuffer}};}
+\DoxyCodeLine{00153\ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907}{View}}\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a8a84a67f19d835defe95113f20debc8b}{MAIN\_MENU}},}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ab60107316b4527b64d9fd648a120e9bd}{VIEW\_BY\_SELECTION}},}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ae9a8c6cc8e1a16a3f2aad0c3c216c6b7}{CATEGORY\_SELECTION}},}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a8d980188758e2410732a66c3edd205f5}{SEASON\_SELECTION}},}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a5a37fe3b89c7b39130b1810287e2f733}{PLANT\_LIST}},}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907aa43c61bc2fec6e1091040845e3493cd8}{PLANT\_DETAILS}},}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a817d9dbf66a843b93f80dc1bb5b9523e}{CART\_VIEW}},}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a0503f90554b9655e2003e22569ae6fef}{DECORATION\_MENU}},}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ac3764a305c971f6b8cc17a7debcd1d89}{CHECKOUT\_SUMMARY}},}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a44fd8002a311c7cab6ff4b5a50bd7d42}{STOCK\_CHECK}},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907ae22835bde75a9fe41a0e86de15482a81}{PAST\_ORDERS}},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a3bd810a46d83a1673d976f1027e53d95}{REFUND\_SELECTION}},}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907a51f9257d35f097a2ca8fd4bbd6d6213e}{REFUND\_CONFIRMATION}}}
+\DoxyCodeLine{00171\ \ \ \ \ \};}
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a0e7afc3e8dd2b3343641c6b256b5c907}{View}}\ \mbox{\hyperlink{classPlantShopGUI_a5c3295cee2f1ea59e181efee6983d596}{currentView}};}
+\DoxyCodeLine{00176\ \ \ \ \ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_acd30fd1631ebf3bc962f972e53d82cff}{cartListSelected}};}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a5e1450b6c766b9e8e4d97ddc9afbfa62}{decorationMenuSelected}};}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a714bd9edea099d689aa44faeff7c4a99}{viewBySelected}};}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a70b98fb5fdd3b1f96810766b41b0393f}{seasonMenuSelected}};}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a5b39919771433dfd53d56d494127a87d}{currentDecoratingIndex}};}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a932078adf66b8cc7b2439ac2a2d0a284}{hasPot}};}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_af87fb97366e77708096032dc6a225539}{hasWrapping}};}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_ab7bf49d6c43ce50bdd0b6b4e54bf8f6f}{hasFertilizer}};}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a08c2f7eb71067c233b63eda2d1b0b665}{viewingBySeason}};}
+\DoxyCodeLine{00213\ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classPlantShopGUI_a96f08b90f5926440c7aa63eb43c794d1}{refundFlags}};}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a3f7d07bd3a9a728cdc2c6b0dc2585529}{refundListSelected}};}
+\DoxyCodeLine{00225\ \ \ \ \ std::string\ \mbox{\hyperlink{classPlantShopGUI_a60d37b4c15e10be148c3dfba0a0ec7d3}{refundResultMessage}};}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPlantShopGUI_a9b04e192df7e4016fd53a5f29f3da209}{refundTotal}};}
+\DoxyCodeLine{00230\ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a96b56ee92d6ca23393a8f6dce30f61e4}{plantListScrollOffset}};}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a7c8a55524fe5211fc1d50d0ed1617c6c}{checkoutScrollOffset}};}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a4d43c9cdfc1d298939635b252ced8208}{refundScrollOffset}};}
+\DoxyCodeLine{00243\ \ \ \ \ }
+\DoxyCodeLine{00247\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{classPlantShopGUI_abdb7cf5bc78054229b0b97970710fdae}{categories}};}
+\DoxyCodeLine{00251\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{classPlantShopGUI_a380c46614ab0f501505e6d71ffd95862}{seasons}};}
+\DoxyCodeLine{00255\ \ \ \ \ std::string\ \mbox{\hyperlink{classPlantShopGUI_aa978614b86f563ee7b227ce7ef8ec7f8}{selectedCategory}};}
+\DoxyCodeLine{00259\ \ \ \ \ std::string\ \mbox{\hyperlink{classPlantShopGUI_a8b7b9b7873977172342974756d1dd22b}{selectedSeason}};}
+\DoxyCodeLine{00263\ \ \ \ \ std::vector<Plant*>\ \mbox{\hyperlink{classPlantShopGUI_ac4af0c81949da6461810e113eb4a8bca}{currentPlants}};}
+\DoxyCodeLine{00267\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}*\ \mbox{\hyperlink{classPlantShopGUI_a1b95e03b60895ea8b89f8d5381f7137b}{selectedPlant}};}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPlantShopGUI_a9145f75c949025406ab1d89ed2da547b}{selectedOrderIndex}};}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_a3c93ff64c3cdad2bb4b5fe2360cab8e9}{initializePlants}}();}
+\DoxyCodeLine{00277\ \ \ \ \ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_a65f2f923afa302d7118f14e4a872fb28}{loadPlantsForCategory}}(\textcolor{keyword}{const}\ std::string\&\ category);}
+\DoxyCodeLine{00283\ \ \ \ \ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_a59924fa04ef0d476489b5318304e23fb}{loadPlantsForSeason}}(\textcolor{keyword}{const}\ std::string\&\ season);}
+\DoxyCodeLine{00289\ \ \ \ \ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_a55efa8b4c1ab711d30554fbcdec59288}{applyDecoration}}();}
+\DoxyCodeLine{00294\ \ \ \ \ }
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_ab53c52a23e69ab86cee7cebefcccd486}{processMultiItemRefund}}();}
+\DoxyCodeLine{00299\ \ \ \ \ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_aab20f3e76abd8a3189ae4f3d969bd3b9}{showCart}}();}
+\DoxyCodeLine{00304\ \ \ \ \ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_a9b41f77a8380e0dd774dd483e8bc51aa}{startCheckoutFlow}}();}
+\DoxyCodeLine{00309\ \ \ \ \ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_a9299cced20d8c6d6b6c26d5df5c9860d}{performActualCheckout}}();}
+\DoxyCodeLine{00314\ \ \ \ \ }
+\DoxyCodeLine{00319\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_abed79b76b41f39149623696d7f49ff03}{render}}();}
+\DoxyCodeLine{00320\ \ \ \ \ }
+\DoxyCodeLine{00325\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_ac02abb41d78d5828f4e19641c1fb5ed2}{renderMainMenu}}();}
+\DoxyCodeLine{00326\ \ \ \ \ }
+\DoxyCodeLine{00331\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_aa407428051cbfd4704358f13c19612ca}{renderViewBySelection}}();}
+\DoxyCodeLine{00332\ \ \ \ \ }
+\DoxyCodeLine{00337\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_aff9e66fd8d42df89a8e7d5c09188fd5c}{renderCategorySelection}}();}
+\DoxyCodeLine{00338\ \ \ \ \ }
+\DoxyCodeLine{00343\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_ae64922744a0ed9593c67b6172cdb7815}{renderSeasonSelection}}();}
+\DoxyCodeLine{00344\ \ \ \ \ }
+\DoxyCodeLine{00349\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_a9c080f0a31e34e53fd31b8105c022471}{renderPlantList}}();}
+\DoxyCodeLine{00350\ \ \ \ \ }
+\DoxyCodeLine{00355\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_a34f5959c1699cb4e3a7c40ca8568011e}{renderPlantDetails}}();}
+\DoxyCodeLine{00356\ \ \ \ \ }
+\DoxyCodeLine{00361\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_a1eee8fb8196641fdc3a4de9a7df405dd}{renderCart}}();}
+\DoxyCodeLine{00362\ \ \ \ \ }
+\DoxyCodeLine{00367\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_ad5156d837c2118f4d8d050f20914032d}{renderDecorationMenu}}();}
+\DoxyCodeLine{00368\ \ \ \ \ }
+\DoxyCodeLine{00373\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_aa1be030aa2efa9436f71e73fd73eef36}{renderCheckoutSummary}}();}
+\DoxyCodeLine{00374\ \ \ \ \ }
+\DoxyCodeLine{00379\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_a3ad92a49c945d6a15136eb6cb98cbd82}{renderStockCheck}}();}
+\DoxyCodeLine{00380\ \ \ \ \ }
+\DoxyCodeLine{00385\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_a1cb63c4df13dca0e79bf2d6ef3e0a8cb}{renderPastOrders}}();}
+\DoxyCodeLine{00386\ \ \ \ \ }
+\DoxyCodeLine{00391\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_a62312fcc7bc9467391a550e82baa07c9}{renderRefundSelection}}();}
+\DoxyCodeLine{00392\ \ \ \ \ }
+\DoxyCodeLine{00397\ \ \ \ \ Element\ \mbox{\hyperlink{classPlantShopGUI_aec1a1b6d97baa815c96145c38f2a6083}{renderRefundConfirmation}}();}
+\DoxyCodeLine{00398\ \ \ \ \ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_ab6207e06f329fe4beff835bc09cfc108}{handleInput}}(Event\ event);}
+\DoxyCodeLine{00405\ \ \ \ \ }
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a4b00a203dc22190bae56e573edcc3e04}{handleMainMenuInput}}(Event\ event);}
+\DoxyCodeLine{00412\ \ \ \ \ }
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a4398b03fb72f3224fb12fa8597278900}{handleViewByInput}}(Event\ event);}
+\DoxyCodeLine{00419\ \ \ \ \ }
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a026731f94c5760aa4ed7bcfa769cab7b}{handleCategoryInput}}(Event\ event);}
+\DoxyCodeLine{00426\ \ \ \ \ }
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a705131023d763e5170325e8b0b9aea36}{handleSeasonInput}}(Event\ event);}
+\DoxyCodeLine{00433\ \ \ \ \ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_ab6084bc5dcee981ac088d4d612881b24}{handlePlantListInput}}(Event\ event);}
+\DoxyCodeLine{00440\ \ \ \ \ }
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a8a6cc3acc73e9300ed7f92fea1d217f2}{handleDetailsInput}}(Event\ event);}
+\DoxyCodeLine{00447\ \ \ \ \ }
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_aa3e8a1c4bc51f1704843680f54174c18}{handleCartInput}}(Event\ event);}
+\DoxyCodeLine{00454\ \ \ \ \ }
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a54cdc88e4bbe71880c86d58166264cff}{handleDecorationInput}}(Event\ event);}
+\DoxyCodeLine{00461\ \ \ \ \ }
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a5cee38ce6235ee30e17863e8dd3faf4c}{handleCheckoutSummaryInput}}(Event\ event);}
+\DoxyCodeLine{00468\ \ \ \ \ }
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_a7d0ff7345b5bc93661b326e2eb5892eb}{handlePastOrdersInput}}(Event\ event);}
+\DoxyCodeLine{00475\ \ \ \ \ }
+\DoxyCodeLine{00481\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_aca25ee817f74cf49df8f93d83002d767}{handleRefundSelectionInput}}(Event\ event);}
+\DoxyCodeLine{00482\ \ \ \ \ }
+\DoxyCodeLine{00488\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPlantShopGUI_ac6dc27459336a77ad37f065d36fb3909}{handleRefundConfirmationInput}}(Event\ event);}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00494\ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a6abfec14b36ff01e0e25f0da0ee25118}{PlantShopGUI}}();}
+\DoxyCodeLine{00495\ \ \ \ \ }
+\DoxyCodeLine{00499\ \ \ \ \ \mbox{\hyperlink{classPlantShopGUI_a810815497239fa69df3c5c2b285cba48}{\string~PlantShopGUI}}();}
+\DoxyCodeLine{00500\ \ \ \ \ }
+\DoxyCodeLine{00504\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantShopGUI_a73d034f01df2b3c629054f47e07b4821}{run}}();}
+\DoxyCodeLine{00505\ \};}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GUI\_H}}
+
+\end{DoxyCode}

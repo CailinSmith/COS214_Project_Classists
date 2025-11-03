@@ -1,0 +1,101 @@
+\doxysection{No\+Prune Class Reference}
+\hypertarget{classNoPrune}{}\label{classNoPrune}\index{NoPrune@{NoPrune}}
+
+
+Implements no pruning strategy for plants. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy.  
+
+
+
+
+{\ttfamily \#include $<$No\+Prune.\+h$>$}
+
+
+
+Inheritance diagram for No\+Prune\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classNoPrune__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for No\+Prune\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classNoPrune__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classNoPrune_a511b63220f3324023d6e8236ea89f6d2}{prune}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)
+\begin{DoxyCompactList}\small\item\em Applies no pruning to the specified plant. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classNoPrune_a916dc83eb6f09c30d1184c4d75eb097f}{print}} ()
+\begin{DoxyCompactList}\small\item\em Returns a string description of this pruning strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPruningStrategy}{Pruning\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPruningStrategy_a0d3ed13b6816f882662303df634ed345}{\texorpdfstring{$\sim$}{\string~}\+Pruning\+Strategy}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPruningStrategy}{Pruning\+Strategy}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements no pruning strategy for plants. Design Pattern\+: Strategy Participant\+: Concrete\+Strategy. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This class implements a pruning strategy where no pruning is performed on the plant. This is appropriate for plants that grow naturally without requiring trimming or shaping, or for plants that should not be pruned to maintain their natural form.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPruningStrategy}{Pruning\+Strategy} 
+
+\doxylink{classPlant}{Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classNoPrune_a916dc83eb6f09c30d1184c4d75eb097f}\label{classNoPrune_a916dc83eb6f09c30d1184c4d75eb097f} 
+\index{NoPrune@{NoPrune}!print@{print}}
+\index{print@{print}!NoPrune@{NoPrune}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily string No\+Prune\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns a string description of this pruning strategy. 
+
+\begin{DoxyReturn}{Returns}
+string A text description indicating no pruning is performed. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPruningStrategy_a64bca15bc6390b0602e17709c217877a}{Pruning\+Strategy}}.
+
+\Hypertarget{classNoPrune_a511b63220f3324023d6e8236ea89f6d2}\label{classNoPrune_a511b63220f3324023d6e8236ea89f6d2} 
+\index{NoPrune@{NoPrune}!prune@{prune}}
+\index{prune@{prune}!NoPrune@{NoPrune}}
+\doxysubsubsection{\texorpdfstring{prune()}{prune()}}
+{\footnotesize\ttfamily void No\+Prune\+::prune (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Applies no pruning to the specified plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the \doxylink{classPlant}{Plant} object (no actual pruning is performed). \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classPruningStrategy_afde6df8bffa1c15e9c87f965fdd6ba3d}{Pruning\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{NoPrune_8h}{No\+Prune.\+h}}\item 
+src/\mbox{\hyperlink{NoPrune_8cpp}{No\+Prune.\+cpp}}\end{DoxyCompactItemize}

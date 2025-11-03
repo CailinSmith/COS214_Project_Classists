@@ -1,0 +1,105 @@
+\doxysection{Pruning\+Strategy Class Reference}
+\hypertarget{classPruningStrategy}{}\label{classPruningStrategy}\index{PruningStrategy@{PruningStrategy}}
+
+
+Abstract strategy for pruning plants. Design Pattern\+: Strategy Participant\+: Strategy.  
+
+
+
+
+{\ttfamily \#include $<$Pruning\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for Pruning\+Strategy\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPruningStrategy__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPruningStrategy_a0d3ed13b6816f882662303df634ed345}{\texorpdfstring{$\sim$}{\string~}\+Pruning\+Strategy}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{classPruningStrategy}{Pruning\+Strategy}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPruningStrategy_afde6df8bffa1c15e9c87f965fdd6ba3d}{prune}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}plant)=0
+\begin{DoxyCompactList}\small\item\em Prunes the given plant. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{classPruningStrategy_a64bca15bc6390b0602e17709c217877a}{print}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets a string representation of the pruning strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract strategy for pruning plants. Design Pattern\+: Strategy Participant\+: Strategy. 
+
+\begin{DoxyAuthor}{Author}
+Cailin Smith 
+\end{DoxyAuthor}
+This abstract class defines the interface for different pruning strategies. Concrete implementations (\doxylink{classDeadPruning}{Dead\+Pruning}, \doxylink{classThinning}{Thinning}, \doxylink{classNoPrune}{No\+Prune}) provide specific pruning techniques for different plant types. The strategy pattern allows pruning behavior to be changed at runtime.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlant}{Plant} 
+
+\doxylink{classDeadPruning}{Dead\+Pruning} 
+
+\doxylink{classThinning}{Thinning} 
+
+\doxylink{classNoPrune}{No\+Prune} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPruningStrategy_a0d3ed13b6816f882662303df634ed345}\label{classPruningStrategy_a0d3ed13b6816f882662303df634ed345} 
+\index{PruningStrategy@{PruningStrategy}!````~PruningStrategy@{\texorpdfstring{$\sim$}{\string~}PruningStrategy}}
+\index{````~PruningStrategy@{\texorpdfstring{$\sim$}{\string~}PruningStrategy}!PruningStrategy@{PruningStrategy}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PruningStrategy()}{\string~PruningStrategy()}}
+{\footnotesize\ttfamily virtual Pruning\+Strategy\+::\texorpdfstring{$\sim$}{\string~}\+Pruning\+Strategy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor for the \doxylink{classPruningStrategy}{Pruning\+Strategy}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPruningStrategy_a64bca15bc6390b0602e17709c217877a}\label{classPruningStrategy_a64bca15bc6390b0602e17709c217877a} 
+\index{PruningStrategy@{PruningStrategy}!print@{print}}
+\index{print@{print}!PruningStrategy@{PruningStrategy}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual string Pruning\+Strategy\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets a string representation of the pruning strategy. 
+
+\begin{DoxyReturn}{Returns}
+string Description of the pruning strategy. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classDeadPruning_a08f65cf0839e23b490ea2f171ff4ebac}{Dead\+Pruning}}, \mbox{\hyperlink{classNoPrune_a916dc83eb6f09c30d1184c4d75eb097f}{No\+Prune}}, \mbox{\hyperlink{classReduction_a2f2ab05fc90880570968b53bc16aa861}{Reduction}}, and \mbox{\hyperlink{classThinning_a8f572caaea75b5e1d783a068a049886c}{Thinning}}.
+
+\Hypertarget{classPruningStrategy_afde6df8bffa1c15e9c87f965fdd6ba3d}\label{classPruningStrategy_afde6df8bffa1c15e9c87f965fdd6ba3d} 
+\index{PruningStrategy@{PruningStrategy}!prune@{prune}}
+\index{prune@{prune}!PruningStrategy@{PruningStrategy}}
+\doxysubsubsection{\texorpdfstring{prune()}{prune()}}
+{\footnotesize\ttfamily virtual void Pruning\+Strategy\+::prune (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Prunes the given plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be pruned. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classDeadPruning_a9035f10f69267b657244a37ee6917375}{Dead\+Pruning}}, \mbox{\hyperlink{classNoPrune_a511b63220f3324023d6e8236ea89f6d2}{No\+Prune}}, \mbox{\hyperlink{classReduction_ab6f5477f7c2308bb08cb0111cda68dd5}{Reduction}}, and \mbox{\hyperlink{classThinning_a4810ce2ef2df08b53276753ebaf3561b}{Thinning}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{PruningStrategy_8h}{Pruning\+Strategy.\+h}}\end{DoxyCompactItemize}
