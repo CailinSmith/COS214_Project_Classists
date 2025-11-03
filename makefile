@@ -162,6 +162,53 @@ val-cli: setup demo
 	@echo "Running valgrind on CLI demo application ($(BUILD_DIR)/demo)"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(BUILD_DIR)/demo
 
+
+# =========================
+# Checkout Memory Test
+# =========================
+CHECKOUT_TEST_SRC := tests/test_checkout_memory.cpp
+CHECKOUT_TEST_OBJ := $(BUILD_DIR)/test_checkout_memory.o
+CHECKOUT_TEST_TARGET := $(BUILD_DIR)/test_checkout_memory
+
+$(CHECKOUT_TEST_TARGET): $(CORE_OBJS) $(CHECKOUT_TEST_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(CHECKOUT_TEST_OBJ): $(CHECKOUT_TEST_SRC)
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+.PHONY: test-checkout
+test-checkout: $(CHECKOUT_TEST_TARGET)
+	./$(CHECKOUT_TEST_TARGET)
+
+.PHONY: val-checkout
+val-checkout: $(CHECKOUT_TEST_TARGET)
+	@echo "Running valgrind on checkout memory test"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(CHECKOUT_TEST_TARGET)
+
+# =========================
+# Decorated Checkout Memory Test
+# =========================
+DECORATED_TEST_SRC := tests/test_decorated_checkout.cpp
+DECORATED_TEST_OBJ := $(BUILD_DIR)/test_decorated_checkout.o
+DECORATED_TEST_TARGET := $(BUILD_DIR)/test_decorated_checkout
+
+$(DECORATED_TEST_TARGET): $(CORE_OBJS) $(DECORATED_TEST_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(DECORATED_TEST_OBJ): $(DECORATED_TEST_SRC)
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+.PHONY: test-decorated
+test-decorated: $(DECORATED_TEST_TARGET)
+	./$(DECORATED_TEST_TARGET)
+
+.PHONY: val-decorated
+val-decorated: $(DECORATED_TEST_TARGET)
+	@echo "Running valgrind on decorated checkout memory test"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(DECORATED_TEST_TARGET)
+
 # Run all memory tests
 .PHONY: test-memory
 test-memory: test-checkout test-decorated
@@ -181,27 +228,36 @@ clean:
 clean-all: clean
 	rm -rf "$(DEPS_DIR)"
 
+
 # =========================
 # Install Dependencies
 # =========================
 install-deps:
-	@if ! command -v cmake >/dev/null 2>&1; then \
-		echo "ERROR: cmake is not installed!"; \
-		echo "Please install cmake first:"; \
-		echo "  Ubuntu/Debian: sudo apt-get install cmake g++ git build-essential"; \
-		echo "  Fedora/RHEL:   sudo dnf install cmake gcc-c++ git make"; \
-		echo "  macOS:         brew install cmake"; \
-		exit 1; \
-	fi
-	@if ! command -v g++ >/dev/null 2>&1; then \
-		echo "ERROR: g++ is not installed!"; \
-		echo "Please install g++ first:"; \
-		echo "  Ubuntu/Debian: sudo apt-get install g++ build-essential"; \
-		echo "  Fedora/RHEL:   sudo dnf install gcc-c++"; \
-		echo "  macOS:         xcode-select --install"; \
-		exit 1; \
-	fi
-	@if ! command -v git >/dev/null 2>&1; then \
+# =========================
+# Doxygen Documentation
+# =========================
+.PHONY: install-doxygen doxygen clean-doxygen view-docs
+
+install-doxygen:
+	@echo "Installing Doxygen and Graphviz..."
+	@echo "Please install Doxygen and Graphviz using your system's package manager:"
+	@echo "  Ubuntu/Debian: sudo apt-get install doxygen graphviz"
+	@echo "  Fedora/RHEL:   sudo dnf install doxygen graphviz"
+	@echo "  macOS:         brew install doxygen graphviz"
+
+doxygen:
+	@echo "Generating documentation..."
+	doxygen Doxyfile
+	@mkdir -p docs/html/assets
+	@cp -r assets/* docs/html/assets/
+	@echo "✓ Documentation ready at docs/html/index.html"
+
+clean-doxygen:
+	@echo "Cleaning Doxygen output (docs/html and docs/latex)..."
+	rm -rf docs/html docs/latex
+
+view-docs:
+	@echo "Opening documentation in browser..."
 		echo "ERROR: git is not installed!"; \
 		echo "Please install git first:"; \
 		echo "  Ubuntu/Debian: sudo apt-get install git"; \
@@ -285,6 +341,14 @@ help:
 	@echo "----------------------------------------------------------------------------"
 	@echo "  make clean               Remove build/ directory"
 	@echo "  make clean-all           Remove build/ and .deps/ (all dependencies)"
+	@echo "  make clean-doxygen       Remove generated Doxygen documentation"
+	@echo ""
+	@echo "----------------------------------------------------------------------------"
+	@echo "DOCUMENTATION:"
+	@echo "----------------------------------------------------------------------------"
+	@echo "  make install-doxygen     Install Doxygen and Graphviz"
+	@echo "  make doxygen             Generate documentation in docs/html and copy assets"
+	@echo "  make clean-doxygen       Remove docs/html and docs/latex folders"
 	@echo ""
 	@echo "----------------------------------------------------------------------------"
 	@echo "DEPENDENCIES:"
@@ -320,4 +384,4 @@ help:
 # Phony targets- they tell the makefile these are not files
 # =========================
 
-.PHONY: default all clean clean-all test setup install-deps gui check-ftxui run runcli rungui help demo itests val-test val-main val-all val-gui val-cli
+.PHONY: default all clean clean-all test setup install-deps gui check-ftxui run runcli rungui help demo itests val-test val-main val-all val-gui val-cli install-doxygen doxygen clean-doxygen view-docs
