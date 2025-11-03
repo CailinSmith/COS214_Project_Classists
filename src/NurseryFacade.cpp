@@ -72,6 +72,9 @@ static const string MENU_RESET = "\033[0m";
 static const string MENU_SEP = "============================================================";
 static const string MENU_GREEN = "\033[32m";
 
+
+static std::atomic<bool> automationEnabled_{true};
+
 NurseryFacade::NurseryFacade(InventoryManager* mgr) {
     if (mgr == nullptr) {
         manager_ = new InventoryManager();
@@ -157,7 +160,7 @@ void NurseryFacade::runSettings() {
         cout << MENU_BLUE << MENU_SEP << "\n";
         cout << "--- SETTINGS ---\n";
         cout << MENU_SEP << MENU_RESET << "\n";
-        cout << "1) Set tick interval (tps) - current: " << tickInterval_.count() << " tps\n";
+        cout << "1) Set tick interval (ms) - current: " << tickInterval_.count() << " ms\n";
         cout << "2) Set season\n";
         cout << "3) Return\n";
         cout << MENU_BLUE << "Choice: " << MENU_RESET;
@@ -168,10 +171,10 @@ void NurseryFacade::runSettings() {
                 string v; 
                 if (!getline(cin, v)) break;
                 try { 
-                    int tps = stoi(v); 
-                    if (tps < 100) tps = 100; 
-                    setTickInterval(std::chrono::milliseconds(tps)); 
-                    cout << "Tick interval set to " << tps << " tps\n"; 
+                    int ms = stoi(v); 
+                    if (ms < 50) ms = 50; 
+                    setTickInterval(std::chrono::milliseconds(ms)); 
+                    cout << "Tick interval set to " << ms << " ms\n"; 
                     break;
                 }
                 catch(...) { cout << "Invalid value. Please enter a valid number.\n"; }
@@ -539,14 +542,15 @@ void NurseryFacade::runStaffMenu() {
                 case 5: return string("Manage Notifications");
                 case 6: return string("View seasonal plants");
                 case 7: return string("Switch staff");
-                case 8: return string("Return");
+                case 8: return string("Toggle automation (") + (automationEnabled_ ? string("ON") : string("OFF")) + string(")");
+                case 9: return string("Return");
                 default: return string("");
             }
         };
 
         if (isSales) {
             // allowed actions for sales staff (omit Manage Plants which includes "Add plant to nursery")
-            vector<int> allowed = {1,4,5,6,7,8};
+            vector<int> allowed = {1,4,5,6,7,8,9};
             for (size_t i = 0; i < allowed.size(); ++i) {
                 cout << i+1 << ") " << labelFor(allowed[i]) << "\n";
                 displayToActual.push_back(allowed[i]);
@@ -560,7 +564,8 @@ void NurseryFacade::runStaffMenu() {
             cout << "5) Manage Notifications\n";
             cout << "6) View seasonal plants\n";
             cout << "7) Switch staff\n";
-            cout << "8) Return\n";
+            cout << "8) Toggle automation (" << (automationEnabled_ ? "ON" : "OFF") << ")\n";
+            cout << "9) Return\n";
             cout << MENU_BLUE << "Choose: " << MENU_RESET;
         }
         string line;
@@ -603,6 +608,7 @@ void NurseryFacade::runStaffMenu() {
                                     int num = stoi(numStr);
                                     if (num>=1 && num <= (int)items.size()) {
                                             Plant* p = items[num-1];
+                                            p->changeHealth();
                                             cout << p->summary();
                                             cout << MENU_BLUE << "Press ENTER to continue." << MENU_RESET;
                                             string tmp; getline(cin, tmp);
@@ -1119,8 +1125,15 @@ void NurseryFacade::runStaffMenu() {
         }
         // Option 7: Switch staff
         else if (line == "7") { switchRequested = true; break; }
-        // Option 8: Return
-        else if (line == "8") break;
+        // Option 8: Toggle automation
+        else if (line == "8") {
+            automationEnabled_ = !automationEnabled_;
+            cout << "Automation is now " << (automationEnabled_ ? "ENABLED" : "DISABLED") << "\n";
+            cout << MENU_BLUE << "Press ENTER to continue..." << MENU_RESET;
+            string tmp; getline(cin, tmp);
+        }
+        // Option 9: Return
+        else if (line == "9") break;
         else cout << "Invalid option\n";
     }
 
@@ -1514,12 +1527,12 @@ void NurseryFacade::tickLoop() {
         std::this_thread::sleep_for(tickInterval_);
         if (!running_) break;
         lk.lock();
-        // auto const &sale = manager_->getForSalePlants();
-        // for (auto p : sale) {
-        //     if (p) {
-        //         p->changeHealth();
-        //     }
-        // }
+        auto const &sale = manager_->getForSalePlants();
+        for (auto p : sale) {
+            if (p) {
+                p->changeHealth();
+            }
+        }
         auto const &nur = manager_->getNurseryPlants();
         for (auto p : nur) {
             if (p) {
@@ -1556,13 +1569,15 @@ void NurseryFacade::automatedCustomerLoop() {
 //ready plants to the sale list. This demonstrates concurrent state changes
 //and interactions with the InventoryManager.
 void NurseryFacade::automatedStaffLoop() {
-    std::uniform_int_distribution<int> wait(3000,7000);
+    std::uniform_int_distribution<int> wait(1000,3000); //can change to shorter if faster wanted
     std::mt19937 rng((unsigned)std::chrono::system_clock::now().time_since_epoch().count()+123);
     size_t pos = 0;
     while (running_) {
         //sleep between actions to simulate time taken
         std::this_thread::sleep_for(std::chrono::milliseconds(wait(rng)));
         if (!running_) break;
+
+        if (!automationEnabled_) continue;
 
         Plant* p = nullptr;
         {

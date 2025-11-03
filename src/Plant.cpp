@@ -213,13 +213,13 @@ void Plant::changeHealth() {
 		heightDelta -= 0.003f;
 	} else {
 		// well watered or recently watered (1.0 means just watered)
-		healthDelta += 0.01f; // well watered
-		heightDelta += 0.01f; // promotes growth
+		healthDelta += 0.05f; // well watered
+		heightDelta += 0.05f; // promotes growth
 	}
 
 	if (pruned) {
-		healthDelta += 0.01f;
-		heightDelta -= 0.05f;
+		healthDelta += 0.05f;
+		heightDelta -= 0.01f;
 	}
 
 	//as plant approaches max height, growth slows down.
