@@ -228,77 +228,36 @@ clean:
 clean-all: clean
 	rm -rf "$(DEPS_DIR)"
 
-# =========================
-# Doxygen Documentation
-# =========================
-DOCS_DIR := doxygen
-
-# Install Doxygen
-install-doxygen:
-	@if ! command -v doxygen >/dev/null 2>&1; then \
-		echo "Installing Doxygen..."; \
-		if command -v apt-get >/dev/null 2>&1; then \
-			sudo apt-get update && sudo apt-get install -y doxygen graphviz; \
-		elif command -v dnf >/dev/null 2>&1; then \
-			sudo dnf install -y doxygen graphviz; \
-		elif command -v brew >/dev/null 2>&1; then \
-			brew install doxygen graphviz; \
-		elif command -v pacman >/dev/null 2>&1; then \
-			sudo pacman -S doxygen graphviz; \
-		else \
-			echo "ERROR: Unable to detect package manager!"; \
-			echo "Please install doxygen and graphviz manually:"; \
-			echo "  Ubuntu/Debian: sudo apt-get install doxygen graphviz"; \
-			echo "  Fedora/RHEL:   sudo dnf install doxygen graphviz"; \
-			echo "  macOS:         brew install doxygen graphviz"; \
-			echo "  Arch Linux:    sudo pacman -S doxygen graphviz"; \
-			exit 1; \
-		fi; \
-		echo "Doxygen installed successfully!"; \
-	else \
-		echo "Doxygen is already installed."; \
-	fi
-
-# Generate Doxygen documentation
-doxygen:
-	@if ! command -v doxygen >/dev/null 2>&1; then \
-		echo "ERROR: Doxygen is not installed!"; \
-		echo "Run: make install-doxygen"; \
-		exit 1; \
-	fi
-	@echo "Generating Doxygen documentation..."
-	@mkdir -p $(DOCS_DIR)
-	doxygen Doxyfile
-	@echo "Documentation generated in $(DOCS_DIR)/html/"
-	@echo "Open $(DOCS_DIR)/html/index.html in your browser to view."
-
-# Clean Doxygen documentation
-clean-doxygen:
-	@echo "Removing Doxygen documentation..."
-	rm -rf $(DOCS_DIR)
-	@echo "Documentation removed."
 
 # =========================
 # Install Dependencies
 # =========================
 install-deps:
-	@if ! command -v cmake >/dev/null 2>&1; then \
-		echo "ERROR: cmake is not installed!"; \
-		echo "Please install cmake first:"; \
-		echo "  Ubuntu/Debian: sudo apt-get install cmake g++ git build-essential"; \
-		echo "  Fedora/RHEL:   sudo dnf install cmake gcc-c++ git make"; \
-		echo "  macOS:         brew install cmake"; \
-		exit 1; \
-	fi
-	@if ! command -v g++ >/dev/null 2>&1; then \
-		echo "ERROR: g++ is not installed!"; \
-		echo "Please install g++ first:"; \
-		echo "  Ubuntu/Debian: sudo apt-get install g++ build-essential"; \
-		echo "  Fedora/RHEL:   sudo dnf install gcc-c++"; \
-		echo "  macOS:         xcode-select --install"; \
-		exit 1; \
-	fi
-	@if ! command -v git >/dev/null 2>&1; then \
+# =========================
+# Doxygen Documentation
+# =========================
+.PHONY: install-doxygen doxygen clean-doxygen view-docs
+
+install-doxygen:
+	@echo "Installing Doxygen and Graphviz..."
+	@echo "Please install Doxygen and Graphviz using your system's package manager:"
+	@echo "  Ubuntu/Debian: sudo apt-get install doxygen graphviz"
+	@echo "  Fedora/RHEL:   sudo dnf install doxygen graphviz"
+	@echo "  macOS:         brew install doxygen graphviz"
+
+doxygen:
+	@echo "Generating documentation..."
+	doxygen Doxyfile
+	@mkdir -p docs/html/assets
+	@cp -r assets/* docs/html/assets/
+	@echo "✓ Documentation ready at docs/html/index.html"
+
+clean-doxygen:
+	@echo "Cleaning Doxygen output (docs/html and docs/latex)..."
+	rm -rf docs/html docs/latex
+
+view-docs:
+	@echo "Opening documentation in browser..."
 		echo "ERROR: git is not installed!"; \
 		echo "Please install git first:"; \
 		echo "  Ubuntu/Debian: sudo apt-get install git"; \
@@ -388,8 +347,8 @@ help:
 	@echo "DOCUMENTATION:"
 	@echo "----------------------------------------------------------------------------"
 	@echo "  make install-doxygen     Install Doxygen and Graphviz"
-	@echo "  make doxygen             Generate HTML documentation from code comments"
-	@echo "  make clean-doxygen       Remove all generated documentation"
+	@echo "  make doxygen             Generate documentation in docs/html and copy assets"
+	@echo "  make clean-doxygen       Remove docs/html and docs/latex folders"
 	@echo ""
 	@echo "----------------------------------------------------------------------------"
 	@echo "DEPENDENCIES:"
